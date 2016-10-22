@@ -325,3 +325,6 @@ node_modules/wtf-8/
 node_modules/xmlhttprequest-ssl/
 node_modules/yargs/
 node_modules/yeast/
+node_modules/binary-extensions/
+node_modules/tty-browserify/
+.idea/workspace.xml
