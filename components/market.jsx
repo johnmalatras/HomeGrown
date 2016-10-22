@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Hello extends React.Component {
+class Market extends React.Component {
     render() {
-        return <h1>John Malatras</h1>
+        return <button type="button" class="btn btn-default">Left</button>
     }
 }
 
-ReactDOM.render(<Hello/>, document.getElementById('hello'));
+ReactDOM.render(<Market/>, document.getElementById('market'));
