@@ -16,4 +16,4 @@ var config = {
 };
 firebase.initializeApp(config);
 
-import Login from './components/login.jsx';
+import Market from './components/market.jsx';
