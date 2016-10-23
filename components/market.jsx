@@ -1,39 +1,79 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 var ReactBootstrap = require('react-bootstrap');
+var FBDB = require("../modules/firebase.js").FBDB;
 
-class Market extends React.Component {
-    render() {
-    	var ButtonToolbar = ReactBootstrap.ButtonToolbar;
-    	var Button = ReactBootstrap.Button;
-    	const buttonsInstance = (
-		  <ButtonToolbar>
-		    {/* Standard button */}
-		    <Button>Default</Button>
+var MarketItems = React.createClass({
+	render: function() {
+		var marketEntries = this.props.entries;
 
-		    {/* Provides extra visual weight and identifies the primary action in a set of buttons */}
-		    <Button bsStyle="primary">Primary</Button>
+		function createItems(item) {
+			const rowElement = (
+				<tr key={item.title}>
+					<td>{item.title}</td>
+					<td>{item.seller}</td>
+					<td>{item.price}</td>
+					<td>{item.quantity}</td>
+					<td>{item.metric}</td>
+				</tr>
+			)
+    		return rowElement
+    	}	
+ 
+    	var listItems = marketEntries.map(createItems);
 
-		    </hr>
-		    
-		    {/* Indicates a successful or positive action */}
-		    <Button bsStyle="success">Success</Button>
+    	return (
+			<tbody className="theList">
+        		{listItems}
+			</tbody>
+        );
+	}
+});
 
-		    {/* Contextual button for informational alert messages */}
-		    <Button bsStyle="info">Info</Button>
-
-		    {/* Indicates caution should be taken with this action */}
-		    <Button bsStyle="warning">Warning</Button>
-
-		    {/* Indicates a dangerous or potentially negative action */}
-		    <Button bsStyle="danger">Danger</Button>
-
-		    {/* Deemphasize a button by making it look like a link while maintaining button behavior */}
-		    <Button bsStyle="link">Link</Button>
-		  </ButtonToolbar>
+const Market = React.createClass({
+	getInitialState: function() {
+    	return {
+    		items: [{
+    			title: "Weed",
+    			seller: "John Malatras",
+    			price: "250",
+    			quantity: "100",
+    			metric: "oz"
+    		}]
+    	};
+  	},
+	componentWillMount: function() {
+		this.firebaseRef = FBDB.ref("items");
+		this.firebaseRef.on("child_added", function(dataSnapshot) {
+			this.items.push(dataSnapshot.val());
+		    this.setState({
+		    	items: this.items
+		    });
+		}.bind(this));
+	},
+	render() {
+    	var Table = ReactBootstrap.Table;
+    	const page = (
+    		<div>
+    			<h1>Current Inventory</h1>
+			 	<Table responsive>
+			   		<thead>
+			     		<tr>
+			        		<th>Item</th>
+			        		<th>Seller</th>
+			        		<th>Price</th>
+			        		<th>Quantity</th>
+			        		<th>Metric</th>
+			      		</tr>
+			    	</thead>
+			    	<MarketItems entries={this.state.items}/>
+			  	</Table>
+		  	</div>
 		);
-        return buttonsInstance;
+        return page;
     }
-}
+});
+
+export default Market;
 
 ReactDOM.render(<Market/>, document.getElementById('market'));

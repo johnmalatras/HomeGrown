@@ -14,6 +14,8 @@ var config = {
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
 };
-firebase.initializeApp(config);
+var FBApp = firebase.initializeApp(config);
+
+module.exports.FBDB = FBApp.database();
 
 import Market from './components/market.jsx';
