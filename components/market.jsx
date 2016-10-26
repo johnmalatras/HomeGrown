@@ -1,11 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 var ReactBootstrap = require('react-bootstrap');
-var FBDB = require("../modules/firebase.js").FBDB;
+//import FBApp from '../modules/firebase'
+
+import firebase from 'firebase';
+
+var config = {
+    apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
+    authDomain: "homegrown-65645.firebaseapp.com",
+    databaseURL: "https://homegrown-65645.firebaseio.com",
+    storageBucket: "homegrown-65645.appspot.com",
+    messagingSenderId: "818910687408"
+};
+var FBApp = firebase.initializeApp(config);
 
 var MarketItems = React.createClass({
 	render: function() {
-		var marketEntries = this.props.entries;
+		var marketEntries = this.props.items;
 
 		function createItems(item) {
 			const rowElement = (
@@ -31,25 +42,27 @@ var MarketItems = React.createClass({
 });
 
 const Market = React.createClass({
-	getInitialState: function() {
-    	return {
-    		items: [{
-    			title: "Weed",
-    			seller: "John Malatras",
-    			price: "250",
-    			quantity: "100",
-    			metric: "oz"
-    		}]
-    	};
-  	},
+	// getInitialState: function() {
+	// 	this.firebaseRef = FBApp.database().ref("items");
+	// 	this.firebaseRef.on("value", function(snapshot) {
+	// 		return snapshot.val();
+	// 	}, function (errorObject) {
+	// 		console.log("The read failed: " + errorObject.code);
+	// 		return null;
+	// 	});
+ //  	},
 	componentWillMount: function() {
-		this.firebaseRef = FBDB.ref("items");
+		this.firebaseRef = FBApp.database().ref("items");
 		this.firebaseRef.on("child_added", function(dataSnapshot) {
-			this.items.push(dataSnapshot.val());
+			//this.items.push(dataSnapshot.val());
+			this.items = dataSnapshot.val();
 		    this.setState({
 		    	items: this.items
 		    });
-		}.bind(this));
+		}.bind(this), function (errorObject) {
+			console.log("The read failed: " + errorObject.code);
+			return null;
+		});
 	},
 	render() {
     	var Table = ReactBootstrap.Table;
@@ -66,7 +79,7 @@ const Market = React.createClass({
 			        		<th>Metric</th>
 			      		</tr>
 			    	</thead>
-			    	<MarketItems entries={this.state.items}/>
+			    	<MarketItems entries={this.items}/>
 			  	</Table>
 		  	</div>
 		);
