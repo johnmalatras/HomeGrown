@@ -12,58 +12,103 @@ var config = {
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
 };
-var FBApp = firebase.initializeApp(config);
+firebase.initializeApp(config);
+var db = firebase.database();
+var Button = ReactBootstrap.Button;
 
-var MarketItems = React.createClass({
-	render: function() {
-		var marketEntries = this.props.items;
 
-		function createItems(item) {
-			const rowElement = (
-				<tr key={item.title}>
-					<td>{item.title}</td>
-					<td>{item.seller}</td>
-					<td>{item.price}</td>
-					<td>{item.quantity}</td>
-					<td>{item.metric}</td>
-				</tr>
-			)
-    		return rowElement
-    	}	
- 
-    	var listItems = marketEntries.map(createItems);
+const ItemModal = (props) => {
+	var Modal = ReactBootstrap.Modal;
 
-    	return (
-			<tbody className="theList">
-        		{listItems}
-			</tbody>
-        );
+	if (!props.selectedItem) {
+		return <div></div>;
 	}
-});
 
-const Market = React.createClass({
-	// getInitialState: function() {
-	// 	this.firebaseRef = FBApp.database().ref("items");
-	// 	this.firebaseRef.on("value", function(snapshot) {
-	// 		return snapshot.val();
-	// 	}, function (errorObject) {
-	// 		console.log("The read failed: " + errorObject.code);
-	// 		return null;
-	// 	});
- //  	},
-	componentWillMount: function() {
-		this.firebaseRef = FBApp.database().ref("items");
-		this.firebaseRef.on("child_added", function(dataSnapshot) {
-			//this.items.push(dataSnapshot.val());
-			this.items = dataSnapshot.val();
-		    this.setState({
-		    	items: this.items
-		    });
-		}.bind(this), function (errorObject) {
-			console.log("The read failed: " + errorObject.code);
-			return null;
-		});
-	},
+  	return (
+    	<Modal show={ props.show } onHide={ () => props.onHide() }>
+      		<div className="container">
+        		<h3>{props.selectedItem.title}</h3>
+				<Button onClick={() => props.onHide()}>Close</Button>
+				<br />
+      		</div>
+    	</Modal>
+  	);
+};
+
+
+const MarketItem = ({item, onItemSelect}) => {
+	const rowElement = (
+		<tr key={item.title}>
+			<td>{item.title}</td>
+			<td>{item.seller}</td>
+			<td>{item.price}</td>
+			<td>{item.quantity}</td>
+			<td>{item.metric}</td>
+			<td><Button onClick={() => onItemSelect(item)}>View</Button></td>
+		</tr>
+	)
+    return rowElement;
+}
+
+
+const MarketList = (props) => {
+  	const listItems = props.entries.map((row) => {
+    	return <MarketItem key={row.title} item={row} onItemSelect={props.onItemSelect} />
+  	});
+
+  	return (
+    	<tbody className="theList">
+        	{listItems}
+		</tbody>
+  	);
+};
+
+
+class Market extends React.Component {
+
+  	constructor(props) {
+  		super(props);
+  		this.state = {
+  			items: [
+  				{
+  					title: "Broccoli",
+  					seller: "John M",
+  					price: "15",
+  					quantity: "28",
+  					metric: "gram"
+  				}
+  			],
+			selectedItem: null,
+      		modalIsOpen: false
+  		}
+	}
+
+	componentWillMount() {
+		// var ref = db.ref("items");
+		// ref.on("value", function(snapshot) {
+		// 	console.log(snapshot.val());
+		//   	this.setState({
+		//   		items: snapshot.val()
+		//   	});
+		// }, function (errorObject) {
+		//   	console.log("The read failed: " + errorObject.code);
+		// });
+	}
+
+	openModal(item) {
+	    this.setState({
+	      	modalIsOpen: true,
+	      	selectedItem: item
+	    });
+  	}
+
+  	closeModal() {
+    	this.setState({
+      		modalIsOpen: false,
+      		selectedItem: null
+    	});
+  	}
+
 	render() {
     	var Table = ReactBootstrap.Table;
     	const page = (
@@ -79,13 +124,14 @@ const Market = React.createClass({
 			        		<th>Metric</th>
 			      		</tr>
 			    	</thead>
-			    	<MarketItems entries={this.items}/>
+			    	<MarketList entries={this.state.items} onItemSelect={selectedItem => this.openModal(selectedItem) } />
 			  	</Table>
+			  	<ItemModal show={this.state.modalIsOpen} selectedItem={this.state.selectedItem} onHide={ () => this.closeModal() } />
 		  	</div>
 		);
         return page;
     }
-});
+}
 
 export default Market;
 

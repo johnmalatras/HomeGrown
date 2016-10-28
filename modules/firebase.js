@@ -26,7 +26,7 @@ var db = firebase.database();
 var ref = db.ref("items");
 
 // Attach an asynchronous callback to read the data at our posts reference
-ref.on("value", function(snapshot) {
+ref.on("child_added", function(snapshot) {
   console.log(snapshot.val());
 }, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
