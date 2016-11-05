@@ -82,6 +82,6 @@ class SignUpPage extends React.Component {
 }
 
 export default connect(null, Actions)(reduxForm({
-    form: 'signup',
-    validate
+    form: 'signup'
+
 })(SignUpPage));

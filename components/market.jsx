@@ -135,4 +135,4 @@ class Market extends React.Component {
 
 export default Market;
 
-ReactDOM.render(<Market/>, document.getElementById('market'));
+//ReactDOM.render(<Market/>, document.getElementById('market'));
