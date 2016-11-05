@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
 .idea/libraries/
+.idea/vcs.xml
 node_modules/.bin/
 node_modules/Base64/
 node_modules/accepts/
