@@ -1,39 +1,138 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 var ReactBootstrap = require('react-bootstrap');
+//import FBApp from '../modules/firebase'
+
+import firebase from 'firebase';
+
+var config = {
+    apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
+    authDomain: "homegrown-65645.firebaseapp.com",
+    databaseURL: "https://homegrown-65645.firebaseio.com",
+    storageBucket: "homegrown-65645.appspot.com",
+    messagingSenderId: "818910687408"
+};
+firebase.initializeApp(config);
+var db = firebase.database();
+var Button = ReactBootstrap.Button;
+
+
+const ItemModal = (props) => {
+	var Modal = ReactBootstrap.Modal;
+
+	if (!props.selectedItem) {
+		return <div></div>;
+	}
+
+  	return (
+    	<Modal show={ props.show } onHide={ () => props.onHide() }>
+      		<div className="container">
+        		<h3>{props.selectedItem.title}</h3>
+				<Button onClick={() => props.onHide()}>Close</Button>
+				<br />
+      		</div>
+    	</Modal>
+  	);
+};
+
+
+const MarketItem = ({item, onItemSelect}) => {
+	const rowElement = (
+		<tr key={item.title}>
+			<td>{item.title}</td>
+			<td>{item.seller}</td>
+			<td>{item.price}</td>
+			<td>{item.quantity}</td>
+			<td>{item.metric}</td>
+			<td><Button onClick={() => onItemSelect(item)}>View</Button></td>
+		</tr>
+	)
+    return rowElement;
+}
+
+
+const MarketList = (props) => {
+  	const listItems = props.entries.map((row) => {
+    	return <MarketItem key={row.title} item={row} onItemSelect={props.onItemSelect} />
+  	});
+
+  	return (
+    	<tbody className="theList">
+        	{listItems}
+		</tbody>
+  	);
+};
+
 
 class Market extends React.Component {
-    render() {
-    	var ButtonToolbar = ReactBootstrap.ButtonToolbar;
-    	var Button = ReactBootstrap.Button;
-    	const buttonsInstance = (
-		  <ButtonToolbar>
-		    {/* Standard button */}
-		    <Button>Default</Button>
 
-		    {/* Provides extra visual weight and identifies the primary action in a set of buttons */}
-		    <Button bsStyle="primary">Primary</Button>
+  	constructor(props) {
+  		super(props);
+  		this.state = {
+  			items: [
+  				{
+  					title: "Broccoli",
+  					seller: "John M",
+  					price: "15",
+  					quantity: "28",
+  					metric: "gram"
+  				}
+  			],
+			selectedItem: null,
+      		modalIsOpen: false
+  		}
+	}
 
-		    </hr>
-		    
-		    {/* Indicates a successful or positive action */}
-		    <Button bsStyle="success">Success</Button>
+	componentWillMount() {
+		// var ref = db.ref("items");
+		// ref.on("value", function(snapshot) {
+		// 	console.log(snapshot.val());
+		//   	this.setState({
+		//   		items: snapshot.val()
+		//   	});
+		// }, function (errorObject) {
+		//   	console.log("The read failed: " + errorObject.code);
+		// });
+	}
 
-		    {/* Contextual button for informational alert messages */}
-		    <Button bsStyle="info">Info</Button>
+	openModal(item) {
+	    this.setState({
+	      	modalIsOpen: true,
+	      	selectedItem: item
+	    });
+  	}
 
-		    {/* Indicates caution should be taken with this action */}
-		    <Button bsStyle="warning">Warning</Button>
+  	closeModal() {
+    	this.setState({
+      		modalIsOpen: false,
+      		selectedItem: null
+    	});
+  	}
 
-		    {/* Indicates a dangerous or potentially negative action */}
-		    <Button bsStyle="danger">Danger</Button>
-
-		    {/* Deemphasize a button by making it look like a link while maintaining button behavior */}
-		    <Button bsStyle="link">Link</Button>
-		  </ButtonToolbar>
+	render() {
+    	var Table = ReactBootstrap.Table;
+    	const page = (
+    		<div>
+    			<h1>Current Inventory</h1>
+			 	<Table responsive>
+			   		<thead>
+			     		<tr>
+			        		<th>Item</th>
+			        		<th>Seller</th>
+			        		<th>Price</th>
+			        		<th>Quantity</th>
+			        		<th>Metric</th>
+			      		</tr>
+			    	</thead>
+			    	<MarketList entries={this.state.items} onItemSelect={selectedItem => this.openModal(selectedItem) } />
+			  	</Table>
+			  	<ItemModal show={this.state.modalIsOpen} selectedItem={this.state.selectedItem} onHide={ () => this.closeModal() } />
+		  	</div>
 		);
-        return buttonsInstance;
+        return page;
     }
 }
+
+export default Market;
 
 ReactDOM.render(<Market/>, document.getElementById('market'));
