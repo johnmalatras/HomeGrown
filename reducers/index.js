@@ -10,5 +10,5 @@ const rootReducer = combineReducers({
     auth: AuthReducer,
     form: FormReducer
 });
-//dog
+//dogs
 export default rootReducer;
