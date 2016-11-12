@@ -19,13 +19,6 @@ const validate = (values) => {
         errors.password = "Please enter a password.";
     }
 
-    if (!values.passwordConfirmation) {
-        errors.passwordConfirmation = "Please enter a password confirmation.";
-    }
-
-    if (values.password !== values.passwordConfirmation ) {
-        errors.password = 'Passwords do not match';
-    }
     return errors;
 };
 
@@ -33,10 +26,16 @@ class Login extends React.Component {
     constructor(props) {
         super();
         this.handleFormSubmit= this.handleFormSubmit.bind(this);
-    }
+    };
 
     handleFormSubmit(values){
-        {this.props.onLogin(values.email,values.password)}
+        {this.props.onLogin(values)}
+    };
+    renderAuthenticationError() {
+        if (this.props.authenticationError) {
+            return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
+        }
+        return <div></div>;
     };
 
     renderField({input, label, type, meta: {touched, error}}){
@@ -56,10 +55,10 @@ class Login extends React.Component {
         return(
             <div className="container">
                 <div className="col-md-6">
+                    { this.renderAuthenticationError() }
                     <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                         <Field name="email" type="text" component={this.renderField} label="Email" />
                         <Field name="password" type="password" component={this.renderField} label="Password" />
-                        <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
                         <button action="submit" className="btn btn-primary">Sign In</button>
                     </form>
@@ -71,8 +70,9 @@ class Login extends React.Component {
 
 Login.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    onLogin: PropTypes.func.isRequired
-}
+    onLogin: PropTypes.func.isRequired,
+    authenticationError: PropTypes.string
+};
 
 export default(reduxForm({
      form: 'loginPage',

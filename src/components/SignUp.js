@@ -51,9 +51,16 @@ class SignUp extends React.Component {
         this.handleFormSubmit= this.handleFormSubmit.bind(this);
     }
 
+    renderAuthenticationError() {
+        if (this.props.authenticationError) {
+            return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
+        }
+        return <div></div>;
+    }
+
     handleFormSubmit(values){
         //console.log(values)
-        {this.props.onSignUp(values.email,values.password,values.bussinessName,values.addressLineOne,values.addressLineTwo,values.phoneNumber)}
+        {this.props.onSignUp(values)}
     };
 
     renderField({input, label, type, meta: {touched, error}}){
@@ -73,6 +80,7 @@ class SignUp extends React.Component {
         return(
             <div className="container">
                 <div className="col-md-6">
+                    { this.renderAuthenticationError() }
                     <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                         <Field name="email" type="text" component={this.renderField} label="Email" />
                         <Field name="password" type="password" component={this.renderField} label="Password" />
@@ -92,7 +100,8 @@ class SignUp extends React.Component {
 
 SignUp.propTypes = {
     authenticated: PropTypes.bool.isRequired,
-    onSignUp: PropTypes.func.isRequired
+    onSignUp: PropTypes.func.isRequired,
+    authenticationError: PropTypes.string
 }
 
 export default(reduxForm({

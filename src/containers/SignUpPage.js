@@ -7,7 +7,8 @@ import SignUp from '../components/SignUp';
 
 const mapStateToProps = (state) => {
     return {
-        authenticated: state.AuthReducer.authenticated
+        authenticated: state.AuthReducer.authenticated,
+        authenticationError: state.AuthReducer.error
     }
 }
 
