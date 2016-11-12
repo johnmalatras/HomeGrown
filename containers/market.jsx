@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 var ReactBootstrap = require('react-bootstrap');
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../actions';
 //import FBApp from '../modules/firebase'
 
 import firebase from 'firebase';
@@ -51,8 +54,8 @@ const MarketItem = ({item, onItemSelect}) => {
 }
 
 
-const MarketList = (props) => {
-  	const listItems = props.entries.map((row) => {
+const MarketList = (entries) => {
+  	const listItems = entries.map((row) => {
     	return <MarketItem key={row.title} item={row} onItemSelect={props.onItemSelect} />
   	});
 
@@ -66,35 +69,36 @@ const MarketList = (props) => {
 
 class Market extends React.Component {
 
-  	constructor(props) {
-  		super(props);
-  		this.state = {
-  			items: [
-  				{
-  					title: "Broccoli",
-  					seller: "John M",
-  					price: "15",
-  					quantity: "28",
-  					metric: "gram"
-  				}
-  			],
-			selectedItem: null,
-      		modalIsOpen: false
-  		}
-	}
+ //  	constructor(props) {
+ //  		super(props);
+ //  		this.state = {
+ //  			items: [
+ //  				{
+ //  					title: "Broccoli",
+ //  					seller: "John M",
+ //  					price: "15",
+ //  					quantity: "28",
+ //  					metric: "gram"
+ //  				}
+ //  			],
+	// 		selectedItem: null,
+ //      		modalIsOpen: false
+ //  		}
+	// }
 
-	componentWillMount() {
-		// var ref = db.ref("items");
-		// ref.on("value", function(snapshot) {
-		// 	console.log(snapshot.val());
-		//   	this.setState({
-		//   		items: snapshot.val()
-		//   	});
-		// }, function (errorObject) {
-		//   	console.log("The read failed: " + errorObject.code);
-		// });
-	}
+	// componentWillMount() {
+	// 	// var ref = db.ref("items");
+	// 	// ref.on("value", function(snapshot) {
+	// 	// 	console.log(snapshot.val());
+	// 	//   	this.setState({
+	// 	//   		items: snapshot.val()
+	// 	//   	});
+	// 	// }, function (errorObject) {
+	// 	//   	console.log("The read failed: " + errorObject.code);
+	// 	// });
+	// }
 
+	/*
 	openModal(item) {
 	    this.setState({
 	      	modalIsOpen: true,
@@ -108,6 +112,7 @@ class Market extends React.Component {
       		selectedItem: null
     	});
   	}
+  	*/
 
 	render() {
     	var Table = ReactBootstrap.Table;
@@ -124,15 +129,27 @@ class Market extends React.Component {
 			        		<th>Metric</th>
 			      		</tr>
 			    	</thead>
-			    	<MarketList entries={this.state.items} onItemSelect={selectedItem => this.openModal(selectedItem) } />
+			    	<MarketList entries={this.props.items} />
 			  	</Table>
-			  	<ItemModal show={this.state.modalIsOpen} selectedItem={this.state.selectedItem} onHide={ () => this.closeModal() } />
+			  	{/* <ItemModal show={this.state.modalIsOpen} selectedItem={this.state.selectedItem} onHide={ () => this.closeModal() } />*/}
 		  	</div>
 		);
         return page;
     }
 }
 
-export default Market;
+function mapStateToProps(state) {
+	return {
+		items: state.items
+	};
+}
 
-ReactDOM.render(<Market/>, document.getElementById('market'));
+function mapDispatchToProps(dispatch) {
+	return {
+		actions: bindActionCreators(Actions, dispatch)
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Market);
+
+//ReactDOM.render(<Market/>, document.getElementById('market'));

@@ -1,28 +1,18 @@
-/**
- * Created by alextulenko on 10/28/16.
- */
-import request from 'superagent';
-import { browserHistory } from 'react-router';
+export const REQUEST_ITEMS = 'REQUEST_ITEMS';
 
-export const SIGN_IN_USER = 'SIGN_IN_USER';
-export const SIGN_OUT_USER = 'SIGN_OUT_USER';
+export function requestItems(term = null) {
+	const data = [
+	  				{
+	  					title: "Broccoli",
+	  					seller: "John M",
+	  					price: "15",
+	  					quantity: "28",
+	  					metric: "g"
+	  				}
+	  			];
 
-export function signInUser()
-{
-    browserHistory.push('/market');
-    console.log("ANY");
-
-    return {
-        type: SIGN_IN_USER
-    }
-}
-
-
-export function signOutUser()
-{
-    browserHistory.push('/');
-
-    return {
-        type: SIGN_OUT_USER
-    }
+	return {
+		type: REQUEST_ITEMS,
+		payload: data
+	}
 }

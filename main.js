@@ -1,7 +1,14 @@
-/**
- * Created by John on 10/22/16.
- */
-var React = require("react");
-var ReactDOM = require("react-dom");
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Market from './containers/market.jsx';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore.jsx';
 
-import Market from './components/market.jsx';
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <Market />
+  </Provider>,
+  document.getElementById('app')
+);
