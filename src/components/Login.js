@@ -26,7 +26,6 @@ const validate = (values) => {
     if (values.password !== values.passwordConfirmation ) {
         errors.password = 'Passwords do not match';
     }
-
     return errors;
 };
 
@@ -56,14 +55,15 @@ class Login extends React.Component {
 
         return(
             <div className="container">
-                <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-                    <Field name="email" type="text" component={this.renderField} label="Email" />
-                    <Field name="password" type="password" component={this.renderField} label="Password" />
-                    <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+                <div className="col-md-6">
+                    <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                        <Field name="email" type="text" component={this.renderField} label="Email" />
+                        <Field name="password" type="password" component={this.renderField} label="Password" />
+                        <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
 
-
-                    <button action="submit" className="btn btn-primary">Sign In</button>
-                </form>
+                        <button action="submit" className="btn btn-primary">Sign In</button>
+                    </form>
+                </div>
             </div>
         );
     }
@@ -74,18 +74,9 @@ Login.propTypes = {
     onLogin: PropTypes.func.isRequired
 }
 
-//export default reduxForm({ form: 'login'})(Login);
-//() => this.props.onLogin()
-
 export default(reduxForm({
      form: 'loginPage',
     validate
  })(Login));
 
-
-// <h2 className="text-center">Is Logged in: {'' + this.props.authenticated}</h2>
-// <button type="submit"
-//         onClick={this.handleFormSubmit()}>
-//     LOGIN BUTTON
-// </button>
 

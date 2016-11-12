@@ -2,8 +2,8 @@
  * Created by alextulenko on 11/12/16.
  */
 import { connect } from 'react-redux'
-import {signInUser} from '../actions/index';
-import Login from '../components/Login';
+import {signUpUser} from '../actions/index';
+import SignUp from '../components/SignUp';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,12 +12,12 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps =  ({
-    onLogin: signInUser
+    onSignUp: signUpUser
 })
 
-const LoginPage = connect(
+const SignUpPage = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Login)
+)(SignUp)
 
-export default LoginPage
+export default SignUpPage

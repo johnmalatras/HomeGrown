@@ -8,26 +8,26 @@ import App from './src/containers/App';
 import { createStore,applyMiddleware } from 'redux/lib'
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
-//import store from './src/store/configureStore';
-
+import { Router, Route, IndexRoute, hashHistory } from 'react-router';
+import Holder from './src/components/Holder'
+import HomePage from './src/components/HomePage';
+//import RequireAuth from '../src/containers/RequireAuth';
 
 const store = createStore( rootReducer, applyMiddleware( promiseMiddleware ));
 
-ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('app')
-);
-
 // ReactDOM.render(
 //     <Provider store={store}>
-//         <Router history={browserHistory}>
-//             <Route path="/" component={App}>
-//                 <IndexRoute component={Home} />
-//                 <Route path="market" component={Market} />
-//             </Route>
-//         </Router>
+//         <App />
 //     </Provider>,
 //     document.getElementById('app')
 // );
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Router history={hashHistory}>
+            <Route path="/" component={HomePage}/>
+            <Route path="/holder" component={RequireAuth(Holder)}/>
+        </Router>
+    </Provider>,
+    document.getElementById('app')
+);

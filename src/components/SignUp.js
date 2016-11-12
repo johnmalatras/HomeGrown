@@ -5,6 +5,46 @@ import React,{PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
+const validate = (values) => {
+    const errors = {};
+
+    if (!values.email) {
+        errors.email = "Please enter an email.";
+
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Invalid email address'
+    }
+
+    if (!values.password) {
+        errors.password = "Please enter a password.";
+    }
+
+    if (!values.passwordConfirmation) {
+        errors.passwordConfirmation = "Please enter a password confirmation.";
+    }
+
+    if (values.password !== values.passwordConfirmation ) {
+        errors.password = 'Passwords do not match';
+    }
+
+    if(!values.bussinessName){
+        errors.bussinessName = "Please enter Bussiness Name";
+    }
+
+    if(!values.addressLineOne){
+        errors.addressLineOne = "Please enter Address";
+    }
+
+    if(!values.addressLineTwo){
+        errors.addressLineTwo = "Please enter Address";
+    }
+    if(!values.phoneNumber){
+        errors.phoneNumber = "Please enter Bussiness Name";
+    }
+
+    return errors;
+};
+
 class SignUp extends React.Component {
     constructor(props) {
         super();
@@ -12,7 +52,8 @@ class SignUp extends React.Component {
     }
 
     handleFormSubmit(values){
-        {this.props.onLogin(values.email,values.password)}
+        //console.log(values)
+        {this.props.onSignUp(values.email,values.password,values.bussinessName,values.addressLineOne,values.addressLineTwo,values.phoneNumber)}
     };
 
     renderField({input, label, type, meta: {touched, error}}){
@@ -31,15 +72,30 @@ class SignUp extends React.Component {
 
         return(
             <div className="container">
-                <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
-                    <Field name="email" type="text" component={this.renderField} label="Email" />
-                    <Field name="password" type="password" component={this.renderField} label="Password" />
-                    <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+                <div className="col-md-6">
+                    <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
+                        <Field name="email" type="text" component={this.renderField} label="Email" />
+                        <Field name="password" type="password" component={this.renderField} label="Password" />
+                        <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+                        <Field name="bussinessName" type="text" component={this.renderField} label="Bussiness Name" />
+                        <Field name="addressLineOne" type="text" component={this.renderField} label="Address Line 1" />
+                        <Field name="addressLineTwo" type="text" component={this.renderField} label="Address Line 2" />
+                        <Field name="phoneNumber" type="text" component={this.renderField} label="Phone Number" />
 
-
-                    <button action="submit" className="btn btn-primary">Sign In</button>
-                </form>
+                        <button action="submit" className="btn btn-primary">Sign Up</button>
+                    </form>
+                </div>
             </div>
         );
     }
 }
+
+SignUp.propTypes = {
+    authenticated: PropTypes.bool.isRequired,
+    onSignUp: PropTypes.func.isRequired
+}
+
+export default(reduxForm({
+    form: 'signUpPage',
+    validate
+})(SignUp));
