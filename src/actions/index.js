@@ -7,6 +7,10 @@ export const signInUser = (username, password) => {
     }
 }
 
+// export const signUpUser = (username, password, email) =>{
+//
+// }
+
 export const signOutUser = () => {
 
     return {
