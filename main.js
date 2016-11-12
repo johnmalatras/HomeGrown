@@ -5,7 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './src/containers/App';
-import { createStore,applyMiddleware } from 'redux/lib'
+import Market from './containers/market.jsx';
+import { createStore,applyMiddleware } from 'redux/lib';
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
 //import store from './src/store/configureStore';
@@ -15,7 +16,7 @@ const store = createStore( rootReducer, applyMiddleware( promiseMiddleware ));
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <Market />
     </Provider>,
     document.getElementById('app')
 );

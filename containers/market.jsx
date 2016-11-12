@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 var ReactBootstrap = require('react-bootstrap');
 import { connect } from 'react-redux';
@@ -148,6 +148,16 @@ function mapDispatchToProps(dispatch) {
 	return {
 		actions: bindActionCreators(Actions, dispatch)
 	};
+}
+
+Market.propTypes = {
+    items: PropTypes.arrayOf(PropTypes.shape({
+    	title: PropTypes.string.isRequired,
+	    seller: PropTypes.string.isRequired,
+	    price: PropTypes.number.isRequired,
+	    quantity: PropTypes.number.isRequired,
+	    metric: PropTypes.string.isRequired
+  }).isRequired).isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Market);
