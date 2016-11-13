@@ -4,12 +4,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './src/containers/App';
-import MarketView from './containers/MarketView.jsx';
+import MarketView from './src/containers/MarketView.jsx';
 import { createStore,applyMiddleware } from 'redux/lib';
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
-import configureStore from './store/configureStore';
+import configureStore from './src/store/configureStore';
 
 const store = configureStore();
 
