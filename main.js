@@ -5,30 +5,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './src/containers/App';
-import Market from './containers/market.jsx';
+import MarketView from './containers/MarketView.jsx';
 import { createStore,applyMiddleware } from 'redux/lib';
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
-//import store from './src/store/configureStore';
+import configureStore from './store/configureStore';
 
-
-const store = createStore( rootReducer, applyMiddleware( promiseMiddleware ));
+const store = configureStore();
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Market />
-    </Provider>,
-    document.getElementById('app')
+  <Provider store={store}>
+    <MarketView />
+  </Provider>,
+  document.getElementById('app')
 );
-
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <Router history={browserHistory}>
-//             <Route path="/" component={App}>
-//                 <IndexRoute component={Home} />
-//                 <Route path="market" component={Market} />
-//             </Route>
-//         </Router>
-//     </Provider>,
-//     document.getElementById('app')
-// );

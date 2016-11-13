@@ -1,16 +1,10 @@
-/**
- * Created by alextulenko on 10/28/16.
- */
-import {combineReducers} from 'redux';
-import AuthReducer from './auth.jsx';
-import ItemReducer from './items';
-
-
+import { combineReducers } from 'redux';
+import ItemsReducer from './items';
+import ModalReducer from './modal'
 
 const rootReducer = combineReducers({
-    auth: AuthReducer,
-    //form: FormReducer,
-    items: ItemReducer
+  items: ItemsReducer,
+  modal: ModalReducer
 });
 
 export default rootReducer;
