@@ -6,6 +6,10 @@ import Firebase from 'firebase';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_USER = 'AUTH_USER';
+export const REQUEST_ITEMS = 'REQUEST_ITEMS';
+export const OPEN_MODAL = 'OPEN_MODAL';
+export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const ADD_TO_CART = 'ADD_TO_CART';
 
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
@@ -83,3 +87,43 @@ export function authError(error) {
         payload: error
     }
 };
+
+export function requestItems() {
+  return function(dispatch) {
+    var ref = database.ref("items");
+    ref.on("value", function(snapshot) {
+      dispatch({
+        type: REQUEST_ITEMS,
+        payload: snapshot.val()
+      });
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+      return {
+        type: null
+      };
+    });
+  }
+}
+
+export function openModal(item) {
+  return {
+    type: OPEN_MODAL,
+    item
+  }
+}
+
+export function closeModal() {
+  return {
+    type: CLOSE_MODAL
+  }
+}
+
+export function addToCart(cartItem) {
+  var cart = cartItem.cartAdd.cart;
+  var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
+  cart.push(newCartItem);
+  return {
+    type: ADD_TO_CART,
+    payload: cart
+  }
+}

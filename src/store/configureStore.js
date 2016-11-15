@@ -1,21 +1,24 @@
-/**
- * Created by alextulenko on 11/11/16.
- */
-import { createStore, compose, applyMiddleware } from 'redux/lib';
-import promiseMiddleware from 'redux-promise';
-import rootReducer from '../reducers/index';
+import { createStore, compose, applyMiddleware } from 'redux';
+import ReduxThunk from 'redux-thunk';
+import rootReducer from '../reducers';
 
-
-const initialState =  {
-    authenticated: false
-};
-
-const store = createStore(initialState)(
+export default function configureStore(initialState) {
+  const store = createStore(
     rootReducer,
     initialState,
-    applyMiddleware(
-        promiseMiddleware
+    compose(
+      applyMiddleware(ReduxThunk),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
     )
-);
+  );
 
-export default store;
+  if (module.hot) {
+    // Enable Webpack hot module replacement for reducers
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').default;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
+
+  return store;
+}
