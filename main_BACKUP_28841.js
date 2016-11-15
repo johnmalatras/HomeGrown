@@ -4,10 +4,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import App from './src/containers/App';
-import { createStore,applyMiddleware } from 'redux/lib'
+import MarketView from './src/containers/MarketView.jsx';
+import { createStore,applyMiddleware } from 'redux/lib';
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
+<<<<<<< HEAD
+import configureStore from './src/store/configureStore';
+
+const store = configureStore();
+
+ReactDOM.render(
+  <Provider store={store}>
+    <MarketView />
+  </Provider>,
+  document.getElementById('app')
+);
+=======
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import Holder from './src/components/Holder'
 import HomePage from './src/components/HomePage';
@@ -36,3 +48,4 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
+>>>>>>> master
