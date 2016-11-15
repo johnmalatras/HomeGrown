@@ -18,7 +18,7 @@ export default function(WrappedComponent) {
                 }
 
                 if (!hasLocalStorageUser) {
-                    hashHistory.push('/');
+                    hashHistory.push('/homePage');
                 }
             }
 

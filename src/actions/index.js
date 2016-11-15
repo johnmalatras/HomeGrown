@@ -14,15 +14,15 @@ const config = {
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
 };
-
 Firebase.initializeApp(config);
+const database = Firebase.database();
 
 export function signInUser(credentials){
     return function(dispatch) {
         Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/holder');
+                hashHistory.push('/');
             })
             .catch(error => {
                 dispatch(authError(error));
@@ -31,26 +31,24 @@ export function signInUser(credentials){
 };
 
 export function signUpUser(credentials) {
-
     return function(dispatch) {
         Firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/holder');
+                hashHistory.push('/');
             })
             .catch(error => {
                 console.log(error);
                 dispatch(authError(error));
             });
-
         const userUid = Firebase.auth().currentUser.uid;
-        Firebase.database().ref(userUid).update({
+        const user = database.ref('/users/'+userUid.toString());
+        user.update({
             ["bussinessName"]: credentials.bussinessName,
             ["addressLineOne"]: credentials.addressLineOne,
             ["addressLineTwo"]: credentials.addressLineTwo,
             ["phoneNumber"]: credentials.phoneNumber
-
-        });
+            });
     }
 };
 export function verifyAuth(){
@@ -66,8 +64,8 @@ export function verifyAuth(){
 };
 
 export function signOutUser() {
-
-    hashHistory.push('/');
+    Firebase.auth().signOut();
+    hashHistory.push('/homePage');
     return {
         type: 'SIGN_OUT_USER'
 

@@ -28,8 +28,10 @@ store.dispatch(Actions.verifyAuth());
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
-            <Route path="/" component={HomePage}/>
-            <Route path="/holder" component={RequireAuth(Holder)}/>
+            <Route path="/" component={App}>
+                <IndexRoute component={RequireAuth(Holder)} />
+                <Route path="/homePage" component={HomePage}/>
+            </Route>
         </Router>
     </Provider>,
     document.getElementById('app')

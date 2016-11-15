@@ -52,12 +52,11 @@ class Home extends React.Component {
                         <Col sm={6} md={6}>
                             <div>
                                 <h1>About RipeNow</h1>
-                                <p>What is RipeNow? Uber for Plants? Maybe but think again.</p>
-                                <p>How do I do a newline character in JSX</p>
-                                <p>aysadbasdsd
-                                    dsadsad
-                                    adsadada</p>
-                                <p>asd</p>
+                                <p>RipeNow is revolutionizing the way local resturants</p>
+                                <p>connect to local farmers. Chefs are given the ability </p>
+                                <p>to order a higher quality of produce through RipeNow.</p>
+                                <p>Local farms benifit by an expansion in the demand for</p>
+                                <p>their goods.</p>
                             </div>
                         </Col>
                     </Row>
