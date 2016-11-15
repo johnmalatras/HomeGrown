@@ -1,6 +1,7 @@
 export const REQUEST_ITEMS = 'REQUEST_ITEMS';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const ADD_TO_CART = 'ADD_TO_CART';
 
 var firebase = require('firebase');
 
@@ -43,4 +44,14 @@ export function closeModal() {
 	return {
 		type: CLOSE_MODAL
 	}
+}
+
+export function addToCart(cartItem) {
+  var cart = cartItem.cartAdd.cart;
+  var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
+  cart.push(newCartItem);
+  return {
+    type: ADD_TO_CART,
+    payload: cart
+  }
 }

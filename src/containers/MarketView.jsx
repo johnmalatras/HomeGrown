@@ -21,29 +21,33 @@ class MarketView extends React.Component {
         <Table responsive>
             <thead>
               <tr>
-                  <th>Item</th>
-                  <th>Seller</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Metric</th>
-                </tr>
+                <th>Item</th>
+                <th>Seller</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Metric</th>
+              </tr>
             </thead>
             <MarketList items={ this.props.items } 
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>
         <ItemModal show={this.props.modalIsOpen} 
                   selectedItem={this.props.selectedItem} 
-                  onHide={ () => this.props.actions.closeModal() } />
+                  onHide={ () => this.props.actions.closeModal() } 
+                  cart={this.props.cart}
+                  addToCart={ cartAdd => this.props.actions.addToCart({cartAdd}) }/>
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
+  //console.log(state);
   return {
     items: state.items.items,
     modalIsOpen: state.modal.modalIsOpen,
-    selectedItem: state.modal.selectedItem
+    selectedItem: state.modal.selectedItem,
+    cart: state.cart.cart
   };
 }
 
@@ -53,16 +57,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-MarketView.propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      seller: PropTypes.string.isRequired,
-      price: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-      metric: PropTypes.string.isRequired
-  }).isRequired).isRequired,
-    modalIsOpen: PropTypes.bool.isRequired,
-    selectedItem: PropTypes.object.isRequired
-}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MarketView);

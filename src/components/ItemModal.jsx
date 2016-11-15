@@ -9,6 +9,7 @@ class ItemModal extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.verifyBuy = this.verifyBuy.bind(this);
   }
 
   handleChange(event) {
@@ -18,6 +19,22 @@ class ItemModal extends React.Component {
   handleSubmit(event) {
     //alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
+  }
+
+  verifyBuy() {
+    if (this.state.value > this.props.selectedItem.quantity) {
+      alert("Quantity entered exceeds what's available!");
+    } else {
+      var cartAdd = {
+        item: this.props.selectedItem,
+        quantity: this.state.value,
+        cart: this.props.cart
+      };
+      this.props.addToCart(cartAdd);
+      this.props.onHide();
+      alert(this.props.selectedItem.title + " added to cart!");
+    }
+    this.setState({value: 0});
   }
 
   render() {
@@ -43,20 +60,20 @@ class ItemModal extends React.Component {
          <p><em>Quantity Available:</em> {item.quantity + " " + item.metric} </p>
          <p><em>Price:</em> {item.price}</p>
 
-         <Form inline>
+         <Form>
 
           <FormGroup controlId="formInlineQuantity">
             <ControlLabel>Buy Quantity</ControlLabel>
             {"  "}
-            <input type="number" placeholder="100" value={this.state.value} onChange={this.handleChange} />
-            <p><b>Total:</b> {this.state.value * item.price}</p>
+            <input type="number" placeholder={item.quantity} value={this.state.value} onChange={this.handleChange} max={item.quantity} />
+            <p><b>Total:</b> {(this.state.value * item.price).toFixed(2)}</p>
           </FormGroup>
 
           {"  "}
 
-          <Button type="submit">Buy</Button>  
+          <Button onClick={this.verifyBuy}>Buy</Button>  
          </Form>
-
+          <hr />
   		   <Button onClick={() => this.props.onHide()}>Close</Button>
   		   <br />
     		</div>
