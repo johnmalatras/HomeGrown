@@ -13,7 +13,8 @@ class ItemModal extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    const num = parseInt(event.target.value);
+    this.setState({value: num});
   }
 
   handleSubmit(event) {
