@@ -1,4 +1,4 @@
-</**
+/**
  * Created by alextulenko on 11/10/16.
  */
 import { combineReducers } from 'redux/lib';
