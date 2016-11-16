@@ -1,0 +1,1985 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react-router' ]
+2 info using npm@2.14.12
+3 info using node@v4.3.1
+4 verbose install initial load of /Users/John/Development/RipeNow Stuff/HomeGrown/package.json
+5 warn package.json homegrown@1.0.0 No README data
+6 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/babel-core/package.json
+7 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/babel-loader/package.json
+8 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/babel-preset-es2015/package.json
+9 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/babel-preset-react/package.json
+10 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/firebase/package.json
+11 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react/package.json
+12 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-bootstrap/package.json
+13 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-dom/package.json
+14 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-redux/package.json
+15 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/redux/package.json
+16 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/redux-form/package.json
+17 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/redux-promise/package.json
+18 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/redux-thunk/package.json
+19 verbose installManyTop reading scoped package data from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/webpack/package.json
+20 info package.json firebase@3.5.1 No license field.
+21 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/package.json
+22 silly cache add args [ 'react-router@^3.0.0', null ]
+23 verbose cache add spec react-router@^3.0.0
+24 silly cache add parsed spec Result {
+24 silly cache add   raw: 'react-router@^3.0.0',
+24 silly cache add   scope: null,
+24 silly cache add   name: 'react-router',
+24 silly cache add   rawSpec: '^3.0.0',
+24 silly cache add   spec: '>=3.0.0 <4.0.0',
+24 silly cache add   type: 'range' }
+25 silly addNamed react-router@>=3.0.0 <4.0.0
+26 verbose addNamed ">=3.0.0 <4.0.0" is a valid semver range for react-router
+27 silly addNameRange { name: 'react-router', range: '>=3.0.0 <4.0.0', hasData: false }
+28 silly mapToRegistry name react-router
+29 silly mapToRegistry using default registry
+30 silly mapToRegistry registry https://registry.npmjs.org/
+31 silly mapToRegistry uri https://registry.npmjs.org/react-router
+32 verbose addNameRange registry:https://registry.npmjs.org/react-router not in flight; fetching
+33 verbose request uri https://registry.npmjs.org/react-router
+34 verbose request no auth needed
+35 info attempt registry request try #1 at 8:25:57 AM
+36 verbose request id fa3d333851cdddb6
+37 verbose etag "DKIT5TLWUT9RJCCDEKGAZOBWT"
+38 http request GET https://registry.npmjs.org/react-router
+39 http 200 https://registry.npmjs.org/react-router
+40 verbose headers { server: 'nginx/1.10.1',
+40 verbose headers   'content-type': 'application/json',
+40 verbose headers   'last-modified': 'Mon, 14 Nov 2016 08:52:08 GMT',
+40 verbose headers   etag: 'W/"58297b38-35006"',
+40 verbose headers   'content-encoding': 'gzip',
+40 verbose headers   'cache-control': 'max-age=300',
+40 verbose headers   'content-length': '18080',
+40 verbose headers   'accept-ranges': 'bytes',
+40 verbose headers   date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+40 verbose headers   via: '1.1 varnish',
+40 verbose headers   age: '64',
+40 verbose headers   connection: 'keep-alive',
+40 verbose headers   'x-served-by': 'cache-atl6239-ATL',
+40 verbose headers   'x-cache': 'HIT',
+40 verbose headers   'x-cache-hits': '1',
+40 verbose headers   'x-timer': 'S1479216356.374987,VS0,VE0',
+40 verbose headers   vary: 'Accept-Encoding' }
+41 silly get cb [ 200,
+41 silly get   { server: 'nginx/1.10.1',
+41 silly get     'content-type': 'application/json',
+41 silly get     'last-modified': 'Mon, 14 Nov 2016 08:52:08 GMT',
+41 silly get     etag: 'W/"58297b38-35006"',
+41 silly get     'content-encoding': 'gzip',
+41 silly get     'cache-control': 'max-age=300',
+41 silly get     'content-length': '18080',
+41 silly get     'accept-ranges': 'bytes',
+41 silly get     date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+41 silly get     via: '1.1 varnish',
+41 silly get     age: '64',
+41 silly get     connection: 'keep-alive',
+41 silly get     'x-served-by': 'cache-atl6239-ATL',
+41 silly get     'x-cache': 'HIT',
+41 silly get     'x-cache-hits': '1',
+41 silly get     'x-timer': 'S1479216356.374987,VS0,VE0',
+41 silly get     vary: 'Accept-Encoding' } ]
+42 verbose get saving react-router to /Users/John/.npm/registry.npmjs.org/react-router/.cache.json
+43 silly addNameRange number 2 { name: 'react-router', range: '>=3.0.0 <4.0.0', hasData: true }
+44 silly addNameRange versions [ 'react-router',
+44 silly addNameRange   [ '0.0.0',
+44 silly addNameRange     '0.0.1',
+44 silly addNameRange     '0.4.0',
+44 silly addNameRange     '0.4.1',
+44 silly addNameRange     '0.4.2',
+44 silly addNameRange     '0.5.0',
+44 silly addNameRange     '0.5.1',
+44 silly addNameRange     '0.5.2',
+44 silly addNameRange     '0.5.3',
+44 silly addNameRange     '0.6.0',
+44 silly addNameRange     '0.6.1',
+44 silly addNameRange     '0.7.0',
+44 silly addNameRange     '0.8.0',
+44 silly addNameRange     '0.9.0',
+44 silly addNameRange     '0.9.1',
+44 silly addNameRange     '0.9.2',
+44 silly addNameRange     '0.9.3',
+44 silly addNameRange     '0.9.4',
+44 silly addNameRange     '0.9.5',
+44 silly addNameRange     '0.10.0',
+44 silly addNameRange     '0.10.1',
+44 silly addNameRange     '0.10.2',
+44 silly addNameRange     '0.11.0',
+44 silly addNameRange     '0.11.1',
+44 silly addNameRange     '0.11.2',
+44 silly addNameRange     '0.11.3',
+44 silly addNameRange     '0.11.4',
+44 silly addNameRange     '0.11.5',
+44 silly addNameRange     '0.11.6',
+44 silly addNameRange     '0.12.0',
+44 silly addNameRange     '0.12.1',
+44 silly addNameRange     '0.12.2',
+44 silly addNameRange     '0.12.3',
+44 silly addNameRange     '0.12.4',
+44 silly addNameRange     '0.13.0',
+44 silly addNameRange     '0.13.1',
+44 silly addNameRange     '0.13.2',
+44 silly addNameRange     '0.13.3',
+44 silly addNameRange     '1.0.0-alpha1',
+44 silly addNameRange     '1.0.0-alpha2',
+44 silly addNameRange     '1.0.0-beta1',
+44 silly addNameRange     '1.0.0-beta2',
+44 silly addNameRange     '1.0.0-beta3',
+44 silly addNameRange     '1.0.0-beta4',
+44 silly addNameRange     '1.0.0-rc1',
+44 silly addNameRange     '0.13.4',
+44 silly addNameRange     '1.0.0-rc2',
+44 silly addNameRange     '1.0.0-rc3',
+44 silly addNameRange     '0.13.5',
+44 silly addNameRange     '1.0.0-rc4',
+44 silly addNameRange     '1.0.0',
+44 silly addNameRange     '1.0.1',
+44 silly addNameRange     '1.0.2',
+44 silly addNameRange     '1.0.3',
+44 silly addNameRange     '2.0.0-rc1',
+44 silly addNameRange     '2.0.0-rc2',
+44 silly addNameRange     '2.0.0-rc3',
+44 silly addNameRange     '2.0.0-rc4',
+44 silly addNameRange     '2.0.0-rc5',
+44 silly addNameRange     '2.0.0-rc6',
+44 silly addNameRange     '2.0.0',
+44 silly addNameRange     '2.0.1',
+44 silly addNameRange     '2.1.0',
+44 silly addNameRange     '2.1.1',
+44 silly addNameRange     '2.2.0',
+44 silly addNameRange     '2.2.1',
+44 silly addNameRange     '2.2.2',
+44 silly addNameRange     '2.2.4',
+44 silly addNameRange     '2.3.0',
+44 silly addNameRange     '2.4.0',
+44 silly addNameRange     '2.4.1',
+44 silly addNameRange     '3.0.0-alpha.1',
+44 silly addNameRange     '2.5.0',
+44 silly addNameRange     '2.5.1',
+44 silly addNameRange     '2.5.2',
+44 silly addNameRange     '0.13.6',
+44 silly addNameRange     '2.6.0',
+44 silly addNameRange     '3.0.0-alpha.2',
+44 silly addNameRange     '2.6.1',
+44 silly addNameRange     '3.0.0-alpha.3',
+44 silly addNameRange     '2.7.0',
+44 silly addNameRange     '2.8.0',
+44 silly addNameRange     '4.0.0-0',
+44 silly addNameRange     '4.0.0-1',
+44 silly addNameRange     '4.0.0-2',
+44 silly addNameRange     '2.8.1',
+44 silly addNameRange     '3.0.0-beta.1',
+44 silly addNameRange     '4.0.0-alpha.3',
+44 silly addNameRange     '4.0.0-alpha.4',
+44 silly addNameRange     '4.0.0-alpha.5',
+44 silly addNameRange     '3.0.0' ] ]
+45 silly addNamed react-router@3.0.0
+46 verbose addNamed "3.0.0" is a plain semver version for react-router
+47 silly mapToRegistry name react-router
+48 silly mapToRegistry using default registry
+49 silly mapToRegistry registry https://registry.npmjs.org/
+50 silly mapToRegistry uri https://registry.npmjs.org/react-router
+51 verbose addRemoteTarball https://registry.npmjs.org/react-router/-/react-router-3.0.0.tgz not in flight; adding
+52 verbose addRemoteTarball [ 'https://registry.npmjs.org/react-router/-/react-router-3.0.0.tgz',
+52 verbose addRemoteTarball   '3f313e4dbaf57048c48dd0a8c3cac24d93667dff' ]
+53 info retry fetch attempt 1 at 8:25:57 AM
+54 info attempt registry request try #1 at 8:25:57 AM
+55 http fetch GET https://registry.npmjs.org/react-router/-/react-router-3.0.0.tgz
+56 http fetch 200 https://registry.npmjs.org/react-router/-/react-router-3.0.0.tgz
+57 silly fetchAndShaCheck shasum 3f313e4dbaf57048c48dd0a8c3cac24d93667dff
+58 verbose addTmpTarball /var/folders/q9/glj9cg516d9cw5gg69vh8bv00000gn/T/npm-29149-569eab49/registry.npmjs.org/react-router/-/react-router-3.0.0.tgz not in flight; adding
+59 verbose addTmpTarball already have metadata; skipping unpack for react-router@3.0.0
+60 silly cache afterAdd react-router@3.0.0
+61 verbose afterAdd /Users/John/.npm/react-router/3.0.0/package/package.json not in flight; writing
+62 verbose afterAdd /Users/John/.npm/react-router/3.0.0/package/package.json written
+63 silly install resolved [ { name: 'react-router',
+63 silly install resolved     version: '3.0.0',
+63 silly install resolved     description: 'A complete routing library for React',
+63 silly install resolved     files: [ '*.md', 'docs', 'es', 'lib', 'umd' ],
+63 silly install resolved     main: 'lib/index',
+63 silly install resolved     'jsnext:main': 'es/index',
+63 silly install resolved     repository:
+63 silly install resolved      { type: 'git',
+63 silly install resolved        url: 'git+https://github.com/reacttraining/react-router.git' },
+63 silly install resolved     homepage: 'https://github.com/ReactTraining/react-router#readme',
+63 silly install resolved     bugs: { url: 'https://github.com/ReactTraining/react-router/issues' },
+63 silly install resolved     scripts:
+63 silly install resolved      { build: 'npm run build-cjs && npm run build-es',
+63 silly install resolved        'build-cjs': 'rimraf lib && cross-env BABEL_ENV=cjs babel ./modules -d lib --ignore __tests__',
+63 silly install resolved        'build-es': 'rimraf es && cross-env BABEL_ENV=es babel ./modules -d es --ignore __tests__',
+63 silly install resolved        'build-umd': 'cross-env NODE_ENV=development webpack modules/index.js umd/ReactRouter.js',
+63 silly install resolved        'build-min': 'cross-env NODE_ENV=production webpack -p modules/index.js umd/ReactRouter.min.js',
+63 silly install resolved        lint: 'eslint examples modules scripts tools *.js',
+63 silly install resolved        start: 'node examples/server.js',
+63 silly install resolved        test: 'npm run lint && npm run test-node && npm run test-browser',
+63 silly install resolved        'test-browser': 'cross-env NODE_ENV=test karma start',
+63 silly install resolved        'test-node': 'cross-env NODE_ENV=test mocha --compilers js:babel-register tests.node.js' },
+63 silly install resolved     authors: [ 'Ryan Florence', 'Michael Jackson' ],
+63 silly install resolved     license: 'MIT',
+63 silly install resolved     dependencies:
+63 silly install resolved      { history: '^3.0.0',
+63 silly install resolved        'hoist-non-react-statics': '^1.2.0',
+63 silly install resolved        invariant: '^2.2.1',
+63 silly install resolved        warning: '^3.0.0',
+63 silly install resolved        'loose-envify': '^1.2.0' },
+63 silly install resolved     peerDependencies: { react: '^0.14.0 || ^15.0.0' },
+63 silly install resolved     devDependencies:
+63 silly install resolved      { 'babel-cli': '^6.11.4',
+63 silly install resolved        'babel-core': '^6.13.2',
+63 silly install resolved        'babel-eslint': '^6.1.2',
+63 silly install resolved        'babel-loader': '^6.2.4',
+63 silly install resolved        'babel-plugin-add-module-exports': '^0.2.1',
+63 silly install resolved        'babel-plugin-dev-expression': '^0.2.1',
+63 silly install resolved        'babel-plugin-istanbul': '^1.0.3',
+63 silly install resolved        'babel-polyfill': '^6.13.0',
+63 silly install resolved        'babel-preset-es2015': '^6.13.2',
+63 silly install resolved        'babel-preset-react': '^6.11.1',
+63 silly install resolved        'babel-preset-stage-1': '^6.13.0',
+63 silly install resolved        'babel-register': '^6.11.6',
+63 silly install resolved        'bundle-loader': '^0.5.4',
+63 silly install resolved        codecov: '^1.0.1',
+63 silly install resolved        'cross-env': '^2.0.0',
+63 silly install resolved        'css-loader': '^0.23.1',
+63 silly install resolved        eslint: '^3.2.0',
+63 silly install resolved        'eslint-config-rackt': '^1.1.1',
+63 silly install resolved        'eslint-plugin-react': '^6.2.2',
+63 silly install resolved        expect: '^1.20.2',
+63 silly install resolved        express: '^4.14.0',
+63 silly install resolved        'express-urlrewrite': '^1.2.0',
+63 silly install resolved        'gzip-size': '^3.0.0',
+63 silly install resolved        karma: '^1.1.2',
+63 silly install resolved        'karma-browserstack-launcher': '^1.0.1',
+63 silly install resolved        'karma-chrome-launcher': '^1.0.1',
+63 silly install resolved        'karma-coverage': '^1.1.1',
+63 silly install resolved        'karma-mocha': '^1.1.1',
+63 silly install resolved        'karma-mocha-reporter': '^2.0.5',
+63 silly install resolved        'karma-sourcemap-loader': '^0.3.7',
+63 silly install resolved        'karma-webpack': '^1.7.0',
+63 silly install resolved        mocha: '^2.5.3',
+63 silly install resolved        'pretty-bytes': '^3.0.1',
+63 silly install resolved        qs: '^6.2.1',
+63 silly install resolved        react: '^15.3.0',
+63 silly install resolved        'react-addons-css-transition-group': '^15.3.0',
+63 silly install resolved        'react-addons-test-utils': '^15.3.0',
+63 silly install resolved        'react-dom': '^15.3.0',
+63 silly install resolved        rimraf: '^2.5.4',
+63 silly install resolved        'style-loader': '^0.13.1',
+63 silly install resolved        webpack: '^1.13.1',
+63 silly install resolved        'webpack-dev-middleware': '^1.6.1' },
+63 silly install resolved     browserify: { transform: [Object] },
+63 silly install resolved     tags: [ 'react', 'router' ],
+63 silly install resolved     keywords:
+63 silly install resolved      [ 'react',
+63 silly install resolved        'react-component',
+63 silly install resolved        'routing',
+63 silly install resolved        'route',
+63 silly install resolved        'routes',
+63 silly install resolved        'router' ],
+63 silly install resolved     gitHead: '6eeb7ad358f987520f5b519e48bdd31f725cbade',
+63 silly install resolved     _id: 'react-router@3.0.0',
+63 silly install resolved     _shasum: '3f313e4dbaf57048c48dd0a8c3cac24d93667dff',
+63 silly install resolved     _from: 'react-router@>=3.0.0 <4.0.0',
+63 silly install resolved     _npmVersion: '3.10.5',
+63 silly install resolved     _nodeVersion: '6.2.1',
+63 silly install resolved     _npmUser: { name: 'timdorr', email: 'timdorr@timdorr.com' },
+63 silly install resolved     dist:
+63 silly install resolved      { shasum: '3f313e4dbaf57048c48dd0a8c3cac24d93667dff',
+63 silly install resolved        tarball: 'https://registry.npmjs.org/react-router/-/react-router-3.0.0.tgz' },
+63 silly install resolved     maintainers: [ [Object], [Object], [Object], [Object] ],
+63 silly install resolved     _npmOperationalInternal:
+63 silly install resolved      { host: 'packages-18-east.internal.npmjs.com',
+63 silly install resolved        tmp: 'tmp/react-router-3.0.0.tgz_1477355876651_0.06933709769509733' },
+63 silly install resolved     directories: {},
+63 silly install resolved     _resolved: 'https://registry.npmjs.org/react-router/-/react-router-3.0.0.tgz' } ]
+64 info install react-router@3.0.0 into /Users/John/Development/RipeNow Stuff/HomeGrown
+65 info installOne react-router@3.0.0
+66 verbose installOne of react-router to /Users/John/Development/RipeNow Stuff/HomeGrown not in flight; installing
+67 verbose lock using /Users/John/.npm/_locks/react-router-5a9b471b3ef7a90a.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+68 silly install write writing react-router 3.0.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+69 verbose unbuild node_modules/react-router
+70 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+71 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+72 verbose tar unpack /Users/John/.npm/react-router/3.0.0/package.tgz
+73 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+74 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router is being purged
+75 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+76 silly gunzTarPerm modes [ '755', '644' ]
+77 silly gunzTarPerm extractEntry package.json
+78 silly gunzTarPerm extractEntry README.md
+79 silly gunzTarPerm extractEntry CONTRIBUTING.md
+80 silly gunzTarPerm extractEntry ISSUE_TEMPLATE.md
+81 silly gunzTarPerm extractEntry LICENSE.md
+82 silly gunzTarPerm extractEntry SPONSORS.md
+83 silly gunzTarPerm extractEntry docs/README.md
+84 silly gunzTarPerm extractEntry docs/API.md
+85 silly gunzTarPerm extractEntry docs/Glossary.md
+86 silly gunzTarPerm extractEntry docs/Introduction.md
+87 silly gunzTarPerm extractEntry docs/Troubleshooting.md
+88 silly gunzTarPerm extractEntry docs/guides/README.md
+89 silly gunzTarPerm extractEntry docs/guides/NavigatingOutsideOfComponents.md
+90 silly gunzTarPerm extractEntry docs/guides/DynamicRouting.md
+91 silly gunzTarPerm extractEntry docs/guides/Histories.md
+92 silly gunzTarPerm extractEntry docs/guides/IndexRoutes.md
+93 silly gunzTarPerm extractEntry docs/guides/MinimizingBundleSize.md
+94 silly gunzTarPerm extractEntry docs/guides/ConfirmingNavigation.md
+95 silly gunzTarPerm extractEntry docs/guides/ComponentLifecycle.md
+96 silly gunzTarPerm extractEntry docs/guides/RouteConfiguration.md
+97 silly gunzTarPerm extractEntry docs/guides/RouteMatching.md
+98 silly gunzTarPerm extractEntry docs/guides/ServerRendering.md
+99 silly gunzTarPerm extractEntry docs/guides/Testing.md
+100 silly gunzTarPerm extractEntry lib/AsyncUtils.js
+101 silly gunzTarPerm extractEntry lib/Router.js
+102 silly gunzTarPerm extractEntry lib/RouterContext.js
+103 silly gunzTarPerm extractEntry lib/RouterUtils.js
+104 silly gunzTarPerm extractEntry lib/RouteUtils.js
+105 silly gunzTarPerm extractEntry lib/applyRouterMiddleware.js
+106 silly gunzTarPerm extractEntry lib/browserHistory.js
+107 silly gunzTarPerm extractEntry lib/computeChangedRoutes.js
+108 silly gunzTarPerm extractEntry lib/createMemoryHistory.js
+109 silly gunzTarPerm extractEntry lib/createRouterHistory.js
+110 silly gunzTarPerm extractEntry lib/Route.js
+111 silly gunzTarPerm extractEntry lib/createTransitionManager.js
+112 silly gunzTarPerm extractEntry lib/Redirect.js
+113 silly gunzTarPerm extractEntry lib/getComponents.js
+114 silly gunzTarPerm extractEntry lib/PropTypes.js
+115 silly gunzTarPerm extractEntry lib/getRouteParams.js
+116 silly gunzTarPerm extractEntry lib/PromiseUtils.js
+117 silly gunzTarPerm extractEntry lib/hashHistory.js
+118 silly gunzTarPerm extractEntry lib/PatternUtils.js
+119 silly gunzTarPerm extractEntry lib/index.js
+120 silly gunzTarPerm extractEntry lib/Link.js
+121 silly gunzTarPerm extractEntry lib/isActive.js
+122 silly gunzTarPerm extractEntry lib/InternalPropTypes.js
+123 silly gunzTarPerm extractEntry lib/match.js
+124 silly gunzTarPerm extractEntry lib/IndexRoute.js
+125 silly gunzTarPerm extractEntry lib/matchRoutes.js
+126 silly gunzTarPerm extractEntry lib/IndexRedirect.js
+127 silly gunzTarPerm extractEntry lib/routerWarning.js
+128 silly gunzTarPerm extractEntry lib/IndexLink.js
+129 silly gunzTarPerm extractEntry lib/useRouterHistory.js
+130 silly gunzTarPerm extractEntry lib/ContextUtils.js
+131 silly gunzTarPerm extractEntry lib/withRouter.js
+132 silly gunzTarPerm extractEntry lib/TransitionUtils.js
+133 silly gunzTarPerm extractEntry CHANGES.md
+134 silly gunzTarPerm extractEntry CODE_OF_CONDUCT.md
+135 silly gunzTarPerm extractEntry umd/ReactRouter.js
+136 silly gunzTarPerm extractEntry umd/ReactRouter.min.js
+137 silly gunzTarPerm extractEntry es/AsyncUtils.js
+138 silly gunzTarPerm extractEntry es/Router.js
+139 silly gunzTarPerm extractEntry es/RouterContext.js
+140 silly gunzTarPerm extractEntry es/RouterUtils.js
+141 silly gunzTarPerm extractEntry es/RouteUtils.js
+142 silly gunzTarPerm extractEntry es/applyRouterMiddleware.js
+143 silly gunzTarPerm extractEntry es/browserHistory.js
+144 silly gunzTarPerm extractEntry es/computeChangedRoutes.js
+145 silly gunzTarPerm extractEntry es/createMemoryHistory.js
+146 silly gunzTarPerm extractEntry es/createRouterHistory.js
+147 silly gunzTarPerm extractEntry es/Route.js
+148 silly gunzTarPerm extractEntry es/createTransitionManager.js
+149 silly gunzTarPerm extractEntry es/Redirect.js
+150 silly gunzTarPerm extractEntry es/getComponents.js
+151 silly gunzTarPerm extractEntry es/PropTypes.js
+152 silly gunzTarPerm extractEntry es/getRouteParams.js
+153 silly gunzTarPerm extractEntry es/PromiseUtils.js
+154 silly gunzTarPerm extractEntry es/hashHistory.js
+155 silly gunzTarPerm extractEntry es/PatternUtils.js
+156 silly gunzTarPerm extractEntry es/index.js
+157 silly gunzTarPerm extractEntry es/Link.js
+158 silly gunzTarPerm extractEntry es/isActive.js
+159 silly gunzTarPerm extractEntry es/InternalPropTypes.js
+160 silly gunzTarPerm extractEntry es/match.js
+161 silly gunzTarPerm extractEntry es/IndexRoute.js
+162 silly gunzTarPerm extractEntry es/matchRoutes.js
+163 silly gunzTarPerm extractEntry es/IndexRedirect.js
+164 silly gunzTarPerm extractEntry es/routerWarning.js
+165 silly gunzTarPerm extractEntry es/IndexLink.js
+166 silly gunzTarPerm extractEntry es/useRouterHistory.js
+167 silly gunzTarPerm extractEntry es/ContextUtils.js
+168 silly gunzTarPerm extractEntry es/withRouter.js
+169 silly gunzTarPerm extractEntry es/TransitionUtils.js
+170 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/package.json
+171 info preinstall react-router@3.0.0
+172 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/package.json
+173 silly prepareForInstallMany adding history@^3.0.0 from react-router dependencies
+174 silly prepareForInstallMany adding hoist-non-react-statics@^1.2.0 from react-router dependencies
+175 silly prepareForInstallMany adding invariant@^2.2.1 from react-router dependencies
+176 silly prepareForInstallMany adding warning@^3.0.0 from react-router dependencies
+177 silly prepareForInstallMany adding loose-envify@^1.2.0 from react-router dependencies
+178 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/package.json
+179 silly cache add args [ 'history@^3.0.0', null ]
+180 verbose cache add spec history@^3.0.0
+181 silly cache add args [ 'hoist-non-react-statics@^1.2.0', null ]
+182 verbose cache add spec hoist-non-react-statics@^1.2.0
+183 silly cache add parsed spec Result {
+183 silly cache add   raw: 'history@^3.0.0',
+183 silly cache add   scope: null,
+183 silly cache add   name: 'history',
+183 silly cache add   rawSpec: '^3.0.0',
+183 silly cache add   spec: '>=3.0.0 <4.0.0',
+183 silly cache add   type: 'range' }
+184 silly addNamed history@>=3.0.0 <4.0.0
+185 verbose addNamed ">=3.0.0 <4.0.0" is a valid semver range for history
+186 silly addNameRange { name: 'history', range: '>=3.0.0 <4.0.0', hasData: false }
+187 silly mapToRegistry name history
+188 silly mapToRegistry using default registry
+189 silly mapToRegistry registry https://registry.npmjs.org/
+190 silly mapToRegistry uri https://registry.npmjs.org/history
+191 verbose addNameRange registry:https://registry.npmjs.org/history not in flight; fetching
+192 silly cache add parsed spec Result {
+192 silly cache add   raw: 'hoist-non-react-statics@^1.2.0',
+192 silly cache add   scope: null,
+192 silly cache add   name: 'hoist-non-react-statics',
+192 silly cache add   rawSpec: '^1.2.0',
+192 silly cache add   spec: '>=1.2.0 <2.0.0',
+192 silly cache add   type: 'range' }
+193 silly addNamed hoist-non-react-statics@>=1.2.0 <2.0.0
+194 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for hoist-non-react-statics
+195 silly addNameRange { name: 'hoist-non-react-statics',
+195 silly addNameRange   range: '>=1.2.0 <2.0.0',
+195 silly addNameRange   hasData: false }
+196 silly mapToRegistry name hoist-non-react-statics
+197 silly mapToRegistry using default registry
+198 silly mapToRegistry registry https://registry.npmjs.org/
+199 silly mapToRegistry uri https://registry.npmjs.org/hoist-non-react-statics
+200 verbose addNameRange registry:https://registry.npmjs.org/hoist-non-react-statics not in flight; fetching
+201 silly cache add args [ 'invariant@^2.2.1', null ]
+202 verbose cache add spec invariant@^2.2.1
+203 silly cache add parsed spec Result {
+203 silly cache add   raw: 'invariant@^2.2.1',
+203 silly cache add   scope: null,
+203 silly cache add   name: 'invariant',
+203 silly cache add   rawSpec: '^2.2.1',
+203 silly cache add   spec: '>=2.2.1 <3.0.0',
+203 silly cache add   type: 'range' }
+204 silly addNamed invariant@>=2.2.1 <3.0.0
+205 verbose addNamed ">=2.2.1 <3.0.0" is a valid semver range for invariant
+206 silly addNameRange { name: 'invariant', range: '>=2.2.1 <3.0.0', hasData: false }
+207 silly mapToRegistry name invariant
+208 silly mapToRegistry using default registry
+209 silly mapToRegistry registry https://registry.npmjs.org/
+210 silly mapToRegistry uri https://registry.npmjs.org/invariant
+211 verbose addNameRange registry:https://registry.npmjs.org/invariant not in flight; fetching
+212 silly cache add args [ 'warning@^3.0.0', null ]
+213 verbose cache add spec warning@^3.0.0
+214 silly cache add parsed spec Result {
+214 silly cache add   raw: 'warning@^3.0.0',
+214 silly cache add   scope: null,
+214 silly cache add   name: 'warning',
+214 silly cache add   rawSpec: '^3.0.0',
+214 silly cache add   spec: '>=3.0.0 <4.0.0',
+214 silly cache add   type: 'range' }
+215 silly addNamed warning@>=3.0.0 <4.0.0
+216 verbose addNamed ">=3.0.0 <4.0.0" is a valid semver range for warning
+217 silly addNameRange { name: 'warning', range: '>=3.0.0 <4.0.0', hasData: false }
+218 silly mapToRegistry name warning
+219 silly mapToRegistry using default registry
+220 silly mapToRegistry registry https://registry.npmjs.org/
+221 silly mapToRegistry uri https://registry.npmjs.org/warning
+222 verbose addNameRange registry:https://registry.npmjs.org/warning not in flight; fetching
+223 silly cache add args [ 'loose-envify@^1.2.0', null ]
+224 verbose cache add spec loose-envify@^1.2.0
+225 silly cache add parsed spec Result {
+225 silly cache add   raw: 'loose-envify@^1.2.0',
+225 silly cache add   scope: null,
+225 silly cache add   name: 'loose-envify',
+225 silly cache add   rawSpec: '^1.2.0',
+225 silly cache add   spec: '>=1.2.0 <2.0.0',
+225 silly cache add   type: 'range' }
+226 silly addNamed loose-envify@>=1.2.0 <2.0.0
+227 verbose addNamed ">=1.2.0 <2.0.0" is a valid semver range for loose-envify
+228 silly addNameRange { name: 'loose-envify', range: '>=1.2.0 <2.0.0', hasData: false }
+229 silly mapToRegistry name loose-envify
+230 silly mapToRegistry using default registry
+231 silly mapToRegistry registry https://registry.npmjs.org/
+232 silly mapToRegistry uri https://registry.npmjs.org/loose-envify
+233 verbose addNameRange registry:https://registry.npmjs.org/loose-envify not in flight; fetching
+234 verbose request uri https://registry.npmjs.org/invariant
+235 verbose request no auth needed
+236 info attempt registry request try #1 at 8:25:57 AM
+237 verbose etag "5NOZMST0PKN60AI1CWPN9HVO5"
+238 http request GET https://registry.npmjs.org/invariant
+239 verbose request uri https://registry.npmjs.org/hoist-non-react-statics
+240 verbose request no auth needed
+241 info attempt registry request try #1 at 8:25:57 AM
+242 verbose etag "4L6PXM9FBN3FJYUU0EB7DHPNS"
+243 http request GET https://registry.npmjs.org/hoist-non-react-statics
+244 verbose request uri https://registry.npmjs.org/warning
+245 verbose request no auth needed
+246 info attempt registry request try #1 at 8:25:57 AM
+247 verbose etag "5WVYRLRLMZY05W3E3MWB0NM93"
+248 http request GET https://registry.npmjs.org/warning
+249 verbose request uri https://registry.npmjs.org/history
+250 verbose request no auth needed
+251 info attempt registry request try #1 at 8:25:57 AM
+252 verbose etag "9GXPAKXOB7H4YUVRCUCN7SZE4"
+253 http request GET https://registry.npmjs.org/history
+254 verbose request uri https://registry.npmjs.org/loose-envify
+255 verbose request no auth needed
+256 info attempt registry request try #1 at 8:25:57 AM
+257 verbose etag "7SFY384OPX1H3W3PK5K3WZRJE"
+258 http request GET https://registry.npmjs.org/loose-envify
+259 http 200 https://registry.npmjs.org/invariant
+260 verbose headers { server: 'nginx/1.10.1',
+260 verbose headers   'content-type': 'application/json',
+260 verbose headers   'last-modified': 'Tue, 15 Nov 2016 12:02:03 GMT',
+260 verbose headers   etag: 'W/"582af93b-3b2b"',
+260 verbose headers   'content-encoding': 'gzip',
+260 verbose headers   'cache-control': 'max-age=300',
+260 verbose headers   'content-length': '2802',
+260 verbose headers   'accept-ranges': 'bytes',
+260 verbose headers   date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+260 verbose headers   via: '1.1 varnish',
+260 verbose headers   age: '137',
+260 verbose headers   connection: 'keep-alive',
+260 verbose headers   'x-served-by': 'cache-atl6248-ATL',
+260 verbose headers   'x-cache': 'HIT',
+260 verbose headers   'x-cache-hits': '2',
+260 verbose headers   'x-timer': 'S1479216356.981211,VS0,VE0',
+260 verbose headers   vary: 'Accept-Encoding' }
+261 silly get cb [ 200,
+261 silly get   { server: 'nginx/1.10.1',
+261 silly get     'content-type': 'application/json',
+261 silly get     'last-modified': 'Tue, 15 Nov 2016 12:02:03 GMT',
+261 silly get     etag: 'W/"582af93b-3b2b"',
+261 silly get     'content-encoding': 'gzip',
+261 silly get     'cache-control': 'max-age=300',
+261 silly get     'content-length': '2802',
+261 silly get     'accept-ranges': 'bytes',
+261 silly get     date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+261 silly get     via: '1.1 varnish',
+261 silly get     age: '137',
+261 silly get     connection: 'keep-alive',
+261 silly get     'x-served-by': 'cache-atl6248-ATL',
+261 silly get     'x-cache': 'HIT',
+261 silly get     'x-cache-hits': '2',
+261 silly get     'x-timer': 'S1479216356.981211,VS0,VE0',
+261 silly get     vary: 'Accept-Encoding' } ]
+262 verbose get saving invariant to /Users/John/.npm/registry.npmjs.org/invariant/.cache.json
+263 silly addNameRange number 2 { name: 'invariant', range: '>=2.2.1 <3.0.0', hasData: true }
+264 silly addNameRange versions [ 'invariant',
+264 silly addNameRange   [ '1.0.0',
+264 silly addNameRange     '1.0.1',
+264 silly addNameRange     '1.0.2',
+264 silly addNameRange     '2.0.0',
+264 silly addNameRange     '2.1.0',
+264 silly addNameRange     '2.1.1',
+264 silly addNameRange     '2.1.2',
+264 silly addNameRange     '2.1.3',
+264 silly addNameRange     '2.2.0',
+264 silly addNameRange     '2.2.1',
+264 silly addNameRange     '2.2.2' ] ]
+265 silly addNamed invariant@2.2.2
+266 verbose addNamed "2.2.2" is a plain semver version for invariant
+267 http 200 https://registry.npmjs.org/hoist-non-react-statics
+268 verbose headers { server: 'nginx/1.10.1',
+268 verbose headers   'content-type': 'application/json',
+268 verbose headers   'last-modified': 'Sat, 22 Oct 2016 04:55:29 GMT',
+268 verbose headers   etag: 'W/"580af141-46fa"',
+268 verbose headers   'content-encoding': 'gzip',
+268 verbose headers   'cache-control': 'max-age=300',
+268 verbose headers   'content-length': '2542',
+268 verbose headers   'accept-ranges': 'bytes',
+268 verbose headers   date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+268 verbose headers   via: '1.1 varnish',
+268 verbose headers   age: '270',
+268 verbose headers   connection: 'keep-alive',
+268 verbose headers   'x-served-by': 'cache-atl6229-ATL',
+268 verbose headers   'x-cache': 'HIT',
+268 verbose headers   'x-cache-hits': '1',
+268 verbose headers   'x-timer': 'S1479216356.987064,VS0,VE0',
+268 verbose headers   vary: 'Accept-Encoding' }
+269 silly get cb [ 200,
+269 silly get   { server: 'nginx/1.10.1',
+269 silly get     'content-type': 'application/json',
+269 silly get     'last-modified': 'Sat, 22 Oct 2016 04:55:29 GMT',
+269 silly get     etag: 'W/"580af141-46fa"',
+269 silly get     'content-encoding': 'gzip',
+269 silly get     'cache-control': 'max-age=300',
+269 silly get     'content-length': '2542',
+269 silly get     'accept-ranges': 'bytes',
+269 silly get     date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+269 silly get     via: '1.1 varnish',
+269 silly get     age: '270',
+269 silly get     connection: 'keep-alive',
+269 silly get     'x-served-by': 'cache-atl6229-ATL',
+269 silly get     'x-cache': 'HIT',
+269 silly get     'x-cache-hits': '1',
+269 silly get     'x-timer': 'S1479216356.987064,VS0,VE0',
+269 silly get     vary: 'Accept-Encoding' } ]
+270 verbose get saving hoist-non-react-statics to /Users/John/.npm/registry.npmjs.org/hoist-non-react-statics/.cache.json
+271 http 200 https://registry.npmjs.org/warning
+272 verbose headers { server: 'nginx/1.10.1',
+272 verbose headers   'content-type': 'application/json',
+272 verbose headers   'last-modified': 'Mon, 17 Oct 2016 14:49:53 GMT',
+272 verbose headers   etag: 'W/"5804e511-2416"',
+272 verbose headers   'content-encoding': 'gzip',
+272 verbose headers   'cache-control': 'max-age=300',
+272 verbose headers   'content-length': '2210',
+272 verbose headers   'accept-ranges': 'bytes',
+272 verbose headers   date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+272 verbose headers   via: '1.1 varnish',
+272 verbose headers   age: '271',
+272 verbose headers   connection: 'keep-alive',
+272 verbose headers   'x-served-by': 'cache-atl6228-ATL',
+272 verbose headers   'x-cache': 'HIT',
+272 verbose headers   'x-cache-hits': '1',
+272 verbose headers   'x-timer': 'S1479216356.987925,VS0,VE0',
+272 verbose headers   vary: 'Accept-Encoding' }
+273 silly get cb [ 200,
+273 silly get   { server: 'nginx/1.10.1',
+273 silly get     'content-type': 'application/json',
+273 silly get     'last-modified': 'Mon, 17 Oct 2016 14:49:53 GMT',
+273 silly get     etag: 'W/"5804e511-2416"',
+273 silly get     'content-encoding': 'gzip',
+273 silly get     'cache-control': 'max-age=300',
+273 silly get     'content-length': '2210',
+273 silly get     'accept-ranges': 'bytes',
+273 silly get     date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+273 silly get     via: '1.1 varnish',
+273 silly get     age: '271',
+273 silly get     connection: 'keep-alive',
+273 silly get     'x-served-by': 'cache-atl6228-ATL',
+273 silly get     'x-cache': 'HIT',
+273 silly get     'x-cache-hits': '1',
+273 silly get     'x-timer': 'S1479216356.987925,VS0,VE0',
+273 silly get     vary: 'Accept-Encoding' } ]
+274 verbose get saving warning to /Users/John/.npm/registry.npmjs.org/warning/.cache.json
+275 silly mapToRegistry name invariant
+276 silly mapToRegistry using default registry
+277 silly mapToRegistry registry https://registry.npmjs.org/
+278 silly mapToRegistry uri https://registry.npmjs.org/invariant
+279 verbose addRemoteTarball https://registry.npmjs.org/invariant/-/invariant-2.2.2.tgz not in flight; adding
+280 verbose addRemoteTarball [ 'https://registry.npmjs.org/invariant/-/invariant-2.2.2.tgz',
+280 verbose addRemoteTarball   '9e1f56ac0acdb6bf303306f338be3b204ae60360' ]
+281 http 200 https://registry.npmjs.org/loose-envify
+282 verbose headers { server: 'nginx/1.10.1',
+282 verbose headers   'content-type': 'application/json',
+282 verbose headers   'last-modified': 'Fri, 28 Oct 2016 19:34:32 GMT',
+282 verbose headers   etag: 'W/"5813a848-1b86"',
+282 verbose headers   'content-encoding': 'gzip',
+282 verbose headers   'cache-control': 'max-age=300',
+282 verbose headers   'content-length': '1691',
+282 verbose headers   'accept-ranges': 'bytes',
+282 verbose headers   date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+282 verbose headers   via: '1.1 varnish',
+282 verbose headers   age: '98',
+282 verbose headers   connection: 'keep-alive',
+282 verbose headers   'x-served-by': 'cache-atl6248-ATL',
+282 verbose headers   'x-cache': 'HIT',
+282 verbose headers   'x-cache-hits': '1',
+282 verbose headers   'x-timer': 'S1479216356.989850,VS0,VE0',
+282 verbose headers   vary: 'Accept-Encoding' }
+283 silly get cb [ 200,
+283 silly get   { server: 'nginx/1.10.1',
+283 silly get     'content-type': 'application/json',
+283 silly get     'last-modified': 'Fri, 28 Oct 2016 19:34:32 GMT',
+283 silly get     etag: 'W/"5813a848-1b86"',
+283 silly get     'content-encoding': 'gzip',
+283 silly get     'cache-control': 'max-age=300',
+283 silly get     'content-length': '1691',
+283 silly get     'accept-ranges': 'bytes',
+283 silly get     date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+283 silly get     via: '1.1 varnish',
+283 silly get     age: '98',
+283 silly get     connection: 'keep-alive',
+283 silly get     'x-served-by': 'cache-atl6248-ATL',
+283 silly get     'x-cache': 'HIT',
+283 silly get     'x-cache-hits': '1',
+283 silly get     'x-timer': 'S1479216356.989850,VS0,VE0',
+283 silly get     vary: 'Accept-Encoding' } ]
+284 verbose get saving loose-envify to /Users/John/.npm/registry.npmjs.org/loose-envify/.cache.json
+285 info retry fetch attempt 1 at 8:25:58 AM
+286 info attempt registry request try #1 at 8:25:58 AM
+287 http fetch GET https://registry.npmjs.org/invariant/-/invariant-2.2.2.tgz
+288 silly addNameRange number 2 { name: 'hoist-non-react-statics',
+288 silly addNameRange   range: '>=1.2.0 <2.0.0',
+288 silly addNameRange   hasData: true }
+289 silly addNameRange versions [ 'hoist-non-react-statics',
+289 silly addNameRange   [ '1.0.0',
+289 silly addNameRange     '1.0.1',
+289 silly addNameRange     '1.0.2',
+289 silly addNameRange     '1.0.3',
+289 silly addNameRange     '1.0.4',
+289 silly addNameRange     '1.0.5',
+289 silly addNameRange     '1.0.6',
+289 silly addNameRange     '1.1.0',
+289 silly addNameRange     '1.2.0' ] ]
+290 silly addNamed hoist-non-react-statics@1.2.0
+291 verbose addNamed "1.2.0" is a plain semver version for hoist-non-react-statics
+292 silly addNameRange number 2 { name: 'warning', range: '>=3.0.0 <4.0.0', hasData: true }
+293 silly addNameRange versions [ 'warning',
+293 silly addNameRange   [ '1.0.0', '1.0.1', '1.0.2', '2.0.0', '2.1.0', '3.0.0' ] ]
+294 silly addNamed warning@3.0.0
+295 verbose addNamed "3.0.0" is a plain semver version for warning
+296 silly addNameRange number 2 { name: 'loose-envify', range: '>=1.2.0 <2.0.0', hasData: true }
+297 silly addNameRange versions [ 'loose-envify', [ '1.0.0', '1.1.0', '1.2.0', '1.3.0' ] ]
+298 silly addNamed loose-envify@1.3.0
+299 verbose addNamed "1.3.0" is a plain semver version for loose-envify
+300 silly cache afterAdd hoist-non-react-statics@1.2.0
+301 verbose afterAdd /Users/John/.npm/hoist-non-react-statics/1.2.0/package/package.json not in flight; writing
+302 silly cache afterAdd loose-envify@1.3.0
+303 verbose afterAdd /Users/John/.npm/loose-envify/1.3.0/package/package.json not in flight; writing
+304 silly cache afterAdd warning@3.0.0
+305 verbose afterAdd /Users/John/.npm/warning/3.0.0/package/package.json not in flight; writing
+306 verbose afterAdd /Users/John/.npm/hoist-non-react-statics/1.2.0/package/package.json written
+307 verbose afterAdd /Users/John/.npm/loose-envify/1.3.0/package/package.json written
+308 verbose afterAdd /Users/John/.npm/warning/3.0.0/package/package.json written
+309 http 200 https://registry.npmjs.org/history
+310 verbose headers { server: 'nginx/1.10.1',
+310 verbose headers   'content-type': 'application/json',
+310 verbose headers   'last-modified': 'Thu, 03 Nov 2016 16:49:01 GMT',
+310 verbose headers   etag: 'W/"581b6a7d-263b6"',
+310 verbose headers   'content-encoding': 'gzip',
+310 verbose headers   'cache-control': 'max-age=300',
+310 verbose headers   'content-length': '14095',
+310 verbose headers   'accept-ranges': 'bytes',
+310 verbose headers   date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+310 verbose headers   via: '1.1 varnish',
+310 verbose headers   age: '99',
+310 verbose headers   connection: 'keep-alive',
+310 verbose headers   'x-served-by': 'cache-atl6229-ATL',
+310 verbose headers   'x-cache': 'HIT',
+310 verbose headers   'x-cache-hits': '1',
+310 verbose headers   'x-timer': 'S1479216356.988669,VS0,VE0',
+310 verbose headers   vary: 'Accept-Encoding' }
+311 silly get cb [ 200,
+311 silly get   { server: 'nginx/1.10.1',
+311 silly get     'content-type': 'application/json',
+311 silly get     'last-modified': 'Thu, 03 Nov 2016 16:49:01 GMT',
+311 silly get     etag: 'W/"581b6a7d-263b6"',
+311 silly get     'content-encoding': 'gzip',
+311 silly get     'cache-control': 'max-age=300',
+311 silly get     'content-length': '14095',
+311 silly get     'accept-ranges': 'bytes',
+311 silly get     date: 'Tue, 15 Nov 2016 13:25:56 GMT',
+311 silly get     via: '1.1 varnish',
+311 silly get     age: '99',
+311 silly get     connection: 'keep-alive',
+311 silly get     'x-served-by': 'cache-atl6229-ATL',
+311 silly get     'x-cache': 'HIT',
+311 silly get     'x-cache-hits': '1',
+311 silly get     'x-timer': 'S1479216356.988669,VS0,VE0',
+311 silly get     vary: 'Accept-Encoding' } ]
+312 verbose get saving history to /Users/John/.npm/registry.npmjs.org/history/.cache.json
+313 silly addNameRange number 2 { name: 'history', range: '>=3.0.0 <4.0.0', hasData: true }
+314 silly addNameRange versions [ 'history',
+314 silly addNameRange   [ '0.1.0',
+314 silly addNameRange     '1.0.0',
+314 silly addNameRange     '1.1.0',
+314 silly addNameRange     '1.2.0',
+314 silly addNameRange     '1.2.1',
+314 silly addNameRange     '1.2.2',
+314 silly addNameRange     '1.3.0',
+314 silly addNameRange     '1.3.1',
+314 silly addNameRange     '1.3.2',
+314 silly addNameRange     '1.3.3',
+314 silly addNameRange     '1.4.0',
+314 silly addNameRange     '1.4.1',
+314 silly addNameRange     '1.5.0',
+314 silly addNameRange     '1.6.0',
+314 silly addNameRange     '1.7.0',
+314 silly addNameRange     '1.8.0',
+314 silly addNameRange     '1.8.1',
+314 silly addNameRange     '1.8.2',
+314 silly addNameRange     '1.8.3',
+314 silly addNameRange     '1.8.4',
+314 silly addNameRange     '1.8.5',
+314 silly addNameRange     '1.9.0',
+314 silly addNameRange     '1.9.1',
+314 silly addNameRange     '1.10.0',
+314 silly addNameRange     '1.10.1',
+314 silly addNameRange     '1.10.2',
+314 silly addNameRange     '1.11.0',
+314 silly addNameRange     '1.11.1',
+314 silly addNameRange     '1.12.0',
+314 silly addNameRange     '1.12.1',
+314 silly addNameRange     '1.12.2',
+314 silly addNameRange     '1.12.3',
+314 silly addNameRange     '1.12.4',
+314 silly addNameRange     '1.12.5',
+314 silly addNameRange     '1.12.6',
+314 silly addNameRange     '1.13.0',
+314 silly addNameRange     '1.13.1',
+314 silly addNameRange     '1.14.0',
+314 silly addNameRange     '1.15.0',
+314 silly addNameRange     '1.16.0',
+314 silly addNameRange     '1.17.0',
+314 silly addNameRange     '2.0.0-rc1',
+314 silly addNameRange     '2.0.0-rc2',
+314 silly addNameRange     '2.0.0-rc3',
+314 silly addNameRange     '2.0.0',
+314 silly addNameRange     '2.0.1',
+314 silly addNameRange     '3.0.0-0',
+314 silly addNameRange     '2.0.2',
+314 silly addNameRange     '2.1.0',
+314 silly addNameRange     '3.0.0-1',
+314 silly addNameRange     '3.0.0-2',
+314 silly addNameRange     '2.1.1',
+314 silly addNameRange     '2.1.2',
+314 silly addNameRange     '3.0.0',
+314 silly addNameRange     '3.1.0',
+314 silly addNameRange     '3.2.0',
+314 silly addNameRange     '3.2.1',
+314 silly addNameRange     '4.0.0-0',
+314 silly addNameRange     '4.0.0-1',
+314 silly addNameRange     '4.0.0-2',
+314 silly addNameRange     '4.0.0',
+314 silly addNameRange     '4.0.1',
+314 silly addNameRange     '4.1.0',
+314 silly addNameRange     '4.2.0',
+314 silly addNameRange     '4.2.1',
+314 silly addNameRange     '4.3.0',
+314 silly addNameRange     '4.4.0' ] ]
+315 silly addNamed history@3.2.1
+316 verbose addNamed "3.2.1" is a plain semver version for history
+317 silly mapToRegistry name history
+318 silly mapToRegistry using default registry
+319 silly mapToRegistry registry https://registry.npmjs.org/
+320 silly mapToRegistry uri https://registry.npmjs.org/history
+321 verbose addRemoteTarball https://registry.npmjs.org/history/-/history-3.2.1.tgz not in flight; adding
+322 verbose addRemoteTarball [ 'https://registry.npmjs.org/history/-/history-3.2.1.tgz',
+322 verbose addRemoteTarball   '71c7497f4e6090363d19a6713bb52a1bfcdd99aa' ]
+323 info retry fetch attempt 1 at 8:25:58 AM
+324 info attempt registry request try #1 at 8:25:58 AM
+325 http fetch GET https://registry.npmjs.org/history/-/history-3.2.1.tgz
+326 http fetch 200 https://registry.npmjs.org/invariant/-/invariant-2.2.2.tgz
+327 silly fetchAndShaCheck shasum 9e1f56ac0acdb6bf303306f338be3b204ae60360
+328 verbose addTmpTarball /var/folders/q9/glj9cg516d9cw5gg69vh8bv00000gn/T/npm-29149-569eab49/registry.npmjs.org/invariant/-/invariant-2.2.2.tgz not in flight; adding
+329 verbose addTmpTarball already have metadata; skipping unpack for invariant@2.2.2
+330 silly cache afterAdd invariant@2.2.2
+331 verbose afterAdd /Users/John/.npm/invariant/2.2.2/package/package.json not in flight; writing
+332 verbose afterAdd /Users/John/.npm/invariant/2.2.2/package/package.json written
+333 http fetch 200 https://registry.npmjs.org/history/-/history-3.2.1.tgz
+334 silly fetchAndShaCheck shasum 71c7497f4e6090363d19a6713bb52a1bfcdd99aa
+335 verbose addTmpTarball /var/folders/q9/glj9cg516d9cw5gg69vh8bv00000gn/T/npm-29149-569eab49/registry.npmjs.org/history/-/history-3.2.1.tgz not in flight; adding
+336 verbose addTmpTarball already have metadata; skipping unpack for history@3.2.1
+337 silly cache afterAdd history@3.2.1
+338 verbose afterAdd /Users/John/.npm/history/3.2.1/package/package.json not in flight; writing
+339 verbose afterAdd /Users/John/.npm/history/3.2.1/package/package.json written
+340 silly install resolved [ { name: 'hoist-non-react-statics',
+340 silly install resolved     version: '1.2.0',
+340 silly install resolved     description: 'Copies non-react specific statics from a child component to a parent component',
+340 silly install resolved     main: 'index.js',
+340 silly install resolved     repository:
+340 silly install resolved      { type: 'git',
+340 silly install resolved        url: 'git://github.com/mridgway/hoist-non-react-statics.git' },
+340 silly install resolved     scripts:
+340 silly install resolved      { cover: 'node node_modules/istanbul/lib/cli.js cover --dir artifacts -- ./node_modules/mocha/bin/_mocha tests/unit/ --recursive --compilers js:babel/register --reporter spec',
+340 silly install resolved        lint: 'eslint ./index.js',
+340 silly install resolved        test: 'mocha tests/unit/ --recursive --compilers js:babel/register --reporter spec' },
+340 silly install resolved     author: { name: 'Michael Ridgway', email: 'mridgway@yahoo-inc.com' },
+340 silly install resolved     licenses: [ [Object] ],
+340 silly install resolved     devDependencies:
+340 silly install resolved      { babel: '^5.0.7',
+340 silly install resolved        'babel-eslint': '^3.0.1',
+340 silly install resolved        chai: '^3.0.0',
+340 silly install resolved        coveralls: '^2.11.1',
+340 silly install resolved        eslint: '^0.21.0',
+340 silly install resolved        istanbul: '^0.3.2',
+340 silly install resolved        mocha: '^2.0.1',
+340 silly install resolved        'pre-commit': '^1.0.7',
+340 silly install resolved        react: '^15.0.0' },
+340 silly install resolved     keywords: [ 'react' ],
+340 silly install resolved     gitHead: '437bebb16842657310b6a80ee89fce34864509bd',
+340 silly install resolved     bugs: { url: 'https://github.com/mridgway/hoist-non-react-statics/issues' },
+340 silly install resolved     homepage: 'https://github.com/mridgway/hoist-non-react-statics#readme',
+340 silly install resolved     _id: 'hoist-non-react-statics@1.2.0',
+340 silly install resolved     _shasum: 'aa448cf0986d55cc40773b17174b7dd066cb7cfb',
+340 silly install resolved     _from: 'hoist-non-react-statics@>=1.2.0 <2.0.0',
+340 silly install resolved     _npmVersion: '3.9.3',
+340 silly install resolved     _nodeVersion: '6.2.1',
+340 silly install resolved     _npmUser: { name: 'mridgway', email: 'mcridgway@gmail.com' },
+340 silly install resolved     maintainers: [ [Object] ],
+340 silly install resolved     dist:
+340 silly install resolved      { shasum: 'aa448cf0986d55cc40773b17174b7dd066cb7cfb',
+340 silly install resolved        tarball: 'https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz' },
+340 silly install resolved     _npmOperationalInternal:
+340 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+340 silly install resolved        tmp: 'tmp/hoist-non-react-statics-1.2.0.tgz_1466185955248_0.8610786439385265' },
+340 silly install resolved     directories: {},
+340 silly install resolved     _resolved: 'https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz',
+340 silly install resolved     readme: 'ERROR: No README data found!' },
+340 silly install resolved   { name: 'loose-envify',
+340 silly install resolved     version: '1.3.0',
+340 silly install resolved     description: 'Fast (and loose) selective `process.env` replacer using js-tokens instead of an AST',
+340 silly install resolved     keywords:
+340 silly install resolved      [ 'environment',
+340 silly install resolved        'variables',
+340 silly install resolved        'browserify',
+340 silly install resolved        'browserify-transform',
+340 silly install resolved        'transform',
+340 silly install resolved        'source',
+340 silly install resolved        'configuration' ],
+340 silly install resolved     homepage: 'https://github.com/zertosh/loose-envify',
+340 silly install resolved     license: 'MIT',
+340 silly install resolved     author: { name: 'Andres Suarez', email: 'zertosh@gmail.com' },
+340 silly install resolved     main: 'index.js',
+340 silly install resolved     bin: { 'loose-envify': 'cli.js' },
+340 silly install resolved     repository:
+340 silly install resolved      { type: 'git',
+340 silly install resolved        url: 'git://github.com/zertosh/loose-envify.git' },
+340 silly install resolved     scripts: { test: 'tap test/*.js' },
+340 silly install resolved     dependencies: { 'js-tokens': '^2.0.0' },
+340 silly install resolved     devDependencies: { browserify: '^13.1.1', envify: '^3.4.0', tap: '^8.0.0' },
+340 silly install resolved     gitHead: '11c1714ff0f25b6046c38eedd909f2ae9fa12446',
+340 silly install resolved     bugs: { url: 'https://github.com/zertosh/loose-envify/issues' },
+340 silly install resolved     _id: 'loose-envify@1.3.0',
+340 silly install resolved     _shasum: '6b26248c42f6d4fa4b0d8542f78edfcde35642a8',
+340 silly install resolved     _from: 'loose-envify@>=1.2.0 <2.0.0',
+340 silly install resolved     _npmVersion: '3.10.8',
+340 silly install resolved     _nodeVersion: '7.0.0',
+340 silly install resolved     _npmUser: { name: 'zertosh', email: 'zertosh@gmail.com' },
+340 silly install resolved     dist:
+340 silly install resolved      { shasum: '6b26248c42f6d4fa4b0d8542f78edfcde35642a8',
+340 silly install resolved        tarball: 'https://registry.npmjs.org/loose-envify/-/loose-envify-1.3.0.tgz' },
+340 silly install resolved     maintainers: [ [Object] ],
+340 silly install resolved     _npmOperationalInternal:
+340 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+340 silly install resolved        tmp: 'tmp/loose-envify-1.3.0.tgz_1477683270638_0.3732579650823027' },
+340 silly install resolved     directories: {},
+340 silly install resolved     _resolved: 'https://registry.npmjs.org/loose-envify/-/loose-envify-1.3.0.tgz',
+340 silly install resolved     readme: 'ERROR: No README data found!' },
+340 silly install resolved   { name: 'warning',
+340 silly install resolved     version: '3.0.0',
+340 silly install resolved     description: 'A mirror of Facebook\'s Warning',
+340 silly install resolved     main: 'warning.js',
+340 silly install resolved     browser: 'browser.js',
+340 silly install resolved     browserify: { transform: [Object] },
+340 silly install resolved     files: [ 'browser.js', 'warning.js' ],
+340 silly install resolved     scripts: { test: 'NODE_ENV=production tap test/*.js && NODE_ENV=development tap test/*.js' },
+340 silly install resolved     dependencies: { 'loose-envify': '^1.0.0' },
+340 silly install resolved     devDependencies: { browserify: '^11.0.1', tap: '^1.4.0' },
+340 silly install resolved     repository:
+340 silly install resolved      { type: 'git',
+340 silly install resolved        url: 'git+https://github.com/BerkeleyTrue/warning.git' },
+340 silly install resolved     keywords: [ 'warning', 'facebook', 'react', 'invariant' ],
+340 silly install resolved     author:
+340 silly install resolved      { name: 'Berkeley Martinez',
+340 silly install resolved        email: 'berkeley@r3dm.com',
+340 silly install resolved        url: 'http://www.freecodecamp.com' },
+340 silly install resolved     license: 'BSD-3-Clause',
+340 silly install resolved     bugs: { url: 'https://github.com/BerkeleyTrue/warning/issues' },
+340 silly install resolved     homepage: 'https://github.com/BerkeleyTrue/warning',
+340 silly install resolved     gitHead: '6ef2da6b3da76eb6fcc735eaa52160fec2ed6078',
+340 silly install resolved     _id: 'warning@3.0.0',
+340 silly install resolved     _shasum: '32e5377cb572de4ab04753bdf8821c01ed605b7c',
+340 silly install resolved     _from: 'warning@>=3.0.0 <4.0.0',
+340 silly install resolved     _npmVersion: '3.8.7',
+340 silly install resolved     _nodeVersion: '4.2.4',
+340 silly install resolved     _npmUser: { name: 'berkeleytrue', email: 'berkeley@robotie.com' },
+340 silly install resolved     maintainers: [ [Object] ],
+340 silly install resolved     dist:
+340 silly install resolved      { shasum: '32e5377cb572de4ab04753bdf8821c01ed605b7c',
+340 silly install resolved        tarball: 'https://registry.npmjs.org/warning/-/warning-3.0.0.tgz' },
+340 silly install resolved     _npmOperationalInternal:
+340 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+340 silly install resolved        tmp: 'tmp/warning-3.0.0.tgz_1464922442833_0.31551201664842665' },
+340 silly install resolved     directories: {},
+340 silly install resolved     _resolved: 'https://registry.npmjs.org/warning/-/warning-3.0.0.tgz',
+340 silly install resolved     readme: 'ERROR: No README data found!' },
+340 silly install resolved   { name: 'invariant',
+340 silly install resolved     version: '2.2.2',
+340 silly install resolved     description: 'invariant',
+340 silly install resolved     keywords: [ 'test', 'invariant' ],
+340 silly install resolved     license: 'BSD-3-Clause',
+340 silly install resolved     author: { name: 'Andres Suarez', email: 'zertosh@gmail.com' },
+340 silly install resolved     files: [ 'browser.js', 'invariant.js', 'invariant.js.flow' ],
+340 silly install resolved     repository:
+340 silly install resolved      { type: 'git',
+340 silly install resolved        url: 'git+https://github.com/zertosh/invariant.git' },
+340 silly install resolved     scripts: { test: 'NODE_ENV=production tap test/*.js && NODE_ENV=development tap test/*.js' },
+340 silly install resolved     dependencies: { 'loose-envify': '^1.0.0' },
+340 silly install resolved     devDependencies: { browserify: '^11.0.1', 'flow-bin': '^0.35.0', tap: '^1.4.0' },
+340 silly install resolved     main: 'invariant.js',
+340 silly install resolved     browser: 'browser.js',
+340 silly install resolved     browserify: { transform: [Object] },
+340 silly install resolved     gitHead: '49ae54d5a09c99a447e7dafa46bd3aa8f6923d98',
+340 silly install resolved     bugs: { url: 'https://github.com/zertosh/invariant/issues' },
+340 silly install resolved     homepage: 'https://github.com/zertosh/invariant#readme',
+340 silly install resolved     _id: 'invariant@2.2.2',
+340 silly install resolved     _shasum: '9e1f56ac0acdb6bf303306f338be3b204ae60360',
+340 silly install resolved     _from: 'invariant@>=2.2.1 <3.0.0',
+340 silly install resolved     _npmVersion: '3.10.3',
+340 silly install resolved     _nodeVersion: '6.3.0',
+340 silly install resolved     _npmUser: { name: 'zertosh', email: 'zertosh@gmail.com' },
+340 silly install resolved     dist:
+340 silly install resolved      { shasum: '9e1f56ac0acdb6bf303306f338be3b204ae60360',
+340 silly install resolved        tarball: 'https://registry.npmjs.org/invariant/-/invariant-2.2.2.tgz' },
+340 silly install resolved     maintainers: [ [Object], [Object] ],
+340 silly install resolved     _npmOperationalInternal:
+340 silly install resolved      { host: 'packages-18-east.internal.npmjs.com',
+340 silly install resolved        tmp: 'tmp/invariant-2.2.2.tgz_1479211323359_0.31182572920806706' },
+340 silly install resolved     directories: {},
+340 silly install resolved     _resolved: 'https://registry.npmjs.org/invariant/-/invariant-2.2.2.tgz' },
+340 silly install resolved   { name: 'history',
+340 silly install resolved     version: '3.2.1',
+340 silly install resolved     description: 'Manage browser history with JavaScript',
+340 silly install resolved     repository:
+340 silly install resolved      { type: 'git',
+340 silly install resolved        url: 'git+https://github.com/mjackson/history.git' },
+340 silly install resolved     author: { name: 'Michael Jackson' },
+340 silly install resolved     license: 'MIT',
+340 silly install resolved     main: 'lib',
+340 silly install resolved     files: [ 'lib', 'umd' ],
+340 silly install resolved     scripts:
+340 silly install resolved      { start: 'webpack-dev-server -d --content-base ./ --history-api-fallback --inline modules/index.js',
+340 silly install resolved        'build-lib': 'rimraf lib && babel ./modules -d lib --ignore \'__tests__\'',
+340 silly install resolved        'build-umd': 'webpack modules/index.js umd/history.js',
+340 silly install resolved        'build-min': 'webpack -p modules/index.js umd/history.min.js',
+340 silly install resolved        build: 'node ./scripts/build.js',
+340 silly install resolved        release: 'node ./scripts/release.js',
+340 silly install resolved        prepublish: 'node ./scripts/build.js',
+340 silly install resolved        test: 'npm run lint && karma start',
+340 silly install resolved        lint: 'eslint modules' },
+340 silly install resolved     dependencies:
+340 silly install resolved      { invariant: '^2.2.1',
+340 silly install resolved        'query-string': '^4.2.2',
+340 silly install resolved        warning: '^3.0.0',
+340 silly install resolved        'loose-envify': '^1.2.0' },
+340 silly install resolved     devDependencies:
+340 silly install resolved      { 'babel-cli': '^6.10.1',
+340 silly install resolved        'babel-core': '^6.9.1',
+340 silly install resolved        'babel-eslint': '^6.0.4',
+340 silly install resolved        'babel-loader': '^6.2.4',
+340 silly install resolved        'babel-plugin-dev-expression': '^0.2.1',
+340 silly install resolved        'babel-plugin-transform-object-assign': '^6.8.0',
+340 silly install resolved        'babel-preset-es2015': '^6.9.0',
+340 silly install resolved        'babel-preset-es2015-loose': '^7.0.0',
+340 silly install resolved        'babel-preset-stage-1': '^6.5.0',
+340 silly install resolved        eslint: '^3.3.0',
+340 silly install resolved        'eslint-plugin-import': '^1.8.1',
+340 silly install resolved        expect: '^1.20.1',
+340 silly install resolved        'gzip-size': '^3.0.0',
+340 silly install resolved        'in-publish': '^2.0.0',
+340 silly install resolved        karma: '^1.2.0',
+340 silly install resolved        'karma-browserstack-launcher': '^1.0.1',
+340 silly install resolved        'karma-chrome-launcher': '^2.0.0',
+340 silly install resolved        'karma-mocha': '^1.0.1',
+340 silly install resolved        'karma-mocha-reporter': '^2.0.4',
+340 silly install resolved        'karma-sourcemap-loader': '^0.3.7',
+340 silly install resolved        'karma-webpack': '^1.7.0',
+340 silly install resolved        mocha: '^3.0.2',
+340 silly install resolved        'pretty-bytes': '^4.0.2',
+340 silly install resolved        'readline-sync': '^1.4.4',
+340 silly install resolved        rimraf: '^2.5.2',
+340 silly install resolved        webpack: '^1.13.1',
+340 silly install resolved        'webpack-dev-server': '^1.14.1' },
+340 silly install resolved     browserify: { transform: [Object] },
+340 silly install resolved     tags: [ 'history', 'location' ],
+340 silly install resolved     keywords: [ 'history', 'location' ],
+340 silly install resolved     gitHead: '9a5102c38a161f00c6ea027a88b87b0328b5dc93',
+340 silly install resolved     bugs: { url: 'https://github.com/mjackson/history/issues' },
+340 silly install resolved     homepage: 'https://github.com/mjackson/history#readme',
+340 silly install resolved     _id: 'history@3.2.1',
+340 silly install resolved     _shasum: '71c7497f4e6090363d19a6713bb52a1bfcdd99aa',
+340 silly install resolved     _from: 'history@>=3.0.0 <4.0.0',
+340 silly install resolved     _npmVersion: '3.10.3',
+340 silly install resolved     _nodeVersion: '6.4.0',
+340 silly install resolved     _npmUser: { name: 'mjackson', email: 'mjijackson@gmail.com' },
+340 silly install resolved     dist:
+340 silly install resolved      { shasum: '71c7497f4e6090363d19a6713bb52a1bfcdd99aa',
+340 silly install resolved        tarball: 'https://registry.npmjs.org/history/-/history-3.2.1.tgz' },
+340 silly install resolved     maintainers: [ [Object] ],
+340 silly install resolved     _npmOperationalInternal:
+340 silly install resolved      { host: 'packages-12-west.internal.npmjs.com',
+340 silly install resolved        tmp: 'tmp/history-3.2.1.tgz_1472835166073_0.6374554564245045' },
+340 silly install resolved     directories: {},
+340 silly install resolved     _resolved: 'https://registry.npmjs.org/history/-/history-3.2.1.tgz' } ]
+341 info install hoist-non-react-statics@1.2.0 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+342 info install loose-envify@1.3.0 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+343 info install warning@3.0.0 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+344 info install invariant@2.2.2 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+345 info install history@3.2.1 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+346 info installOne hoist-non-react-statics@1.2.0
+347 verbose installOne of hoist-non-react-statics to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router not in flight; installing
+348 info installOne loose-envify@1.3.0
+349 verbose installOne of loose-envify to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router not in flight; installing
+350 info installOne warning@3.0.0
+351 verbose installOne of warning to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router not in flight; installing
+352 info installOne invariant@2.2.2
+353 verbose installOne of invariant to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router not in flight; installing
+354 info installOne history@3.2.1
+355 verbose installOne of history to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router not in flight; installing
+356 verbose lock using /Users/John/.npm/_locks/hoist-non-react-statics-8fec23edb63a6fb4.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+357 verbose lock using /Users/John/.npm/_locks/history-21ac6ce0654fe521.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+358 silly install write writing hoist-non-react-statics 1.2.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+359 silly install write writing history 3.2.1 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+360 verbose lock using /Users/John/.npm/_locks/loose-envify-20f1084aad7824a2.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+361 verbose lock using /Users/John/.npm/_locks/warning-27e3975bd8f50eb5.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+362 silly install write writing loose-envify 1.3.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+363 verbose lock using /Users/John/.npm/_locks/invariant-c4d99bfddc871f8b.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+364 silly install write writing warning 3.0.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+365 silly install write writing invariant 2.2.2 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+366 verbose unbuild node_modules/react-router/node_modules/hoist-non-react-statics
+367 verbose unbuild node_modules/react-router/node_modules/history
+368 verbose unbuild node_modules/react-router/node_modules/warning
+369 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+370 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+371 verbose unbuild node_modules/react-router/node_modules/loose-envify
+372 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+373 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+374 verbose unbuild node_modules/react-router/node_modules/invariant
+375 verbose tar unpack /Users/John/.npm/hoist-non-react-statics/1.2.0/package.tgz
+376 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+377 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics is being purged
+378 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+379 verbose tar unpack /Users/John/.npm/history/3.2.1/package.tgz
+380 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+381 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history is being purged
+382 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+383 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+384 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+385 silly gunzTarPerm modes [ '755', '644' ]
+386 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+387 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+388 silly gunzTarPerm modes [ '755', '644' ]
+389 verbose tar unpack /Users/John/.npm/warning/3.0.0/package.tgz
+390 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+391 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning is being purged
+392 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+393 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+394 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+395 verbose tar unpack /Users/John/.npm/loose-envify/1.3.0/package.tgz
+396 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+397 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify is being purged
+398 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+399 silly gunzTarPerm modes [ '755', '644' ]
+400 verbose tar unpack /Users/John/.npm/invariant/2.2.2/package.tgz
+401 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+402 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant is being purged
+403 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+404 silly gunzTarPerm modes [ '755', '644' ]
+405 silly gunzTarPerm modes [ '755', '644' ]
+406 silly gunzTarPerm extractEntry package.json
+407 silly gunzTarPerm extractEntry package.json
+408 silly gunzTarPerm extractEntry package.json
+409 silly gunzTarPerm extractEntry package.json
+410 silly gunzTarPerm extractEntry package.json
+411 silly gunzTarPerm extractEntry .npmignore
+412 silly gunzTarPerm extractEntry README.md
+413 silly gunzTarPerm extractEntry README.md
+414 silly gunzTarPerm extractEntry LICENSE.md
+415 silly gunzTarPerm extractEntry README.md
+416 silly gunzTarPerm extractEntry browser.js
+417 silly gunzTarPerm extractEntry .npmignore
+418 silly gunzTarPerm extractEntry README.md
+419 silly gunzTarPerm extractEntry README.md
+420 silly gunzTarPerm extractEntry LICENSE
+421 silly gunzTarPerm extractEntry index.js
+422 silly gunzTarPerm extractEntry LICENSE.md
+423 silly gunzTarPerm extractEntry .travis.yml
+424 silly gunzTarPerm extractEntry .eslintrc
+425 silly gunzTarPerm extractEntry .idea/.name
+426 silly gunzTarPerm extractEntry .idea/hoist-non-react-statics.iml
+427 silly gunzTarPerm extractEntry .idea/misc.xml
+428 silly gunzTarPerm extractEntry .idea/modules.xml
+429 silly gunzTarPerm extractEntry .idea/vcs.xml
+430 silly gunzTarPerm extractEntry .idea/workspace.xml
+431 silly gunzTarPerm extractEntry .coveralls.yml
+432 silly gunzTarPerm extractEntry lib/Actions.js
+433 silly gunzTarPerm extractEntry lib/HashProtocol.js
+434 silly gunzTarPerm extractEntry LICENSE
+435 silly gunzTarPerm extractEntry custom.js
+436 silly gunzTarPerm extractEntry cli.js
+437 silly gunzTarPerm extractEntry index.js
+438 silly gunzTarPerm extractEntry loose-envify.js
+439 silly gunzTarPerm extractEntry replace.js
+440 silly gunzTarPerm extractEntry warning.js
+441 silly gunzTarPerm extractEntry CHANGELOG.md
+442 silly gunzTarPerm extractEntry browser.js
+443 silly gunzTarPerm extractEntry invariant.js
+444 silly gunzTarPerm extractEntry CHANGELOG.md
+445 silly gunzTarPerm extractEntry invariant.js.flow
+446 silly gunzTarPerm extractEntry lib/LocationUtils.js
+447 silly gunzTarPerm extractEntry lib/PathUtils.js
+448 silly gunzTarPerm extractEntry lib/ExecutionEnvironment.js
+449 silly gunzTarPerm extractEntry lib/createBrowserHistory.js
+450 silly gunzTarPerm extractEntry lib/createHashHistory.js
+451 silly gunzTarPerm extractEntry lib/createHistory.js
+452 silly gunzTarPerm extractEntry lib/createMemoryHistory.js
+453 silly gunzTarPerm extractEntry lib/index.js
+454 silly gunzTarPerm extractEntry lib/DOMUtils.js
+455 silly gunzTarPerm extractEntry lib/runTransitionHook.js
+456 silly gunzTarPerm extractEntry lib/DOMStateStorage.js
+457 silly gunzTarPerm extractEntry lib/useBasename.js
+458 silly gunzTarPerm extractEntry lib/BrowserProtocol.js
+459 silly gunzTarPerm extractEntry lib/useBeforeUnload.js
+460 silly gunzTarPerm extractEntry lib/AsyncUtils.js
+461 silly gunzTarPerm extractEntry lib/useQueries.js
+462 silly gunzTarPerm extractEntry lib/RefreshProtocol.js
+463 silly gunzTarPerm extractEntry umd/history.js
+464 silly gunzTarPerm extractEntry umd/history.min.js
+465 silly gunzTarPerm extractEntry CHANGES.md
+466 silly gunzTarPerm extractEntry LICENSE.md
+467 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning/package.json
+468 info preinstall warning@3.0.0
+469 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning/package.json
+470 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant/package.json
+471 info preinstall invariant@2.2.2
+472 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning/package.json
+473 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant/package.json
+474 silly install resolved []
+475 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+476 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+477 info linkStuff warning@3.0.0
+478 silly linkStuff warning@3.0.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules as its parent node_modules
+479 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/package.json
+480 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant/package.json
+481 info preinstall loose-envify@1.3.0
+482 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/package.json
+483 verbose linkBins warning@3.0.0
+484 verbose linkMans warning@3.0.0
+485 verbose rebuildBundles warning@3.0.0
+486 info install warning@3.0.0
+487 info postinstall warning@3.0.0
+488 silly install resolved []
+489 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+490 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+491 silly prepareForInstallMany adding js-tokens@^2.0.0 from loose-envify dependencies
+492 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/package.json
+493 verbose unlock done using /Users/John/.npm/_locks/warning-27e3975bd8f50eb5.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/warning
+494 info linkStuff invariant@2.2.2
+495 silly linkStuff invariant@2.2.2 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules as its parent node_modules
+496 silly cache add args [ 'js-tokens@^2.0.0', null ]
+497 verbose cache add spec js-tokens@^2.0.0
+498 silly cache add parsed spec Result {
+498 silly cache add   raw: 'js-tokens@^2.0.0',
+498 silly cache add   scope: null,
+498 silly cache add   name: 'js-tokens',
+498 silly cache add   rawSpec: '^2.0.0',
+498 silly cache add   spec: '>=2.0.0 <3.0.0',
+498 silly cache add   type: 'range' }
+499 silly addNamed js-tokens@>=2.0.0 <3.0.0
+500 verbose addNamed ">=2.0.0 <3.0.0" is a valid semver range for js-tokens
+501 silly addNameRange { name: 'js-tokens', range: '>=2.0.0 <3.0.0', hasData: false }
+502 silly mapToRegistry name js-tokens
+503 silly mapToRegistry using default registry
+504 silly mapToRegistry registry https://registry.npmjs.org/
+505 silly mapToRegistry uri https://registry.npmjs.org/js-tokens
+506 verbose addNameRange registry:https://registry.npmjs.org/js-tokens not in flight; fetching
+507 verbose linkBins invariant@2.2.2
+508 verbose linkMans invariant@2.2.2
+509 verbose rebuildBundles invariant@2.2.2
+510 info install invariant@2.2.2
+511 verbose request uri https://registry.npmjs.org/js-tokens
+512 verbose request no auth needed
+513 info attempt registry request try #1 at 8:25:58 AM
+514 verbose etag "5JCPCS4QDWIATJUNMJHTM0LIF"
+515 http request GET https://registry.npmjs.org/js-tokens
+516 info postinstall invariant@2.2.2
+517 verbose unlock done using /Users/John/.npm/_locks/invariant-c4d99bfddc871f8b.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/invariant
+518 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics/package.json
+519 info preinstall hoist-non-react-statics@1.2.0
+520 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics/package.json
+521 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics/package.json
+522 silly install resolved []
+523 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+524 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+525 info linkStuff hoist-non-react-statics@1.2.0
+526 silly linkStuff hoist-non-react-statics@1.2.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules as its parent node_modules
+527 verbose linkBins hoist-non-react-statics@1.2.0
+528 verbose linkMans hoist-non-react-statics@1.2.0
+529 verbose rebuildBundles hoist-non-react-statics@1.2.0
+530 info install hoist-non-react-statics@1.2.0
+531 info postinstall hoist-non-react-statics@1.2.0
+532 verbose unlock done using /Users/John/.npm/_locks/hoist-non-react-statics-8fec23edb63a6fb4.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/hoist-non-react-statics
+533 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/package.json
+534 info preinstall history@3.2.1
+535 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/package.json
+536 silly prepareForInstallMany adding query-string@^4.2.2 from history dependencies
+537 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/package.json
+538 silly cache add args [ 'query-string@^4.2.2', null ]
+539 verbose cache add spec query-string@^4.2.2
+540 silly cache add parsed spec Result {
+540 silly cache add   raw: 'query-string@^4.2.2',
+540 silly cache add   scope: null,
+540 silly cache add   name: 'query-string',
+540 silly cache add   rawSpec: '^4.2.2',
+540 silly cache add   spec: '>=4.2.2 <5.0.0',
+540 silly cache add   type: 'range' }
+541 silly addNamed query-string@>=4.2.2 <5.0.0
+542 verbose addNamed ">=4.2.2 <5.0.0" is a valid semver range for query-string
+543 silly addNameRange { name: 'query-string', range: '>=4.2.2 <5.0.0', hasData: false }
+544 silly mapToRegistry name query-string
+545 silly mapToRegistry using default registry
+546 silly mapToRegistry registry https://registry.npmjs.org/
+547 silly mapToRegistry uri https://registry.npmjs.org/query-string
+548 verbose addNameRange registry:https://registry.npmjs.org/query-string not in flight; fetching
+549 verbose request uri https://registry.npmjs.org/query-string
+550 verbose request no auth needed
+551 info attempt registry request try #1 at 8:25:58 AM
+552 verbose etag "E4UNSO0FTKDVJF2Z0ASFVDW9S"
+553 http request GET https://registry.npmjs.org/query-string
+554 http 200 https://registry.npmjs.org/js-tokens
+555 verbose headers { server: 'nginx/1.10.1',
+555 verbose headers   'content-type': 'application/json',
+555 verbose headers   'last-modified': 'Sun, 19 Jun 2016 07:38:11 GMT',
+555 verbose headers   etag: 'W/"57664be3-4c4b"',
+555 verbose headers   'content-encoding': 'gzip',
+555 verbose headers   'cache-control': 'max-age=300',
+555 verbose headers   'content-length': '4840',
+555 verbose headers   'accept-ranges': 'bytes',
+555 verbose headers   date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+555 verbose headers   via: '1.1 varnish',
+555 verbose headers   age: '206',
+555 verbose headers   connection: 'keep-alive',
+555 verbose headers   'x-served-by': 'cache-atl6233-ATL',
+555 verbose headers   'x-cache': 'HIT',
+555 verbose headers   'x-cache-hits': '4',
+555 verbose headers   'x-timer': 'S1479216357.448408,VS0,VE0',
+555 verbose headers   vary: 'Accept-Encoding' }
+556 silly get cb [ 200,
+556 silly get   { server: 'nginx/1.10.1',
+556 silly get     'content-type': 'application/json',
+556 silly get     'last-modified': 'Sun, 19 Jun 2016 07:38:11 GMT',
+556 silly get     etag: 'W/"57664be3-4c4b"',
+556 silly get     'content-encoding': 'gzip',
+556 silly get     'cache-control': 'max-age=300',
+556 silly get     'content-length': '4840',
+556 silly get     'accept-ranges': 'bytes',
+556 silly get     date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+556 silly get     via: '1.1 varnish',
+556 silly get     age: '206',
+556 silly get     connection: 'keep-alive',
+556 silly get     'x-served-by': 'cache-atl6233-ATL',
+556 silly get     'x-cache': 'HIT',
+556 silly get     'x-cache-hits': '4',
+556 silly get     'x-timer': 'S1479216357.448408,VS0,VE0',
+556 silly get     vary: 'Accept-Encoding' } ]
+557 verbose get saving js-tokens to /Users/John/.npm/registry.npmjs.org/js-tokens/.cache.json
+558 silly addNameRange number 2 { name: 'js-tokens', range: '>=2.0.0 <3.0.0', hasData: true }
+559 silly addNameRange versions [ 'js-tokens',
+559 silly addNameRange   [ '0.1.0',
+559 silly addNameRange     '0.2.0',
+559 silly addNameRange     '0.3.0',
+559 silly addNameRange     '0.3.1',
+559 silly addNameRange     '0.4.0',
+559 silly addNameRange     '0.4.1',
+559 silly addNameRange     '1.0.0',
+559 silly addNameRange     '1.0.1',
+559 silly addNameRange     '1.0.2',
+559 silly addNameRange     '1.0.3',
+559 silly addNameRange     '2.0.0' ] ]
+560 silly addNamed js-tokens@2.0.0
+561 verbose addNamed "2.0.0" is a plain semver version for js-tokens
+562 silly cache afterAdd js-tokens@2.0.0
+563 verbose afterAdd /Users/John/.npm/js-tokens/2.0.0/package/package.json not in flight; writing
+564 verbose afterAdd /Users/John/.npm/js-tokens/2.0.0/package/package.json written
+565 silly install resolved [ { name: 'js-tokens',
+565 silly install resolved     version: '2.0.0',
+565 silly install resolved     author: { name: 'Simon Lydell' },
+565 silly install resolved     license: 'MIT',
+565 silly install resolved     description: 'A regex that tokenizes JavaScript.',
+565 silly install resolved     keywords: [ 'JavaScript', 'js', 'token', 'tokenize', 'regex' ],
+565 silly install resolved     files: [ 'index.js' ],
+565 silly install resolved     repository:
+565 silly install resolved      { type: 'git',
+565 silly install resolved        url: 'git+https://github.com/lydell/js-tokens.git' },
+565 silly install resolved     scripts:
+565 silly install resolved      { test: 'mocha --ui tdd',
+565 silly install resolved        'esprima-compare': 'node esprima-compare ./index.js everything.js/es5.js',
+565 silly install resolved        build: 'node generate-index.js',
+565 silly install resolved        dev: 'npm run build && npm test' },
+565 silly install resolved     devDependencies:
+565 silly install resolved      { 'coffee-script': '~1.10.0',
+565 silly install resolved        esprima: '^2.7.2',
+565 silly install resolved        'everything.js': '^1.0.3',
+565 silly install resolved        mocha: '^2.5.3' },
+565 silly install resolved     gitHead: '23fcbe4639fb4baee5dc53616958cc04c8b94026',
+565 silly install resolved     bugs: { url: 'https://github.com/lydell/js-tokens/issues' },
+565 silly install resolved     homepage: 'https://github.com/lydell/js-tokens#readme',
+565 silly install resolved     _id: 'js-tokens@2.0.0',
+565 silly install resolved     _shasum: '79903f5563ee778cc1162e6dcf1a0027c97f9cb5',
+565 silly install resolved     _from: 'js-tokens@>=2.0.0 <3.0.0',
+565 silly install resolved     _npmVersion: '3.8.6',
+565 silly install resolved     _nodeVersion: '5.11.1',
+565 silly install resolved     _npmUser: { name: 'lydell', email: 'simon.lydell@gmail.com' },
+565 silly install resolved     dist:
+565 silly install resolved      { shasum: '79903f5563ee778cc1162e6dcf1a0027c97f9cb5',
+565 silly install resolved        tarball: 'https://registry.npmjs.org/js-tokens/-/js-tokens-2.0.0.tgz' },
+565 silly install resolved     maintainers: [ [Object] ],
+565 silly install resolved     _npmOperationalInternal:
+565 silly install resolved      { host: 'packages-16-east.internal.npmjs.com',
+565 silly install resolved        tmp: 'tmp/js-tokens-2.0.0.tgz_1466321890449_0.1510669116396457' },
+565 silly install resolved     directories: {},
+565 silly install resolved     _resolved: 'https://registry.npmjs.org/js-tokens/-/js-tokens-2.0.0.tgz',
+565 silly install resolved     readme: 'ERROR: No README data found!' } ]
+566 info install js-tokens@2.0.0 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+567 info installOne js-tokens@2.0.0
+568 verbose installOne of js-tokens to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify not in flight; installing
+569 verbose lock using /Users/John/.npm/_locks/js-tokens-dd00be5f37f62bf3.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+570 silly install write writing js-tokens 2.0.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+571 verbose unbuild node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+572 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+573 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+574 verbose tar unpack /Users/John/.npm/js-tokens/2.0.0/package.tgz
+575 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+576 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens is being purged
+577 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+578 silly gunzTarPerm modes [ '755', '644' ]
+579 silly gunzTarPerm extractEntry package.json
+580 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+581 silly gunzTarPerm extractEntry LICENSE
+582 silly gunzTarPerm modified mode [ 'LICENSE', 436, 420 ]
+583 silly gunzTarPerm extractEntry index.js
+584 silly gunzTarPerm modified mode [ 'index.js', 436, 420 ]
+585 silly gunzTarPerm extractEntry changelog.md
+586 silly gunzTarPerm modified mode [ 'changelog.md', 436, 420 ]
+587 silly gunzTarPerm extractEntry readme.md
+588 silly gunzTarPerm modified mode [ 'readme.md', 436, 420 ]
+589 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens/package.json
+590 info preinstall js-tokens@2.0.0
+591 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens/package.json
+592 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens/package.json
+593 silly install resolved []
+594 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+595 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+596 info linkStuff js-tokens@2.0.0
+597 silly linkStuff js-tokens@2.0.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules as its parent node_modules
+598 verbose linkBins js-tokens@2.0.0
+599 verbose linkMans js-tokens@2.0.0
+600 verbose rebuildBundles js-tokens@2.0.0
+601 info install js-tokens@2.0.0
+602 info postinstall js-tokens@2.0.0
+603 http 200 https://registry.npmjs.org/query-string
+604 verbose headers { server: 'nginx/1.10.1',
+604 verbose headers   'content-type': 'application/json',
+604 verbose headers   'last-modified': 'Tue, 08 Nov 2016 04:08:05 GMT',
+604 verbose headers   etag: 'W/"58214fa5-960c"',
+604 verbose headers   'content-encoding': 'gzip',
+604 verbose headers   'cache-control': 'max-age=300',
+604 verbose headers   'content-length': '5282',
+604 verbose headers   'accept-ranges': 'bytes',
+604 verbose headers   date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+604 verbose headers   via: '1.1 varnish',
+604 verbose headers   age: '47',
+604 verbose headers   connection: 'keep-alive',
+604 verbose headers   'x-served-by': 'cache-atl6236-ATL',
+604 verbose headers   'x-cache': 'HIT',
+604 verbose headers   'x-cache-hits': '1',
+604 verbose headers   'x-timer': 'S1479216357.478984,VS0,VE0',
+604 verbose headers   vary: 'Accept-Encoding' }
+605 silly get cb [ 200,
+605 silly get   { server: 'nginx/1.10.1',
+605 silly get     'content-type': 'application/json',
+605 silly get     'last-modified': 'Tue, 08 Nov 2016 04:08:05 GMT',
+605 silly get     etag: 'W/"58214fa5-960c"',
+605 silly get     'content-encoding': 'gzip',
+605 silly get     'cache-control': 'max-age=300',
+605 silly get     'content-length': '5282',
+605 silly get     'accept-ranges': 'bytes',
+605 silly get     date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+605 silly get     via: '1.1 varnish',
+605 silly get     age: '47',
+605 silly get     connection: 'keep-alive',
+605 silly get     'x-served-by': 'cache-atl6236-ATL',
+605 silly get     'x-cache': 'HIT',
+605 silly get     'x-cache-hits': '1',
+605 silly get     'x-timer': 'S1479216357.478984,VS0,VE0',
+605 silly get     vary: 'Accept-Encoding' } ]
+606 verbose get saving query-string to /Users/John/.npm/registry.npmjs.org/query-string/.cache.json
+607 verbose unlock done using /Users/John/.npm/_locks/js-tokens-dd00be5f37f62bf3.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify/node_modules/js-tokens
+608 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+609 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+610 info linkStuff loose-envify@1.3.0
+611 silly linkStuff loose-envify@1.3.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules as its parent node_modules
+612 silly addNameRange number 2 { name: 'query-string', range: '>=4.2.2 <5.0.0', hasData: true }
+613 silly addNameRange versions [ 'query-string',
+613 silly addNameRange   [ '0.1.0',
+613 silly addNameRange     '0.1.1',
+613 silly addNameRange     '0.2.0',
+613 silly addNameRange     '0.3.0',
+613 silly addNameRange     '0.3.1',
+613 silly addNameRange     '0.4.0',
+613 silly addNameRange     '0.4.1',
+613 silly addNameRange     '1.0.0',
+613 silly addNameRange     '1.0.1',
+613 silly addNameRange     '2.0.0',
+613 silly addNameRange     '2.1.0',
+613 silly addNameRange     '2.2.0',
+613 silly addNameRange     '2.3.0',
+613 silly addNameRange     '2.4.0',
+613 silly addNameRange     '2.4.1',
+613 silly addNameRange     '2.4.2',
+613 silly addNameRange     '3.0.0',
+613 silly addNameRange     '3.0.1',
+613 silly addNameRange     '3.0.2',
+613 silly addNameRange     '3.0.3',
+613 silly addNameRange     '4.0.0',
+613 silly addNameRange     '4.0.2',
+613 silly addNameRange     '4.1.0',
+613 silly addNameRange     '4.2.0',
+613 silly addNameRange     '4.2.1',
+613 silly addNameRange     '4.2.2',
+613 silly addNameRange     '4.2.3' ] ]
+614 silly addNamed query-string@4.2.3
+615 verbose addNamed "4.2.3" is a plain semver version for query-string
+616 verbose linkBins loose-envify@1.3.0
+617 verbose link bins [ { 'loose-envify': 'cli.js' },
+617 verbose link bins   '/Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/.bin',
+617 verbose link bins   false ]
+618 verbose linkMans loose-envify@1.3.0
+619 verbose rebuildBundles loose-envify@1.3.0
+620 silly mapToRegistry name query-string
+621 silly mapToRegistry using default registry
+622 silly mapToRegistry registry https://registry.npmjs.org/
+623 silly mapToRegistry uri https://registry.npmjs.org/query-string
+624 verbose addRemoteTarball https://registry.npmjs.org/query-string/-/query-string-4.2.3.tgz not in flight; adding
+625 verbose addRemoteTarball [ 'https://registry.npmjs.org/query-string/-/query-string-4.2.3.tgz',
+625 verbose addRemoteTarball   '9f27273d207a25a8ee4c7b8c74dcd45d556db822' ]
+626 verbose rebuildBundles [ 'js-tokens' ]
+627 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/.bin/loose-envify is being purged
+628 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/.bin/loose-envify
+629 info retry fetch attempt 1 at 8:25:58 AM
+630 info attempt registry request try #1 at 8:25:58 AM
+631 http fetch GET https://registry.npmjs.org/query-string/-/query-string-4.2.3.tgz
+632 info install loose-envify@1.3.0
+633 info postinstall loose-envify@1.3.0
+634 verbose unlock done using /Users/John/.npm/_locks/loose-envify-20f1084aad7824a2.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/loose-envify
+635 http fetch 200 https://registry.npmjs.org/query-string/-/query-string-4.2.3.tgz
+636 silly fetchAndShaCheck shasum 9f27273d207a25a8ee4c7b8c74dcd45d556db822
+637 verbose addTmpTarball /var/folders/q9/glj9cg516d9cw5gg69vh8bv00000gn/T/npm-29149-569eab49/registry.npmjs.org/query-string/-/query-string-4.2.3.tgz not in flight; adding
+638 verbose addTmpTarball already have metadata; skipping unpack for query-string@4.2.3
+639 silly cache afterAdd query-string@4.2.3
+640 verbose afterAdd /Users/John/.npm/query-string/4.2.3/package/package.json not in flight; writing
+641 verbose afterAdd /Users/John/.npm/query-string/4.2.3/package/package.json written
+642 silly install resolved [ { name: 'query-string',
+642 silly install resolved     version: '4.2.3',
+642 silly install resolved     description: 'Parse and stringify URL query strings',
+642 silly install resolved     license: 'MIT',
+642 silly install resolved     repository:
+642 silly install resolved      { type: 'git',
+642 silly install resolved        url: 'git+https://github.com/sindresorhus/query-string.git' },
+642 silly install resolved     author:
+642 silly install resolved      { name: 'Sindre Sorhus',
+642 silly install resolved        email: 'sindresorhus@gmail.com',
+642 silly install resolved        url: 'sindresorhus.com' },
+642 silly install resolved     engines: { node: '>=0.10.0' },
+642 silly install resolved     scripts: { test: 'xo && ava' },
+642 silly install resolved     files: [ 'index.js' ],
+642 silly install resolved     keywords:
+642 silly install resolved      [ 'browser',
+642 silly install resolved        'querystring',
+642 silly install resolved        'query',
+642 silly install resolved        'string',
+642 silly install resolved        'qs',
+642 silly install resolved        'param',
+642 silly install resolved        'parameter',
+642 silly install resolved        'url',
+642 silly install resolved        'uri',
+642 silly install resolved        'parse',
+642 silly install resolved        'stringify',
+642 silly install resolved        'encode',
+642 silly install resolved        'decode' ],
+642 silly install resolved     dependencies: { 'object-assign': '^4.1.0', 'strict-uri-encode': '^1.0.0' },
+642 silly install resolved     devDependencies: { ava: '*', xo: '*' },
+642 silly install resolved     gitHead: '3ba022410dbcff27404de090b33ce9b67768c139',
+642 silly install resolved     bugs: { url: 'https://github.com/sindresorhus/query-string/issues' },
+642 silly install resolved     homepage: 'https://github.com/sindresorhus/query-string#readme',
+642 silly install resolved     _id: 'query-string@4.2.3',
+642 silly install resolved     _shasum: '9f27273d207a25a8ee4c7b8c74dcd45d556db822',
+642 silly install resolved     _from: 'query-string@>=4.2.2 <5.0.0',
+642 silly install resolved     _npmVersion: '2.15.5',
+642 silly install resolved     _nodeVersion: '4.4.5',
+642 silly install resolved     _npmUser: { name: 'sindresorhus', email: 'sindresorhus@gmail.com' },
+642 silly install resolved     dist:
+642 silly install resolved      { shasum: '9f27273d207a25a8ee4c7b8c74dcd45d556db822',
+642 silly install resolved        tarball: 'https://registry.npmjs.org/query-string/-/query-string-4.2.3.tgz' },
+642 silly install resolved     maintainers: [ [Object] ],
+642 silly install resolved     _npmOperationalInternal:
+642 silly install resolved      { host: 'packages-16-east.internal.npmjs.com',
+642 silly install resolved        tmp: 'tmp/query-string-4.2.3.tgz_1471046653328_0.06692232307977974' },
+642 silly install resolved     directories: {},
+642 silly install resolved     _resolved: 'https://registry.npmjs.org/query-string/-/query-string-4.2.3.tgz' } ]
+643 info install query-string@4.2.3 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+644 info installOne query-string@4.2.3
+645 verbose installOne of query-string to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history not in flight; installing
+646 verbose lock using /Users/John/.npm/_locks/query-string-4754f4abe25feeb0.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+647 silly install write writing query-string 4.2.3 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+648 verbose unbuild node_modules/react-router/node_modules/history/node_modules/query-string
+649 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+650 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+651 verbose tar unpack /Users/John/.npm/query-string/4.2.3/package.tgz
+652 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+653 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string is being purged
+654 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+655 silly gunzTarPerm modes [ '755', '644' ]
+656 silly gunzTarPerm extractEntry package.json
+657 silly gunzTarPerm extractEntry index.js
+658 silly gunzTarPerm extractEntry license
+659 silly gunzTarPerm extractEntry readme.md
+660 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/package.json
+661 info preinstall query-string@4.2.3
+662 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/package.json
+663 silly prepareForInstallMany adding object-assign@^4.1.0 from query-string dependencies
+664 silly prepareForInstallMany adding strict-uri-encode@^1.0.0 from query-string dependencies
+665 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/package.json
+666 silly cache add args [ 'object-assign@^4.1.0', null ]
+667 verbose cache add spec object-assign@^4.1.0
+668 silly cache add args [ 'strict-uri-encode@^1.0.0', null ]
+669 verbose cache add spec strict-uri-encode@^1.0.0
+670 silly cache add parsed spec Result {
+670 silly cache add   raw: 'object-assign@^4.1.0',
+670 silly cache add   scope: null,
+670 silly cache add   name: 'object-assign',
+670 silly cache add   rawSpec: '^4.1.0',
+670 silly cache add   spec: '>=4.1.0 <5.0.0',
+670 silly cache add   type: 'range' }
+671 silly addNamed object-assign@>=4.1.0 <5.0.0
+672 verbose addNamed ">=4.1.0 <5.0.0" is a valid semver range for object-assign
+673 silly addNameRange { name: 'object-assign',
+673 silly addNameRange   range: '>=4.1.0 <5.0.0',
+673 silly addNameRange   hasData: false }
+674 silly mapToRegistry name object-assign
+675 silly mapToRegistry using default registry
+676 silly mapToRegistry registry https://registry.npmjs.org/
+677 silly mapToRegistry uri https://registry.npmjs.org/object-assign
+678 verbose addNameRange registry:https://registry.npmjs.org/object-assign not in flight; fetching
+679 silly cache add parsed spec Result {
+679 silly cache add   raw: 'strict-uri-encode@^1.0.0',
+679 silly cache add   scope: null,
+679 silly cache add   name: 'strict-uri-encode',
+679 silly cache add   rawSpec: '^1.0.0',
+679 silly cache add   spec: '>=1.0.0 <2.0.0',
+679 silly cache add   type: 'range' }
+680 silly addNamed strict-uri-encode@>=1.0.0 <2.0.0
+681 verbose addNamed ">=1.0.0 <2.0.0" is a valid semver range for strict-uri-encode
+682 silly addNameRange { name: 'strict-uri-encode',
+682 silly addNameRange   range: '>=1.0.0 <2.0.0',
+682 silly addNameRange   hasData: false }
+683 silly mapToRegistry name strict-uri-encode
+684 silly mapToRegistry using default registry
+685 silly mapToRegistry registry https://registry.npmjs.org/
+686 silly mapToRegistry uri https://registry.npmjs.org/strict-uri-encode
+687 verbose addNameRange registry:https://registry.npmjs.org/strict-uri-encode not in flight; fetching
+688 verbose request uri https://registry.npmjs.org/object-assign
+689 verbose request no auth needed
+690 info attempt registry request try #1 at 8:25:58 AM
+691 verbose etag "C3LGSGLPLG8L944Z6QOOXRDLT"
+692 http request GET https://registry.npmjs.org/object-assign
+693 verbose request uri https://registry.npmjs.org/strict-uri-encode
+694 verbose request no auth needed
+695 info attempt registry request try #1 at 8:25:58 AM
+696 verbose etag "P3IZBLYGTOWXM3HRT9I3DK5T"
+697 http request GET https://registry.npmjs.org/strict-uri-encode
+698 http 200 https://registry.npmjs.org/strict-uri-encode
+699 verbose headers { server: 'nginx/1.10.1',
+699 verbose headers   'content-type': 'application/json',
+699 verbose headers   'last-modified': 'Tue, 11 Oct 2016 20:09:00 GMT',
+699 verbose headers   etag: 'W/"57fd46dc-1cba"',
+699 verbose headers   'content-encoding': 'gzip',
+699 verbose headers   'cache-control': 'max-age=300',
+699 verbose headers   'content-length': '1501',
+699 verbose headers   'accept-ranges': 'bytes',
+699 verbose headers   date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+699 verbose headers   via: '1.1 varnish',
+699 verbose headers   age: '15',
+699 verbose headers   connection: 'keep-alive',
+699 verbose headers   'x-served-by': 'cache-atl6236-ATL',
+699 verbose headers   'x-cache': 'HIT',
+699 verbose headers   'x-cache-hits': '1',
+699 verbose headers   'x-timer': 'S1479216357.749840,VS0,VE0',
+699 verbose headers   vary: 'Accept-Encoding' }
+700 silly get cb [ 200,
+700 silly get   { server: 'nginx/1.10.1',
+700 silly get     'content-type': 'application/json',
+700 silly get     'last-modified': 'Tue, 11 Oct 2016 20:09:00 GMT',
+700 silly get     etag: 'W/"57fd46dc-1cba"',
+700 silly get     'content-encoding': 'gzip',
+700 silly get     'cache-control': 'max-age=300',
+700 silly get     'content-length': '1501',
+700 silly get     'accept-ranges': 'bytes',
+700 silly get     date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+700 silly get     via: '1.1 varnish',
+700 silly get     age: '15',
+700 silly get     connection: 'keep-alive',
+700 silly get     'x-served-by': 'cache-atl6236-ATL',
+700 silly get     'x-cache': 'HIT',
+700 silly get     'x-cache-hits': '1',
+700 silly get     'x-timer': 'S1479216357.749840,VS0,VE0',
+700 silly get     vary: 'Accept-Encoding' } ]
+701 verbose get saving strict-uri-encode to /Users/John/.npm/registry.npmjs.org/strict-uri-encode/.cache.json
+702 http 200 https://registry.npmjs.org/object-assign
+703 verbose headers { server: 'nginx/1.10.1',
+703 verbose headers   'content-type': 'application/json',
+703 verbose headers   'last-modified': 'Wed, 19 Oct 2016 07:43:37 GMT',
+703 verbose headers   etag: 'W/"58072429-55c7"',
+703 verbose headers   'content-encoding': 'gzip',
+703 verbose headers   'cache-control': 'max-age=300',
+703 verbose headers   'content-length': '3217',
+703 verbose headers   'accept-ranges': 'bytes',
+703 verbose headers   date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+703 verbose headers   via: '1.1 varnish',
+703 verbose headers   age: '151',
+703 verbose headers   connection: 'keep-alive',
+703 verbose headers   'x-served-by': 'cache-atl6246-ATL',
+703 verbose headers   'x-cache': 'HIT',
+703 verbose headers   'x-cache-hits': '3',
+703 verbose headers   'x-timer': 'S1479216357.749806,VS0,VE0',
+703 verbose headers   vary: 'Accept-Encoding' }
+704 silly get cb [ 200,
+704 silly get   { server: 'nginx/1.10.1',
+704 silly get     'content-type': 'application/json',
+704 silly get     'last-modified': 'Wed, 19 Oct 2016 07:43:37 GMT',
+704 silly get     etag: 'W/"58072429-55c7"',
+704 silly get     'content-encoding': 'gzip',
+704 silly get     'cache-control': 'max-age=300',
+704 silly get     'content-length': '3217',
+704 silly get     'accept-ranges': 'bytes',
+704 silly get     date: 'Tue, 15 Nov 2016 13:25:57 GMT',
+704 silly get     via: '1.1 varnish',
+704 silly get     age: '151',
+704 silly get     connection: 'keep-alive',
+704 silly get     'x-served-by': 'cache-atl6246-ATL',
+704 silly get     'x-cache': 'HIT',
+704 silly get     'x-cache-hits': '3',
+704 silly get     'x-timer': 'S1479216357.749806,VS0,VE0',
+704 silly get     vary: 'Accept-Encoding' } ]
+705 verbose get saving object-assign to /Users/John/.npm/registry.npmjs.org/object-assign/.cache.json
+706 silly addNameRange number 2 { name: 'strict-uri-encode',
+706 silly addNameRange   range: '>=1.0.0 <2.0.0',
+706 silly addNameRange   hasData: true }
+707 silly addNameRange versions [ 'strict-uri-encode',
+707 silly addNameRange   [ '1.0.0', '1.0.1', '1.0.2', '1.1.0', '2.0.0' ] ]
+708 silly addNamed strict-uri-encode@1.1.0
+709 verbose addNamed "1.1.0" is a plain semver version for strict-uri-encode
+710 silly addNameRange number 2 { name: 'object-assign', range: '>=4.1.0 <5.0.0', hasData: true }
+711 silly addNameRange versions [ 'object-assign',
+711 silly addNameRange   [ '0.1.0',
+711 silly addNameRange     '0.1.1',
+711 silly addNameRange     '0.1.2',
+711 silly addNameRange     '0.2.0',
+711 silly addNameRange     '0.2.1',
+711 silly addNameRange     '0.2.2',
+711 silly addNameRange     '0.3.0',
+711 silly addNameRange     '0.3.1',
+711 silly addNameRange     '0.4.0',
+711 silly addNameRange     '1.0.0',
+711 silly addNameRange     '2.0.0',
+711 silly addNameRange     '3.0.0',
+711 silly addNameRange     '2.1.1',
+711 silly addNameRange     '4.0.0',
+711 silly addNameRange     '4.0.1',
+711 silly addNameRange     '4.1.0' ] ]
+712 silly addNamed object-assign@4.1.0
+713 verbose addNamed "4.1.0" is a plain semver version for object-assign
+714 silly cache afterAdd strict-uri-encode@1.1.0
+715 verbose afterAdd /Users/John/.npm/strict-uri-encode/1.1.0/package/package.json not in flight; writing
+716 silly cache afterAdd object-assign@4.1.0
+717 verbose afterAdd /Users/John/.npm/object-assign/4.1.0/package/package.json not in flight; writing
+718 verbose afterAdd /Users/John/.npm/strict-uri-encode/1.1.0/package/package.json written
+719 verbose afterAdd /Users/John/.npm/object-assign/4.1.0/package/package.json written
+720 silly install resolved [ { name: 'strict-uri-encode',
+720 silly install resolved     version: '1.1.0',
+720 silly install resolved     description: 'A stricter URI encode adhering to RFC 3986',
+720 silly install resolved     license: 'MIT',
+720 silly install resolved     repository:
+720 silly install resolved      { type: 'git',
+720 silly install resolved        url: 'git+https://github.com/kevva/strict-uri-encode.git' },
+720 silly install resolved     author:
+720 silly install resolved      { name: 'Kevin Mårtensson',
+720 silly install resolved        email: 'kevinmartensson@gmail.com',
+720 silly install resolved        url: 'github.com/kevva' },
+720 silly install resolved     engines: { node: '>=0.10.0' },
+720 silly install resolved     scripts: { test: 'node test.js' },
+720 silly install resolved     files: [ 'index.js' ],
+720 silly install resolved     keywords: [ 'component', 'encode', 'RFC3986', 'uri' ],
+720 silly install resolved     devDependencies: { ava: '^0.0.4' },
+720 silly install resolved     gitHead: 'ce6681428485d30e29222c722f832df15e3c19ac',
+720 silly install resolved     bugs: { url: 'https://github.com/kevva/strict-uri-encode/issues' },
+720 silly install resolved     homepage: 'https://github.com/kevva/strict-uri-encode#readme',
+720 silly install resolved     _id: 'strict-uri-encode@1.1.0',
+720 silly install resolved     _shasum: '279b225df1d582b1f54e65addd4352e18faa0713',
+720 silly install resolved     _from: 'strict-uri-encode@>=1.0.0 <2.0.0',
+720 silly install resolved     _npmVersion: '3.5.3',
+720 silly install resolved     _nodeVersion: '5.3.0',
+720 silly install resolved     _npmUser: { name: 'kevva', email: 'kevinmartensson@gmail.com' },
+720 silly install resolved     dist:
+720 silly install resolved      { shasum: '279b225df1d582b1f54e65addd4352e18faa0713',
+720 silly install resolved        tarball: 'http://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz' },
+720 silly install resolved     maintainers: [ [Object] ],
+720 silly install resolved     directories: {},
+720 silly install resolved     _resolved: 'https://registry.npmjs.org/strict-uri-encode/-/strict-uri-encode-1.1.0.tgz',
+720 silly install resolved     readme: 'ERROR: No README data found!' },
+720 silly install resolved   { name: 'object-assign',
+720 silly install resolved     version: '4.1.0',
+720 silly install resolved     description: 'ES2015 Object.assign() ponyfill',
+720 silly install resolved     license: 'MIT',
+720 silly install resolved     repository:
+720 silly install resolved      { type: 'git',
+720 silly install resolved        url: 'git+https://github.com/sindresorhus/object-assign.git' },
+720 silly install resolved     author:
+720 silly install resolved      { name: 'Sindre Sorhus',
+720 silly install resolved        email: 'sindresorhus@gmail.com',
+720 silly install resolved        url: 'sindresorhus.com' },
+720 silly install resolved     engines: { node: '>=0.10.0' },
+720 silly install resolved     scripts: { test: 'xo && mocha', bench: 'matcha bench.js' },
+720 silly install resolved     files: [ 'index.js' ],
+720 silly install resolved     keywords:
+720 silly install resolved      [ 'object',
+720 silly install resolved        'assign',
+720 silly install resolved        'extend',
+720 silly install resolved        'properties',
+720 silly install resolved        'es2015',
+720 silly install resolved        'ecmascript',
+720 silly install resolved        'harmony',
+720 silly install resolved        'ponyfill',
+720 silly install resolved        'prollyfill',
+720 silly install resolved        'polyfill',
+720 silly install resolved        'shim',
+720 silly install resolved        'browser' ],
+720 silly install resolved     devDependencies: { lodash: '^4.8.2', matcha: '^0.7.0', mocha: '*', xo: '*' },
+720 silly install resolved     gitHead: '72fe21c86911758f3342fdf41c2a57860d5829bc',
+720 silly install resolved     bugs: { url: 'https://github.com/sindresorhus/object-assign/issues' },
+720 silly install resolved     homepage: 'https://github.com/sindresorhus/object-assign#readme',
+720 silly install resolved     _id: 'object-assign@4.1.0',
+720 silly install resolved     _shasum: '7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0',
+720 silly install resolved     _from: 'object-assign@>=4.1.0 <5.0.0',
+720 silly install resolved     _npmVersion: '2.14.19',
+720 silly install resolved     _nodeVersion: '4.1.0',
+720 silly install resolved     _npmUser: { name: 'spicyj', email: 'ben@benalpert.com' },
+720 silly install resolved     maintainers: [ [Object], [Object] ],
+720 silly install resolved     dist:
+720 silly install resolved      { shasum: '7a3b3d0e98063d43f4c03f2e8ae6cd51a86883a0',
+720 silly install resolved        tarball: 'https://registry.npmjs.org/object-assign/-/object-assign-4.1.0.tgz' },
+720 silly install resolved     _npmOperationalInternal:
+720 silly install resolved      { host: 'packages-16-east.internal.npmjs.com',
+720 silly install resolved        tmp: 'tmp/object-assign-4.1.0.tgz_1462212593641_0.3332549517508596' },
+720 silly install resolved     directories: {},
+720 silly install resolved     _resolved: 'https://registry.npmjs.org/object-assign/-/object-assign-4.1.0.tgz',
+720 silly install resolved     readme: 'ERROR: No README data found!' } ]
+721 info install strict-uri-encode@1.1.0 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+722 info install object-assign@4.1.0 into /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+723 info installOne strict-uri-encode@1.1.0
+724 verbose installOne of strict-uri-encode to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string not in flight; installing
+725 info installOne object-assign@4.1.0
+726 verbose installOne of object-assign to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string not in flight; installing
+727 verbose lock using /Users/John/.npm/_locks/strict-uri-encode-85f5b88b7128b4f0.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+728 verbose lock using /Users/John/.npm/_locks/object-assign-f66e41ab9f98e64b.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+729 silly install write writing strict-uri-encode 1.1.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+730 silly install write writing object-assign 4.1.0 to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+731 verbose unbuild node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+732 verbose unbuild node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+733 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+734 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+735 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign is being purged from base /Users/John/Development/RipeNow Stuff/HomeGrown
+736 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+737 verbose tar unpack /Users/John/.npm/strict-uri-encode/1.1.0/package.tgz
+738 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+739 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode is being purged
+740 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+741 verbose tar unpack /Users/John/.npm/object-assign/4.1.0/package.tgz
+742 verbose tar unpacking to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+743 silly gentlyRm /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign is being purged
+744 verbose gentlyRm don't care about contents; nuking /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+745 silly gunzTarPerm modes [ '755', '644' ]
+746 silly gunzTarPerm modes [ '755', '644' ]
+747 silly gunzTarPerm extractEntry package.json
+748 silly gunzTarPerm extractEntry package.json
+749 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+750 silly gunzTarPerm extractEntry index.js
+751 silly gunzTarPerm extractEntry license
+752 silly gunzTarPerm extractEntry index.js
+753 silly gunzTarPerm modified mode [ 'index.js', 436, 420 ]
+754 silly gunzTarPerm extractEntry license
+755 silly gunzTarPerm modified mode [ 'license', 436, 420 ]
+756 silly gunzTarPerm extractEntry readme.md
+757 silly gunzTarPerm modified mode [ 'readme.md', 436, 420 ]
+758 silly gunzTarPerm extractEntry readme.md
+759 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode/package.json
+760 verbose write writing to /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign/package.json
+761 info preinstall strict-uri-encode@1.1.0
+762 info preinstall object-assign@4.1.0
+763 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode/package.json
+764 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign/package.json
+765 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode/package.json
+766 verbose readDependencies loading dependencies from /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign/package.json
+767 silly install resolved []
+768 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+769 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+770 silly install resolved []
+771 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+772 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+773 info linkStuff strict-uri-encode@1.1.0
+774 silly linkStuff strict-uri-encode@1.1.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules as its parent node_modules
+775 info linkStuff object-assign@4.1.0
+776 silly linkStuff object-assign@4.1.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules as its parent node_modules
+777 verbose linkBins strict-uri-encode@1.1.0
+778 verbose linkMans strict-uri-encode@1.1.0
+779 verbose rebuildBundles strict-uri-encode@1.1.0
+780 info install strict-uri-encode@1.1.0
+781 verbose linkBins object-assign@4.1.0
+782 verbose linkMans object-assign@4.1.0
+783 verbose rebuildBundles object-assign@4.1.0
+784 info install object-assign@4.1.0
+785 info postinstall strict-uri-encode@1.1.0
+786 info postinstall object-assign@4.1.0
+787 verbose unlock done using /Users/John/.npm/_locks/strict-uri-encode-85f5b88b7128b4f0.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/strict-uri-encode
+788 verbose unlock done using /Users/John/.npm/_locks/object-assign-f66e41ab9f98e64b.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string/node_modules/object-assign
+789 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+790 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+791 info linkStuff query-string@4.2.3
+792 silly linkStuff query-string@4.2.3 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules as its parent node_modules
+793 verbose linkBins query-string@4.2.3
+794 verbose linkMans query-string@4.2.3
+795 verbose rebuildBundles query-string@4.2.3
+796 verbose rebuildBundles [ 'object-assign', 'strict-uri-encode' ]
+797 info install query-string@4.2.3
+798 info postinstall query-string@4.2.3
+799 verbose unlock done using /Users/John/.npm/_locks/query-string-4754f4abe25feeb0.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history/node_modules/query-string
+800 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+801 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+802 info linkStuff history@3.2.1
+803 silly linkStuff history@3.2.1 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules as its parent node_modules
+804 verbose linkBins history@3.2.1
+805 verbose linkMans history@3.2.1
+806 verbose rebuildBundles history@3.2.1
+807 verbose rebuildBundles [ 'query-string' ]
+808 info install history@3.2.1
+809 info postinstall history@3.2.1
+810 verbose unlock done using /Users/John/.npm/_locks/history-21ac6ce0654fe521.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router/node_modules/history
+811 verbose about to build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+812 info build /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+813 info linkStuff react-router@3.0.0
+814 silly linkStuff react-router@3.0.0 has /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules as its parent node_modules
+815 verbose linkBins react-router@3.0.0
+816 verbose linkMans react-router@3.0.0
+817 verbose rebuildBundles react-router@3.0.0
+818 verbose rebuildBundles [ '.bin',
+818 verbose rebuildBundles   'history',
+818 verbose rebuildBundles   'hoist-non-react-statics',
+818 verbose rebuildBundles   'invariant',
+818 verbose rebuildBundles   'loose-envify',
+818 verbose rebuildBundles   'warning' ]
+819 info install react-router@3.0.0
+820 info postinstall react-router@3.0.0
+821 verbose unlock done using /Users/John/.npm/_locks/react-router-5a9b471b3ef7a90a.lock for /Users/John/Development/RipeNow Stuff/HomeGrown/node_modules/react-router
+822 verbose validateInstall loading /Users/John/Development/RipeNow Stuff/HomeGrown/package.json for validation
+823 verbose stack Error: The package react@15.0.0 does not satisfy its siblings' peerDependencies requirements!
+823 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:125:32
+823 verbose stack     at /usr/local/lib/node_modules/npm/lib/install.js:268:7
+823 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:142:5
+823 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+823 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+823 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+823 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+823 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+823 verbose stack     at cb (/usr/local/lib/node_modules/npm/node_modules/slide/lib/async-map.js:47:24)
+823 verbose stack     at /usr/local/lib/node_modules/npm/node_modules/read-installed/read-installed.js:263:14
+824 verbose cwd /Users/John/Development/RipeNow Stuff/HomeGrown
+825 error Darwin 16.0.0
+826 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "--save" "react-router"
+827 error node v4.3.1
+828 error npm  v2.14.12
+829 error code EPEERINVALID
+830 error peerinvalid The package react@15.0.0 does not satisfy its siblings' peerDependencies requirements!
+830 error peerinvalid Peer react-bootstrap@0.30.6 wants react@>=0.14.0
+830 error peerinvalid Peer react-dom@0.14.7 wants react@^0.14.7
+830 error peerinvalid Peer react-redux@4.4.5 wants react@^0.14.0 || ^15.0.0-0
+830 error peerinvalid Peer react-router@3.0.0 wants react@^0.14.0 || ^15.0.0
+830 error peerinvalid Peer redux-form@6.2.0 wants react@^15.0.0
+831 verbose exit [ 1, true ]

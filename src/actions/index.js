@@ -10,6 +10,8 @@ export const REQUEST_ITEMS = 'REQUEST_ITEMS';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const PLACE_ORDER = 'PLACE_ORDER';
 
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
@@ -52,7 +54,7 @@ export function signUpUser(credentials) {
             ["addressLineOne"]: credentials.addressLineOne,
             ["addressLineTwo"]: credentials.addressLineTwo,
             ["phoneNumber"]: credentials.phoneNumber
-            });
+        });
     }
 };
 export function verifyAuth(){
@@ -126,4 +128,36 @@ export function addToCart(cartItem) {
     type: ADD_TO_CART,
     payload: cart
   }
+}
+
+export function deleteCartItem(cartItem) {
+    var cart = cartItem.selectedItem.cart;
+    var item = cartItem.selectedItem.item;
+    var index = cart.indexOf(item);
+
+    if (index > -1) {
+        cart.splice(index, 1);
+    }
+    return {
+        type: REMOVE_FROM_CART,
+        payload: cart
+    }
+}
+
+export function placeOrder(order) {
+    const userUid = Firebase.auth().currentUser.uid;
+    const orderNode = database.ref('/active_orders/'+userUid.toString());
+    console.log(order);
+
+    orderNode.update({
+            ["order"]: order.order.cart,
+            ["subtotal"]: order.order.subtotal,
+            ["fee"]: order.order.fee,
+            ["total"]: order.order.total
+    });
+
+    return {
+        type: PLACE_ORDER,
+        payload: []
+    }
 }
