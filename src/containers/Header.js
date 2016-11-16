@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {signOutUser} from '../actions/index';
 var ReactBootstrap = require('react-bootstrap');
+import { hashHistory } from 'react-router';
 
 var Navbar = ReactBootstrap.Navbar;
 var NavItem = ReactBootstrap.NavItem;
@@ -21,6 +22,12 @@ class Header extends React.Component {
     handleSignout() {
         this.props.signOut();
     }
+    handleCart(){
+        hashHistory.push('/cart');
+    }
+    handleMarket(){
+        hashHistory.push('/');
+    }
     renderAuthLinks() {
         if (this.props.authenticated) {
             return [
@@ -33,7 +40,8 @@ class Header extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight>
-                            <NavItem eventKey={1} href="#">Market</NavItem>
+                            <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
+                            <NavItem eventKey={1} href="#" onClick={() => this.handleCart()}>Cart</NavItem>
                             <NavItem eventKey={1} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
                         </Nav>
                     </Navbar.Collapse>
