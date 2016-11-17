@@ -34,7 +34,7 @@ class Header extends React.Component {
                 <Navbar inverse collapseOnSelect block fluid>
                     <Navbar.Header>
                         <Navbar.Brand>
-                            <a href="#"><img width="27px" src="../../Diy-Farm-icon.png"/></a>
+                            <a><img width="27px" src="../../Diy-Farm-icon.png"/></a>
                         </Navbar.Brand>
                         <Navbar.Toggle />
                     </Navbar.Header>
