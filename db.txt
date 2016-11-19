@@ -8,6 +8,7 @@ users
 		- contact name
 		- items for sale []
 		- order history []
+		- active orders []
 		
 item
 	- sellerid + title
