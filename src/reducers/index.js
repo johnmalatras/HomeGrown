@@ -11,13 +11,19 @@ import ItemsReducer from './items';
 import ModalReducer from './modal';
 import CartReducer from './cart';
 
+//Added by Seth
+import UpdateReducer from './update';
+import editModal from './editModal';
+
 const rootReducer = combineReducers({
     AuthReducer,
     SignUpReducer,
     form: FormReducer,
     items: ItemsReducer,
   	modal: ModalReducer,
-  	cart: CartReducer
+  	cart: CartReducer,
+    update: UpdateReducer,
+    editModal: editModal
 })
 
 export default rootReducer;
