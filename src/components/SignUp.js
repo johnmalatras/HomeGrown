@@ -31,15 +31,21 @@ const validate = (values) => {
         errors.bussinessName = "Please enter Bussiness Name";
     }
 
-    if(!values.addressLineOne){
-        errors.addressLineOne = "Please enter Address";
+    if(!values.address){
+        errors.address = "Please enter Address";
     }
 
-    if(!values.addressLineTwo){
-        errors.addressLineTwo = "Please enter Address";
+    if(!values.city){
+        errors.city = "Please enter Address";
+    }
+    if(!values.state){
+        errors.state = "Please enter Address";
     }
     if(!values.phoneNumber){
         errors.phoneNumber = "Please enter Bussiness Name";
+    }
+    if(!values.ownerName){
+        errors.ownerName = "Please enter Bussiness Name";
     }
 
     return errors;
@@ -85,10 +91,12 @@ class SignUp extends React.Component {
                         <Field name="email" type="text" component={this.renderField} label="Email" />
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
+                        <Field name="ownerName" type="text" component={this.renderField} label="Bussiness Contact Name" />
                         <Field name="bussinessName" type="text" component={this.renderField} label="Bussiness Name" />
-                        <Field name="addressLineOne" type="text" component={this.renderField} label="Address Line 1" />
-                        <Field name="addressLineTwo" type="text" component={this.renderField} label="Address Line 2" />
-                        <Field name="phoneNumber" type="text" component={this.renderField} label="Phone Number" />
+                        <Field name="address" type="text" component={this.renderField} label="Bussiness Address" />
+                        <Field name="city" type="text" component={this.renderField} label="City" />
+                        <Field name="state" type="text" component={this.renderField} label="State" />
+                        <Field name="phoneNumber" type="text" component={this.renderField} label="Bussiness Contact Phone Number" />
 
                         <button action="submit" className="btn btn-primary">Sign Up</button>
                     </form>
