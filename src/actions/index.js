@@ -15,11 +15,7 @@ export const PLACE_ORDER = 'PLACE_ORDER';
 export const ADD_ITEM = 'ADD_ITEM';
 export const OPEN_MODAL_ACCOUNT = 'OPEN_MODAL_ACCOUNT';
 export const CLOSE_MODAL_ACCOUNT = 'CLOSE_MODAL_ACCOUNT';
-
-//Added by Seth
-export const UPDATE_INFO = 'UPDATE_INFO';
-export const UPDATE = 'UPDATE';
-export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
+export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
@@ -59,20 +55,6 @@ export function signUpUser(credentials) {
                 console.log(error);
                 dispatch(authError(error));
             });
-        //const userUid = Firebase.auth().currentUser.uid;
-        //
-        // console.log("HIT");
-        // console.log(authData.currentUser);
-        //const user = database.ref('/users/'+userUid.toString());
-        //database.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
-        // holdData = [{
-        //     ["ownerName"]:credentials.ownerName,
-        //     ["bussinessName"]: credentials.bussinessName,
-        //     ["address"]: credentials.address,
-        //     ["city"]: credentials.city,
-        //     ["state"]: credentials.state,
-        //     ["phoneNumber"]: credentials.phoneNumber
-        // }];
 
         holdData = {
             ownerName:credentials.ownerName,
@@ -83,23 +65,15 @@ export function signUpUser(credentials) {
             phoneNumber: credentials.phoneNumber
         };
         firstTime = true;
-        // user.update({
-        //     ["ownerName"]:credentials.ownerName,
-        //     ["bussinessName"]: credentials.bussinessName,
-        //     ["address"]: credentials.address,
-        //     ["city"]: credentials.city,
-        //     ["state"]: credentials.state,
-        //     ["phoneNumber"]: credentials.phoneNumber
-        // });
     }
 };
 export function verifyAuth(){
     return function (dispatch) {
         Firebase.auth().onAuthStateChanged(user => {
-            if(user &&firstTime)
+            if(user && firstTime)
             {
-                firstTime = false;
                 const userUid = Firebase.auth().currentUser.uid;
+                firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
                 user.update({
                     ["ownerName"]:holdData.ownerName,
@@ -201,12 +175,14 @@ export function deleteCartItem(cartItem, theCart) {
 }
 
 export function placeOrder(order) {
-    const userUid = Firebase.auth().currentUser.uid;
+
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
-    const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
+    const userUid = Firebase.auth().currentUser.uid;
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
+
+        // update quantity
         var currentQuantity = item[0].quantity;
         var boughtQuantity = item[1];
         var newQuantity = currentQuantity - boughtQuantity;
@@ -219,16 +195,27 @@ export function placeOrder(order) {
                 ["quantity"]: newQuantity
             });
         }
-    }
 
-    orderNode.update({
+        // add to buyer active order
+        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].selleruid+'_'+Date.now());
+        buyerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
             ["fee"]: order.order.fee,
             ["total"]: order.order.total
-    });
+        });
 
-    userActiveNode.update({
+        // add to seller active order
+        const sellerActiveNode = database.ref('users/'+item[0].selleruid+'/active_orders/'+userUid.toString()+'_'+Date.now());
+        sellerActiveNode.update({
+            ["order"]: order.order.cart,
+            ["subtotal"]: order.order.subtotal,
+            ["fee"]: order.order.fee,
+            ["total"]: order.order.total
+        });
+    }
+
+    orderNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
             ["fee"]: order.order.fee,
@@ -272,3 +259,22 @@ export function openEditModal() {
         type: OPEN_EDIT_MODAL
     }
 }
+
+export function requestActiveOrders() {
+  return function(dispatch) {
+
+    const userUid = Firebase.auth().currentUser.uid;
+    var ref = database.ref('users/'+userUid+'/active_orders');
+    ref.on("value", function(snapshot) {
+      dispatch({
+        type: REQUEST_ACTIVE_ORDERS,
+        payload: snapshot.val()
+      });
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+      return {
+        type: null
+      };
+    });
+  }
+ }
