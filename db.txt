@@ -1,0 +1,31 @@
+users
+	- uid
+		- address line 1
+		- address line 2
+		- business phone
+		- business name
+		- contact phone
+		- contact name
+		- items for sale []
+		- order history []
+		- active orders []
+		
+item
+	- sellerid + title
+		- title
+		- seller name
+		- quantity 
+		- metric
+		- price (per metric)
+		- quality
+		- UID + title + quality
+		
+active_orders
+	- buyerid + title of one item
+		- sellerid
+		- seller name
+		- buyer name
+		- subtotal
+		- fee
+		- total
+		- items []

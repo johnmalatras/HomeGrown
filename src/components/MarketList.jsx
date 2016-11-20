@@ -4,6 +4,7 @@ var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 
 const MarketList = (props) => {
+	console.log(props.items);
   	const listItems = props.items.map((row) => {
     	return <MarketItem key={row.title} 
     						item={row} 
