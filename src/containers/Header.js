@@ -28,6 +28,9 @@ class Header extends React.Component {
     handleMarket(){
         hashHistory.push('/');
     }
+    handleHolder(){
+        hashHistory.push('/holder');
+    }
     renderAuthLinks() {
         if (this.props.authenticated) {
             return [
@@ -41,8 +44,9 @@ class Header extends React.Component {
                     <Navbar.Collapse>
                         <Nav pullRight>
                             <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
-                            <NavItem eventKey={1} href="#" onClick={() => this.handleCart()}>Cart</NavItem>
-                            <NavItem eventKey={1} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
+                            <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}>Cart</NavItem>
+                            <NavItem eventKey={3} href="#" onClick={() => this.handleHolder()}>Holder</NavItem>
+                            <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
@@ -71,5 +75,4 @@ function mapStateToProps(state) {
         authenticated: state.AuthReducer.authenticated
     }
 };
-
 export default connect(mapStateToProps,mapDispatchToProps)(Header);
