@@ -16,6 +16,7 @@ import reduxThunk from 'redux-thunk';
 import * as Actions from './src/actions/index';
 import MarketView from './src/containers/MarketView.jsx';
 import Cart from './src/containers/Cart';
+import AddItemModal from './src/components/AddItemModal';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -34,6 +35,7 @@ ReactDOM.render(
                 <IndexRoute component={RequireAuth(MarketView)} />
                 <Route path="/homePage" component={HomePage}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
+                <Route path="/holder" component={RequireAuth(AddItemModal)}/>
             </Route>
         </Router>
     </Provider>,

@@ -7,7 +7,6 @@ class CartItem extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {};
-
 	    this.deleteItem = this.deleteItem.bind(this);
   	}
 

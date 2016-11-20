@@ -12,6 +12,9 @@ export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const PLACE_ORDER = 'PLACE_ORDER';
+export const ADD_ITEM = 'ADD_ITEM';
+export const OPEN_MODAL_ACCOUNT = 'OPEN_MODAL_ACCOUNT';
+export const CLOSE_MODAL_ACCOUNT = 'CLOSE_MODAL_ACCOUNT';
 
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
@@ -22,6 +25,10 @@ const config = {
 };
 Firebase.initializeApp(config);
 const database = Firebase.database();
+const authData = Firebase.auth();
+
+var holdData = [];
+var firstTime = false;
 
 export function signInUser(credentials){
     return function(dispatch) {
@@ -38,7 +45,7 @@ export function signInUser(credentials){
 
 export function signUpUser(credentials) {
     return function(dispatch) {
-        Firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password)
+        authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
                 hashHistory.push('/');
@@ -47,19 +54,57 @@ export function signUpUser(credentials) {
                 console.log(error);
                 dispatch(authError(error));
             });
-        const userUid = Firebase.auth().currentUser.uid;
-        const user = database.ref('/users/'+userUid.toString());
-        user.update({
-            ["bussinessName"]: credentials.bussinessName,
-            ["addressLineOne"]: credentials.addressLineOne,
-            ["addressLineTwo"]: credentials.addressLineTwo,
-            ["phoneNumber"]: credentials.phoneNumber
-        });
+        //const userUid = Firebase.auth().currentUser.uid;
+        //
+        // console.log("HIT");
+        // console.log(authData.currentUser);
+        //const user = database.ref('/users/'+userUid.toString());
+        //database.ref.childByAppendingPath("users").childByAppendingPath(authData.uid).setValue(newUser)
+        // holdData = [{
+        //     ["ownerName"]:credentials.ownerName,
+        //     ["bussinessName"]: credentials.bussinessName,
+        //     ["address"]: credentials.address,
+        //     ["city"]: credentials.city,
+        //     ["state"]: credentials.state,
+        //     ["phoneNumber"]: credentials.phoneNumber
+        // }];
+
+        holdData = {
+            ownerName:credentials.ownerName,
+            bussinessName: credentials.bussinessName,
+            address: credentials.address,
+            city: credentials.city,
+            state: credentials.state,
+            phoneNumber: credentials.phoneNumber
+        };
+        firstTime = true;
+        // user.update({
+        //     ["ownerName"]:credentials.ownerName,
+        //     ["bussinessName"]: credentials.bussinessName,
+        //     ["address"]: credentials.address,
+        //     ["city"]: credentials.city,
+        //     ["state"]: credentials.state,
+        //     ["phoneNumber"]: credentials.phoneNumber
+        // });
     }
 };
 export function verifyAuth(){
     return function (dispatch) {
         Firebase.auth().onAuthStateChanged(user => {
+            if(user &&firstTime)
+            {
+                firstTime = false;
+                const userUid = Firebase.auth().currentUser.uid;
+                const user = database.ref('/users/'+userUid.toString());
+                user.update({
+                    ["ownerName"]:holdData.ownerName,
+                    ["bussinessName"]: holdData.bussinessName,
+                    ["address"]: holdData.address,
+                    ["city"]: holdData.city,
+                    ["state"]: holdData.state,
+                    ["phoneNumber"]: holdData.phoneNumber
+                });
+            }
             if (user) {
                 dispatch(authUser());
             } else {
@@ -87,6 +132,13 @@ export function authError(error) {
     return {
         type: AUTH_ERROR,
         payload: error
+    }
+};
+
+//Action call to add Itemto Market from account page
+export function addItem(values) {
+    return {
+        type: ADD_ITEM
     }
 };
 
@@ -159,5 +211,17 @@ export function placeOrder(order) {
     return {
         type: PLACE_ORDER,
         payload: []
+    }
+}
+
+export function openModalAccount(item) {
+    return {
+        type: OPEN_MODAL_ACCOUNT
+    }
+}
+
+export function closeModalAccount() {
+    return {
+        type: CLOSE_MODAL_ACCOUNT
     }
 }
