@@ -29,7 +29,7 @@ class Header extends React.Component {
         hashHistory.push('/');
     }
     handleHolder(){
-        hashHistory.push('/holder');
+        hashHistory.push('/account');
     }
     renderAuthLinks() {
         if (this.props.authenticated) {
@@ -45,7 +45,7 @@ class Header extends React.Component {
                         <Nav pullRight>
                             <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
                             <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}>Cart</NavItem>
-                            <NavItem eventKey={3} href="#" onClick={() => this.handleHolder()}>Holder</NavItem>
+                            <NavItem eventKey={3} href="#" onClick={() => this.handleHolder()}>Account</NavItem>
                             <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
                         </Nav>
                     </Navbar.Collapse>

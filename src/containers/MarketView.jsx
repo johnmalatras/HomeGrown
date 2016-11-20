@@ -17,7 +17,7 @@ class MarketView extends React.Component {
   render() {
     return (
       <div>
-        <h1>Current Inventory</h1>
+        <h1>Market</h1>
         <Table responsive>
             <thead>
               <tr>
@@ -26,6 +26,7 @@ class MarketView extends React.Component {
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Metric</th>
+                <th>Quality</th>
               </tr>
             </thead>
             <MarketList items={ this.props.items } 

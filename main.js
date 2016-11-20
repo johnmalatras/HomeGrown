@@ -9,14 +9,13 @@ import { createStore,applyMiddleware } from 'redux/lib'
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import Holder from './src/components/Holder'
 import HomePage from './src/components/HomePage';
 import RequireAuth from './src/containers/RequireAuth';
 import reduxThunk from 'redux-thunk';
 import * as Actions from './src/actions/index';
 import MarketView from './src/containers/MarketView.jsx';
 import Cart from './src/containers/Cart';
-import AddItemModal from './src/components/AddItemModal';
+import AccountPage from './src/components/AccountPage';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -35,7 +34,7 @@ ReactDOM.render(
                 <IndexRoute component={RequireAuth(MarketView)} />
                 <Route path="/homePage" component={HomePage}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
-                <Route path="/holder" component={RequireAuth(AddItemModal)}/>
+                <Route path="/account" component={RequireAuth(AccountPage)}/>
             </Route>
         </Router>
     </Provider>,

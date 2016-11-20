@@ -10,10 +10,7 @@ import SignUpReducer from './signUpReducer';
 import ItemsReducer from './items';
 import ModalReducer from './modal';
 import CartReducer from './cart';
-
-//Added by Seth
-import UpdateReducer from './update';
-import editModal from './editModal';
+import ActiveOrderReducer from './activeorders';
 
 const rootReducer = combineReducers({
     AuthReducer,
@@ -22,8 +19,7 @@ const rootReducer = combineReducers({
     items: ItemsReducer,
   	modal: ModalReducer,
   	cart: CartReducer,
-    update: UpdateReducer,
-    editModal: editModal
+    activeOrders: ActiveOrderReducer
 })
 
 export default rootReducer;
