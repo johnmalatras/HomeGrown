@@ -202,10 +202,33 @@ export function deleteCartItem(cartItem, theCart) {
 
 export function placeOrder(order) {
     const userUid = Firebase.auth().currentUser.uid;
-    const orderNode = database.ref('/active_orders/'+userUid.toString());
-    console.log(order);
+    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
+    const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
+
+    for (var key in order.order.cart) {
+        var item = order.order.cart[key];
+        var currentQuantity = item[0].quantity;
+        var boughtQuantity = item[1];
+        var newQuantity = currentQuantity - boughtQuantity;
+        var itemNode = database.ref('items/'+item[0].key);
+        
+        if (newQuantity == 0) {
+            itemNode.remove();
+        } else {
+            itemNode.update({
+                ["quantity"]: newQuantity
+            });
+        }
+    }
 
     orderNode.update({
+            ["order"]: order.order.cart,
+            ["subtotal"]: order.order.subtotal,
+            ["fee"]: order.order.fee,
+            ["total"]: order.order.total
+    });
+
+    userActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
             ["fee"]: order.order.fee,

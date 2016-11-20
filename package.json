@@ -1,21 +1,22 @@
 {
-  "name": "homegrown",
+  "name": "ripenow",
   "version": "1.0.0",
   "description": " ",
   "main": "index.js",
   "dependencies": {
     "babel-preset-react": "^6.16.0",
-    "firebase": "^3.5.1",
-    "react": "^15.0.0",
+    "firebase": "^3.6.1",
+    "react": "^0.14.7",
     "react-bootstrap": "^0.30.6",
     "react-doc-meta": "^0.2.0",
-    "react-dom": "^15.0.0",
-    "react-redux": "^4.4.5",
+    "react-dom": "^0.14.7",
+    "react-redux": "^4.4.6",
     "react-router": "^3.0.0",
     "reactfire": "^1.0.0",
     "redux": "^3.6.0",
-    "redux-form": "^6.1.1",
+    "redux-form": "^6.2.0",
     "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.1.0",
     "superagent": "^2.3.0"
   },
   "devDependencies": {
@@ -30,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/johnmalatras/HomeGrown.git"
+    "url": "git+https://github.com/johnmalatras/RipeNow.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/johnmalatras/HomeGrown/issues"
+    "url": "https://github.com/johnmalatras/RipeNow/issues"
   },
-  "homepage": "https://github.com/johnmalatras/HomeGrown#readme"
+  "homepage": "https://github.com/johnmalatras/RipeNow#readme"
 }
