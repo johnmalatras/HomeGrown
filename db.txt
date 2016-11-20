@@ -18,7 +18,7 @@ item
 		- metric
 		- price (per metric)
 		- quality
-		- UID + title + quality
+		- seller UID
 		
 active_orders
 	- buyerid + title of one item

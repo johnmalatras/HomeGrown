@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux'
 import CartItem from './CartItem.jsx';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
+import { bindActionCreators } from 'redux';
+import * as Actions from '../actions';
 
 class CartList extends React.Component {
 
@@ -12,44 +15,39 @@ class CartList extends React.Component {
 	    this.placeOrder = this.placeOrder.bind(this);
   	}
 
-  	componentWillMount() {
-  		var price = 0;
-	  	const listItems = this.props.items.map((row) => {
-	  		price = +price + +(row[1] * row[0].price).toFixed(2);
-	    	return <CartItem key={row[0].title} 
-	    						cartItem={row} 
-	    						deleteCartItem={this.props.deleteCartItem} 
-	    						cart={this.props.items}/>
-	  	});
-	  	price = price.toFixed(2);
-	  	var fee = (price * .25).toFixed(2);
-	  	var totalPrice = (+price + +fee).toFixed(2);
-	  	this.setState({fee: fee, listItems: listItems, priceSubTotal: price, priceTotal: totalPrice});
-  	}
-
-  	placeOrder() {
+  	placeOrder(subtotal, fee, total) {
   		var purchase = {
 	        cart: this.props.items,
-	        subtotal: this.state.priceSubTotal,
-	        fee: this.state.fee,
-	        total: this.state.priceTotal
+	        subtotal: subtotal,
+	        fee: fee,
+	        total: total
       	};
       	this.props.placeOrder(purchase);
       	alert("Order Placed! Thank you for your business, a RipeNow team member will be contacting you shortly.")
   	}
 
 	render() {
-
+		var price = 0;
+	  	const listItems = this.props.cart.map((row) => {
+	  		price = +price + +(row[1] * row[0].price).toFixed(2);
+	    	return <CartItem key={row[0].title} 
+	    						cartItem={row} 
+	    						deleteCartItem={this.props.deleteCartItem} 
+	    						cart={this.props.cart}/>
+	  	});
+	  	price = price.toFixed(2);
+	  	var fee = (price * .25).toFixed(2);
+	  	var totalPrice = (+price + +fee).toFixed(2);
 	  	return (
 	    	<tbody className="theList">
-	        	{this.state.listItems}
+	        	{listItems}
 				<tr>
 					<td> </td>
 					<td> </td>
 					<td> </td>
 					<td> </td>
 					<td>Subtotal: </td>
-					<td>{this.state.priceSubTotal}</td>
+					<td>{price}</td>
 				</tr>
 				<tr>
 					<td> </td>
@@ -57,7 +55,7 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td>Processing fee (25%): </td>
-					<td>{this.state.fee}</td>
+					<td>{fee}</td>
 				</tr>
 				<tr>
 					<td> </td>
@@ -65,7 +63,7 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td>Total: </td>
-					<td>{this.state.priceTotal}</td>
+					<td>{totalPrice}</td>
 				</tr>
 				<tr>
 					<td> </td>
@@ -73,11 +71,24 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td> </td>
-					<td><Button onClick={this.placeOrder} >Confirm Purchase</Button></td>
+					<td><Button onClick={() => this.placeOrder({price}, {fee}, {totalPrice})} >Confirm Purchase</Button></td>
 				</tr>
 			</tbody>
 	  	)
   	}
 };
 
-export default CartList;
+function mapStateToProps(state) {
+  return {
+    cart: state.cart.cart
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartList);

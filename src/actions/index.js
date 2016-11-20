@@ -130,11 +130,10 @@ export function addToCart(cartItem) {
   }
 }
 
-export function deleteCartItem(cartItem) {
-    var cart = cartItem.selectedItem.cart;
-    var item = cartItem.selectedItem.item;
+export function deleteCartItem(cartItem, theCart) {
+    var cart = theCart.cart;
+    var item = cartItem.selectedItem;
     var index = cart.indexOf(item);
-
     if (index > -1) {
         cart.splice(index, 1);
     }

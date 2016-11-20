@@ -7,7 +7,7 @@ var Table = ReactBootstrap.Table;
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 
-class CartView extends React.Component {
+class Cart extends React.Component {
 
   render() {
     return (
@@ -24,9 +24,8 @@ class CartView extends React.Component {
                 <th>Total</th>
               </tr>
             </thead>
-            <CartList items={ this.props.cart } 
-            			deleteCartItem={selectedItem => this.props.actions.deleteCartItem({selectedItem}) } 
-            			placeOrder={order => this.props.actions.placeOrder({order}) }/>
+             <CartList deleteCartItem={(selectedItem, cart) => this.props.actions.deleteCartItem({selectedItem}, {cart}) } 
+                       placeOrder={order => this.props.actions.placeOrder({order}) }/>
         </Table>
       </div>
     );
@@ -34,7 +33,6 @@ class CartView extends React.Component {
 }
 
 function mapStateToProps(state) {
-  //console.log(state);
   return {
     cart: state.cart.cart
   };
@@ -47,4 +45,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartView);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);
