@@ -16,6 +16,11 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const OPEN_MODAL_ACCOUNT = 'OPEN_MODAL_ACCOUNT';
 export const CLOSE_MODAL_ACCOUNT = 'CLOSE_MODAL_ACCOUNT';
 
+//Added by Seth
+export const UPDATE_INFO = 'UPDATE_INFO';
+export const UPDATE = 'UPDATE';
+export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
+
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
@@ -223,5 +228,25 @@ export function openModalAccount(item) {
 export function closeModalAccount() {
     return {
         type: CLOSE_MODAL_ACCOUNT
+    }
+}
+
+//Added by Seth
+export function updateInfo() {
+    return {
+        type: UPDATE
+    }
+}
+
+export function submitUpdateModal(value) {
+    //console.log(value);
+    return {
+        type: UPDATE
+    }
+}
+
+export function openEditModal() {
+    return {
+        type: OPEN_EDIT_MODAL
     }
 }
