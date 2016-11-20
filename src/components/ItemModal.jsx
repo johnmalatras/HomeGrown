@@ -56,7 +56,7 @@ class ItemModal extends React.Component {
 
   	return (
     	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
-    		<div>
+    		<div className="container">
       	 <h3>{item.title}</h3>
          <h5>Sold by: {item.seller}</h5>
          <hr />

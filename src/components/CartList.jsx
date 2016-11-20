@@ -17,11 +17,12 @@ class CartList extends React.Component {
 
   	placeOrder(subtotal, fee, total) {
   		var purchase = {
-	        cart: this.props.items,
+	        cart: this.props.cart,
 	        subtotal: subtotal,
 	        fee: fee,
 	        total: total
       	};
+      	console.log(purchase);
       	this.props.placeOrder(purchase);
       	alert("Order Placed! Thank you for your business, a RipeNow team member will be contacting you shortly.")
   	}
@@ -71,7 +72,7 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td> </td>
-					<td><Button onClick={() => this.placeOrder({price}, {fee}, {totalPrice})} >Confirm Purchase</Button></td>
+					<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>
 				</tr>
 			</tbody>
 	  	)
