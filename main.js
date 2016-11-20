@@ -21,13 +21,6 @@ import AddItemModal from './src/components/AddItemModal';
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
 
-// ReactDOM.render(
-//     <Provider store={store}>
-//         <App />
-//     </Provider>,
-//     document.getElementById('app')
-// );
-
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
