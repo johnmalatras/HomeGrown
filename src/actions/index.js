@@ -176,8 +176,8 @@ export function deleteCartItem(cartItem, theCart) {
 
 export function placeOrder(order) {
 
-    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
     const userUid = Firebase.auth().currentUser.uid;
+    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
