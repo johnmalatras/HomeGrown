@@ -20,10 +20,7 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 export const REQUEST_CURRENT_LISTINGS = 'REQUEST_CURRENT_LISTINGS';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
-
-export const UPDATE_INFO = 'UPDATE_INFO';
-export const UPDATE = 'UPDATE';
-export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
+export const DELETE_ITEM = 'DELETE_ITEM';
 
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
@@ -230,6 +227,7 @@ export function placeOrder(order) {
         });
     }
 
+    // add to overall active orders
     orderNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
@@ -322,7 +320,7 @@ export function closeCLModal() {
 
 export function updateQuantity(newQuantity, item) {
     const userUid = Firebase.auth().currentUser.uid;
-    
+
     var userItemRef = database.ref('users/'+userUid+'/items/'+item.item.key);
     var itemRef = database.ref('items/'+userUid+'_'+item.item.title+'_'+item.item.quality);
 
@@ -336,5 +334,18 @@ export function updateQuantity(newQuantity, item) {
 
     return {
         type: UPDATE_QUANTITY
+    }
+}
+
+export function deleteItem(item) {
+    const userUid = Firebase.auth().currentUser.uid;
+
+    var userItemRef = database.ref('users/'+userUid+'/items/'+item.selectedItem.key);
+    var itemRef = database.ref('items/'+userUid+'_'+item.selectedItem.title+'_'+item.selectedItem.quality);
+
+    userItemRef.remove();
+    itemRef.remove();
+    return {
+        type: DELETE_ITEM
     }
 }

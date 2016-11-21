@@ -15,7 +15,8 @@ const CurrentListingsList = (props) => {
 	const listItems = listItemsArray.map((row) => {
   	return <CurrentListingItem key={row.key} 
   						item={row} 
-  						onItemSelect={ props.onItemSelect } />
+  						onItemSelect={ props.onItemSelect } 
+  						deleteItem={ props.deleteItem } />
 	});
 
 	return (
