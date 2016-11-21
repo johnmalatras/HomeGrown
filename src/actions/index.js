@@ -67,7 +67,8 @@ export function signUpUser(credentials) {
             address: credentials.address,
             city: credentials.city,
             state: credentials.state,
-            phoneNumber: credentials.phoneNumber
+            phoneNumber: credentials.phoneNumber,
+            isResturant: credentials.isResturant
         };
         firstTime = true;
 
@@ -87,7 +88,8 @@ export function verifyAuth(){
                     ["address"]: holdData.address,
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
-                    ["phoneNumber"]: holdData.phoneNumber
+                    ["phoneNumber"]: holdData.phoneNumber,
+                    ["isResturant"]: holdData.isResturant
                 });
             }
             if (user) {

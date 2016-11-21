@@ -97,7 +97,15 @@ class SignUp extends React.Component {
                         <Field name="city" type="text" component={this.renderField} label="City" />
                         <Field name="state" type="text" component={this.renderField} label="State" />
                         <Field name="phoneNumber" type="text" component={this.renderField} label="Bussiness Contact Phone Number" />
-
+                        <fieldset className="form-group">
+                            <label>Select Resturant or Farm</label>
+                            <div>
+                                <Field name="isResturant" component="select">
+                                    <option value={true}>Resturant</option>
+                                    <option value={false}>Farm</option>
+                                </Field>
+                            </div>
+                        </fieldset>
                         <button action="submit" className="btn btn-primary">Sign Up</button>
                     </form>
                 </div>
