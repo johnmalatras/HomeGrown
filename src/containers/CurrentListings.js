@@ -29,7 +29,8 @@ class CurrentListings extends React.Component {
               </tr>
             </thead>
             <CLList items={ this.props.items } 
-                        onItemSelect={selectedItem => this.props.actions.openCLModal({selectedItem}) }/>
+                        onItemSelect={selectedItem => this.props.actions.openCLModal({selectedItem}) }
+                        deleteItem={selectedItem => this.props.actions.deleteItem({selectedItem}) }/>
         </Table>
         <CLModal show={this.props.modalIsOpen} 
                   selectedItem={this.props.selectedItem} 
