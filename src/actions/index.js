@@ -11,11 +11,15 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const OPEN_AO_MODAL = 'OPEN_AO_MODAL';
 export const CLOSE_AO_MODAL = 'CLOSE_AO_MODAL';
+export const OPEN_CL_MODAL = 'OPEN_CL_MODAL';
+export const CLOSE_CL_MODAL = 'CLOSE_CL_MODAL';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const PLACE_ORDER = 'PLACE_ORDER';
 export const ADD_ITEM = 'ADD_ITEM';
 export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
+export const REQUEST_CURRENT_LISTINGS = 'REQUEST_CURRENT_LISTINGS';
+export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 
 export const UPDATE_INFO = 'UPDATE_INFO';
 export const UPDATE = 'UPDATE';
@@ -269,9 +273,9 @@ export function requestActiveOrders() {
       };
     });
   }
- }
+}
 
- export function openActiveOrderModal(item) {
+export function openActiveOrderModal(item) {
   return {
     type: OPEN_AO_MODAL,
     item
@@ -282,4 +286,55 @@ export function closeActiveOrderModal() {
   return {
     type: CLOSE_AO_MODAL
   }
+}
+
+export function requestCurrentListings() {
+  return function(dispatch) {
+
+    const userUid = Firebase.auth().currentUser.uid;
+    var ref = database.ref('users/'+userUid+'/items');
+    ref.on("value", function(snapshot) {
+      dispatch({
+        type: REQUEST_CURRENT_LISTINGS,
+        payload: snapshot.val()
+      });
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+      return {
+        type: null
+      };
+    });
+  }
+}
+
+export function openCLModal(item) {
+  return {
+    type: OPEN_CL_MODAL,
+    item
+  }
+}
+
+export function closeCLModal() {
+  return {
+    type: CLOSE_CL_MODAL
+  }
+}
+
+export function updateQuantity(newQuantity, item) {
+    const userUid = Firebase.auth().currentUser.uid;
+    
+    var userItemRef = database.ref('users/'+userUid+'/items/'+item.item.key);
+    var itemRef = database.ref('items/'+userUid+'_'+item.item.title+'_'+item.item.quality);
+
+    userItemRef.update({
+            ["quantity"]: newQuantity
+    });
+
+    itemRef.update({
+            ["quantity"]: newQuantity
+    });
+
+    return {
+        type: UPDATE_QUANTITY
+    }
 }

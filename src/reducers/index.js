@@ -12,6 +12,8 @@ import ModalReducer from './modal';
 import CartReducer from './cart';
 import ActiveOrderReducer from './activeorders';
 import ActiveOrderModalReducer from './aomodal';
+import CurrentListingReducer from './currentlistings';
+import CurrentListingModalReducer from './clmodal';
 
 const rootReducer = combineReducers({
     AuthReducer,
@@ -21,7 +23,9 @@ const rootReducer = combineReducers({
   	modal: ModalReducer,
   	cart: CartReducer,
     activeOrders: ActiveOrderReducer,
-    activeOrderModal: ActiveOrderModalReducer
+    activeOrderModal: ActiveOrderModalReducer,
+    currentListings: CurrentListingReducer,
+    currentListingModal: CurrentListingModalReducer
 })
 
 export default rootReducer;

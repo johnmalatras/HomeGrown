@@ -1,5 +1,6 @@
 import React from 'react';
 import ActiveOrders from '../containers/ActiveOrders';
+import CurrentListings from '../containers/CurrentListings';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 import { hashHistory } from 'react-router';
@@ -18,9 +19,10 @@ class AccountPage extends React.Component {
                 <h1>Account Overview</h1>
                 <hr />
                 <ActiveOrders />
+                <hr />
+                <CurrentListings />
                 <Button onClick={() => this.addItem()} >Add Item</Button>
             </div>
-
         )
     }
 }
