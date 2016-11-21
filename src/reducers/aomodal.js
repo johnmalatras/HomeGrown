@@ -1,8 +1,8 @@
 import { OPEN_AO_MODAL, CLOSE_AO_MODAL } from '../actions';
 
 const initialState =  {
-  selectedItem: null,
-  modalIsOpen: false
+  aoSelectedItem: null,
+  aoModalIsOpen: false
 };
 
 export default function modal(state = initialState, action) {

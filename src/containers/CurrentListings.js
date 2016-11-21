@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import MarketList from '../components/MarketList.jsx';
-import ItemModal from '../components/ItemModal.jsx';
+import CLList from '../components/CurrentListingsList.jsx';
+import CLModal from '../components/CurrentListingModal.jsx';
 import { connect } from 'react-redux';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
@@ -28,12 +28,13 @@ class CurrentListings extends React.Component {
                 <th>Quality</th>
               </tr>
             </thead>
-            <MarketList items={ this.props.items } 
+            <CLList items={ this.props.items } 
                         onItemSelect={selectedItem => this.props.actions.openCLModal({selectedItem}) }/>
         </Table>
-        <ItemModal show={this.props.modalIsOpen} 
+        <CLModal show={this.props.modalIsOpen} 
                   selectedItem={this.props.selectedItem} 
-                  onHide={ () => this.props.actions.closeCLModal() } />
+                  onHide={ () => this.props.actions.closeCLModal() } 
+                  updateQuantity={(newQuantity, item) => this.props.actions.updateQuantity(newQuantity, {item}) }/>
       </div>
     );
   }
@@ -41,9 +42,9 @@ class CurrentListings extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    items: state.currentlistings.items,
-    modalIsOpen: state.clmodal.clModalIsOpen,
-    selectedItem: state.clmodal.clSelectedItem
+    items: state.currentListings.items,
+    modalIsOpen: state.currentListingModal.clModalIsOpen,
+    selectedItem: state.currentListingModal.clSelectedItem
   };
 }
 

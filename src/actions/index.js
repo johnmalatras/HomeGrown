@@ -19,6 +19,7 @@ export const PLACE_ORDER = 'PLACE_ORDER';
 export const ADD_ITEM = 'ADD_ITEM';
 export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 export const REQUEST_CURRENT_LISTINGS = 'REQUEST_CURRENT_LISTINGS';
+export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 
 export const UPDATE_INFO = 'UPDATE_INFO';
 export const UPDATE = 'UPDATE';
@@ -294,7 +295,7 @@ export function requestCurrentListings() {
     var ref = database.ref('users/'+userUid+'/items');
     ref.on("value", function(snapshot) {
       dispatch({
-        type: REQUEST_ACTIVE_ORDERS,
+        type: REQUEST_CURRENT_LISTINGS,
         payload: snapshot.val()
       });
     }, function (errorObject) {
@@ -317,4 +318,23 @@ export function closeCLModal() {
   return {
     type: CLOSE_CL_MODAL
   }
+}
+
+export function updateQuantity(newQuantity, item) {
+    const userUid = Firebase.auth().currentUser.uid;
+    
+    var userItemRef = database.ref('users/'+userUid+'/items/'+item.item.key);
+    var itemRef = database.ref('items/'+userUid+'_'+item.item.title+'_'+item.item.quality);
+
+    userItemRef.update({
+            ["quantity"]: newQuantity
+    });
+
+    itemRef.update({
+            ["quantity"]: newQuantity
+    });
+
+    return {
+        type: UPDATE_QUANTITY
+    }
 }
