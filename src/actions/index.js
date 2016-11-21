@@ -60,7 +60,7 @@ export function signUpUser(credentials) {
                 dispatch(authError(error));
             });
 
-
+        console.log(credentials.isResturant);
         holdData = {
             ownerName:credentials.ownerName,
             bussinessName: credentials.bussinessName,
