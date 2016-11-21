@@ -56,7 +56,6 @@ class SignUp extends React.Component {
         super();
         this.handleFormSubmit= this.handleFormSubmit.bind(this);
     }
-
     renderAuthenticationError() {
         if (this.props.authenticationError) {
             return <div className="alert alert-danger">{ this.props.authenticationError }</div>;
@@ -65,7 +64,10 @@ class SignUp extends React.Component {
     }
 
     handleFormSubmit(values){
-        //console.log(values)
+        if(values.isResturant == undefined)
+        {
+            values.isResturant = true;
+        }
         {this.props.onSignUp(values)}
     };
 
@@ -82,7 +84,6 @@ class SignUp extends React.Component {
     };
 
     render() {
-
         return(
             <div className="container">
                 <div className="col-md-6">

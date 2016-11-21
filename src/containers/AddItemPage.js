@@ -77,4 +77,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddItemPage);
+export default connect()(AddItemPage);
