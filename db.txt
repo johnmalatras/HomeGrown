@@ -6,12 +6,12 @@ users
 		- business name
 		- contact phone
 		- contact name
-		- items for sale []
+		- items for sale [] key = timestamp_title_quality
 		- order history []
 		- active orders []
 		
 item
-	- sellerid + title
+	- sellerid_title_quality
 		- title
 		- seller name
 		- quantity 
