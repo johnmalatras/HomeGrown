@@ -14,7 +14,8 @@ const ActiveOrderList = (props) => {
 
   	const listItems = listItemsArray.map((row) => {
     	return <ActiveOrderItem key={row.key} 
-    						item={row} />
+    						              item={row} 
+                              onItemSelect={ props.onItemSelect }/>
   	});
 
   	return (
