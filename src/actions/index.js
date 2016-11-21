@@ -17,6 +17,10 @@ export const OPEN_MODAL_ACCOUNT = 'OPEN_MODAL_ACCOUNT';
 export const CLOSE_MODAL_ACCOUNT = 'CLOSE_MODAL_ACCOUNT';
 export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 
+export const UPDATE_INFO = 'UPDATE_INFO';
+export const UPDATE = 'UPDATE';
+export const OPEN_EDIT_MODAL = 'OPEN_EDIT_MODAL';
+
 const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
@@ -56,6 +60,7 @@ export function signUpUser(credentials) {
                 dispatch(authError(error));
             });
 
+
         holdData = {
             ownerName:credentials.ownerName,
             bussinessName: credentials.bussinessName,
@@ -65,6 +70,7 @@ export function signUpUser(credentials) {
             phoneNumber: credentials.phoneNumber
         };
         firstTime = true;
+
     }
 };
 export function verifyAuth(){
@@ -162,15 +168,17 @@ export function addToCart(cartItem) {
 }
 
 export function deleteCartItem(cartItem, theCart) {
+
     var cart = theCart.cart;
     var item = cartItem.selectedItem;
     var index = cart.indexOf(item);
     if (index > -1) {
         cart.splice(index, 1);
     }
+    var holdCart = Array.from(cart);
     return {
         type: REMOVE_FROM_CART,
-        payload: cart
+        payload: holdCart
     }
 }
 
@@ -178,6 +186,7 @@ export function placeOrder(order) {
 
     const userUid = Firebase.auth().currentUser.uid;
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
+    const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];

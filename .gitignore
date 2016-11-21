@@ -2,10 +2,12 @@
 .gitignore
 .idea/libraries/
 .idea/vcs.xml
+node_modules
 node_modules/.bin/
 node_modules/Base64/
 node_modules/accepts/
 node_modules/acorn/
+node_modules/react-router/
 node_modules/after/
 node_modules/align-text/
 node_modules/amdefine/
@@ -21,7 +23,7 @@ node_modules/arrify/
 node_modules/asap/
 node_modules/assert/
 node_modules/ast-types/
-node_modules/async-each/
+node_modules/react-router/
 node_modules/async/
 node_modules/babel-code-frame/
 node_modules/babel-core/
@@ -256,6 +258,7 @@ node_modules/randomatic/
 node_modules/range-parser/
 node_modules/react-dom/
 node_modules/react/
+node_modules/react-router/
 node_modules/readable-stream/
 node_modules/readdirp/
 node_modules/recast/
