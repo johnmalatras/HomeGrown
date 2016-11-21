@@ -1,5 +1,6 @@
 import React from 'react';
 import ActiveOrders from '../containers/ActiveOrders';
+import CurrentListings from '../containers/CurrentListings';
 
 class AccountPage extends React.Component {
 
@@ -9,8 +10,9 @@ class AccountPage extends React.Component {
                 <h1>Account Overview</h1>
                 <hr />
                 <ActiveOrders />
+                <hr />
+                <CurrentListings />
             </div>
-
         )
     }
 }
