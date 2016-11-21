@@ -1,15 +1,17 @@
 import React from 'react';
 var ReactBootstrap = require('react-bootstrap');
+var moment = require('moment');
+moment().format();
 var Button = ReactBootstrap.Button;
 
-const ActiveOrderItem = ({item}) => {
+const ActiveOrderItem = ({item, onItemSelect}) => {
+	var orderDate = moment(item.key.split("_")[1], "x").format("MMM DD YYYY hh:mm a");
 	const rowElement = (
 		<tr key={item.key}>
-			<td>{item.title}</td>
-			<td>buyer</td>
-			<td>{item.price}</td>
-			<td>{item.quantity}</td>
-			<td>total</td>
+			<td>{orderDate}</td>
+			<td>{item.order.length}</td>
+			<td>{item.total}</td>
+			<td><Button onClick={() => onItemSelect(item)} >View</Button></td>
 		</tr>
 	)
     return rowElement;
