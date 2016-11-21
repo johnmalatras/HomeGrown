@@ -9,12 +9,12 @@ export const AUTH_USER = 'AUTH_USER';
 export const REQUEST_ITEMS = 'REQUEST_ITEMS';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const OPEN_AO_MODAL = 'OPEN_AO_MODAL';
+export const CLOSE_AO_MODAL = 'CLOSE_AO_MODAL';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const PLACE_ORDER = 'PLACE_ORDER';
 export const ADD_ITEM = 'ADD_ITEM';
-export const OPEN_MODAL_ACCOUNT = 'OPEN_MODAL_ACCOUNT';
-export const CLOSE_MODAL_ACCOUNT = 'CLOSE_MODAL_ACCOUNT';
 export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 
 export const UPDATE_INFO = 'UPDATE_INFO';
@@ -251,25 +251,6 @@ export function closeModalAccount() {
     }
 }
 
-//Added by Seth
-export function updateInfo() {
-    return {
-        type: UPDATE
-    }
-}
-
-export function submitUpdateModal(value) {
-    //console.log(value);
-    return {
-        type: UPDATE
-    }
-}
-
-export function openEditModal() {
-    return {
-        type: OPEN_EDIT_MODAL
-    }
-}
 
 export function requestActiveOrders() {
   return function(dispatch) {
@@ -289,3 +270,16 @@ export function requestActiveOrders() {
     });
   }
  }
+
+ export function openActiveOrderModal(item) {
+  return {
+    type: OPEN_AO_MODAL,
+    item
+  }
+}
+
+export function closeActiveOrderModal() {
+  return {
+    type: CLOSE_AO_MODAL
+  }
+}

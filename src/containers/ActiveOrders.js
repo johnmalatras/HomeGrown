@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import ActiveOrderList from '../components/ActiveOrderList';
+import ActiveOrderModal from '../components/ActiveOrderModal.jsx';
 import { connect } from 'react-redux';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
@@ -16,20 +17,21 @@ class ActiveOrders extends React.Component {
   render() {
     return (
       <div>
-        <h3>Current Inventory</h3>
+        <h3>Active Orders</h3>
         <Table responsive>
             <thead>
               <tr>
-                <th>Item</th>
-                <th>Seller</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Metric</th>
+                <th>Date</th>
+                <th>Items</th>
                 <th>Total</th>
               </tr>
             </thead>
-            <ActiveOrderList items={ this.props.items } />
+            <ActiveOrderList items={ this.props.items } 
+                             onItemSelect={selectedItem => this.props.actions.openActiveOrderModal({selectedItem}) }/>
         </Table>
+        <ActiveOrderModal show={this.props.modalIsOpen}
+                   selectedItem={this.props.selectedItem}
+                   onHide={ () => this.props.actions.closeActiveOrderModal() } />
       </div>
     );
   }
@@ -37,7 +39,9 @@ class ActiveOrders extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    items: state.activeOrders.items
+    items: state.activeOrders.items,
+    modalIsOpen: state.activeOrderModal.aoModalIsOpen,
+    selectedItem: state.activeOrderModal.aoSelectedItem
   };
 }
 
