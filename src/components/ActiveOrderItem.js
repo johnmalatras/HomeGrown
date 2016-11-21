@@ -2,19 +2,17 @@ import React from 'react';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 
-const MarketItem = ({item, onItemSelect}) => {
+const ActiveOrderItem = ({item}) => {
 	const rowElement = (
-		<tr key={item.title}>
+		<tr key={item.key}>
 			<td>{item.title}</td>
-			<td>{item.seller}</td>
+			<td>buyer</td>
 			<td>{item.price}</td>
 			<td>{item.quantity}</td>
-			<td>{item.metric}</td>
-			<td>{item.quality}</td>
-			<td><Button onClick={() => onItemSelect(item)} >View</Button></td>
+			<td>total</td>
 		</tr>
 	)
     return rowElement;
 }
 
-export default MarketItem;
+export default ActiveOrderItem;
