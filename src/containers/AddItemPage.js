@@ -10,6 +10,7 @@ var Button = ReactBootstrap.Button;
 var Table = ReactBootstrap.Table;
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
+import { Field, reduxForm } from 'redux-form';
 
 class AddItemPage extends React.Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class AddItemPage extends React.Component {
     }
 
     addItem(values){
-        {this.props.addItemToStore(values)}
+        //{this.props.addItemToStore(values)}
         console.log(values);
     };
 
