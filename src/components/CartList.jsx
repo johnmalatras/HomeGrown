@@ -13,6 +13,7 @@ class CartList extends React.Component {
 	    this.state = {priceTotal: 0, listItems:[], fee: 0, priceSubTotal: 0};
 
 	    this.placeOrder = this.placeOrder.bind(this);
+		this.deleteItem = this.deleteItem.bind(this);
   	}
 
   	placeOrder(subtotal, fee, total) {
@@ -27,13 +28,18 @@ class CartList extends React.Component {
       	alert("Order Placed! Thank you for your business, a RipeNow team member will be contacting you shortly.")
   	}
 
+  	deleteItem(cartItem, theCart){
+		this.props.deleteCartItem(cartItem, theCart);
+		alert(cartItem[0].title + " removed from cart!");
+	}
 	render() {
+		console.log("HIT RENDER")
 		var price = 0;
 	  	const listItems = this.props.cart.map((row) => {
 	  		price = +price + +(row[1] * row[0].price).toFixed(2);
 	    	return <CartItem key={row[0].title} 
 	    						cartItem={row} 
-	    						deleteCartItem={this.props.deleteCartItem} 
+	    						deleteCartItem={this.deleteItem}
 	    						cart={this.props.cart}/>
 	  	});
 	  	price = price.toFixed(2);

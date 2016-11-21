@@ -12,7 +12,7 @@ class CartItem extends React.Component {
 
 	deleteItem() {
 		this.props.deleteCartItem(this.props.cartItem, this.props.cart);
-		alert(this.props.cartItem[0].title + " removed from cart!");
+		//alert(this.props.cartItem[0].title + " removed from cart!");
 	}
 
 	render() {
