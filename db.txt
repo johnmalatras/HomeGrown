@@ -6,9 +6,9 @@ users
 		- business name
 		- contact phone
 		- contact name
-		- items for sale [] key = timestamp_title_quality
+		- items for sale [] key = title_quality
 		- order history []
-		- active orders []
+		- active orders [] buyerid_timestamp or sellerid_timestamp
 		
 item
 	- sellerid_title_quality
@@ -21,7 +21,7 @@ item
 		- seller UID
 		
 active_orders
-	- buyerid + title of one item
+	- buyerid_timestamp
 		- sellerid
 		- seller name
 		- buyer name
