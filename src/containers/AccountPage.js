@@ -17,12 +17,16 @@ class AccountPage extends React.Component {
         hashHistory.push('/addItem');
     }
     render() {
-        const userType = this.props.userInfo.isRestaurant;
+        const isRestaurant = this.props.userInfo.isRestaurant;
+        var currentListingsElement;
+        if (isRestaurant === 'true') {
+            currentListingsElement = <CurrentListings />
+        }
         return (
             <div>
                 <h1>Account Overview</h1>
                 <ActiveOrders />
-                <CurrentListings />
+                {currentListingsElement}
                 <Button onClick={() => this.addItem()} >Add Item</Button>
             </div>
         )
