@@ -26,7 +26,9 @@ var divStyle =  {
     size: 45
 };
 var imgStyle = {
-
+    flex: 1,
+    justifyContent: 'center',
+        alignItems: 'center'
 };
 
 class Home extends React.Component {
@@ -34,7 +36,15 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <Image class="col-md-6 col-md-offset-3" src="../../RipeNow-Logo_Website.png" responsive />
+                <Grid>
+                    <Col sm={3} md={3}>
+                    </Col>
+                    <Col sm={6} md={6}>
+                        <Image style={imgStyle} src="../../RipeNow-Logo_Website.png" responsive />
+                    </Col>
+                    <Col sm={3} md={3}>
+                    </Col>
+                </Grid>
                 <Grid>
                     <Row className="show-grid">
                         <Col sm={6} md={6}>
