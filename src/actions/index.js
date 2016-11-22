@@ -140,7 +140,7 @@ export function addItem(values, ownerName) {
     return function(dispatch) {
         console.log(ownerName);
         const userUid = Firebase.auth().currentUser.uid;
-        var itemID = userUid.toString() + values.ProductTitle.toString() + values.Quality.toString();
+        var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
         const itemRef = database.ref('/items/'+ itemID);
         itemRef.update({
             ["title"]:values.ProductTitle,
@@ -153,7 +153,7 @@ export function addItem(values, ownerName) {
         });
 
         var itemID = values.ProductTitle.toString() + values.Quality.toString();
-        const userItemRef = database.ref('/users/'+ userUid + '/itemsForSale/' + itemID);
+        const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
         userItemRef.update({
             ["title"]:values.ProductTitle,
             ["seller"]:ownerName,
