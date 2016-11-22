@@ -19,10 +19,16 @@ var Row = ReactBootstrap.Row;
 var Grid = ReactBootstrap.Grid;
 var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
+var Image = ReactBootstrap.Image;
 
 var divStyle =  {
     textAlign: 'center',
     size: 45
+};
+var imgStyle = {
+    flex: 1,
+    justifyContent: 'center',
+        alignItems: 'center'
 };
 
 class Home extends React.Component {
@@ -30,7 +36,15 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <h1 style={divStyle}>RipeNow</h1>
+                <Grid>
+                    <Col sm={3} md={3}>
+                    </Col>
+                    <Col sm={6} md={6}>
+                        <Image style={imgStyle} src="../../RipeNow-Logo_Website.png" responsive />
+                    </Col>
+                    <Col sm={3} md={3}>
+                    </Col>
+                </Grid>
                 <Grid>
                     <Row className="show-grid">
                         <Col sm={6} md={6}>
@@ -52,11 +66,9 @@ class Home extends React.Component {
                         <Col sm={6} md={6}>
                             <div>
                                 <h1>About RipeNow</h1>
-                                <p>RipeNow is revolutionizing the way local resturants</p>
-                                <p>connect to local farmers. Chefs are given the ability </p>
-                                <p>to order a higher quality of produce through RipeNow.</p>
-                                <p>Local farms benifit by an expansion in the demand for</p>
-                                <p>their goods.</p>
+                                <p>RipeNow aims to change the way local resturants connect to local farmers.
+                                    Chefs are given the ability to order a higher quality of produce through RipeNow.
+                                    Local farms benifit by an expansion in the demand for their goods.</p>
                             </div>
                         </Col>
                     </Row>
@@ -68,3 +80,9 @@ class Home extends React.Component {
 
 
 export default Home;
+
+// <p>RipeNow aims to change the way local resturants</p>
+// <p>connect to local farmers. Chefs are given the ability </p>
+// <p>to order a higher quality of produce through RipeNow.</p>
+// <p>Local farms benifit by an expansion in the demand for</p>
+// <p>their goods.</p>

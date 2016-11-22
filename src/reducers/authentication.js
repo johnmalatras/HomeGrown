@@ -1,7 +1,7 @@
 /**
  * Created by alextulenko on 11/10/16.
  */
-import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR } from '../actions';
+import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR , UPDATE_USER_SETTINGS} from '../actions';
 const initialState =  {
     authenticated: false,
     error: null
@@ -18,6 +18,7 @@ export default function authReducer(state = initialState, action) {
                 authenticated: false
             })
         case AUTH_USER:
+            console.log(action.payload);
             return Object.assign({}, state, {
                 authenticated: true,
                 error: null,
@@ -27,7 +28,6 @@ export default function authReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 error: action.payload.message
             })
-
         default:
             return state;
     }

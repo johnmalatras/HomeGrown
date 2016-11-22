@@ -115,6 +115,7 @@ export function authUser() {
         const userUid = Firebase.auth().currentUser.uid;
         var ref = database.ref('/users/'+userUid.toString());
         ref.on("value", function(snapshot) {
+            console.log(snapshot.val());
           dispatch({
             type: AUTH_USER,
             payload: snapshot.val()
@@ -134,13 +135,38 @@ export function authError(error) {
         payload: error
     }
 };
-
 //Action call to add Itemto Market from account page
-export function addItem(values) {
-    return {
-        type: ADD_ITEM
+export function addItem(values, ownerName) {
+    return function(dispatch) {
+        console.log(ownerName);
+        const userUid = Firebase.auth().currentUser.uid;
+        var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
+        const itemRef = database.ref('/items/'+ itemID);
+        itemRef.update({
+            ["title"]:values.ProductTitle,
+            ["seller"]:ownerName,
+            ["quantity"]: values.ProductQuantity,
+            ["metric"]: values.ProductMetric,
+            ["price"]: values.ProductPrice,
+            ["quality"]: values.Quality,
+            ["sellerUID"]: userUid
+        });
+
+        var itemID = values.ProductTitle.toString() + values.Quality.toString();
+        const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
+        userItemRef.update({
+            ["title"]:values.ProductTitle,
+            ["seller"]:ownerName,
+            ["quantity"]: values.ProductQuantity,
+            ["metric"]: values.ProductMetric,
+            ["price"]: values.ProductPrice,
+            ["quality"]: values.Quality,
+            ["sellerUID"]: userUid
+        });
+
+        hashHistory.push('/account');
     }
-};
+}
 
 export function requestItems() {
   return function(dispatch) {
@@ -270,7 +296,6 @@ export function closeModalAccount() {
         type: CLOSE_MODAL_ACCOUNT
     }
 }
-
 
 export function requestActiveOrders() {
   return function(dispatch) {
