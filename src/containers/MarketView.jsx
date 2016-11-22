@@ -36,7 +36,8 @@ class MarketView extends React.Component {
                   selectedItem={this.props.selectedItem} 
                   onHide={ () => this.props.actions.closeModal() } 
                   cart={this.props.cart}
-                  addToCart={ cartAdd => this.props.actions.addToCart({cartAdd}) }/>
+                  addToCart={ cartAdd => this.props.actions.addToCart({cartAdd}) }
+                  userInfo={this.props.userInfo} />
       </div>
     );
   }
@@ -48,7 +49,8 @@ function mapStateToProps(state) {
     items: state.items.items,
     modalIsOpen: state.modal.modalIsOpen,
     selectedItem: state.modal.selectedItem,
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    userInfo: state.AuthReducer.userInfo
   };
 }
 

@@ -2,10 +2,17 @@ import React from 'react';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 
-const MarketItem = ({item, order}) => {
+const ActiveOrderModalItem = ({item, order, isRestaurant}) => {
+	var fromElement;
+	if (isRestaurant) {
+		fromElement = item[0].seller;
+	} else {
+		fromElement = item[0].buyerName;
+	}
 	const rowElement = (
 		<tr key={item[0].title}>
 			<td>{item[0].title}</td>
+			<td>{fromElement}</td>
 			<td>{item[0].price}</td>
 			<td>{item[1]}</td>
 			<td>{item[0].metric}</td>
@@ -15,4 +22,4 @@ const MarketItem = ({item, order}) => {
     return rowElement;
 }
 
-export default MarketItem;
+export default ActiveOrderModalItem;

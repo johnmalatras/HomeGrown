@@ -19,7 +19,7 @@ class AccountPage extends React.Component {
     render() {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var currentListingsElement;
-        if (isRestaurant === 'true') {
+        if (isRestaurant === 'false') {
             currentListingsElement = <CurrentListings />
         }
         return (

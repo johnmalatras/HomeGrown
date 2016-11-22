@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react';
 import ModalList from './ActiveOrderModalList.jsx';
 var ReactBootstrap = require('react-bootstrap');
+var Modal = ReactBootstrap.Modal;
+var Button = ReactBootstrap.Button;
+var Form = ReactBootstrap.Form;
+var FormGroup = ReactBootstrap.FormGroup;
+var FormControl = ReactBootstrap.FormControl;
+var ControlLabel = ReactBootstrap.ControlLabel;
+var Table = ReactBootstrap.Table;
 
 class ActiveOrderModal extends React.Component {
 
@@ -10,18 +17,18 @@ class ActiveOrderModal extends React.Component {
   }
 
   render() {
-    var Modal = ReactBootstrap.Modal;
-    var Button = ReactBootstrap.Button;
-    var Form = ReactBootstrap.Form;
-    var FormGroup = ReactBootstrap.FormGroup;
-    var FormControl = ReactBootstrap.FormControl;
-    var ControlLabel = ReactBootstrap.ControlLabel;
-    var Table = ReactBootstrap.Table;
 
     const item = this.props.selectedItem;
 
     if (!this.props.selectedItem) {
       return <div></div>;
+    }
+
+    var fromField;
+    if (this.props.isRestaurant) {
+        fromField = "Seller";
+    } else {
+        fromField = "Buyer";
     }
 
   	return (
@@ -31,6 +38,7 @@ class ActiveOrderModal extends React.Component {
             <thead>
               <tr>
                 <th>Item</th>
+                <th>{fromField}</th>
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Metric</th>
@@ -38,7 +46,8 @@ class ActiveOrderModal extends React.Component {
               </tr>
             </thead>
             <ModalList items={item}
-                       onHide={this.props.onHide}/>
+                       onHide={this.props.onHide}
+                       isRestaurant={this.props.isRestaurant}/>
           </Table>
     		</div>
     	</Modal>

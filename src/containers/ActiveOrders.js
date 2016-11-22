@@ -15,6 +15,13 @@ class ActiveOrders extends React.Component {
   }
 
   render() {
+    var isRestaurant;
+    if (this.props.userInfo.isRestaurant === "true") {
+        isRestaurant = true;
+    } else if (this.props.userInfo.isRestaurant === "false") {
+        isRestaurant = false;
+    }
+    
     return (
       <div>
         <hr />
@@ -32,7 +39,8 @@ class ActiveOrders extends React.Component {
         </Table>
         <ActiveOrderModal show={this.props.modalIsOpen}
                    selectedItem={this.props.selectedItem}
-                   onHide={ () => this.props.actions.closeActiveOrderModal() } />
+                   onHide={ () => this.props.actions.closeActiveOrderModal() } 
+                   isRestaurant={isRestaurant} />
       </div>
     );
   }
@@ -42,7 +50,8 @@ function mapStateToProps(state) {
   return {
     items: state.activeOrders.items,
     modalIsOpen: state.activeOrderModal.aoModalIsOpen,
-    selectedItem: state.activeOrderModal.aoSelectedItem
+    selectedItem: state.activeOrderModal.aoSelectedItem,
+    userInfo: state.AuthReducer.userInfo
   };
 }
 
