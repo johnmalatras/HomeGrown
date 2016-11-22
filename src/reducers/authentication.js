@@ -20,7 +20,8 @@ export default function authReducer(state = initialState, action) {
         case AUTH_USER:
             return Object.assign({}, state, {
                 authenticated: true,
-                error: null
+                error: null,
+                userInfo: action.payload
             })
         case AUTH_ERROR:
             return Object.assign({}, state, {
