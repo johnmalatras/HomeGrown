@@ -33,7 +33,6 @@ class CartList extends React.Component {
 		alert(cartItem[0].title + " removed from cart!");
 	}
 	render() {
-		console.log("HIT RENDER")
 		var price = 0;
 	  	const listItems = this.props.cart.map((row) => {
 	  		price = +price + +(row[1] * row[0].price).toFixed(2);
