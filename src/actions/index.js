@@ -90,7 +90,7 @@ export function verifyAuth(){
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isResturant"]: holdData.isResturant
+                    ["isRestaurant"]: holdData.isResturant
                 });
             }
             if (user) {
@@ -111,9 +111,21 @@ export function signOutUser() {
     }
 };
 export function authUser() {
-    return {
-        type: AUTH_USER
-    }
+    return function(dispatch) {
+        const userUid = Firebase.auth().currentUser.uid;
+        var ref = database.ref('/users/'+userUid.toString());
+        ref.on("value", function(snapshot) {
+          dispatch({
+            type: AUTH_USER,
+            payload: snapshot.val()
+          });
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+          return {
+            type: null
+          };
+        });
+      }
 };
 
 export function authError(error) {
@@ -199,6 +211,8 @@ export function placeOrder(order) {
         var boughtQuantity = item[1];
         var newQuantity = currentQuantity - boughtQuantity;
         var itemNode = database.ref('items/'+item[0].key);
+        var userItemRef = database.ref('users/'+userUid+'/items/'+item[0].title+'_'+item[0].quality);
+
         
         if (newQuantity == 0) {
             itemNode.remove();
@@ -207,6 +221,10 @@ export function placeOrder(order) {
                 ["quantity"]: newQuantity
             });
         }
+
+        userItemRef.update({
+            ["quantity"]: newQuantity
+        });
 
         // add to buyer active order
         const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].selleruid+'_'+Date.now());

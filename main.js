@@ -15,7 +15,7 @@ import reduxThunk from 'redux-thunk';
 import * as Actions from './src/actions/index';
 import MarketView from './src/containers/MarketView.jsx';
 import Cart from './src/containers/Cart';
-import AccountPage from './src/components/AccountPage';
+import AccountPage from './src/containers/AccountPage';
 import AddItemPage from './src/containers/AddItemPage';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
