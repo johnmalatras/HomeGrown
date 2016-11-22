@@ -152,7 +152,7 @@ export function addItem(values, ownerName) {
             ["sellerUID"]: userUid
         });
 
-        var itemID = values.ProductTitle.toString() + values.Quality.toString();
+        var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
         const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
         userItemRef.update({
             ["title"]:values.ProductTitle,
