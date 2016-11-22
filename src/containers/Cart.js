@@ -24,7 +24,7 @@ class Cart extends React.Component {
                 <th>Total</th>
               </tr>
             </thead>
-             <CartList deleteCartItem={(selectedItem, cart) => this.props.actions.deleteCartItem({selectedItem}, {cart}) } 
+            <CartList deleteCartItem={(selectedItem, cart) => this.props.actions.deleteCartItem({selectedItem}, {cart}) } 
                        placeOrder={order => this.props.actions.placeOrder({order}) }/>
         </Table>
       </div>

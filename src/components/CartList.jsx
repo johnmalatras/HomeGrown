@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { DateField, Calendar } from 'react-date-picker'
 import CartItem from './CartItem.jsx';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
@@ -23,7 +24,6 @@ class CartList extends React.Component {
 	        fee: fee,
 	        total: total
       	};
-      	console.log(purchase);
       	this.props.placeOrder(purchase);
       	alert("Order Placed! Thank you for your business, a RipeNow team member will be contacting you shortly.")
   	}
@@ -44,6 +44,8 @@ class CartList extends React.Component {
 	  	price = price.toFixed(2);
 	  	var fee = (price * .25).toFixed(2);
 	  	var totalPrice = (+price + +fee).toFixed(2);
+
+	  	let date = '2017-04-24';
 	  	return (
 	    	<tbody className="theList">
 	        	{listItems}
@@ -80,6 +82,7 @@ class CartList extends React.Component {
 					<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>
 				</tr>
 			</tbody>
+			
 	  	)
   	}
 };

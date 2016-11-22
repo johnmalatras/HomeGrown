@@ -7,8 +7,9 @@ const ActiveOrderModalList = (props) => {
 
 	const listItems = props.items.order.map((row) => {
     	return <ModalItem key={row.title}
-    						item={row} 
-                order={ props.items }/>
+    					  item={row} 
+                		  order={ props.items }
+                		  isRestaurant={props.isRestaurant} />
   	});
 
   	return (

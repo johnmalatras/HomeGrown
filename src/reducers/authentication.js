@@ -18,7 +18,6 @@ export default function authReducer(state = initialState, action) {
                 authenticated: false
             })
         case AUTH_USER:
-            console.log(action.payload);
             return Object.assign({}, state, {
                 authenticated: true,
                 error: null,

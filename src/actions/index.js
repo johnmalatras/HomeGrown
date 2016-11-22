@@ -237,7 +237,7 @@ export function placeOrder(order) {
         var boughtQuantity = item[1];
         var newQuantity = currentQuantity - boughtQuantity;
         var itemNode = database.ref('items/'+item[0].key);
-        var userItemRef = database.ref('users/'+userUid+'/items/'+item[0].title+'_'+item[0].quality);
+        var userItemRef = database.ref('users/'+item[0].sellerUID+'/items/'+item[0].title+'_'+item[0].quality);
 
         
         if (newQuantity == 0) {
@@ -253,7 +253,7 @@ export function placeOrder(order) {
         });
 
         // add to buyer active order
-        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].selleruid+'_'+Date.now());
+        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+Date.now());
         buyerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
@@ -262,7 +262,7 @@ export function placeOrder(order) {
         });
 
         // add to seller active order
-        const sellerActiveNode = database.ref('users/'+item[0].selleruid+'/active_orders/'+userUid.toString()+'_'+Date.now());
+        const sellerActiveNode = database.ref('users/'+item[0].sellerUID+'/active_orders/'+userUid.toString()+'_'+Date.now());
         sellerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
@@ -364,7 +364,7 @@ export function closeCLModal() {
 export function updateQuantity(newQuantity, item) {
     const userUid = Firebase.auth().currentUser.uid;
 
-    var userItemRef = database.ref('users/'+userUid+'/items/'+item.item.key);
+    var userItemRef = database.ref('users/'+userUid+'/items/'+item.item.title+'_'+item.item.quality);
     var itemRef = database.ref('items/'+userUid+'_'+item.item.title+'_'+item.item.quality);
 
     userItemRef.update({

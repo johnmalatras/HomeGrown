@@ -28,8 +28,10 @@ class ItemModal extends React.Component {
     } else if (this.state.value < 1) {
       alert("Can't buy less than one of an item!");
     } else {
+      var selectedItem = this.props.selectedItem;
+      selectedItem.buyerName = this.props.userInfo.bussinessName;
       var cartAdd = {
-        item: this.props.selectedItem,
+        item: selectedItem,
         quantity: this.state.value,
         cart: this.props.cart
       };
