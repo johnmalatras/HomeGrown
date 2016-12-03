@@ -66,9 +66,9 @@ class Home extends React.Component {
                         <Col sm={6} md={6}>
                             <div>
                                 <h1>About RipeNow</h1>
-                                <p>RipeNow aims to change the way local resturants connect to local farmers.
+                                <p>RipeNow aims to change the way local restaurant connect to local farmers.
                                     Chefs are given the ability to order a higher quality of produce through RipeNow.
-                                    Local farms benifit by an expansion in the demand for their goods.</p>
+                                    Local farms benefit by an expansion in the demand for their goods.</p>
                             </div>
                         </Col>
                     </Row>
@@ -80,9 +80,3 @@ class Home extends React.Component {
 
 
 export default Home;
-
-// <p>RipeNow aims to change the way local resturants</p>
-// <p>connect to local farmers. Chefs are given the ability </p>
-// <p>to order a higher quality of produce through RipeNow.</p>
-// <p>Local farms benifit by an expansion in the demand for</p>
-// <p>their goods.</p>

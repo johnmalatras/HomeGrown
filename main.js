@@ -17,6 +17,7 @@ import MarketView from './src/containers/MarketView.jsx';
 import Cart from './src/containers/Cart';
 import AccountPage from './src/containers/AccountPage';
 import AddItemPage from './src/containers/AddItemPage';
+import AboutPage from './src/components/AboutPage';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -30,6 +31,7 @@ ReactDOM.render(
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
+                <Route path="/about" component={RequireAuth(AboutPage)}/>
             </Route>
         </Router>
     </Provider>,
