@@ -20,16 +20,20 @@ class AccountPage extends React.Component {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var currentListingsElement;
         if (isRestaurant === 'false') {
-            currentListingsElement = <CurrentListings />
+            currentListingsElement =
+                <div>
+                    <CurrentListings />
+                    <Button onClick={() => this.addItem()} >Add Item</Button>
+                </div>
         }
         return (
             <div>
                 <h1>Account Overview</h1>
                 <ActiveOrders />
                 {currentListingsElement}
-                <Button onClick={() => this.addItem()} >Add Item</Button>
             </div>
         )
+
     }
 }
 

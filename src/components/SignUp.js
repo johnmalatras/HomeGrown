@@ -92,17 +92,17 @@ class SignUp extends React.Component {
                         <Field name="email" type="text" component={this.renderField} label="Email" />
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-                        <Field name="ownerName" type="text" component={this.renderField} label="Bussiness Contact Name" />
-                        <Field name="bussinessName" type="text" component={this.renderField} label="Bussiness Name" />
-                        <Field name="address" type="text" component={this.renderField} label="Bussiness Address" />
+                        <Field name="ownerName" type="text" component={this.renderField} label="Business Contact Name" />
+                        <Field name="bussinessName" type="text" component={this.renderField} label="Business Name" />
+                        <Field name="address" type="text" component={this.renderField} label="Business Address" />
                         <Field name="city" type="text" component={this.renderField} label="City" />
                         <Field name="state" type="text" component={this.renderField} label="State" />
-                        <Field name="phoneNumber" type="text" component={this.renderField} label="Bussiness Contact Phone Number" />
+                        <Field name="phoneNumber" type="text" component={this.renderField} label="Business Contact Phone Number" />
                         <fieldset className="form-group">
-                            <label>Select Resturant or Farm</label>
+                            <label>Select Restaurant or Farm</label>
                             <div>
                                 <Field name="isResturant" component="select">
-                                    <option value={true}>Resturant</option>
+                                    <option value={true}>Restaurant</option>
                                     <option value={false}>Farm</option>
                                 </Field>
                             </div>

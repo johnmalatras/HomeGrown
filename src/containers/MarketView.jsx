@@ -13,7 +13,6 @@ class MarketView extends React.Component {
   componentWillMount() {
     this.props.actions.requestItems();
   }
-
   render() {
     return (
       <div>
@@ -29,7 +28,7 @@ class MarketView extends React.Component {
                 <th>Quality</th>
               </tr>
             </thead>
-            <MarketList items={ this.props.items } 
+            <MarketList items={ this.props.items }
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>
         <ItemModal show={this.props.modalIsOpen} 
