@@ -20,6 +20,7 @@ class MarketView extends React.Component {
         <Table responsive>
             <thead>
               <tr>
+                <th> </th>
                 <th>Item</th>
                 <th>Seller</th>
                 <th>Price</th>
@@ -30,6 +31,7 @@ class MarketView extends React.Component {
             </thead>
             <MarketList items={ this.props.items }
                         images = {this.props.itemImages}
+                        userInfo = {this.props.userInfo}
                         getImage = {() => this.props.actions.requestImage(key)}
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>

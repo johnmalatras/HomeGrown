@@ -27,7 +27,8 @@ const MarketList = (props) => {
 
   	const listItems = listItemsArray.map((row) => {
     	return <MarketItem key={row.key} 
-    						item={row} 
+    						item={row}
+						    userInfo={props.userInfo}
     						onItemSelect={ props.onItemSelect } />
   	});
 
