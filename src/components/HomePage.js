@@ -40,7 +40,7 @@ class Home extends React.Component {
                     <Col sm={3} md={3}>
                     </Col>
                     <Col sm={6} md={6}>
-                        <Image style={imgStyle} src="../../RipeNow-Logo_Website.png" responsive />
+                        <Image style={imgStyle} src="../../RipeNow-Logo.png" responsive />
                     </Col>
                     <Col sm={3} md={3}>
                     </Col>

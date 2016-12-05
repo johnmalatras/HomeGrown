@@ -66,9 +66,9 @@ class CartList extends React.Component {
 				comment: this.state.comment,
 				deliveryTime: this.state.deliveryTime
 			};
-			console.log(purchase);
+			//console.log(purchase);
 			this.props.placeOrder(purchase);
-			alert("Order Placed! Thank you for your business, a RipeNow team member will be contacting you shortly.")
+			alert("Order Placed! Thank you for your business!")
 		}
   	}
 
