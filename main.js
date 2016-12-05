@@ -32,6 +32,7 @@ ReactDOM.render(
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
                 <Route path="/about" component={RequireAuth(AboutPage)}/>
+                <Route path="/terms" component={TermsOfUse}/>
             </Route>
         </Router>
     </Provider>,
@@ -39,5 +40,5 @@ ReactDOM.render(
 );
 
 
-//<Route path="/terms" component={TermsOfUse}/>
+//
 

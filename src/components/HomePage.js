@@ -5,6 +5,7 @@ import React from 'react';
 import SignUpPage from '../containers/SignUpPage';
 import LoginPage from '../containers/LoginPage';
 var ReactBootstrap = require('react-bootstrap');
+import { hashHistory } from 'react-router';
 
 var FormGroup = ReactBootstrap.FormGroup;
 var ControlLabel = ReactBootstrap.ControlLabel;
@@ -32,6 +33,14 @@ var imgStyle = {
 };
 
 class Home extends React.Component {
+    constructor(props) {
+        super();
+        this.TermsOfUse= this.TermsOfUse.bind(this);
+    };
+
+    TermsOfUse(){
+        hashHistory.push('/terms');
+    };
 
     render() {
         return (
@@ -58,6 +67,7 @@ class Home extends React.Component {
                                     <Tab eventKey={2} title="Sign Up">
                                         <div>
                                             <SignUpPage/>
+                                            <Button onClick={this.TermsOfUse} >Terms of Use</Button>
                                         </div>
                                     </Tab>
                                 </Tabs>
