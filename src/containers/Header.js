@@ -43,7 +43,7 @@ class Header extends React.Component {
                     <Navbar  collapseOnSelect block fluid>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a><img width="27px" src="../../RipeNow-Logo_Website.png"/></a>
+                                <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
                             </Navbar.Brand>
                             <Navbar.Toggle />
                         </Navbar.Header>
@@ -62,7 +62,7 @@ class Header extends React.Component {
                     <Navbar  collapseOnSelect block fluid>
                         <Navbar.Header>
                             <Navbar.Brand>
-                                <a><img width="27px" src="../../RipeNow-Logo_Website.png"/></a>
+                                <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
                             </Navbar.Brand>
                             <Navbar.Toggle />
                         </Navbar.Header>

@@ -4,6 +4,10 @@
 import React,{PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+var ReactBootstrap = require('react-bootstrap');
+var Button = ReactBootstrap.Button;
+
+import { hashHistory } from 'react-router';
 
 const validate = (values) => {
     const errors = {};
@@ -47,6 +51,9 @@ const validate = (values) => {
     if(!values.ownerName){
         errors.ownerName = "Please enter Bussiness Name";
     }
+    if(values.accessCode!='123456'){
+        errors.accessCode = "Incorrect Access Code";
+    }
 
     return errors;
 };
@@ -55,6 +62,7 @@ class SignUp extends React.Component {
     constructor(props) {
         super();
         this.handleFormSubmit= this.handleFormSubmit.bind(this);
+        this.TermsOfUse= this.TermsOfUse.bind(this);
     }
     renderAuthenticationError() {
         if (this.props.authenticationError) {
@@ -69,6 +77,11 @@ class SignUp extends React.Component {
             values.isResturant = true;
         }
         {this.props.onSignUp(values)}
+    };
+
+    TermsOfUse(){
+        console.log("TOU");
+        hashHistory.push('/terms');
     };
 
     renderField({input, label, type, meta: {touched, error}}){
@@ -98,6 +111,7 @@ class SignUp extends React.Component {
                         <Field name="city" type="text" component={this.renderField} label="City" />
                         <Field name="state" type="text" component={this.renderField} label="State" />
                         <Field name="phoneNumber" type="text" component={this.renderField} label="Business Contact Phone Number" />
+                        <Field name="accessCode" type="text" component={this.renderField} label="Access Code" />
                         <fieldset className="form-group">
                             <label>Select Restaurant or Farm</label>
                             <div>
@@ -107,6 +121,7 @@ class SignUp extends React.Component {
                                 </Field>
                             </div>
                         </fieldset>
+                        <Field name="agrees" type="checkbox" component={this.renderField} label="I have read and agreed to the terms of service." />
                         <button action="submit" className="btn btn-primary">Sign Up</button>
                     </form>
                 </div>

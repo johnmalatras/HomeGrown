@@ -18,10 +18,10 @@ import Cart from './src/containers/Cart';
 import AccountPage from './src/containers/AccountPage';
 import AddItemPage from './src/containers/AddItemPage';
 import AboutPage from './src/components/AboutPage';
+import TermsOfUse from './src/components/TermsOfUse';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
-
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
@@ -37,3 +37,7 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
+
+
+//<Route path="/terms" component={TermsOfUse}/>
+

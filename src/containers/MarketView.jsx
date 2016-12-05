@@ -29,6 +29,8 @@ class MarketView extends React.Component {
               </tr>
             </thead>
             <MarketList items={ this.props.items }
+                        images = {this.props.itemImages}
+                        getImage = {() => this.props.actions.requestImage(key)}
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>
         <ItemModal show={this.props.modalIsOpen} 
@@ -46,6 +48,7 @@ function mapStateToProps(state) {
   //console.log(state);
   return {
     items: state.items.items,
+    itemImages: state.items.itemImages,
     modalIsOpen: state.modal.modalIsOpen,
     selectedItem: state.modal.selectedItem,
     cart: state.cart.cart,
