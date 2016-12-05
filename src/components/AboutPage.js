@@ -15,7 +15,7 @@ class AboutPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Grid>
                     <Row>
                         <Col xs={12} md={12}><h2>RipeNow</h2></Col>
