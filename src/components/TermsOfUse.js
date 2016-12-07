@@ -3,7 +3,7 @@
  */
 import React from 'react';
 var ReactBootstrap = require('react-bootstrap');
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 var Button = ReactBootstrap.Button;
 
 class TermsOfUse extends React.Component {
@@ -13,7 +13,7 @@ class TermsOfUse extends React.Component {
     };
 
     goBack() {
-        hashHistory.push('/homePage');
+        browserHistory.push('/homePage');
     }
 
     render() {

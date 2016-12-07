@@ -7,7 +7,7 @@ import { Field, reduxForm } from 'redux-form';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 const validate = (values) => {
     const errors = {};
@@ -81,7 +81,7 @@ class SignUp extends React.Component {
 
     TermsOfUse(){
         console.log("TOU");
-        hashHistory.push('/terms');
+        browserHistory.push('/terms');
     };
 
     renderField({input, label, type, meta: {touched, error}}){
