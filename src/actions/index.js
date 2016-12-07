@@ -1,7 +1,7 @@
 /**
  * Created by alextulenko on 11/10/16.
  */
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
@@ -53,7 +53,7 @@ export function signInUser(credentials){
         Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/');
+                browserHistory.push('/');
             })
             .catch(error => {
                 dispatch(authError(error));
@@ -66,14 +66,13 @@ export function signUpUser(credentials) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/');
+                browserHistory.push('/');
             })
             .catch(error => {
                 console.log(error);
                 dispatch(authError(error));
             });
 
-        console.log(credentials.isResturant);
         holdData = {
             ownerName:credentials.ownerName,
             bussinessName: credentials.bussinessName,
@@ -116,7 +115,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    hashHistory.push('/homePage');
+    browserHistory.push('/homePage');
     return {
         type: 'SIGN_OUT_USER'
 
@@ -127,13 +126,13 @@ export function authUser() {
         const userUid = Firebase.auth().currentUser.uid;
         var ref = database.ref('/users/'+userUid.toString());
         ref.on("value", function(snapshot) {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
           dispatch({
             type: AUTH_USER,
             payload: snapshot.val()
           });
         }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
+          //console.log("The read failed: " + errorObject.code);
           return {
             type: null
           };
@@ -242,7 +241,7 @@ export function deleteCartItem(cartItem, theCart) {
 }
 
 export function placeOrder(order) {
-    console.log(order);
+    //console.log(order);
     const userUid = Firebase.auth().currentUser.uid;
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
     const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
@@ -404,7 +403,7 @@ export function requestCurrentListings() {
         payload: snapshot.val()
       });
     }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
+      //console.log("The read failed: " + errorObject.code);
       return {
         type: null
       };

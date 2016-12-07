@@ -80,6 +80,9 @@ class Home extends React.Component {
                                 <p>RipeNow aims to change the way local restaurants connect to local farmers.
                                     Chefs are given the ability to access a higher quality of produce through RipeNow.
                                     Local farms benefit by an expansion in the demand for their goods.</p>
+                                <h2>Work with RipeNow</h2>
+                                <p>If you are a local farmer or resturant in the Raleigh area who is interested
+                                in working with or learning more about RipeNow please send an email to ajtulenko@ripenow.co</p>
                             </div>
                         </Col>
                     </Row>

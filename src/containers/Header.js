@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {signOutUser} from '../actions/index';
 var ReactBootstrap = require('react-bootstrap');
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 var Navbar = ReactBootstrap.Navbar;
 var NavItem = ReactBootstrap.NavItem;
@@ -23,16 +23,16 @@ class Header extends React.Component {
         this.props.signOut();
     }
     handleCart(){
-        hashHistory.push('/cart');
+        browserHistory.push('/cart');
     }
     handleMarket(){
-        hashHistory.push('/');
+        browserHistory.push('/');
     }
     handleHolder(){
-        hashHistory.push('/account');
+        browserHistory.push('/account');
     }
     handleAbout(){
-        hashHistory.push('/about');
+        browserHistory.push('/about');
     }
     renderAuthLinks() {
         if (this.props.authenticated) {

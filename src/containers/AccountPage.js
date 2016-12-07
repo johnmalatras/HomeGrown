@@ -14,7 +14,7 @@ class AccountPage extends React.Component {
         this.addItem= this.addItem.bind(this);
     }
     addItem(){
-        hashHistory.push('/addItem');
+        browserHistory.push('/addItem');
     }
     render() {
         const isRestaurant = this.props.userInfo.isRestaurant;
