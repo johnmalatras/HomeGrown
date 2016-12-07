@@ -21,7 +21,7 @@ var Grid = ReactBootstrap.Grid;
 var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
 var Image = ReactBootstrap.Image;
-
+var Clearfix = ReactBootstrap.Clearfix;
 var divStyle =  {
     textAlign: 'center',
     size: 45
@@ -44,7 +44,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Grid>
                     <Col sm={3} md={3}>
                     </Col>
@@ -73,11 +73,12 @@ class Home extends React.Component {
                                 </Tabs>
                             </div>
                         </Col>
+                        <Clearfix visibleSmBlock></Clearfix>
                         <Col sm={6} md={6}>
                             <div>
                                 <h1>About RipeNow</h1>
-                                <p>RipeNow aims to change the way local restaurant connect to local farmers.
-                                    Chefs are given the ability to order a higher quality of produce through RipeNow.
+                                <p>RipeNow aims to change the way local restaurants connect to local farmers.
+                                    Chefs are given the ability to access a higher quality of produce through RipeNow.
                                     Local farms benefit by an expansion in the demand for their goods.</p>
                             </div>
                         </Col>
