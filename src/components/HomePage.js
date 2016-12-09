@@ -5,8 +5,7 @@ import React from 'react';
 import SignUpPage from '../containers/SignUpPage';
 import LoginPage from '../containers/LoginPage';
 var ReactBootstrap = require('react-bootstrap');
-import { hashHistory } from 'react-router';
-
+import { browserHistory } from 'react-router';
 var FormGroup = ReactBootstrap.FormGroup;
 var ControlLabel = ReactBootstrap.ControlLabel;
 var FormControl = ReactBootstrap.FormControl;
@@ -22,12 +21,13 @@ var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
 var Image = ReactBootstrap.Image;
 var Clearfix = ReactBootstrap.Clearfix;
+
 var divStyle =  {
     textAlign: 'center',
     size: 45
 };
 var imgStyle = {
-    flex: 1,
+    //flex: 1,
     justifyContent: 'center',
         alignItems: 'center'
 };
@@ -39,19 +39,15 @@ class Home extends React.Component {
     };
 
     TermsOfUse(){
-        hashHistory.push('/terms');
+        browserHistory.push('/terms');
     };
 
     render() {
         return (
             <div className="container">
                 <Grid>
-                    <Col sm={3} md={3}>
-                    </Col>
-                    <Col sm={6} md={6}>
-                        <Image style={imgStyle} src="../../RipeNow-Logo.png" responsive />
-                    </Col>
-                    <Col sm={3} md={3}>
+                    <Col sm={6} md={6} xsOffset={3}>
+                        <h1>Log In or Sign Up</h1>
                     </Col>
                 </Grid>
                 <Grid>
@@ -76,10 +72,6 @@ class Home extends React.Component {
                         <Clearfix visibleSmBlock></Clearfix>
                         <Col sm={6} md={6}>
                             <div>
-                                <h1>About RipeNow</h1>
-                                <p>RipeNow aims to change the way local restaurants connect to local farmers.
-                                    Chefs are given the ability to access a higher quality of produce through RipeNow.
-                                    Local farms benefit by an expansion in the demand for their goods.</p>
                                 <h2>Work with RipeNow</h2>
                                 <p>If you are a local farmer or resturant in the Raleigh area who is interested
                                 in working with or learning more about RipeNow please send an email to ajtulenko@ripenow.co</p>

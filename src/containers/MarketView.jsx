@@ -13,10 +13,17 @@ class MarketView extends React.Component {
   componentWillMount() {
     this.props.actions.requestItems();
   }
+
   render() {
+      var warningLabel = '';
+      if(this.props.authenticated == false)
+      {
+          warningLabel = 'Please sign in or sign up to order or list produce';
+      }
     return (
       <div>
         <h1>Market</h1>
+        <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
         <Table responsive>
             <thead>
               <tr>
@@ -32,6 +39,7 @@ class MarketView extends React.Component {
             <MarketList items={ this.props.items }
                         images = {this.props.itemImages}
                         userInfo = {this.props.userInfo}
+                        userAuthenticated = {this.props.authenticated}
                         getImage = {() => this.props.actions.requestImage(key)}
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>
@@ -54,7 +62,8 @@ function mapStateToProps(state) {
     modalIsOpen: state.modal.modalIsOpen,
     selectedItem: state.modal.selectedItem,
     cart: state.cart.cart,
-    userInfo: state.AuthReducer.userInfo
+    userInfo: state.AuthReducer.userInfo,
+    authenticated: state.AuthReducer.authenticated
   };
 }
 

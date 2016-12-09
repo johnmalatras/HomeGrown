@@ -26,12 +26,12 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={RequireAuth(MarketView)} />
+                <IndexRoute component={MarketView} />
                 <Route path="/homePage" component={HomePage}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
-                <Route path="/about" component={RequireAuth(AboutPage)}/>
+                <Route path="/about" component={AboutPage}/>
                 <Route path="/terms" component={TermsOfUse}/>
             </Route>
         </Router>
