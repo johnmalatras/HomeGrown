@@ -1,12 +1,15 @@
 import React, { PropTypes } from 'react';
 var ReactBootstrap = require('react-bootstrap');
+import moment from 'moment';
 
 class ItemModal extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-
+    this.state = {
+      startDate: moment(),
+      value: ''
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.verifyBuy = this.verifyBuy.bind(this);
@@ -70,12 +73,12 @@ class ItemModal extends React.Component {
           <FormGroup controlId="formInlineQuantity">
             <ControlLabel>Buy Quantity</ControlLabel>
             {"  "}
+
             <input type="number" placeholder={item.quantity} value={this.state.value} onChange={this.handleChange} max={item.quantity} />
             <p><b>Total:</b> {(this.state.value * item.price).toFixed(2)}</p>
           </FormGroup>
 
           {"  "}
-
           <Button onClick={this.verifyBuy}>Buy</Button>  
          </Form>
           <hr />

@@ -4,6 +4,10 @@
 import React,{PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+var ReactBootstrap = require('react-bootstrap');
+var Button = ReactBootstrap.Button;
+
+import { browserHistory } from 'react-router';
 
 const validate = (values) => {
     const errors = {};
@@ -47,6 +51,9 @@ const validate = (values) => {
     if(!values.ownerName){
         errors.ownerName = "Please enter Bussiness Name";
     }
+    if(values.accessCode!='123456'){
+        errors.accessCode = "Incorrect Access Code";
+    }
 
     return errors;
 };
@@ -55,6 +62,7 @@ class SignUp extends React.Component {
     constructor(props) {
         super();
         this.handleFormSubmit= this.handleFormSubmit.bind(this);
+        this.TermsOfUse= this.TermsOfUse.bind(this);
     }
     renderAuthenticationError() {
         if (this.props.authenticationError) {
@@ -69,6 +77,11 @@ class SignUp extends React.Component {
             values.isResturant = true;
         }
         {this.props.onSignUp(values)}
+    };
+
+    TermsOfUse(){
+        console.log("TOU");
+        browserHistory.push('/terms');
     };
 
     renderField({input, label, type, meta: {touched, error}}){
@@ -92,21 +105,23 @@ class SignUp extends React.Component {
                         <Field name="email" type="text" component={this.renderField} label="Email" />
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
-                        <Field name="ownerName" type="text" component={this.renderField} label="Bussiness Contact Name" />
-                        <Field name="bussinessName" type="text" component={this.renderField} label="Bussiness Name" />
-                        <Field name="address" type="text" component={this.renderField} label="Bussiness Address" />
+                        <Field name="ownerName" type="text" component={this.renderField} label="Business Contact Name" />
+                        <Field name="bussinessName" type="text" component={this.renderField} label="Business Name" />
+                        <Field name="address" type="text" component={this.renderField} label="Business Address" />
                         <Field name="city" type="text" component={this.renderField} label="City" />
                         <Field name="state" type="text" component={this.renderField} label="State" />
-                        <Field name="phoneNumber" type="text" component={this.renderField} label="Bussiness Contact Phone Number" />
+                        <Field name="phoneNumber" type="text" component={this.renderField} label="Business Contact Phone Number" />
+                        <Field name="accessCode" type="text" component={this.renderField} label="Access Code" />
                         <fieldset className="form-group">
-                            <label>Select Resturant or Farm</label>
+                            <label>Select Restaurant or Farm</label>
                             <div>
                                 <Field name="isResturant" component="select">
-                                    <option value={true}>Resturant</option>
+                                    <option value={true}>Restaurant</option>
                                     <option value={false}>Farm</option>
                                 </Field>
                             </div>
                         </fieldset>
+                        <Field name="agrees" type="checkbox" component={this.renderField} label="I have read and agreed to the terms of service." />
                         <button action="submit" className="btn btn-primary">Sign Up</button>
                     </form>
                 </div>

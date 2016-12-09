@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import { Field, reduxForm } from 'redux-form';
+import { hashHistory } from 'react-router';
 
 const validate = (values) => {
     const errors = {};
@@ -62,6 +63,10 @@ class AddItemPage extends React.Component {
         {this.props.actions.addItem(values, this.props.userInfo.ownerName)}
     };
 
+    backButton(){
+        hashHistory.push('/account');
+    }
+
     renderField({input, label, type, meta: {touched, error}}){
         return(
             <fieldset className="form-group">
@@ -97,7 +102,8 @@ class AddItemPage extends React.Component {
                         <Field name="ProductImage" type="file" component={this.renderField} label="Product Image" />
                         <button action="submit" className="btn btn-primary">Submit Item</button>
                     </form>
-                    <h1>Click another tab to cancel add item</h1>
+                    <p> </p>
+                    <button onClick={() => backButton()} >Cancel Add Item</button>
                 </div>
             </div>
         );

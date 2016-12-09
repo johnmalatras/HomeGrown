@@ -1,7 +1,7 @@
 /**
  * Created by alextulenko on 11/10/16.
  */
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
@@ -21,17 +21,29 @@ export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 export const REQUEST_CURRENT_LISTINGS = 'REQUEST_CURRENT_LISTINGS';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const DELETE_ITEM = 'DELETE_ITEM';
+export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 
-const config = {
+//DEVELOPMENT SERVER
+/*const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
     databaseURL: "https://homegrown-65645.firebaseio.com",
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
+};*/
+//PRODUCTION SERVER
+const config = {
+    apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
+    authDomain: "ripenow-bbe84.firebaseapp.com",
+    databaseURL: "https://ripenow-bbe84.firebaseio.com",
+    storageBucket: "ripenow-bbe84.appspot.com",
+    messagingSenderId: "475593459363"
 };
+
 Firebase.initializeApp(config);
 const database = Firebase.database();
 const authData = Firebase.auth();
+const storage = Firebase.storage();
 
 var holdData = [];
 var firstTime = false;
@@ -41,7 +53,7 @@ export function signInUser(credentials){
         Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/');
+                browserHistory.push('/');
             })
             .catch(error => {
                 dispatch(authError(error));
@@ -54,14 +66,13 @@ export function signUpUser(credentials) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/');
+                browserHistory.push('/');
             })
             .catch(error => {
                 console.log(error);
                 dispatch(authError(error));
             });
 
-        console.log(credentials.isResturant);
         holdData = {
             ownerName:credentials.ownerName,
             bussinessName: credentials.bussinessName,
@@ -104,7 +115,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    hashHistory.push('/homePage');
+    browserHistory.push('/homePage');
     return {
         type: 'SIGN_OUT_USER'
 
@@ -115,13 +126,13 @@ export function authUser() {
         const userUid = Firebase.auth().currentUser.uid;
         var ref = database.ref('/users/'+userUid.toString());
         ref.on("value", function(snapshot) {
-            console.log(snapshot.val());
+            //console.log(snapshot.val());
           dispatch({
             type: AUTH_USER,
             payload: snapshot.val()
           });
         }, function (errorObject) {
-          console.log("The read failed: " + errorObject.code);
+          //console.log("The read failed: " + errorObject.code);
           return {
             type: null
           };
@@ -138,10 +149,16 @@ export function authError(error) {
 //Action call to add Itemto Market from account page
 export function addItem(values, ownerName) {
     return function(dispatch) {
-        console.log(ownerName);
+        var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
         const itemRef = database.ref('/items/'+ itemID);
+
+        const imageRef = storage.ref('image/' + itemID);
+        imageRef.put(values.ProductImage[0]).then(function(snapshot) {
+            //console.log('Uploaded a blob or file!');
+        });
+
         itemRef.update({
             ["title"]:values.ProductTitle,
             ["seller"]:ownerName,
@@ -224,7 +241,7 @@ export function deleteCartItem(cartItem, theCart) {
 }
 
 export function placeOrder(order) {
-
+    //console.log(order);
     const userUid = Firebase.auth().currentUser.uid;
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
     const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
@@ -258,7 +275,10 @@ export function placeOrder(order) {
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
             ["fee"]: order.order.fee,
-            ["total"]: order.order.total
+            ["total"]: order.order.total,
+            ["comment"]:order.order.comment,
+            ["deliveryTime"]:order.order.deliveryTime,
+            ["deliveryDate"]:order.order.deliveryDate
         });
 
         // add to seller active order
@@ -267,7 +287,10 @@ export function placeOrder(order) {
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
             ["fee"]: order.order.fee,
-            ["total"]: order.order.total
+            ["total"]: order.order.total,
+            ["comment"]:order.order.comment,
+            ["deliveryTime"]:order.order.deliveryTime,
+            ["deliveryDate"]:order.order.deliveryDate
         });
     }
 
@@ -276,7 +299,10 @@ export function placeOrder(order) {
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
             ["fee"]: order.order.fee,
-            ["total"]: order.order.total
+            ["total"]: order.order.total,
+            ["comment"]:order.order.comment,
+            ["deliveryTime"]:order.order.deliveryTime,
+            ["deliveryDate"]:order.order.deliveryDate
     });
 
     return {
@@ -303,7 +329,7 @@ export function requestActiveOrders() {
     const userUid = Firebase.auth().currentUser.uid;
     var ref = database.ref('users/'+userUid+'/active_orders');
     ref.on("value", function(snapshot) {
-      dispatch({
+        dispatch({
         type: REQUEST_ACTIVE_ORDERS,
         payload: snapshot.val()
       });
@@ -314,6 +340,43 @@ export function requestActiveOrders() {
       };
     });
   }
+};
+
+export function requestImage(imageKey) {
+    // Create a reference to the file we want to download
+    console.log(imageKey);
+    //var imgRef = storageRef.child('images/' + imageKey);
+
+    // return function(dispatch) {
+    //     imgRef.getDownloadURL().then(function(url) {
+    //         // Insert url into an <img> tag to "download"
+    //         console.log(url);
+    //         dispatch({
+    //             type: REQUEST_ITEM_IMAGES,
+    //             payload: url
+    //         });
+    //
+    //     }).catch(function(error) {
+    //         switch (error.code) {
+    //             case 'storage/object_not_found':
+    //                 // File doesn't exist
+    //                 break;
+    //
+    //             case 'storage/unauthorized':
+    //                 // User doesn't have permission to access the object
+    //                 break;
+    //
+    //             case 'storage/canceled':
+    //                 // User canceled the upload
+    //                 break;
+    //
+    //             case 'storage/unknown':
+    //                 // Unknown error occurred, inspect the server response
+    //                 break;
+    //         }
+    //     });
+
+   // }
 }
 
 export function openActiveOrderModal(item) {
@@ -340,7 +403,7 @@ export function requestCurrentListings() {
         payload: snapshot.val()
       });
     }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
+      //console.log("The read failed: " + errorObject.code);
       return {
         type: null
       };

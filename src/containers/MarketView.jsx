@@ -13,7 +13,6 @@ class MarketView extends React.Component {
   componentWillMount() {
     this.props.actions.requestItems();
   }
-
   render() {
     return (
       <div>
@@ -21,6 +20,7 @@ class MarketView extends React.Component {
         <Table responsive>
             <thead>
               <tr>
+                <th> </th>
                 <th>Item</th>
                 <th>Seller</th>
                 <th>Price</th>
@@ -29,7 +29,10 @@ class MarketView extends React.Component {
                 <th>Quality</th>
               </tr>
             </thead>
-            <MarketList items={ this.props.items } 
+            <MarketList items={ this.props.items }
+                        images = {this.props.itemImages}
+                        userInfo = {this.props.userInfo}
+                        getImage = {() => this.props.actions.requestImage(key)}
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>
         <ItemModal show={this.props.modalIsOpen} 
@@ -47,6 +50,7 @@ function mapStateToProps(state) {
   //console.log(state);
   return {
     items: state.items.items,
+    itemImages: state.items.itemImages,
     modalIsOpen: state.modal.modalIsOpen,
     selectedItem: state.modal.selectedItem,
     cart: state.cart.cart,
