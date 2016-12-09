@@ -6,7 +6,14 @@ var ReactBootstrap = require('react-bootstrap');
 
 var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
+var Image = ReactBootstrap.Image;
 var Col = ReactBootstrap.Col;
+
+var imgStyle = {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+};
 
 class AboutPage extends React.Component {
     constructor(props) {
@@ -18,7 +25,7 @@ class AboutPage extends React.Component {
             <div className="container">
                 <Grid>
                     <Row>
-                        <Col xs={12} md={12}><h2>RipeNow</h2></Col>
+                        <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
                     </Row>
                     <Row>
                         <Col xs={12} md={12}><h3>Bringing farms and resturants together - a community movement</h3></Col>

@@ -29,7 +29,8 @@ const MarketList = (props) => {
     	return <MarketItem key={row.key} 
     						item={row}
 						    userInfo={props.userInfo}
-    						onItemSelect={ props.onItemSelect } />
+						    auth = {props.userAuthenticated}
+							onItemSelect={ props.onItemSelect } />
   	});
 
   	return (

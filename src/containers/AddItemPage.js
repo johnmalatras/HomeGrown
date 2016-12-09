@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import { Field, reduxForm } from 'redux-form';
-import { hashHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 const validate = (values) => {
     const errors = {};
@@ -53,6 +53,7 @@ class AddItemPage extends React.Component {
     constructor(props) {
         super();
         this.addItemMarket= this.addItemMarket.bind(this);
+        this.backButton= this.backButton.bind(this);
     }
 
     addItemMarket(values){
@@ -64,7 +65,7 @@ class AddItemPage extends React.Component {
     };
 
     backButton(){
-        hashHistory.push('/account');
+        browserHistory.push('/account');
     }
 
     renderField({input, label, type, meta: {touched, error}}){
@@ -83,6 +84,14 @@ class AddItemPage extends React.Component {
         return(
             <div className="container">
                 <div >
+                    <h3>Notes about listing new item:</h3>
+                    <p style={{fontWeight: 'bold'}}>1. Use a descriptive and specific Title. Ex. Appalachian green beans instead of just green beans.</p>
+                    <p style={{fontWeight: 'bold'}}>2. The price is on a per unit base</p>
+                    <p style={{fontWeight: 'bold'}}>3. The product metric is the increment of amount of product you an buy</p>
+                    <p style={{fontWeight: 'bold'}}>4. The product quantity is the amount of units of product you have available for purchase</p>
+                    <p style={{fontWeight: 'bold'}}>5. We require you to set the quality of the produce you are offering. Please refer to the about page to better understand our quality scale.</p>
+                    <p style={{fontWeight: 'bold'}}>6. Please create a separate listing for each level of quality </p>
+                    <p style={{fontWeight: 'bold'}}>7. We require you to submit a product image</p>
                     <form onSubmit={this.props.handleSubmit(this.addItemMarket)}>
                         <Field name="ProductTitle" type="text" component={this.renderField} label="Product Title" />
                         <Field name="ProductPrice" type="text" component={this.renderField} label="Product Price per Unit($)" />
@@ -100,10 +109,10 @@ class AddItemPage extends React.Component {
                             </div>
                         </fieldset>
                         <Field name="ProductImage" type="file" component={this.renderField} label="Product Image" />
-                        <button action="submit" className="btn btn-primary">Submit Item</button>
+                        <button style={{background: '#8DC63F'}} action="submit" className="btn btn-primary">Submit Item</button>
                     </form>
                     <p> </p>
-                    <button onClick={() => backButton()} >Cancel Add Item</button>
+                    <button onClick={() => this.backButton()} >Cancel Add Item</button>
                 </div>
             </div>
         );

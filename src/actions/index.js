@@ -33,13 +33,13 @@ const config = {
 };
 
 //PRODUCTION SERVER
-// const config = {
-//     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
-//     authDomain: "ripenow-bbe84.firebaseapp.com",
-//     databaseURL: "https://ripenow-bbe84.firebaseio.com",
-//     storageBucket: "ripenow-bbe84.appspot.com",
-//     messagingSenderId: "475593459363"
-// };
+/*const config = {
+    apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
+    authDomain: "ripenow-bbe84.firebaseapp.com",
+    databaseURL: "https://ripenow-bbe84.firebaseio.com",
+    storageBucket: "ripenow-bbe84.appspot.com",
+    messagingSenderId: "475593459363"
+};*/
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -119,9 +119,9 @@ export function signOutUser() {
     browserHistory.push('/homePage');
     return {
         type: 'SIGN_OUT_USER'
-
     }
 };
+
 export function authUser() {
     return function(dispatch) {
         const userUid = Firebase.auth().currentUser.uid;
@@ -147,7 +147,7 @@ export function authError(error) {
         payload: error
     }
 };
-//Action call to add Itemto Market from account page
+//Action call to add Item to Market from account page
 export function addItem(values, ownerName) {
     return function(dispatch) {
         var imageName = values.ProductImage[0].name;
@@ -182,7 +182,7 @@ export function addItem(values, ownerName) {
             ["sellerUID"]: userUid
         });
 
-        hashHistory.push('/account');
+        browserHistory.push('/account');
     }
 }
 

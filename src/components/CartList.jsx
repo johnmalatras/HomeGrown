@@ -10,6 +10,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
+var price;
 class CartList extends React.Component {
 
 	constructor(props) {
@@ -56,6 +57,12 @@ class CartList extends React.Component {
 				errorMessage: 'You must select a delivery date.'
 			});
 		}
+		else if(price < 200)
+		{
+			this.setState({
+				errorMessage: 'You must have at least $200 in your cart.'
+			});
+		}
 		else {
 			var purchase = {
 				cart: this.props.cart,
@@ -77,7 +84,7 @@ class CartList extends React.Component {
 		alert(cartItem[0].title + " removed from cart!");
 	}
 	render() {
-		var price = 0;
+		price = 0;
 	  	const listItems = this.props.cart.map((row) => {
 	  		price = +price + +(row[1] * row[0].price).toFixed(2);
 	    	return <CartItem key={row[0].title} 
