@@ -4,6 +4,9 @@ import { DateField, Calendar } from 'react-date-picker'
 import CartItem from './CartItem.jsx';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
+var DropdownButton  = ReactBootstrap.DropdownButton;
+var MenuItem = ReactBootstrap.MenuItem;
+
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import DatePicker from 'react-datepicker';
@@ -39,6 +42,7 @@ class CartList extends React.Component {
 	}
 	handleTimeChange(textComment)
 	{
+		console.log(textComment);
 		this.setState({
 			deliveryTime: textComment
 		});
@@ -73,7 +77,6 @@ class CartList extends React.Component {
 				comment: this.state.comment,
 				deliveryTime: this.state.deliveryTime
 			};
-			//console.log(purchase);
 			this.props.placeOrder(purchase);
 			alert("Order Placed! Thank you for your business!")
 		}
@@ -149,10 +152,10 @@ class CartList extends React.Component {
 						placeholderText="Select Delivery Date" />
 					</td>
 					<td>
-						<select value={this.state.deliveryTime} onChange={this.handleTimeChange}>
-							<option value="8-10">8am-10am</option>
-							<option defaultValue value="10-11">10am-11am</option>
-						</select>
+						<DropdownButton title={this.state.deliveryTime} onSelect={(evt) => this.handleTimeChange(evt)}>
+							<MenuItem eventKey='8am-10am'>8am-10am</MenuItem>
+							<MenuItem eventKey='10am-11am'>10am-11am</MenuItem>
+						</DropdownButton>
 					</td>
 					<td> </td>
 
