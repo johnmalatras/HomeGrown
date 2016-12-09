@@ -24,21 +24,22 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 
 //DEVELOPMENT SERVER
-/*const config = {
+const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
     databaseURL: "https://homegrown-65645.firebaseio.com",
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
-};*/
-//PRODUCTION SERVER
-const config = {
-    apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
-    authDomain: "ripenow-bbe84.firebaseapp.com",
-    databaseURL: "https://ripenow-bbe84.firebaseio.com",
-    storageBucket: "ripenow-bbe84.appspot.com",
-    messagingSenderId: "475593459363"
 };
+
+//PRODUCTION SERVER
+// const config = {
+//     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
+//     authDomain: "ripenow-bbe84.firebaseapp.com",
+//     databaseURL: "https://ripenow-bbe84.firebaseio.com",
+//     storageBucket: "ripenow-bbe84.appspot.com",
+//     messagingSenderId: "475593459363"
+// };
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -243,8 +244,8 @@ export function deleteCartItem(cartItem, theCart) {
 export function placeOrder(order) {
     //console.log(order);
     const userUid = Firebase.auth().currentUser.uid;
-    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
-    const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
+    const timestamp = Date.now();
+    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
@@ -270,7 +271,7 @@ export function placeOrder(order) {
         });
 
         // add to buyer active order
-        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+Date.now());
+        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+timestamp);
         buyerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
@@ -282,7 +283,7 @@ export function placeOrder(order) {
         });
 
         // add to seller active order
-        const sellerActiveNode = database.ref('users/'+item[0].sellerUID+'/active_orders/'+userUid.toString()+'_'+Date.now());
+        const sellerActiveNode = database.ref('users/'+item[0].sellerUID+'/active_orders/'+userUid.toString()+'_'+timestamp);
         sellerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
