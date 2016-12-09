@@ -31,6 +31,7 @@ const config = {
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
 };
+
 //PRODUCTION SERVER
 /*const config = {
     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
@@ -243,8 +244,8 @@ export function deleteCartItem(cartItem, theCart) {
 export function placeOrder(order) {
     //console.log(order);
     const userUid = Firebase.auth().currentUser.uid;
-    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+Date.now());
-    const userActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+Date.now());
+    const timestamp = Date.now();
+    const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
@@ -270,7 +271,7 @@ export function placeOrder(order) {
         });
 
         // add to buyer active order
-        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+Date.now());
+        const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+timestamp);
         buyerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
@@ -282,7 +283,7 @@ export function placeOrder(order) {
         });
 
         // add to seller active order
-        const sellerActiveNode = database.ref('users/'+item[0].sellerUID+'/active_orders/'+userUid.toString()+'_'+Date.now());
+        const sellerActiveNode = database.ref('users/'+item[0].sellerUID+'/active_orders/'+userUid.toString()+'_'+timestamp);
         sellerActiveNode.update({
             ["order"]: order.order.cart,
             ["subtotal"]: order.order.subtotal,
