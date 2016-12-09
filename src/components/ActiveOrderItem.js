@@ -4,8 +4,16 @@ var moment = require('moment');
 moment().format();
 var Button = ReactBootstrap.Button;
 
-const ActiveOrderItem = ({item, onItemSelect}) => {
-	var orderDate = moment(item.key.split("_")[1], "x").format("MMM DD YYYY hh:mm a");
+const ActiveOrderItem = ({item, onItemSelect,isRestaurant}) => {
+	var orderDate = item.deliveryDate.substring(0,15);
+	if(isRestaurant)
+	{
+		orderDate = orderDate + ' ' + item.deliveryTime + 'am';
+	}
+	else
+	{
+		orderDate = orderDate + ' 6-8am';
+	}
 	const rowElement = (
 		<tr key={item.key}>
 			<td>{orderDate}</td>

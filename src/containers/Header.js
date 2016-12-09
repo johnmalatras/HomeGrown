@@ -38,6 +38,7 @@ class Header extends React.Component {
         if (this.props.authenticated) {
             const isRestaurant = this.props.userInfo.isRestaurant;
             console.log(isRestaurant);
+
             if (isRestaurant === 'false') {
                 return [
                     <Navbar  collapseOnSelect block fluid>
@@ -81,7 +82,21 @@ class Header extends React.Component {
 
         } else {
             return [
-
+                <Navbar  collapseOnSelect block fluid>
+                    <Navbar.Header>
+                        <Navbar.Brand>
+                            <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
+                        </Navbar.Brand>
+                        <Navbar.Toggle />
+                    </Navbar.Header>
+                    <Navbar.Collapse>
+                        <Nav pullRight>
+                            <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
+                            <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}>About</NavItem>
+                            <NavItem eventKey={5} href="#" onClick={() => this.handleSignout()}>Sign In/Up</NavItem>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
             ]
         }
     }

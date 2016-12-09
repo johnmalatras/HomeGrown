@@ -15,11 +15,13 @@ class ActiveOrders extends React.Component {
   }
 
   render() {
+      var dateLabel = 'Delivery Date';
     var isRestaurant;
     if (this.props.userInfo.isRestaurant === "true") {
         isRestaurant = true;
     } else if (this.props.userInfo.isRestaurant === "false") {
         isRestaurant = false;
+        dateLabel = 'Pick-up Date';
     }
     
     return (
@@ -29,13 +31,14 @@ class ActiveOrders extends React.Component {
         <Table responsive>
             <thead>
               <tr>
-                <th>Date</th>
+                <th>{dateLabel}</th>
                 <th>Items</th>
                 <th>Total</th>
               </tr>
             </thead>
             <ActiveOrderList items={ this.props.items } 
-                             onItemSelect={selectedItem => this.props.actions.openActiveOrderModal({selectedItem}) }/>
+                             onItemSelect={selectedItem => this.props.actions.openActiveOrderModal({selectedItem}) }
+                             isRestaurant={isRestaurant} />
         </Table>
         <ActiveOrderModal show={this.props.modalIsOpen}
                    selectedItem={this.props.selectedItem}

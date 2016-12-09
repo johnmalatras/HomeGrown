@@ -24,21 +24,21 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 
 //DEVELOPMENT SERVER
-/*const config = {
+const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
     databaseURL: "https://homegrown-65645.firebaseio.com",
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
-};*/
+};
 //PRODUCTION SERVER
-const config = {
+/*const config = {
     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
     authDomain: "ripenow-bbe84.firebaseapp.com",
     databaseURL: "https://ripenow-bbe84.firebaseio.com",
     storageBucket: "ripenow-bbe84.appspot.com",
     messagingSenderId: "475593459363"
-};
+};*/
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -118,9 +118,9 @@ export function signOutUser() {
     browserHistory.push('/homePage');
     return {
         type: 'SIGN_OUT_USER'
-
     }
 };
+
 export function authUser() {
     return function(dispatch) {
         const userUid = Firebase.auth().currentUser.uid;
@@ -146,7 +146,7 @@ export function authError(error) {
         payload: error
     }
 };
-//Action call to add Itemto Market from account page
+//Action call to add Item to Market from account page
 export function addItem(values, ownerName) {
     return function(dispatch) {
         var imageName = values.ProductImage[0].name;
@@ -181,7 +181,7 @@ export function addItem(values, ownerName) {
             ["sellerUID"]: userUid
         });
 
-        hashHistory.push('/account');
+        browserHistory.push('/account');
     }
 }
 

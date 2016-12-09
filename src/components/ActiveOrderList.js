@@ -11,11 +11,11 @@ const ActiveOrderList = (props) => {
     	item.key = key;
     	listItemsArray.push(item);
 	}
-
   	const listItems = listItemsArray.map((row) => {
     	return <ActiveOrderItem key={row.key} 
-    						              item={row} 
-                              onItemSelect={ props.onItemSelect }/>
+    						    item={row}
+								isRestaurant={props.isRestaurant}
+                                onItemSelect={ props.onItemSelect }/>
   	});
 
   	return (
