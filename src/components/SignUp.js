@@ -31,8 +31,8 @@ const validate = (values) => {
         errors.password = 'Passwords do not match';
     }
 
-    if(!values.bussinessName){
-        errors.bussinessName = "Please enter Bussiness Name";
+    if(!values.businessName){
+        errors.businessName = "Please enter Bussiness Name";
     }
 
     if(!values.address){
@@ -106,7 +106,7 @@ class SignUp extends React.Component {
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <Field name="passwordConfirmation" type="password" component={this.renderField} label="Password Confirmation" />
                         <Field name="ownerName" type="text" component={this.renderField} label="Business Contact Name" />
-                        <Field name="bussinessName" type="text" component={this.renderField} label="Business Name" />
+                        <Field name="businessName" type="text" component={this.renderField} label="Business Name" />
                         <Field name="address" type="text" component={this.renderField} label="Business Address" />
                         <Field name="city" type="text" component={this.renderField} label="City" />
                         <Field name="state" type="text" component={this.renderField} label="State" />

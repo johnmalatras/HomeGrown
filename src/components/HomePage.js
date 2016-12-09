@@ -46,11 +46,9 @@ class Home extends React.Component {
         return (
             <div className="container">
                 <Grid>
-                    <Col sm={6} md={6} xsOffset={3}>
-                        <h1>Log In or Sign Up</h1>
-                    </Col>
-                </Grid>
-                <Grid>
+                    <Row>
+                        <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
+                    </Row>
                     <Row className="show-grid">
                         <Col sm={6} md={6}>
                             <div>
