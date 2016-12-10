@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { DateField, Calendar } from 'react-date-picker'
 import CartItem from './CartItem.jsx';
+import StripeCheckout from 'react-stripe-checkout';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 var DropdownButton  = ReactBootstrap.DropdownButton;
 var MenuItem = ReactBootstrap.MenuItem;
-
+import 'whatwg-fetch'
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import DatePicker from 'react-datepicker';
@@ -26,6 +27,18 @@ class CartList extends React.Component {
 		this.handleTimeChange = this.handleTimeChange.bind(this);
   	}
 
+  	onToken(token){
+  		console.log(token);
+	    fetch('/save-stripe-token', {
+	      method: 'POST',
+	      body: JSON.stringify(token),
+	    }).then(response => {
+	      response.json().then(data => {
+	        alert(`We are in business, ${data.email}`);
+	      });
+	    });
+  	}
+
 	handleChange(date) {
 		var holdDate =date.toString();
 		this.setState({
@@ -42,7 +55,6 @@ class CartList extends React.Component {
 	}
 	handleTimeChange(textComment)
 	{
-		console.log(textComment);
 		this.setState({
 			deliveryTime: textComment
 		});
@@ -86,6 +98,7 @@ class CartList extends React.Component {
 		this.props.deleteCartItem(cartItem, theCart);
 		alert(cartItem[0].title + " removed from cart!");
 	}
+
 	render() {
 		price = 0;
 	  	const listItems = this.props.cart.map((row) => {
@@ -98,6 +111,13 @@ class CartList extends React.Component {
 	  	price = price.toFixed(2);
 	  	var fee = (price * .25).toFixed(2);
 	  	var totalPrice = (+price + +fee).toFixed(2);
+	  	var orderDescription;
+
+	  	if (this.props.cart.length > 1) {
+	  		orderDescription = this.props.cart.length + " items";
+	  	} else {
+	  		orderDescription = this.props.cart[0][0].title;
+	  	}
 
 	  	let date = '2017-04-24';
 	  	return (
@@ -165,6 +185,15 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td> </td>
+					<StripeCheckout
+					  stripeKey="pk_test_BlpgbsPBhVhgFQsfLwUwQWzf"
+					  token={this.onToken}  
+					  image="../../RipeNow_Icon_Small.png"
+					  name="RipeNow LLC"
+					  description={orderDescription}
+					  currency="USD"
+					>
+					</StripeCheckout>
 					<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>
 				</tr>
 				<tr>
@@ -177,7 +206,8 @@ class CartList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    user: state.AuthReducer.userInfo
   };
 }
 
