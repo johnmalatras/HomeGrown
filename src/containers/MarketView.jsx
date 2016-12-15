@@ -15,17 +15,6 @@ class MarketView extends React.Component {
     this.props.actions.requestItems();
   }
 
-  onToken(){
-      fetch('http://104.236.192.230/api/chargecard', {
-        method: 'GET',
-        body: 'JSON.stringify(token)',
-      }).then(response => {
-        response.json().then(data => {
-          alert(`We are in business, ${data}`);
-        });
-      });
-    }
-
   render() {
       var warningLabel = '';
       if(this.props.authenticated == false)
@@ -36,7 +25,6 @@ class MarketView extends React.Component {
       <div>
         <h1>Market</h1>
         <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
-        <Button onClick={this.onToken} >test</Button>
         <Table responsive>
             <thead>
               <tr>

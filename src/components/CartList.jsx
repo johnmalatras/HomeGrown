@@ -28,15 +28,14 @@ class CartList extends React.Component {
   	}
 
   	onToken(token){
-  		console.log(token);
-	    fetch('/save-stripe-token', {
-	      method: 'POST',
-	      body: JSON.stringify(token),
-	    }).then(response => {
-	      response.json().then(data => {
-	        alert(`We are in business, ${data.email}`);
-	      });
-	    });
+      fetch('http://104.236.192.230/api/chargecard', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(token)
+      })
   	}
 
 	handleChange(date) {
@@ -192,6 +191,8 @@ class CartList extends React.Component {
 					  name="RipeNow LLC"
 					  description={orderDescription}
 					  currency="USD"
+					  amount={totalPrice * 100}
+					  shippingAddress
 					>
 					</StripeCheckout>
 					<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>
