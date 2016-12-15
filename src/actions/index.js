@@ -306,6 +306,9 @@ export function placeOrder(order) {
             ["deliveryDate"]:order.order.deliveryDate
     });
 
+
+    alert("Order Placed! Thank you for your business!");
+
     return {
         type: PLACE_ORDER,
         payload: []
