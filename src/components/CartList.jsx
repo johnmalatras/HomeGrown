@@ -155,6 +155,20 @@ class CartList extends React.Component {
 	}
 
 	render() {
+
+		var momentArray;
+		//var stillUtc = Date.now().utc(date).toDate();
+		var localTime = moment(Date.now()).local().format('HH');
+
+		if(localTime < 12)
+		{
+			momentArray = [moment().add(1, "days"), moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days")];
+		}
+		else
+		{
+			momentArray = [moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days"),moment().add(7, "days")];
+		}
+
 		price = 0;
 	  	const listItems = this.props.cart.map((row) => {
 	  		price = +price + +(row[1] * row[0].price).toFixed(2);
@@ -224,7 +238,7 @@ class CartList extends React.Component {
 					<td><DatePicker
 						selected={this.state.deliveryDate}
 						onChange={this.handleChange}
-						includeDates={[moment().add(1, "days"), moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days")]}
+						includeDates={momentArray}
 						placeholderText="Select Delivery Date" />
 					</td>
 					<td>

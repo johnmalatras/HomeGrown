@@ -75,8 +75,9 @@ export function signUpUser(credentials) {
             });
 
         holdData = {
+            email:credentials.email,
             ownerName:credentials.ownerName,
-            bussinessName: credentials.bussinessName,
+            businessName: credentials.businessName,
             address: credentials.address,
             city: credentials.city,
             state: credentials.state,
@@ -96,8 +97,9 @@ export function verifyAuth(){
                 firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
                 user.update({
+                    ["email"]:holdData.email,
                     ["ownerName"]:holdData.ownerName,
-                    ["bussinessName"]: holdData.bussinessName,
+                    ["businessName"]: holdData.businessName,
                     ["address"]: holdData.address,
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
@@ -127,7 +129,6 @@ export function authUser() {
         const userUid = Firebase.auth().currentUser.uid;
         var ref = database.ref('/users/'+userUid.toString());
         ref.on("value", function(snapshot) {
-            //console.log(snapshot.val());
           dispatch({
             type: AUTH_USER,
             payload: snapshot.val()
