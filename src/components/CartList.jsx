@@ -58,7 +58,7 @@ class CartList extends React.Component {
 		  	} else {
 		  		orderDescription = this.props.cart[0][0].title;
 		  	}
-		  	
+
 		  	var fee = (price * .25).toFixed(2);
 		  	var totalPrice = (+price + +fee).toFixed(2) * 100;
 
@@ -171,7 +171,7 @@ class CartList extends React.Component {
 
 	  	if (this.props.cart.length > 1) {
 	  		orderDescription = this.props.cart.length + " items";
-	  	} else {
+	  	} else if (this.props.cart.length == 0) {
 	  		orderDescription = this.props.cart[0][0].title;
 	  	}
 

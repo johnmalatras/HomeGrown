@@ -31,9 +31,9 @@ class MarketView extends React.Component {
                 <th> </th>
                 <th>Item</th>
                 <th>Seller</th>
-                <th>Price</th>
-                <th>Quantity</th>
+                <th>Price ($)</th>
                 <th>Metric</th>
+                <th>Quantity</th>
                 <th>Quality</th>
               </tr>
             </thead>
