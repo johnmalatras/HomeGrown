@@ -7,6 +7,7 @@ var Button = ReactBootstrap.Button;
 var Table = ReactBootstrap.Table;
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
+import 'whatwg-fetch'
 
 class MarketView extends React.Component {
 
@@ -30,9 +31,9 @@ class MarketView extends React.Component {
                 <th> </th>
                 <th>Item</th>
                 <th>Seller</th>
-                <th>Price</th>
-                <th>Quantity</th>
+                <th>Price ($)</th>
                 <th>Metric</th>
+                <th>Quantity</th>
                 <th>Quality</th>
               </tr>
             </thead>

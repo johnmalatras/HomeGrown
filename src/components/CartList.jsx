@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { DateField, Calendar } from 'react-date-picker'
 import CartItem from './CartItem.jsx';
+import StripeCheckout from 'react-stripe-checkout';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 var DropdownButton  = ReactBootstrap.DropdownButton;
 var MenuItem = ReactBootstrap.MenuItem;
-
+import 'whatwg-fetch'
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import DatePicker from 'react-datepicker';
@@ -18,12 +19,75 @@ class CartList extends React.Component {
 
 	constructor(props) {
 	    super(props);
-	    this.state = {priceTotal: 0, listItems:[], fee: 0, priceSubTotal: 0,comment:"",deliveryTime:"10am-11am", errorMessage:'',deliveryDate: undefined, deliveryDateDay: ''};
+	    this.state = {description: "", listItems:[], comment:"",deliveryTime:"10-11", errorMessage:'',deliveryDate: undefined, deliveryDateDay: ''};
 	    this.placeOrder = this.placeOrder.bind(this);
 		this.deleteItem = this.deleteItem.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
 		this.handleTimeChange = this.handleTimeChange.bind(this);
+		this.onToken = this.onToken.bind(this);
+  	}
+
+  	onToken(token){
+
+	  	if(this.props.cart.length == 0)
+		{
+			alert("error");
+			this.setState({
+				errorMessage: 'You must have someting in your cart to order.'
+			});
+		}
+		else if(this.state.deliveryDate == undefined)
+		{
+			alert("error");
+			this.setState({
+				errorMessage: 'You must select a delivery date.'
+			});
+		}
+		else if(price < 200)
+		{
+			alert("error");
+			this.setState({
+				errorMessage: 'You must have at least $200 in your cart.'
+			});
+		} else {
+			var orderDescription;
+
+		  	if (this.props.cart.length > 1) {
+		  		orderDescription = this.props.cart.length + " items";
+		  	} else {
+		  		orderDescription = this.props.cart[0][0].title;
+		  	}
+
+		  	var fee = (price * .25).toFixed(2);
+		  	var totalPrice = (+price + +fee).toFixed(2) * 100;
+
+		  	token.orderDescription = orderDescription;
+		  	token.orderPrice = totalPrice;
+
+			fetch('http://104.236.192.230/api/chargecard', {
+	        	method: 'POST',
+	        	headers: {
+	          		'Accept': 'application/json',
+	          		'Content-Type': 'application/json',
+	        	},
+	        	body: JSON.stringify(token),
+	      	}).then(response => {
+	      		response.json().then(data => {
+	        		console.log(data);
+	      		});
+				var purchase = {
+					cart: this.props.cart,
+					subtotal: subtotal,
+					fee: fee,
+					total: total,
+					deliveryDate: this.state.deliveryDateDay,
+					comment: this.state.comment,
+					deliveryTime: this.state.deliveryTime
+				};
+				this.props.placeOrder(purchase);
+	      	});
+      	}
   	}
 
 	handleChange(date) {
@@ -42,7 +106,6 @@ class CartList extends React.Component {
 	}
 	handleTimeChange(textComment)
 	{
-		console.log(textComment);
 		this.setState({
 			deliveryTime: textComment
 		});
@@ -54,18 +117,21 @@ class CartList extends React.Component {
 			this.setState({
 				errorMessage: 'You must have someting in your cart to order.'
 			});
+			return -1;
 		}
 		else if(this.state.deliveryDate == undefined)
 		{
 			this.setState({
 				errorMessage: 'You must select a delivery date.'
 			});
+			return -1;
 		}
 		else if(price < 200)
 		{
 			this.setState({
 				errorMessage: 'You must have at least $200 in your cart.'
 			});
+			return -1;
 		}
 		else {
 			var purchase = {
@@ -79,6 +145,7 @@ class CartList extends React.Component {
 			};
 			this.props.placeOrder(purchase);
 			alert("Order Placed! Thank you for your business!")
+			return 0;
 		}
   	}
 
@@ -86,6 +153,7 @@ class CartList extends React.Component {
 		this.props.deleteCartItem(cartItem, theCart);
 		alert(cartItem[0].title + " removed from cart!");
 	}
+
 	render() {
 
 		var momentArray;
@@ -112,6 +180,14 @@ class CartList extends React.Component {
 	  	price = price.toFixed(2);
 	  	var fee = (price * .25).toFixed(2);
 	  	var totalPrice = (+price + +fee).toFixed(2);
+
+	  	var orderDescription;
+
+	  	if (this.props.cart.length > 1) {
+	  		orderDescription = this.props.cart.length + " items";
+	  	} else if (this.props.cart.length == 0) {
+	  		orderDescription = this.props.cart[0][0].title;
+	  	}
 
 	  	let date = '2017-04-24';
 	  	return (
@@ -179,7 +255,21 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td> </td>
-					<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>
+					<td>
+						<StripeCheckout
+						  stripeKey="pk_test_BlpgbsPBhVhgFQsfLwUwQWzf"
+						  token={this.onToken}  
+						  image="../../RipeNow_Icon_Small.png"
+						  name="RipeNow LLC"
+						  description={orderDescription}
+						  currency="USD"
+						  amount={totalPrice * 100}
+						  shippingAddress
+						  email={this.props.user.email}
+						>
+						</StripeCheckout> 
+					</td>
+					{/*<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>*/}
 				</tr>
 				<tr>
 					{this.state.errorMessage}
@@ -191,7 +281,8 @@ class CartList extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    cart: state.cart.cart
+    cart: state.cart.cart,
+    user: state.AuthReducer.userInfo
   };
 }
 
