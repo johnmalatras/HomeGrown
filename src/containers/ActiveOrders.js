@@ -32,6 +32,7 @@ class ActiveOrders extends React.Component {
             <thead>
               <tr>
                 <th>{dateLabel}</th>
+                <th>Order Date</th>
                 <th>Items</th>
                 <th>Total</th>
               </tr>

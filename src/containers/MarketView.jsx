@@ -17,10 +17,13 @@ class MarketView extends React.Component {
 
   render() {
       var warningLabel = '';
+      var userAuth = true;
       if(this.props.authenticated == false)
       {
+          userAuth = false;
           warningLabel = 'Please sign in or sign up to order or list produce';
       }
+      //console.log(this.props.userInfo);
     return (
       <div>
         <h1>Market</h1>
@@ -40,7 +43,7 @@ class MarketView extends React.Component {
             <MarketList items={ this.props.items }
                         images = {this.props.itemImages}
                         userInfo = {this.props.userInfo}
-                        userAuthenticated = {this.props.authenticated}
+                        userAuthenticated = {userAuth}
                         getImage = {() => this.props.actions.requestImage(key)}
                         onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
         </Table>

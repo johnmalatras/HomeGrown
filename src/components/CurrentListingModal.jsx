@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 var ReactBootstrap = require('react-bootstrap');
-
+var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 class ItemModal extends React.Component {
 
   constructor(props) {
@@ -38,18 +38,20 @@ class ItemModal extends React.Component {
     }
 
   	return (
-    	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
-    		<div className="container">
-      	 <h4>Edit quantity of {item.title}</h4>
-         <p>
-            Update Quantity:  {" "}
-            <input type="number" placeholder={item.quantity} value={this.state.value} onChange={this.handleChange} />
-          </p>
-          <Button onClick={this.verifyChange}>Save</Button>  
-          <hr />
-  		   <Button onClick={() => this.props.onHide()}>Close</Button>
-  		   <br />
-    		</div>
+        <Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
+            <div className="container">
+                <h4>Edit quantity of {item.title}</h4>
+                <p>
+                    Update Quantity: {" "}
+                    <input type="number" placeholder={item.quantity} value={this.state.value}
+                           onChange={this.handleChange}/>
+                </p>
+                <ButtonToolbar>
+                    <Button onClick={this.verifyChange}>Save</Button>
+                    <Button onClick={() => this.props.onHide()}>Close</Button>
+                </ButtonToolbar>
+                <br />
+            </div>
     	</Modal>
   	);
   }
