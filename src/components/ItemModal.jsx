@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 var ReactBootstrap = require('react-bootstrap');
 import moment from 'moment';
+var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 
 class ItemModal extends React.Component {
 
@@ -32,7 +33,7 @@ class ItemModal extends React.Component {
       alert("Can't buy less than one of an item!");
     } else {
       var selectedItem = this.props.selectedItem;
-      selectedItem.buyerName = this.props.userInfo.bussinessName;
+      selectedItem.buyerName = this.props.userInfo.businessName;
       var cartAdd = {
         item: selectedItem,
         quantity: this.state.value,
@@ -64,7 +65,6 @@ class ItemModal extends React.Component {
     		<div className="container">
       	 <h3>{item.title}</h3>
          <h5>Sold by: {item.seller}</h5>
-         <hr />
          <p><em>Quantity Available:</em> {item.quantity + " " + item.metric} </p>
          <p><em>Price:</em> {item.price}</p>
 
@@ -79,10 +79,12 @@ class ItemModal extends React.Component {
           </FormGroup>
 
           {"  "}
-          <Button onClick={this.verifyBuy}>Buy</Button>  
+           <ButtonToolbar>
+          <Button onClick={this.verifyBuy}>Buy</Button>
+             <Button onClick={() => this.props.onHide()}>Close</Button>
+             </ButtonToolbar>
          </Form>
-          <hr />
-  		   <Button onClick={() => this.props.onHide()}>Close</Button>
+
   		   <br />
     		</div>
     	</Modal>

@@ -42,7 +42,6 @@ class CartList extends React.Component {
 	}
 	handleTimeChange(textComment)
 	{
-		console.log(textComment);
 		this.setState({
 			deliveryTime: textComment
 		});
@@ -89,7 +88,6 @@ class CartList extends React.Component {
 	render() {
 
 		var momentArray;
-		//var stillUtc = Date.now().utc(date).toDate();
 		var localTime = moment(Date.now()).local().format('HH');
 
 		if(localTime < 12)

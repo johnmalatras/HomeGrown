@@ -93,7 +93,7 @@ class Header extends React.Component {
                         <Nav pullRight>
                             <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
                             <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}>About</NavItem>
-                            <NavItem eventKey={5} href="#" onClick={() => this.handleSignout()}>Sign In/Up</NavItem>
+                            <NavItem eventKey={5} href="#" onClick={() => this.handleSignout()}>Sign In</NavItem>
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>

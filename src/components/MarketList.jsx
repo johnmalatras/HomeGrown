@@ -7,29 +7,29 @@ const MarketList = (props) => {
 
 	var listItemsArray = [];
 	for (var key in props.items) {
-		// if(key != undefined)
-		// {
-		// 	console.log("KEY");
-		// 	console.log(key);
-		// 	props.getImage(key);
-		// }
 		var item = props.items[key];
     	item.key = key;
-		// for (var img in props.itemImages)
-		// {
-		// 	if(props.itemImages.key == key)
-		// 	{
-		// 		item.add(props.itemImages[key]);
-		// 	}
-		// }
     	listItemsArray.push(item);
+	}
+	//console.log(props.userAuthenticated);
+	var isAuth = props.userAuthenticated;
+	var isRestaurant = false;
+	if(props.userInfo != undefined)
+	{
+		if(props.userInfo.isResturant == true)
+		{
+			isRestaurant = true;
+		}
+	}
+	else {
+
 	}
 
   	const listItems = listItemsArray.map((row) => {
     	return <MarketItem key={row.key} 
     						item={row}
-						    userInfo={props.userInfo}
-						    auth = {props.userAuthenticated}
+						    isRestaurant={isRestaurant}
+						    auth = {isAuth}
 							onItemSelect={ props.onItemSelect } />
   	});
 

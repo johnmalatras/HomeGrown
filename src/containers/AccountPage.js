@@ -10,8 +10,10 @@ import * as Actions from '../actions';
 var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
-var editingName = false;
+var Panel = ReactBootstrap.Panel;
 
+var editingName = false;
+var nameElement;
 class AccountPage extends React.Component {
     constructor(props) {
         super();
@@ -21,15 +23,68 @@ class AccountPage extends React.Component {
     addItem(){
         browserHistory.push('/addItem');
     }
-    editInfo(value, previousValue) {
-        if(editingName == false)
+    editInfo() {
+        this.props.actions.updateAccountPage();
+    }
+    renderName(){
+        return [
+            <div> </div>
+        ]
+        if(this.props.isEditing == false)
         {
-            editingName = true;
+            return[
+                <Grid>
+                    <Row>
+                        <Col md={6}><h3>Account Information</h3></Col>
+                        <Col md={6}><Button onClick={() => this.editInfo('phoneNumber',this.props.userInfo.phoneNumber)} >Edit User Info</Button></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
+                        <Col md={6}>{nameElement}</Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Bussiness Name:</h4></Col>
+                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.bussinessName}</p></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
+                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
+                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
+                    </Row>
+                </Grid>
+                ]
         }
         else{
-            editingName = false;
+            return[
+                <Grid>
+                    <Row>
+                        <Col md={6}><h3>Account Information</h3></Col>
+                        <Col md={6}><Button onClick={() => this.editInfo()} >Save User Info</Button></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
+                        <Col md={6}>{nameElement}</Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Bussiness Name:</h4></Col>
+                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.bussinessName}</p></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
+                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
+                    </Row>
+                    <Row>
+                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
+                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
+                    </Row>
+                </Grid>
+            ]
         }
     }
+
     render() {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
@@ -38,11 +93,11 @@ class AccountPage extends React.Component {
             currentListingsElement =
                 <div>
                     <CurrentListings />
-                    <Button style={{background: '#8DC63F', color: '#000000'}} onClick={() => this.addItem()} >Add Item</Button>
+                    <Button  onClick={() => this.addItem()} >Add Item</Button>
                 </div>
         }
         var nameElement;
-        if(editingName == false)
+        if(this.props.isEditing == false)
         {
             nameElement =
                 <div>
@@ -57,39 +112,30 @@ class AccountPage extends React.Component {
         return (
             <div>
                 <h1>Account Overview</h1>
-                <h3>Account Information</h3>
-                <Grid>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}>{nameElement}</Col>
-                        <Col md={6}><Button onClick={() => this.editInfo('ownerName',this.props.userInfo.ownerName)} >Edit Owner Name</Button></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Bussiness Name:</h4></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.bussinessName}</p></Col>
-                        <Col md={6}><Button onClick={() => this.editInfo('bussinessName',this.props.userInfo.bussinessName)} >Edit Business Name</Button></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
-                        <Col md={6}><Button onClick={() => this.editInfo('address',this.props.userInfo.address)} >Edit Address</Button></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
-                        <Col md={6}><Button onClick={() => this.editInfo('phoneNumber',this.props.userInfo.phoneNumber)} >Edit Phone Number</Button></Col>
-                    </Row>
-                </Grid>
-                <ActiveOrders />
                 {currentListingsElement}
+                <ActiveOrders />
+                {this.renderName()}
+                <Panel>
+                    <h4>User Settings</h4>
+                    <Grid>
+                        <Row>
+                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.ownerName}</p></Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Business Name:</h4></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.businessName}</p></Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
+                        </Row>
+                    </Grid>
+                </Panel>
             </div>
         )
 
@@ -99,7 +145,8 @@ class AccountPage extends React.Component {
 function mapStateToProps(state) {
   return {
     items: state.activeOrders.items,
-    userInfo: state.AuthReducer.userInfo
+    userInfo: state.AuthReducer.userInfo,
+    isEditing: state.AccountReducer.editingUser
   };
 }
 

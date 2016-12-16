@@ -27,7 +27,6 @@ var divStyle =  {
     size: 45
 };
 var imgStyle = {
-    //flex: 1,
     justifyContent: 'center',
         alignItems: 'center'
 };
@@ -47,7 +46,7 @@ class Home extends React.Component {
             <div className="container">
                 <Grid>
                     <Row>
-                        <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
+                        <Col xs={8} md={8} xsOffset={2}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
                     </Row>
                     <Row className="show-grid">
                         <Col sm={6} md={6}>
@@ -71,8 +70,8 @@ class Home extends React.Component {
                         <Col sm={6} md={6}>
                             <div>
                                 <h2>Work with RipeNow</h2>
-                                <p>If you are a local farmer or resturant in the Raleigh area who is interested
-                                in working with or learning more about RipeNow please send an email to ajtulenko@ripenow.co</p>
+                                <p>If you are a local farmer or restaurant in the Raleigh area who is interested
+                                in working with or learning more about RipeNow please send an email to hello@ripenow.co</p>
                             </div>
                         </Col>
                     </Row>

@@ -22,24 +22,25 @@ export const REQUEST_CURRENT_LISTINGS = 'REQUEST_CURRENT_LISTINGS';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
+export const UPDATE_ACCOUNT_PAGE = 'UPDATE_ACCOUNT_PAGE';
 
 //DEVELOPMENT SERVER
-const config = {
+/*const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
     databaseURL: "https://homegrown-65645.firebaseio.com",
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
-};
+};*/
 
 //PRODUCTION SERVER
-/*const config = {
+const config = {
     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
     authDomain: "ripenow-bbe84.firebaseapp.com",
     databaseURL: "https://ripenow-bbe84.firebaseio.com",
     storageBucket: "ripenow-bbe84.appspot.com",
     messagingSenderId: "475593459363"
-};*/
+};
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -141,7 +142,11 @@ export function authUser() {
         });
       }
 };
-
+export function updateAccountPage(){
+    return {
+        type: UPDATE_ACCOUNT_PAGE
+    }
+}
 export function authError(error) {
     return {
         type: AUTH_ERROR,
@@ -243,7 +248,6 @@ export function deleteCartItem(cartItem, theCart) {
 }
 
 export function placeOrder(order) {
-    //console.log(order);
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
@@ -270,7 +274,6 @@ export function placeOrder(order) {
         userItemRef.update({
             ["quantity"]: newQuantity
         });
-
         // add to buyer active order
         const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+timestamp);
         buyerActiveNode.update({
@@ -346,7 +349,7 @@ export function requestActiveOrders() {
 
 export function requestImage(imageKey) {
     // Create a reference to the file we want to download
-    console.log(imageKey);
+    //console.log(imageKey);
     //var imgRef = storageRef.child('images/' + imageKey);
 
     // return function(dispatch) {

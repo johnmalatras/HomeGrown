@@ -19,6 +19,7 @@ import AccountPage from './src/containers/AccountPage';
 import AddItemPage from './src/containers/AddItemPage';
 import AboutPage from './src/components/AboutPage';
 import TermsOfUse from './src/components/TermsOfUse';
+import Footer from './src/containers/Footer';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -39,6 +40,6 @@ ReactDOM.render(
     document.getElementById('app')
 );
 
+//ReactDOM.render(<Footer/>, document.getElementById('footer'))
 
-//
 
