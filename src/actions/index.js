@@ -119,7 +119,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    browserHistory.push('/homePage');
+    browserHistory.push('/login');
     return {
         type: 'SIGN_OUT_USER'
     }

@@ -28,7 +28,7 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={MarketView} />
-                <Route path="/homePage" component={HomePage}/>
+                <Route path="/login" component={HomePage}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
@@ -39,7 +39,6 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
-
 //ReactDOM.render(<Footer/>, document.getElementById('footer'))
 
 
