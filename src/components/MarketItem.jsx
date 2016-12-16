@@ -3,48 +3,44 @@ var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 var Image = ReactBootstrap.Image;
 
-const MarketItem = ({item, userInfo, onItemSelect,auth}) => {
-	if(userInfo != undefined)
-	{
-		if(auth != undefined)
-		{
-			const isRestaurant = userInfo.isRestaurant;
-			if(isRestaurant === 'false')
-			{
-				const rowElement = (
-					<tr key={item.title}>
-						<td> <Image src={item.image} responsive /> </td>
-						<td>{item.title}</td>
-						<td>{item.seller}</td>
-						<td>{item.price}</td>
-						<td>{item.metric}</td>
-						<td>{item.quantity}</td>
-						<td>{item.quality}</td>
-						<td> </td>
-					</tr>
-				)
-				return rowElement;
-			}else {
-				const rowElement = (
-					<tr key={item.title}>
-						<td> <Image src={item.image} responsive /> </td>
-						<td>{item.title}</td>
-						<td>{item.seller}</td>
-						<td>{item.price}</td>
-						<td>{item.metric}</td>
-						<td>{item.quantity}</td>
-						<td>{item.quality}</td>
-						<td> <Button onClick={() => onItemSelect(item)} >View</Button></td>
-					</tr>
-				)
-				return rowElement;
-			}
+const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
+	var res = isRestaurant;
+	//console.log(item);
+	if (auth != false) {
+		if (res === 'false') {
+			const rowElement = (
+				<tr key={item.title}>
+					<td><Image src={item.image} responsive/></td>
+					<td>{item.title}</td>
+					<td>{item.seller}</td>
+					<td>{item.price}</td>
+					<td>{item.metric}</td>
+					<td>{item.quantity}</td>
+					<td>{item.quality}</td>
+					<td> </td>
+				</tr>
+			)
+			return rowElement;
+		} else {
+			const rowElement = (
+				<tr key={item.title}>
+					<td><Image src={item.image} responsive/></td>
+					<td>{item.title}</td>
+					<td>{item.seller}</td>
+					<td>{item.price}</td>
+					<td>{item.quantity}</td>
+					<td>{item.metric}</td>
+					<td>{item.quality}</td>
+					<td><Button onClick={() => onItemSelect(item)}>View</Button></td>
+				</tr>
+			)
+			return rowElement;
 		}
-	} else
-	{
+	}
+	else {
 		const rowElement = (
 			<tr key={item.title}>
-				<td> <Image src={item.image} responsive /> </td>
+				<td><Image src={item.image} responsive/></td>
 				<td>{item.title}</td>
 				<td>{item.seller}</td>
 				<td>{item.price}</td>
@@ -56,9 +52,6 @@ const MarketItem = ({item, userInfo, onItemSelect,auth}) => {
 		)
 		return rowElement;
 	}
-
-
-
 }
 
 export default MarketItem;
