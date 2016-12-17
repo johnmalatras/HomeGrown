@@ -70,8 +70,8 @@ class Home extends React.Component {
                         <Col sm={6} md={6}>
                             <div>
                                 <h2>Work with RipeNow</h2>
-                                <p>If you are a local farmer or restaurant in the Raleigh area who is interested
-                                in working with or learning more about RipeNow please send an email to hello@ripenow.co</p>
+                                <p>If you are a farmer or restaurant in the Raleigh area who is interested
+                                in learning more about RipeNow please contact us at <a href="mailto:hello@ripenow.co?Subject=Hello!" target="_top">hello@ripenow.co</a></p>
                             </div>
                         </Col>
                     </Row>
