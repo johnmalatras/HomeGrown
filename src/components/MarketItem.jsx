@@ -5,9 +5,9 @@ var Image = ReactBootstrap.Image;
 
 const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
 	var res = isRestaurant;
-	//console.log(item);
+	console.log(isRestaurant);
 	if (auth != false) {
-		if (res === 'false') {
+		if (res == false) {
 			const rowElement = (
 				<tr key={item.title}>
 					<td><Image src={item.image} responsive/></td>
