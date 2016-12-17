@@ -5,7 +5,7 @@ var Image = ReactBootstrap.Image;
 
 const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
 	var res = isRestaurant;
-	console.log(isRestaurant);
+	//console.log(isRestaurant);
 	if (auth != false) {
 		if (res == false) {
 			const rowElement = (

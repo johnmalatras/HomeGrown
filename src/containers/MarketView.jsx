@@ -23,7 +23,6 @@ class MarketView extends React.Component {
           userAuth = false;
           warningLabel = 'Please sign in or sign up to order or list produce';
       }
-      //console.log(this.props.userInfo);
     return (
       <div>
         <h1>Market</h1>

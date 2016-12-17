@@ -39,7 +39,8 @@ class CartList extends React.Component {
 		}
 
 		var fee = (price * .25).toFixed(2);
-		var totalPrice = (+price + +fee).toFixed(2) * 100;
+		var totalPrice = (+price + +fee).toFixed(2)*100;
+		var priceDollars = totalPrice/100;
 
 		token.orderDescription = orderDescription;
 		token.orderPrice = totalPrice;
@@ -59,7 +60,7 @@ class CartList extends React.Component {
 				cart: this.props.cart,
 				subtotal: price,
 				fee: fee,
-				total: totalPrice,
+				total: priceDollars,
 				deliveryDate: this.state.deliveryDateDay,
 				comment: this.state.comment,
 				deliveryTime: this.state.deliveryTime
