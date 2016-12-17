@@ -22,10 +22,6 @@ module.exports = {
                 test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
                 loader: 'file-loader?name=[name].[ext]'  // <-- retain original file name
             }
-            // {
-            //     test: /\.(less|css)$/,
-            //     loader: 'style!css!less'
-            // }
         ]
     },
 };
