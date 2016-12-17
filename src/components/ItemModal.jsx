@@ -27,11 +27,15 @@ class ItemModal extends React.Component {
   }
 
   verifyBuy() {
+    console.log(this.state.value);
     if (this.state.value > this.props.selectedItem.quantity) {
       alert("Quantity entered exceeds what's available!");
     } else if (this.state.value < 1) {
       alert("Can't buy less than one of an item!");
-    } else {
+    } else if(isNaN(this.state.value)){
+      alert("Can't buy NaN, please select an amount!");
+    }
+    else {
       var selectedItem = this.props.selectedItem;
       selectedItem.buyerName = this.props.userInfo.businessName;
       var cartAdd = {
