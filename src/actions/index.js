@@ -23,6 +23,7 @@ export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 export const UPDATE_ACCOUNT_PAGE = 'UPDATE_ACCOUNT_PAGE';
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 
 //DEVELOPMENT SERVER
 /*const config = {
@@ -144,6 +145,17 @@ export function authUser() {
         });
       }
 };
+
+export function updateUserSetting(parameter,value){
+    const userUid = Firebase.auth().currentUser.uid;
+    const user = database.ref('/users/'+userUid.toString());
+    user.update({
+        [parameter.toString()]: value
+    });
+    return {
+        type: UPDATE_USER_INFO
+    }
+}
 export function updateAccountPage(parameter){
     return {
         type: UPDATE_ACCOUNT_PAGE,

@@ -33,7 +33,7 @@ class EditUserPage extends React.Component {
     updateEmail() {
         if(this.state.phoneNumber.length == 12)
         {
-            console.log(this.state.phoneNumber);
+            this.props.actions.updateUserSetting("phoneNumber",this.state.phoneNumber);
         }
         else
         {
@@ -43,10 +43,26 @@ class EditUserPage extends React.Component {
         }
     }
     updateOwnerName(){
-        console.log(this.state.ownerName);
+        if(this.state.ownerName.length > 0)
+        {
+            this.props.actions.updateUserSetting("ownerName",this.state.ownerName);
+        }
+        else {
+            this.setState({
+                ownerNameError: "Phone enter a owner name"
+            });
+        }
     }
     updateBusinessName(){
-        console.log(this.state.businessName);
+        if(this.state.businessName.length > 0)
+        {
+            this.props.actions.updateUserSetting("businessName",this.state.businessName);
+        }
+        else {
+            this.setState({
+                businessNameError: "Phone enter a business name"
+            });
+        }
     }
     handleOwnerNameChange(newName)
     {
@@ -75,7 +91,7 @@ class EditUserPage extends React.Component {
                         <h3>Phone Number</h3>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Phone Number:</p></Col>
-                            <Col md={6}>{this.props.userInfo.phoneNumber}</Col>
+                            <Col md={6}>{this.props.userInfo.phoneNumber.substring(2)}</Col>
                         </Row>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Phone Number: </p></Col>
