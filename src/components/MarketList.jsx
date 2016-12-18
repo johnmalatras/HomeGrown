@@ -11,20 +11,22 @@ const MarketList = (props) => {
     	item.key = key;
     	listItemsArray.push(item);
 	}
-	//console.log(props.userInfo);
+	console.log(props.userInfo);
 	var isAuth = props.userAuthenticated;
 	var isRestaurant = false;
 	if(props.userInfo != undefined)
 	{
-		if(props.userInfo.isRestaurant == true)
+		console.log("HIT USERINFO");
+		console.log(props.userInfo.isRestaurant);
+		if(props.userInfo.isRestaurant == 'true')
 		{
+			console.log("HIT HERE");
 			isRestaurant = true;
 		}
 	}
 	else {
 		isRestaurant = false;
 	}
-
   	const listItems = listItemsArray.map((row) => {
     	return <MarketItem key={row.key} 
     						item={row}

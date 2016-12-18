@@ -83,7 +83,8 @@ export function signUpUser(credentials) {
             city: credentials.city,
             state: credentials.state,
             phoneNumber: credentials.phoneNumber,
-            isResturant: credentials.isResturant
+            isRestaurant: credentials.isRestaurant,
+            isAuth: false
         };
         firstTime = true;
 
@@ -105,7 +106,8 @@ export function verifyAuth(){
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isResturant
+                    ["isRestaurant"]: holdData.isResturant,
+                    ["isAuth"]: false
                 });
             }
             if (user) {
@@ -142,9 +144,10 @@ export function authUser() {
         });
       }
 };
-export function updateAccountPage(){
+export function updateAccountPage(parameter){
     return {
-        type: UPDATE_ACCOUNT_PAGE
+        type: UPDATE_ACCOUNT_PAGE,
+        payload: parameter
     }
 }
 export function authError(error) {
