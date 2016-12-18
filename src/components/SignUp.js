@@ -72,9 +72,9 @@ class SignUp extends React.Component {
     }
 
     handleFormSubmit(values){
-        if(values.isResturant == undefined)
+        if(values.isRestaurant == undefined)
         {
-            values.isResturant = true;
+            values.isRestaurant = true;
         }
         {this.props.onSignUp(values)}
     };
@@ -115,7 +115,7 @@ class SignUp extends React.Component {
                         <fieldset className="form-group">
                             <label>Select Restaurant or Farm</label>
                             <div>
-                                <Field name="isResturant" component="select">
+                                <Field name="isRestaurant" component="select">
                                     <option value={true}>Restaurant</option>
                                     <option value={false}>Farm</option>
                                 </Field>
