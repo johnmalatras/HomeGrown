@@ -17,7 +17,6 @@ class CurrentListings extends React.Component {
   render() {
     return (
       <div>
-        <hr />
         <h3>Current Listings</h3>
         <Table responsive>
             <thead>

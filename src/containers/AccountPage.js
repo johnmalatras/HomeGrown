@@ -38,6 +38,11 @@ class AccountPage extends React.Component {
         {
             browserHistory.push('/password');
         }
+        else if(selectedKey == 4)
+        {
+            browserHistory.push('/available');
+        }
+
     }
 
 
@@ -45,6 +50,7 @@ class AccountPage extends React.Component {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
         var currentListingsElement;
+        var editSettingsElement;
         if (isRestaurant === 'false') {
             currentListingsElement =
                 <div>
@@ -52,7 +58,42 @@ class AccountPage extends React.Component {
                         <CurrentListings />
                         <Button bsStyle="primary"  onClick={() => this.addItem()} >Add Item</Button>
                     </Panel>
-                </div>
+                </div>;
+
+            editSettingsElement =
+                <Grid>
+                    <Row>
+                        <Col md={2}><h3 style={{fontWeight: 'bold'}}>Settings:</h3></Col>
+                    </Row>
+                    <Row>
+                        <Col md={12}>
+                            <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
+                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
+                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
+                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
+                                <NavItem eventKey={4} href="/dates">Edit Available Selling Dates</NavItem>
+                            </Nav>
+                        </Col>
+                    </Row>
+                </Grid>
+        }
+        else
+        {
+            editSettingsElement =
+                <Grid>
+                    <Row>
+                        <Col md={2}><h3 style={{fontWeight: 'bold'}}>Settings:</h3></Col>
+                    </Row>
+                    <Row>
+                        <Col md={12}>
+                            <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
+                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
+                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
+                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
+                            </Nav>
+                        </Col>
+                    </Row>
+                </Grid>
         }
         var nameElement;
         if(this.props.isEditing == false)
@@ -75,20 +116,7 @@ class AccountPage extends React.Component {
                     <ActiveOrders />
                 </Panel>
                 <Panel>
-                    <Grid>
-                        <Row>
-                            <Col md={2}><h3 style={{fontWeight: 'bold'}}>Settings:</h3></Col>
-                        </Row>
-                        <Row>
-                            <Col md={12}>
-                                <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
-                                    <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
-                                    <NavItem eventKey={2} href="/email">Edit Email</NavItem>
-                                    <NavItem eventKey={3} href="/password">Edit Password</NavItem>
-                                </Nav>
-                            </Col>
-                        </Row>
-                    </Grid>
+                    {editSettingsElement}
                 </Panel>
             </div>
         )

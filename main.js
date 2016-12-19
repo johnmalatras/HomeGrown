@@ -23,6 +23,7 @@ import Footer from './src/containers/Footer';
 import EditUserPage from './src/containers/EditUserPage';
 import EditEmailPage from './src/containers/EditEmailPage';
 import EditPasswordPage from './src/containers/EditPasswordPage';
+import EditAvailableDatesPage from './src/containers/EditAvailableDatesPage';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -38,6 +39,7 @@ ReactDOM.render(
                 <Route path="/edit" component={RequireAuth(EditUserPage)}/>
                 <Route path="/email" component={RequireAuth(EditEmailPage)}/>
                 <Route path="/password" component={RequireAuth(EditPasswordPage)}/>
+                <Route path="/available" component={RequireAuth(EditAvailableDatesPage)}/>
                 <Route path="/about" component={AboutPage}/>
                 <Route path="/terms" component={TermsOfUse}/>
             </Route>

@@ -1,14 +1,21 @@
 /**
  * Created by alextulenko on 11/19/16.
  */
-import { UPDATE_ACCOUNT_PAGE,UPDATE_USER_INFO, UPDATE_EMAIL_ERROR, UPDATE_PASSWORD_ERROR,UPDATE_PASSWORD_SUCCESSFUL,RESET_PASSWORD_UPDATE } from '../actions';
+import { UPDATE_ACCOUNT_PAGE,UPDATE_USER_INFO, UPDATE_EMAIL_ERROR, UPDATE_PASSWORD_ERROR,UPDATE_PASSWORD_SUCCESSFUL,RESET_PASSWORD_UPDATE,UPDATE_AVAILABLE_DATES } from '../actions';
 
 const initialState =  {
     editingUser: false,
     editingParameter: '',
     emailEditError: '',
     passwordEditError: '',
-    passwordChanged: false
+    passwordChanged: false,
+    sunAvail: false,
+    monAvail: false,
+    tueAvail: false,
+    wedAvail: false,
+    thurAvail: false,
+    friAvail: false,
+    satAvail: false
 };
 
 export default function account(state = initialState, action) {
@@ -39,6 +46,10 @@ export default function account(state = initialState, action) {
                 passwordChanged: false,
                 passwordEditError: ''
             });
+        case UPDATE_AVAILABLE_DATES:
+            return{
+
+            };
         default:
             return state;
     }

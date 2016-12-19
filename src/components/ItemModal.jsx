@@ -84,9 +84,9 @@ class ItemModal extends React.Component {
 
           {"  "}
            <ButtonToolbar>
-          <Button onClick={this.verifyBuy}>Buy</Button>
+             <Button onClick={this.verifyBuy}>Buy</Button>
              <Button onClick={() => this.props.onHide()}>Close</Button>
-             </ButtonToolbar>
+           </ButtonToolbar>
          </Form>
 
   		   <br />
