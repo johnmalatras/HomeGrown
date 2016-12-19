@@ -24,6 +24,7 @@ export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 export const UPDATE_ACCOUNT_PAGE = 'UPDATE_ACCOUNT_PAGE';
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+export const UPDATE_EMAIL_ERROR = 'UPDATE_EMAIL_ERROR';
 
 //DEVELOPMENT SERVER
 /*const config = {
@@ -84,8 +85,7 @@ export function signUpUser(credentials) {
             city: credentials.city,
             state: credentials.state,
             phoneNumber: credentials.phoneNumber,
-            isRestaurant: credentials.isRestaurant,
-            isAuth: false
+            isRestaurant: credentials.isRestaurant
         };
         firstTime = true;
 
@@ -107,8 +107,7 @@ export function verifyAuth(){
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isResturant,
-                    ["isAuth"]: false
+                    ["isRestaurant"]: holdData.isRestaurant
                 });
             }
             if (user) {
@@ -138,14 +137,74 @@ export function authUser() {
             payload: snapshot.val()
           });
         }, function (errorObject) {
-          //console.log("The read failed: " + errorObject.code);
           return {
             type: null
           };
         });
       }
 };
+export function updateUserEmail(oldEmail,newEmail,password){
+    return function(dispatch) {
+        var user = Firebase.auth().currentUser;
+        const credential = Firebase.auth.EmailAuthProvider.credential(
+            oldEmail,
+            password
+        );
+        // Prompt the user to re-provide their sign-in credentials
 
+        user.reauthenticate(credential).then(function() {
+            // User re-authenticated.
+            var user = Firebase.auth().currentUser;
+            user.updateEmail(newEmail.toString()).then(function () {
+                // Update successful.
+                const userUid = Firebase.auth().currentUser.uid;
+                const user = database.ref('/users/' + userUid.toString());
+                user.update({
+                    ["email"]: newEmail.toString()
+                });
+                dispatch({
+                    type: UPDATE_USER_INFO
+                });
+            }, function (error) {
+                // An error happened.
+                dispatch({
+                    type: UPDATE_EMAIL_ERROR,
+                    payload: error.message
+                });
+            });
+        }, function(error) {
+            // An error happened.
+            dispatch({
+                type: UPDATE_EMAIL_ERROR,
+                payload: error.message
+            });
+        });
+
+
+
+    }
+    // authData.currentUser.updateEmail({
+    //     newEmail: newEmail.toString()
+    // }, function(err) {
+    //     if(err)
+    //     {
+    //         return{
+    //             type: UPDATE_EMAIL_ERROR,
+    //             payload: err
+    //         }
+    //     }else
+    //     {
+    //         const userUid = Firebase.auth().currentUser.uid;
+    //         const user = database.ref('/users/'+userUid.toString());
+    //         user.update({
+    //             ["email"]: email.toString()
+    //         });
+    //         return {
+    //             type: UPDATE_USER_INFO
+    //         }
+    //     }
+    // });
+}
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
     const user = database.ref('/users/'+userUid.toString());

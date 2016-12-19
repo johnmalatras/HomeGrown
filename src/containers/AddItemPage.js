@@ -87,7 +87,7 @@ class AddItemPage extends React.Component {
                     <h3>Notes about listing new item:</h3>
                     <p style={{fontWeight: 'bold'}}>1. Use a descriptive and specific Title. Ex. Appalachian green beans instead of just green beans.</p>
                     <p style={{fontWeight: 'bold'}}>2. The price is on a per unit base</p>
-                    <p style={{fontWeight: 'bold'}}>3. The product metric is the increment of amount of product you an buy</p>
+                    <p style={{fontWeight: 'bold'}}>3. The product metric is the increment of amount of product you can buy</p>
                     <p style={{fontWeight: 'bold'}}>4. The product quantity is the amount of units of product you have available for purchase</p>
                     <p style={{fontWeight: 'bold'}}>5. We require you to set the quality of the produce you are offering. Please refer to the about page to better understand our quality scale.</p>
                     <p style={{fontWeight: 'bold'}}>6. Please create a separate listing for each level of quality </p>

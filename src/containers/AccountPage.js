@@ -26,8 +26,18 @@ class AccountPage extends React.Component {
         browserHistory.push('/addItem');
     }
     editInfo(selectedKey) {
-        console.log(selectedKey);
-        browserHistory.push('/edit');
+        if(selectedKey == 1)
+        {
+            browserHistory.push('/edit');
+        }
+        else if(selectedKey == 2)
+        {
+            browserHistory.push('/email');
+        }
+        else if(selectedKey == 3)
+        {
+
+        }
     }
 
 
@@ -70,21 +80,11 @@ class AccountPage extends React.Component {
                             <Col md={2}><h3 style={{fontWeight: 'bold'}}>Settings:</h3></Col>
                         </Row>
                         <Row>
-                            <Col md={3}><p style={{fontWeight: 'bold'}}>Owner Name:</p></Col>
-                            <Col md={3}><p style={{fontWeight: 'bold'}}>Business Name:</p></Col>
-                            <Col md={3}><p style={{fontWeight: 'bold'}}>Address:</p></Col>
-                            <Col md={3}><p style={{fontWeight: 'bold'}}>Phone Number:</p></Col>
-                        </Row>
-                        <Row>
-                            <Col md={3}><p>{this.props.userInfo.ownerName}</p></Col>
-                            <Col md={3}><p>{this.props.userInfo.businessName}</p></Col>
-                            <Col md={3}><p>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</p></Col>
-                            <Col md={3}><p>{this.props.userInfo.phoneNumber}</p></Col>
-                        </Row>
-                        <Row>
-                            <Col md={3}>
-                                <Nav bsStyle="pills" activeKey={1} onSelect={(value) => this.editInfo(value)}>
-                                    <NavItem eventKey={1} href="/home">Edit Settings</NavItem>
+                            <Col md={12}>
+                                <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
+                                    <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
+                                    <NavItem eventKey={2} href="/email">Edit Email</NavItem>
+                                    <NavItem eventKey={3} href="/password">Edit Password</NavItem>
                                 </Nav>
                             </Col>
                         </Row>
@@ -113,20 +113,16 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
 
+//USE THIS ONE IF YOU WANT IT BACK
 // <Row>
-//     <Col md={4}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
-//     <Col md={4}><h4 style={{fontWeight: 'bold'}}>{this.props.userInfo.ownerName}</h4></Col>
-//     <Col md={4}><Button  onClick={() => this.addItem()} >Edit</Button></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Owner Name:</p></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Business Name:</p></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Address:</p></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Phone Number:</p></Col>
 // </Row>
 // <Row>
-// <Col md={6}><h4 style={{fontWeight: 'bold'}}>Business Name:</h4></Col>
-// <Col md={6}><h4 style={{fontWeight: 'bold'}}>{this.props.userInfo.businessName}</h4></Col>
-// </Row>
-// <Row>
-// <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
-// <Col md={6}><h4 style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </h4></Col>
-// </Row>
-// <Row>
-// <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
-// <Col md={6}><h4 style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</h4></Col>
+// <Col md={3}><p>{this.props.userInfo.ownerName}</p></Col>
+// <Col md={3}><p>{this.props.userInfo.businessName}</p></Col>
+// <Col md={3}><p>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</p></Col>
+// <Col md={3}><p>{this.props.userInfo.phoneNumber}</p></Col>
 // </Row>

@@ -17,7 +17,6 @@ var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
 
-var phoneErrorMessage = '';
 class EditUserPage extends React.Component {
     constructor(props) {
         super(props);
@@ -84,7 +83,7 @@ class EditUserPage extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Editable Settings:</h1>
                 <Grid>
                     <Panel>

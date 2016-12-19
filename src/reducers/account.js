@@ -1,11 +1,12 @@
 /**
  * Created by alextulenko on 11/19/16.
  */
-import { UPDATE_ACCOUNT_PAGE,UPDATE_USER_INFO } from '../actions';
+import { UPDATE_ACCOUNT_PAGE,UPDATE_USER_INFO, UPDATE_EMAIL_ERROR } from '../actions';
 
 const initialState =  {
     editingUser: false,
-    editingParameter: ''
+    editingParameter: '',
+    emailEditError: ''
 };
 
 export default function account(state = initialState, action) {
@@ -18,6 +19,11 @@ export default function account(state = initialState, action) {
             return{
 
             };
+        case UPDATE_EMAIL_ERROR:
+            console.log(action.payload);
+            return Object.assign({}, state, {
+                emailEditError: action.payload
+            });
         default:
             return state;
     }
