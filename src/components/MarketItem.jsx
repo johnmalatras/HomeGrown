@@ -7,8 +7,8 @@ const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
 	var res = isRestaurant;
 	//console.log(isRestaurant);
 	if (auth != false) {
-		console.log("RES");
-		console.log(res);
+		//console.log("RES");
+		//console.log(res);
 		if (res == false) {
 			const rowElement = (
 				<tr key={item.title}>

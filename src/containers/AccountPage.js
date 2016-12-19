@@ -36,7 +36,7 @@ class AccountPage extends React.Component {
         }
         else if(selectedKey == 3)
         {
-
+            browserHistory.push('/password');
         }
     }
 

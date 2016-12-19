@@ -16,11 +16,11 @@ const MarketList = (props) => {
 	var isRestaurant = false;
 	if(props.userInfo != undefined)
 	{
-		console.log("HIT USERINFO");
-		console.log(props.userInfo.isRestaurant);
+		//console.log("HIT USERINFO");
+		//console.log(props.userInfo.isRestaurant);
 		if(props.userInfo.isRestaurant == 'true')
 		{
-			console.log("HIT HERE");
+			//console.log("HIT HERE");
 			isRestaurant = true;
 		}
 	}

@@ -25,6 +25,9 @@ export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 export const UPDATE_ACCOUNT_PAGE = 'UPDATE_ACCOUNT_PAGE';
 export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 export const UPDATE_EMAIL_ERROR = 'UPDATE_EMAIL_ERROR';
+export const UPDATE_PASSWORD_ERROR = 'UPDATE_PASSWORD_ERROR';
+export const UPDATE_PASSWORD_SUCCESSFUL = 'UPDATE_PASSWORD_SUCCESSFUL';
+export const RESET_PASSWORD_UPDATE = 'RESET_PASSWORD_UPDATE';
 
 //DEVELOPMENT SERVER
 /*const config = {
@@ -143,6 +146,46 @@ export function authUser() {
         });
       }
 };
+export function resetPasswordUpdate()
+{
+    return {
+        type: 'RESET_PASSWORD_UPDATE'
+    }
+
+}
+export function updateUserPassword(Email, newPassword, oldPassword)
+{
+    return function(dispatch) {
+        var user = Firebase.auth().currentUser;
+        const credential = Firebase.auth.EmailAuthProvider.credential(
+            Email,
+            oldPassword
+        );
+        user.reauthenticate(credential).then(function() {
+            // User re-authenticated.
+            var user = Firebase.auth().currentUser;
+            user.updatePassword(newPassword.toString()).then(function() {
+                // Update successful.
+                dispatch({
+                    type: UPDATE_PASSWORD_SUCCESSFUL
+                });
+            }, function(error) {
+                // An error happened.
+                dispatch({
+                    type: UPDATE_PASSWORD_ERROR,
+                    payload: error.message
+                });
+            });
+        }, function(error) {
+            // An error happened.
+            dispatch({
+                type: UPDATE_PASSWORD_ERROR,
+                payload: error.message
+            });
+        });
+    }
+}
+
 export function updateUserEmail(oldEmail,newEmail,password){
     return function(dispatch) {
         var user = Firebase.auth().currentUser;
@@ -150,8 +193,6 @@ export function updateUserEmail(oldEmail,newEmail,password){
             oldEmail,
             password
         );
-        // Prompt the user to re-provide their sign-in credentials
-
         user.reauthenticate(credential).then(function() {
             // User re-authenticated.
             var user = Firebase.auth().currentUser;
