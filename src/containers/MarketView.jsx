@@ -58,7 +58,6 @@ class MarketView extends React.Component {
 }
 
 function mapStateToProps(state) {
-  //console.log(state);
   return {
     items: state.items.items,
     itemImages: state.items.itemImages,

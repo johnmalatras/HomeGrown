@@ -28,6 +28,7 @@ export const UPDATE_EMAIL_ERROR = 'UPDATE_EMAIL_ERROR';
 export const UPDATE_PASSWORD_ERROR = 'UPDATE_PASSWORD_ERROR';
 export const UPDATE_PASSWORD_SUCCESSFUL = 'UPDATE_PASSWORD_SUCCESSFUL';
 export const RESET_PASSWORD_UPDATE = 'RESET_PASSWORD_UPDATE';
+export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
 
 //DEVELOPMENT SERVER
 /*const config = {
@@ -102,6 +103,15 @@ export function verifyAuth(){
                 const userUid = Firebase.auth().currentUser.uid;
                 firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
+                var dates = [
+                    {key:'monday', value:false},
+                    {key:'tuesday', value:false},
+                    {key:'wednesday', value:false},
+                    {key:'thursday', value:false},
+                    {key:'friday', value:false},
+                    {key:'saturday', value:false},
+                    {key:'sunday', value:false},
+                ];
                 user.update({
                     ["email"]:holdData.email,
                     ["ownerName"]:holdData.ownerName,
@@ -110,7 +120,8 @@ export function verifyAuth(){
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isRestaurant
+                    ["isRestaurant"]: holdData.isRestaurant,
+                    ["availableDates"]: dates
                 });
             }
             if (user) {
@@ -152,6 +163,26 @@ export function resetPasswordUpdate()
         type: 'RESET_PASSWORD_UPDATE'
     }
 
+}
+
+export function updateAvailableDate(day, value, currentAvilDates)
+{
+    const userUid = Firebase.auth().currentUser.uid;
+
+    for(var i = 0; i < 7; i++)
+    {
+        if(currentAvilDates[i].key == day)
+        {
+            currentAvilDates[i].value = value;
+        }
+    }
+    const dateRef = database.ref('/users/'+userUid.toString());
+    dateRef.update({
+        ['availableDates']: currentAvilDates
+    });
+    return {
+        type: UPDATE_AVAILABLE_DATES
+    }
 }
 export function updateUserPassword(Email, newPassword, oldPassword)
 {
@@ -223,28 +254,7 @@ export function updateUserEmail(oldEmail,newEmail,password){
 
 
 
-    }
-    // authData.currentUser.updateEmail({
-    //     newEmail: newEmail.toString()
-    // }, function(err) {
-    //     if(err)
-    //     {
-    //         return{
-    //             type: UPDATE_EMAIL_ERROR,
-    //             payload: err
-    //         }
-    //     }else
-    //     {
-    //         const userUid = Firebase.auth().currentUser.uid;
-    //         const user = database.ref('/users/'+userUid.toString());
-    //         user.update({
-    //             ["email"]: email.toString()
-    //         });
-    //         return {
-    //             type: UPDATE_USER_INFO
-    //         }
-    //     }
-    // });
+    };
 }
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
@@ -268,9 +278,11 @@ export function authError(error) {
         payload: error
     }
 };
+
 //Action call to add Item to Market from account page
-export function addItem(values, ownerName) {
+export function addItem(values, ownerName, availableDates) {
     return function(dispatch) {
+        console.log(availableDates);
         var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();

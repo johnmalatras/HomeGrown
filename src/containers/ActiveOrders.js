@@ -26,7 +26,6 @@ class ActiveOrders extends React.Component {
     
     return (
       <div>
-        <hr />
         <h3>Active Orders</h3>
         <Table responsive>
             <thead>
