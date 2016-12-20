@@ -24,7 +24,8 @@ class EditAvailableDatesPage extends React.Component {
     }
     updateAvailability(date, value)
     {
-        this.props.actions.updateAvailableDate(date, value, this.props.userInfo.availableDates)
+        this.props.actions.updateAvailableDate(date, value, this.props.userInfo.availableDates,this.props.userInfo,this.props.userInfo.items)
+        //this.props.actions.updateAvailableItemDates(this.props.userInfo);
     }
     goBack()
     {
@@ -106,7 +107,8 @@ class EditAvailableDatesPage extends React.Component {
                 <Panel>
                     <h2>Set your pickup availability</h2>
                     <p>Select the dates that your produce is available to be picked up from the Farmers Marker</p>
-                    <p>Highlighted dates are your available ones</p>
+                    <p>Blue dates are your available ones</p>
+                    <p>Please note you must update your available dates at least three days before they become unavailable to avoid orders on unavailable dates</p>
                     <ButtonToolbar>
                         {sundayButton}
                         {mondayButton}

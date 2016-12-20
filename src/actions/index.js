@@ -165,7 +165,7 @@ export function resetPasswordUpdate()
 
 }
 
-export function updateAvailableDate(day, value, currentAvilDates)
+export function updateAvailableDate(day, value, currentAvilDates, user)
 {
     const userUid = Firebase.auth().currentUser.uid;
 
@@ -176,12 +176,31 @@ export function updateAvailableDate(day, value, currentAvilDates)
             currentAvilDates[i].value = value;
         }
     }
+
     const dateRef = database.ref('/users/'+userUid.toString());
     dateRef.update({
         ['availableDates']: currentAvilDates
     });
-    return {
-        type: UPDATE_AVAILABLE_DATES
+
+    console.log("HIT UPDATE ITEM");
+    if(user.items != undefined)
+    {
+        var hold = user.items;
+
+        for(var item in hold) {
+            hold[item].availableDates = currentAvilDates;
+            var itemRef = database.ref('items/'+userUid+'_'+ item);
+            itemRef.update({
+                ["availableDates"]: currentAvilDates
+            });
+        }
+        var userItemRef = database.ref('users/'+userUid);
+        userItemRef.update({
+            ["items"]: hold
+        });
+        return {
+            type: UPDATE_AVAILABLE_DATES
+        }
     }
 }
 export function updateUserPassword(Email, newPassword, oldPassword)
@@ -234,6 +253,8 @@ export function updateUserEmail(oldEmail,newEmail,password){
                 user.update({
                     ["email"]: newEmail.toString()
                 });
+
+                browserHistory.push('/account');
                 dispatch({
                     type: UPDATE_USER_INFO
                 });
@@ -300,7 +321,8 @@ export function addItem(values, ownerName, availableDates) {
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
             ["quality"]: values.Quality,
-            ["sellerUID"]: userUid
+            ["sellerUID"]: userUid,
+            ["availableDates"]: availableDates
         });
 
         var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
@@ -312,7 +334,8 @@ export function addItem(values, ownerName, availableDates) {
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
             ["quality"]: values.Quality,
-            ["sellerUID"]: userUid
+            ["sellerUID"]: userUid,
+            ["availableDates"]: availableDates
         });
 
         browserHistory.push('/account');
@@ -558,7 +581,28 @@ export function closeCLModal() {
     type: CLOSE_CL_MODAL
   }
 }
+export function updateAvailableItemDates(user)
+{
+    console.log("HIT UPDATE ITEM");
+    const userUid = Firebase.auth().currentUser.uid;
 
+    var hold = user.items;
+    for(var h = 0; h < hold.length; h++)
+    {
+        hold[h].availableDates = user.availableDates;
+        var itemRef = database.ref('items/'+userUid+'_'+ hold[h].title +'_'+ hold[h].quality);
+        itemRef.update({
+            ["availableDates"]: user.availableDates
+        });
+    }
+    var userItemRef = database.ref('users/'+userUid);
+    userItemRef.update({
+        ["items"]: hold
+    });
+    return {
+        type: UPDATE_QUANTITY
+    }
+}
 export function updateQuantity(newQuantity, item) {
     const userUid = Firebase.auth().currentUser.uid;
 
