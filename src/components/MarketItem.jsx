@@ -3,16 +3,22 @@ var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 var Image = ReactBootstrap.Image;
 
-const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
+
+function handleImageLoaded() {
+	console.log("HIT");
+}
+
+var MarketItem = ({item, isRestaurant,image, onItemSelect, auth}) => {
 	var res = isRestaurant;
-	//console.log(isRestaurant);
+	var produceImage;
+
+	produceImage = <Image style={{width: '128px', height: '128px'}}  src={item.image} rounded />;
+
 	if (auth != false) {
-		//console.log("RES");
-		//console.log(res);
 		if (res == false) {
 			const rowElement = (
 				<tr key={item.title}>
-					<td><Image src={item.image} responsive/></td>
+					<td>{produceImage}</td>
 					<td>{item.title}</td>
 					<td>{item.seller}</td>
 					<td>{item.price}</td>
@@ -26,7 +32,7 @@ const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
 		} else {
 			const rowElement = (
 				<tr key={item.title}>
-					<td><Image src={item.image} responsive/></td>
+					<td>{produceImage}</td>
 					<td>{item.title}</td>
 					<td>{item.seller}</td>
 					<td>{item.price}</td>
@@ -42,7 +48,7 @@ const MarketItem = ({item, isRestaurant, onItemSelect, auth}) => {
 	else {
 		const rowElement = (
 			<tr key={item.title}>
-				<td><Image src={item.image} responsive/></td>
+				<td>{produceImage}</td>
 				<td>{item.title}</td>
 				<td>{item.seller}</td>
 				<td>{item.price}</td>

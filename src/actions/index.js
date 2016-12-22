@@ -29,17 +29,20 @@ export const UPDATE_PASSWORD_ERROR = 'UPDATE_PASSWORD_ERROR';
 export const UPDATE_PASSWORD_SUCCESSFUL = 'UPDATE_PASSWORD_SUCCESSFUL';
 export const RESET_PASSWORD_UPDATE = 'RESET_PASSWORD_UPDATE';
 export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
+export const SET_IMAGES = 'SET_IMAGES';
+export const IMAGE_LOADED = 'IMAGE_LOADED';
 
 //DEVELOPMENT SERVER
-/*const config = {
+const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
     databaseURL: "https://homegrown-65645.firebaseio.com",
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
-};*/
+};
 
 //PRODUCTION SERVER
+/*
 const config = {
     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
     authDomain: "ripenow-bbe84.firebaseapp.com",
@@ -47,6 +50,7 @@ const config = {
     storageBucket: "ripenow-bbe84.appspot.com",
     messagingSenderId: "475593459363"
 };
+*/
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -182,11 +186,9 @@ export function updateAvailableDate(day, value, currentAvilDates, user)
         ['availableDates']: currentAvilDates
     });
 
-    console.log("HIT UPDATE ITEM");
     if(user.items != undefined)
     {
         var hold = user.items;
-
         for(var item in hold) {
             hold[item].availableDates = currentAvilDates;
             var itemRef = database.ref('items/'+userUid+'_'+ item);
@@ -342,13 +344,53 @@ export function addItem(values, ownerName, availableDates) {
     }
 }
 
+export function imageLoaded(){
+    return {
+        type: IMAGE_LOADED
+    }
+}
+
+export function getImages(items, item)
+{
+    return function(dispatch) {
+        var imgRef = storage.ref('image/' + item);
+        imgRef.getDownloadURL().then(function (url) {
+            // Insert url into an <img> tag to "download"
+            items[item].image = url;
+            var x =JSON.parse(JSON.stringify(items));
+            dispatch({
+                type: REQUEST_ITEMS,
+                payload: x
+            });
+        }).catch(function (error) {
+            switch (error.code) {
+                case 'storage/object_not_found':
+                    // File doesn't exist
+                    break;
+
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect the server response
+                    break;
+            }
+        });
+    }
+}
 export function requestItems() {
   return function(dispatch) {
     var ref = database.ref("items");
     ref.on("value", function(snapshot) {
+        var hold = snapshot.val();
       dispatch({
-        type: REQUEST_ITEMS,
-        payload: snapshot.val()
+         type: REQUEST_ITEMS,
+         payload: hold
       });
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);

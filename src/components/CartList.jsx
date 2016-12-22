@@ -162,13 +162,13 @@ class CartList extends React.Component {
 		var momentArray;
 		var localTime = moment(Date.now()).local().format('HH');
 
-		if(localTime < 12)
+		if(localTime < 17)
 		{
-			momentArray = [moment().add(1, "days"), moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days")];
+			momentArray = [moment().add(1, "days"), moment().add(2, "days"), moment().add(3, "days")];
 		}
 		else
 		{
-			momentArray = [moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days"),moment().add(7, "days")];
+			momentArray = [moment().add(2, "days"), moment().add(3, "days")];
 		}
 
 		price = 0;
