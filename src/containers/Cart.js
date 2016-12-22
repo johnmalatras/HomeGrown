@@ -15,8 +15,8 @@ class Cart extends React.Component {
         <h1>Cart</h1>
           <h3>Notes about ordering:</h3>
           <p style={{fontWeight: 'bold'}}>Please note that we have a minimum purchase amount of $200</p>
-          <p style={{fontWeight: 'bold'}}>You must select a delivey date at least one date in advance</p>
-          <p style={{fontWeight: 'bold'}}>Please note you must order before 12pm for next day delivery</p>
+          <p style={{fontWeight: 'bold'}}>You must select a delivery date at least one date in advance</p>
+          <p style={{fontWeight: 'bold'}}>Please note you must order before 5pm for next day delivery</p>
         <Table responsive>
             <thead>
               <tr>
