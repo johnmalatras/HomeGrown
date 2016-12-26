@@ -37,8 +37,6 @@ class Header extends React.Component {
     renderAuthLinks() {
         if (this.props.authenticated) {
             const isRestaurant = this.props.userInfo.isRestaurant;
-            console.log(isRestaurant);
-
             if (isRestaurant === 'false') {
                 return [
                     <Navbar  collapseOnSelect block fluid>

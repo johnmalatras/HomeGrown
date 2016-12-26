@@ -11,6 +11,8 @@ var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
+var NavItem = ReactBootstrap.NavItem;
+var Nav = ReactBootstrap.Nav;
 
 var editingName = false;
 var nameElement;
@@ -23,78 +25,75 @@ class AccountPage extends React.Component {
     addItem(){
         browserHistory.push('/addItem');
     }
-    editInfo() {
-        this.props.actions.updateAccountPage();
-    }
-    renderName(){
-        return [
-            <div> </div>
-        ]
-        if(this.props.isEditing == false)
+    editInfo(selectedKey) {
+        if(selectedKey == 1)
         {
-            return[
-                <Grid>
-                    <Row>
-                        <Col md={6}><h3>Account Information</h3></Col>
-                        <Col md={6}><Button onClick={() => this.editInfo('phoneNumber',this.props.userInfo.phoneNumber)} >Edit User Info</Button></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
-                        <Col md={6}>{nameElement}</Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Bussiness Name:</h4></Col>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.bussinessName}</p></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
-                    </Row>
-                </Grid>
-                ]
+            browserHistory.push('/edit');
         }
-        else{
-            return[
-                <Grid>
-                    <Row>
-                        <Col md={6}><h3>Account Information</h3></Col>
-                        <Col md={6}><Button onClick={() => this.editInfo()} >Save User Info</Button></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
-                        <Col md={6}>{nameElement}</Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Bussiness Name:</h4></Col>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.bussinessName}</p></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
-                    </Row>
-                    <Row>
-                        <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
-                        <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
-                    </Row>
-                </Grid>
-            ]
+        else if(selectedKey == 2)
+        {
+            browserHistory.push('/email');
         }
+        else if(selectedKey == 3)
+        {
+            browserHistory.push('/password');
+        }
+        else if(selectedKey == 4)
+        {
+            browserHistory.push('/available');
+        }
+
     }
+
 
     render() {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
         var currentListingsElement;
+        var editSettingsElement;
         if (isRestaurant === 'false') {
             currentListingsElement =
                 <div>
-                    <CurrentListings />
-                    <Button  onClick={() => this.addItem()} >Add Item</Button>
-                </div>
+                    <Panel>
+                        <CurrentListings />
+                        <Button bsStyle="primary"  onClick={() => this.addItem()} >Add Item</Button>
+                    </Panel>
+                </div>;
+
+            editSettingsElement =
+                <Grid>
+                    <Row>
+                        <Col md={2}><h3 style={{fontWeight: 'bold'}}>Settings:</h3></Col>
+                    </Row>
+                    <Row>
+                        <Col md={12}>
+                            <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
+                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
+                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
+                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
+                                <NavItem eventKey={4} href="/dates">Edit Available Selling Dates</NavItem>
+                            </Nav>
+                        </Col>
+                    </Row>
+                </Grid>
+        }
+        else
+        {
+            editSettingsElement =
+                <Grid>
+                    <Row>
+                        <Col md={2}><h3 style={{fontWeight: 'bold'}}>Settings:</h3></Col>
+                    </Row>
+                    <Row>
+                        <Col md={12}>
+                            <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
+                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
+                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
+                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
+                            </Nav>
+                        </Col>
+                    </Row>
+                </Grid>
         }
         var nameElement;
         if(this.props.isEditing == false)
@@ -111,30 +110,13 @@ class AccountPage extends React.Component {
         }
         return (
             <div>
-                <h1>Account Overview</h1>
+                <h1>Account Overview For {this.props.userInfo.businessName}</h1>
                 {currentListingsElement}
-                <ActiveOrders />
-                {this.renderName()}
                 <Panel>
-                    <h4>User Settings</h4>
-                    <Grid>
-                        <Row>
-                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Owner Name:</h4></Col>
-                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.ownerName}</p></Col>
-                        </Row>
-                        <Row>
-                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Business Name:</h4></Col>
-                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.businessName}</p></Col>
-                        </Row>
-                        <Row>
-                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Address:</h4></Col>
-                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state} </p></Col>
-                        </Row>
-                        <Row>
-                            <Col md={6}><h4 style={{fontWeight: 'bold'}}>Phone Number:</h4></Col>
-                            <Col md={6}><p style={{fontWeight: 'bold'}}>{this.props.userInfo.phoneNumber}</p></Col>
-                        </Row>
-                    </Grid>
+                    <ActiveOrders />
+                </Panel>
+                <Panel>
+                    {editSettingsElement}
                 </Panel>
             </div>
         )
@@ -158,3 +140,17 @@ function mapDispatchToProps(dispatch) {
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
+
+//USE THIS ONE IF YOU WANT IT BACK
+// <Row>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Owner Name:</p></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Business Name:</p></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Address:</p></Col>
+//     <Col md={3}><p style={{fontWeight: 'bold'}}>Phone Number:</p></Col>
+// </Row>
+// <Row>
+// <Col md={3}><p>{this.props.userInfo.ownerName}</p></Col>
+// <Col md={3}><p>{this.props.userInfo.businessName}</p></Col>
+// <Col md={3}><p>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</p></Col>
+// <Col md={3}><p>{this.props.userInfo.phoneNumber}</p></Col>
+// </Row>

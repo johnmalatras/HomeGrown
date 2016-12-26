@@ -7,6 +7,7 @@ var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 var DropdownButton  = ReactBootstrap.DropdownButton;
 var MenuItem = ReactBootstrap.MenuItem;
+var Panel = ReactBootstrap.Panel;
 import 'whatwg-fetch'
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
@@ -19,75 +20,54 @@ class CartList extends React.Component {
 
 	constructor(props) {
 	    super(props);
-	    this.state = {description: "", listItems:[], comment:"",deliveryTime:"10-11", errorMessage:'',deliveryDate: undefined, deliveryDateDay: ''};
+	    this.state = {description: "", listItems:[], comment:" ",deliveryTime:"10am-11am", errorMessage:'',deliveryDate: undefined, deliveryDateDay: ''};
 	    this.placeOrder = this.placeOrder.bind(this);
 		this.deleteItem = this.deleteItem.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
 		this.handleTimeChange = this.handleTimeChange.bind(this);
 		this.onToken = this.onToken.bind(this);
+		this.canNotOrder = this.canNotOrder.bind(this);
   	}
 
   	onToken(token){
-
-	  	if(this.props.cart.length == 0)
-		{
-			alert("error");
-			this.setState({
-				errorMessage: 'You must have someting in your cart to order.'
-			});
-		}
-		else if(this.state.deliveryDate == undefined)
-		{
-			alert("error");
-			this.setState({
-				errorMessage: 'You must select a delivery date.'
-			});
-		}
-		else if(price < 200)
-		{
-			alert("error");
-			this.setState({
-				errorMessage: 'You must have at least $200 in your cart.'
-			});
+		var orderDescription;
+		if (this.props.cart.length > 1) {
+			orderDescription = this.props.cart.length + " items";
 		} else {
-			var orderDescription;
+			orderDescription = this.props.cart[0][0].title;
+		}
 
-		  	if (this.props.cart.length > 1) {
-		  		orderDescription = this.props.cart.length + " items";
-		  	} else {
-		  		orderDescription = this.props.cart[0][0].title;
-		  	}
+		var fee = (price * .25).toFixed(2);
+		var totalPrice = (+price + +fee).toFixed(2)*100;
+		var priceDollars = totalPrice/100;
 
-		  	var fee = (price * .25).toFixed(2);
-		  	var totalPrice = (+price + +fee).toFixed(2) * 100;
+		token.orderDescription = orderDescription;
+		token.orderPrice = totalPrice;
 
-		  	token.orderDescription = orderDescription;
-		  	token.orderPrice = totalPrice;
+		fetch('http://104.236.192.230/api/chargecard', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(token),
+		}).then(response => {
+			response.json().then(data => {
+				console.log(data);
+			});
+			var purchase = {
+				cart: this.props.cart,
+				subtotal: price,
+				fee: fee,
+				total: priceDollars,
+				deliveryDate: this.state.deliveryDateDay,
+				comment: this.state.comment,
+				deliveryTime: this.state.deliveryTime
+			};
+			this.props.placeOrder(purchase);
+		});
 
-			fetch('http://104.236.192.230/api/chargecard', {
-	        	method: 'POST',
-	        	headers: {
-	          		'Accept': 'application/json',
-	          		'Content-Type': 'application/json',
-	        	},
-	        	body: JSON.stringify(token),
-	      	}).then(response => {
-	      		response.json().then(data => {
-	        		console.log(data);
-	      		});
-				var purchase = {
-					cart: this.props.cart,
-					subtotal: subtotal,
-					fee: fee,
-					total: total,
-					deliveryDate: this.state.deliveryDateDay,
-					comment: this.state.comment,
-					deliveryTime: this.state.deliveryTime
-				};
-				this.props.placeOrder(purchase);
-	      	});
-      	}
   	}
 
 	handleChange(date) {
@@ -101,7 +81,7 @@ class CartList extends React.Component {
 	handleTextChange(textComment)
 	{
 		this.setState({
-			comment: textComment
+			comment: textComment.target.value
 		});
 	}
 	handleTimeChange(textComment)
@@ -148,6 +128,29 @@ class CartList extends React.Component {
 			return 0;
 		}
   	}
+  	//Returns the opposite of what you would think lol
+	//true - cant order, false - can order
+  	canNotOrder() {
+
+		if (this.props.cart.length == 0) {
+			return true;
+		}
+		else if (this.state.deliveryDate == undefined) {
+			return true;
+		}
+		else if (price < 200) {
+			return true;
+		} else if (this.state.deliveryDate != undefined)
+		{
+			if(!this.state.deliveryDate.isValid())
+			{
+				return true;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 
   	deleteItem(cartItem, theCart){
 		this.props.deleteCartItem(cartItem, theCart);
@@ -159,13 +162,13 @@ class CartList extends React.Component {
 		var momentArray;
 		var localTime = moment(Date.now()).local().format('HH');
 
-		if(localTime < 12)
+		if(localTime < 17)
 		{
-			momentArray = [moment().add(1, "days"), moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days")];
+			momentArray = [moment().add(1, "days"), moment().add(2, "days"), moment().add(3, "days")];
 		}
 		else
 		{
-			momentArray = [moment().add(2, "days"), moment().add(3, "days"), moment().add(4, "days"), moment().add(5, "days"), moment().add(6, "days"),moment().add(7, "days")];
+			momentArray = [moment().add(2, "days"), moment().add(3, "days")];
 		}
 
 		price = 0;
@@ -181,13 +184,41 @@ class CartList extends React.Component {
 	  	var totalPrice = (+price + +fee).toFixed(2);
 
 	  	var orderDescription;
-
 	  	if (this.props.cart.length > 1) {
 	  		orderDescription = this.props.cart.length + " items";
 	  	} else if (this.props.cart.length == 0) {
-	  		orderDescription = this.props.cart[0][0].title;
+			//Not 100% this is correct but that keeps things interesting
+	  		orderDescription = 'SHOULDNT BE HIT';//this.props.cart[0][0].title;
 	  	}
 
+		var canBuy = this.canNotOrder();
+		var errorMessage = 'You are good to order!';
+		var colorSelected = '#000000';
+		if(canBuy == true)
+		{
+			if(this.props.cart.length == 0)	{
+				errorMessage='You must have someting in your cart to order.';
+				colorSelected = '#ff0000';
+			}
+			else if(this.state.deliveryDate == undefined){
+				errorMessage= 'You must select a delivery date.';
+				colorSelected = '#ff0000';
+			}else if(price < 200){
+				errorMessage= 'You must have at least $200 in your cart.';
+				colorSelected = '#ff0000';
+			}
+			else if(this.state.deliveryDate != undefined)
+			{
+				if(!this.state.deliveryDate.isValid())
+				{
+					errorMessage= 'Please refresh the page to fix the date picker';
+					colorSelected = '#ff0000';
+				}
+			}
+			else {
+				errorMessage= 'You are good to order!'
+			}
+		}
 	  	let date = '2017-04-24';
 	  	return (
 	    	<tbody className="theList">
@@ -205,7 +236,7 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td> </td>
-					<td>Processing fee (25%): </td>
+					<td>Transportation and Processing fee (25%): </td>
 					<td>{fee}</td>
 				</tr>
 				<tr>
@@ -265,13 +296,16 @@ class CartList extends React.Component {
 						  amount={totalPrice * 100}
 						  shippingAddress
 						  email={this.props.user.email}
+						  disabled={canBuy}
 						>
-						</StripeCheckout> 
+						</StripeCheckout>
 					</td>
-					{/*<td><Button onClick={() => this.placeOrder(price, fee, totalPrice)} >Confirm Purchase</Button></td>*/}
 				</tr>
 				<tr>
-					{this.state.errorMessage}
+					<Panel>
+						<h3>Why can't I order yet:</h3>
+						<p style={{color: colorSelected}}>{errorMessage}</p>
+					</Panel>
 				</tr>
 			</tbody>
 	  	)

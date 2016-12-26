@@ -1,18 +1,55 @@
 /**
  * Created by alextulenko on 11/19/16.
  */
-import { UPDATE_ACCOUNT_PAGE } from '../actions';
+import { UPDATE_ACCOUNT_PAGE,UPDATE_USER_INFO, UPDATE_EMAIL_ERROR, UPDATE_PASSWORD_ERROR,UPDATE_PASSWORD_SUCCESSFUL,RESET_PASSWORD_UPDATE,UPDATE_AVAILABLE_DATES } from '../actions';
 
 const initialState =  {
-    editingUser: false
+    editingUser: false,
+    editingParameter: '',
+    emailEditError: '',
+    passwordEditError: '',
+    passwordChanged: false,
+    sunAvail: false,
+    monAvail: false,
+    tueAvail: false,
+    wedAvail: false,
+    thurAvail: false,
+    friAvail: false,
+    satAvail: false
 };
 
 export default function account(state = initialState, action) {
     switch(action.type) {
         case UPDATE_ACCOUNT_PAGE:
             return Object.assign({}, state, {
-                editingUser: true
+                editingParameter: true
             });
+        case UPDATE_USER_INFO:
+            return{
+
+            };
+        case UPDATE_PASSWORD_SUCCESSFUL:
+            return Object.assign({}, state, {
+                passwordChanged: true,
+                passwordEditError: ''
+            });
+        case UPDATE_EMAIL_ERROR:
+            return Object.assign({}, state, {
+                emailEditError: action.payload
+            });
+        case UPDATE_PASSWORD_ERROR:
+            return Object.assign({}, state, {
+                passwordEditError: action.payload
+            });
+        case RESET_PASSWORD_UPDATE:
+            return Object.assign({}, state, {
+                passwordChanged: false,
+                passwordEditError: ''
+            });
+        case UPDATE_AVAILABLE_DATES:
+            return{
+
+            };
         default:
             return state;
     }

@@ -23,17 +23,26 @@ export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 export const UPDATE_ACCOUNT_PAGE = 'UPDATE_ACCOUNT_PAGE';
+export const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
+export const UPDATE_EMAIL_ERROR = 'UPDATE_EMAIL_ERROR';
+export const UPDATE_PASSWORD_ERROR = 'UPDATE_PASSWORD_ERROR';
+export const UPDATE_PASSWORD_SUCCESSFUL = 'UPDATE_PASSWORD_SUCCESSFUL';
+export const RESET_PASSWORD_UPDATE = 'RESET_PASSWORD_UPDATE';
+export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
+export const SET_IMAGES = 'SET_IMAGES';
+export const IMAGE_LOADED = 'IMAGE_LOADED';
 
 //DEVELOPMENT SERVER
-/*const config = {
+const config = {
     apiKey: "AIzaSyCMNnrLwBozPpfG8d4YzCi9W334FhcorEg",
     authDomain: "homegrown-65645.firebaseapp.com",
     databaseURL: "https://homegrown-65645.firebaseio.com",
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
-};*/
+};
 
 //PRODUCTION SERVER
+/*
 const config = {
     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
     authDomain: "ripenow-bbe84.firebaseapp.com",
@@ -41,6 +50,7 @@ const config = {
     storageBucket: "ripenow-bbe84.appspot.com",
     messagingSenderId: "475593459363"
 };
+*/
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -83,7 +93,7 @@ export function signUpUser(credentials) {
             city: credentials.city,
             state: credentials.state,
             phoneNumber: credentials.phoneNumber,
-            isResturant: credentials.isResturant
+            isRestaurant: credentials.isRestaurant
         };
         firstTime = true;
 
@@ -97,6 +107,15 @@ export function verifyAuth(){
                 const userUid = Firebase.auth().currentUser.uid;
                 firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
+                var dates = [
+                    {key:'monday', value:false},
+                    {key:'tuesday', value:false},
+                    {key:'wednesday', value:false},
+                    {key:'thursday', value:false},
+                    {key:'friday', value:false},
+                    {key:'saturday', value:false},
+                    {key:'sunday', value:false},
+                ];
                 user.update({
                     ["email"]:holdData.email,
                     ["ownerName"]:holdData.ownerName,
@@ -105,7 +124,8 @@ export function verifyAuth(){
                     ["city"]: holdData.city,
                     ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isResturant
+                    ["isRestaurant"]: holdData.isRestaurant,
+                    ["availableDates"]: dates
                 });
             }
             if (user) {
@@ -135,16 +155,144 @@ export function authUser() {
             payload: snapshot.val()
           });
         }, function (errorObject) {
-          //console.log("The read failed: " + errorObject.code);
           return {
             type: null
           };
         });
       }
 };
-export function updateAccountPage(){
+export function resetPasswordUpdate()
+{
     return {
-        type: UPDATE_ACCOUNT_PAGE
+        type: 'RESET_PASSWORD_UPDATE'
+    }
+
+}
+
+export function updateAvailableDate(day, value, currentAvilDates, user)
+{
+    const userUid = Firebase.auth().currentUser.uid;
+
+    for(var i = 0; i < 7; i++)
+    {
+        if(currentAvilDates[i].key == day)
+        {
+            currentAvilDates[i].value = value;
+        }
+    }
+
+    const dateRef = database.ref('/users/'+userUid.toString());
+    dateRef.update({
+        ['availableDates']: currentAvilDates
+    });
+
+    if(user.items != undefined)
+    {
+        var hold = user.items;
+        for(var item in hold) {
+            hold[item].availableDates = currentAvilDates;
+            var itemRef = database.ref('items/'+userUid+'_'+ item);
+            itemRef.update({
+                ["availableDates"]: currentAvilDates
+            });
+        }
+        var userItemRef = database.ref('users/'+userUid);
+        userItemRef.update({
+            ["items"]: hold
+        });
+        return {
+            type: UPDATE_AVAILABLE_DATES
+        }
+    }
+}
+export function updateUserPassword(Email, newPassword, oldPassword)
+{
+    return function(dispatch) {
+        var user = Firebase.auth().currentUser;
+        const credential = Firebase.auth.EmailAuthProvider.credential(
+            Email,
+            oldPassword
+        );
+        user.reauthenticate(credential).then(function() {
+            // User re-authenticated.
+            var user = Firebase.auth().currentUser;
+            user.updatePassword(newPassword.toString()).then(function() {
+                // Update successful.
+                dispatch({
+                    type: UPDATE_PASSWORD_SUCCESSFUL
+                });
+            }, function(error) {
+                // An error happened.
+                dispatch({
+                    type: UPDATE_PASSWORD_ERROR,
+                    payload: error.message
+                });
+            });
+        }, function(error) {
+            // An error happened.
+            dispatch({
+                type: UPDATE_PASSWORD_ERROR,
+                payload: error.message
+            });
+        });
+    }
+}
+
+export function updateUserEmail(oldEmail,newEmail,password){
+    return function(dispatch) {
+        var user = Firebase.auth().currentUser;
+        const credential = Firebase.auth.EmailAuthProvider.credential(
+            oldEmail,
+            password
+        );
+        user.reauthenticate(credential).then(function() {
+            // User re-authenticated.
+            var user = Firebase.auth().currentUser;
+            user.updateEmail(newEmail.toString()).then(function () {
+                // Update successful.
+                const userUid = Firebase.auth().currentUser.uid;
+                const user = database.ref('/users/' + userUid.toString());
+                user.update({
+                    ["email"]: newEmail.toString()
+                });
+
+                browserHistory.push('/account');
+                dispatch({
+                    type: UPDATE_USER_INFO
+                });
+            }, function (error) {
+                // An error happened.
+                dispatch({
+                    type: UPDATE_EMAIL_ERROR,
+                    payload: error.message
+                });
+            });
+        }, function(error) {
+            // An error happened.
+            dispatch({
+                type: UPDATE_EMAIL_ERROR,
+                payload: error.message
+            });
+        });
+
+
+
+    };
+}
+export function updateUserSetting(parameter,value){
+    const userUid = Firebase.auth().currentUser.uid;
+    const user = database.ref('/users/'+userUid.toString());
+    user.update({
+        [parameter.toString()]: value
+    });
+    return {
+        type: UPDATE_USER_INFO
+    }
+}
+export function updateAccountPage(parameter){
+    return {
+        type: UPDATE_ACCOUNT_PAGE,
+        payload: parameter
     }
 }
 export function authError(error) {
@@ -153,9 +301,11 @@ export function authError(error) {
         payload: error
     }
 };
+
 //Action call to add Item to Market from account page
-export function addItem(values, ownerName) {
+export function addItem(values, ownerName, availableDates) {
     return function(dispatch) {
+        console.log(availableDates);
         var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
@@ -173,7 +323,8 @@ export function addItem(values, ownerName) {
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
             ["quality"]: values.Quality,
-            ["sellerUID"]: userUid
+            ["sellerUID"]: userUid,
+            ["availableDates"]: availableDates
         });
 
         var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
@@ -185,20 +336,61 @@ export function addItem(values, ownerName) {
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
             ["quality"]: values.Quality,
-            ["sellerUID"]: userUid
+            ["sellerUID"]: userUid,
+            ["availableDates"]: availableDates
         });
 
         browserHistory.push('/account');
     }
 }
 
+export function imageLoaded(){
+    return {
+        type: IMAGE_LOADED
+    }
+}
+
+export function getImages(items, item)
+{
+    return function(dispatch) {
+        var imgRef = storage.ref('image/' + item);
+        imgRef.getDownloadURL().then(function (url) {
+            // Insert url into an <img> tag to "download"
+            items[item].image = url;
+            var x =JSON.parse(JSON.stringify(items));
+            dispatch({
+                type: REQUEST_ITEMS,
+                payload: x
+            });
+        }).catch(function (error) {
+            switch (error.code) {
+                case 'storage/object_not_found':
+                    // File doesn't exist
+                    break;
+
+                case 'storage/unauthorized':
+                    // User doesn't have permission to access the object
+                    break;
+
+                case 'storage/canceled':
+                    // User canceled the upload
+                    break;
+
+                case 'storage/unknown':
+                    // Unknown error occurred, inspect the server response
+                    break;
+            }
+        });
+    }
+}
 export function requestItems() {
   return function(dispatch) {
     var ref = database.ref("items");
     ref.on("value", function(snapshot) {
+        var hold = snapshot.val();
       dispatch({
-        type: REQUEST_ITEMS,
-        payload: snapshot.val()
+         type: REQUEST_ITEMS,
+         payload: hold
       });
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);
@@ -431,7 +623,28 @@ export function closeCLModal() {
     type: CLOSE_CL_MODAL
   }
 }
+export function updateAvailableItemDates(user)
+{
+    console.log("HIT UPDATE ITEM");
+    const userUid = Firebase.auth().currentUser.uid;
 
+    var hold = user.items;
+    for(var h = 0; h < hold.length; h++)
+    {
+        hold[h].availableDates = user.availableDates;
+        var itemRef = database.ref('items/'+userUid+'_'+ hold[h].title +'_'+ hold[h].quality);
+        itemRef.update({
+            ["availableDates"]: user.availableDates
+        });
+    }
+    var userItemRef = database.ref('users/'+userUid);
+    userItemRef.update({
+        ["items"]: hold
+    });
+    return {
+        type: UPDATE_QUANTITY
+    }
+}
 export function updateQuantity(newQuantity, item) {
     const userUid = Firebase.auth().currentUser.uid;
 

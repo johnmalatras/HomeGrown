@@ -11,70 +11,75 @@ import 'whatwg-fetch'
 
 class MarketView extends React.Component {
 
-  componentWillMount() {
-    this.props.actions.requestItems();
-  }
+    componentWillMount() {
+        this.props.actions.requestItems();
+    }
 
-  render() {
-      var warningLabel = '';
-      var userAuth = true;
-      if(this.props.authenticated == false)
-      {
-          userAuth = false;
-          warningLabel = 'Please sign in or sign up to order or list produce';
-      }
-      //console.log(this.props.userInfo);
-    return (
-      <div>
-        <h1>Market</h1>
-        <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
-        <Table responsive>
-            <thead>
-              <tr>
-                <th> </th>
-                <th>Item</th>
-                <th>Seller</th>
-                <th>Price ($)</th>
-                <th>Metric</th>
-                <th>Quantity</th>
-                <th>Quality</th>
-              </tr>
-            </thead>
-            <MarketList items={ this.props.items }
-                        images = {this.props.itemImages}
-                        userInfo = {this.props.userInfo}
-                        userAuthenticated = {userAuth}
-                        getImage = {() => this.props.actions.requestImage(key)}
-                        onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
-        </Table>
-        <ItemModal show={this.props.modalIsOpen} 
-                  selectedItem={this.props.selectedItem} 
-                  onHide={ () => this.props.actions.closeModal() } 
-                  cart={this.props.cart}
-                  addToCart={ cartAdd => this.props.actions.addToCart({cartAdd}) }
-                  userInfo={this.props.userInfo} />
-      </div>
-    );
-  }
+
+    render() {
+        if (this.props.items) {
+            for (var item in this.props.items) {
+                if (!this.props.items[item].image) {
+                    this.props.actions.getImages(this.props.items, item);
+                }
+            }
+        }
+        var warningLabel = '';
+        var userAuth = true;
+        if (this.props.authenticated == false) {
+            userAuth = false;
+            warningLabel = 'Please sign in or sign up to order or list produce';
+        }
+        return (
+            <div>
+                <h1>Market</h1>
+                <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
+                <Table responsive>
+                    <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Item</th>
+                        <th>Seller</th>
+                        <th>Price ($)</th>
+                        <th>Metric</th>
+                        <th>Quantity</th>
+                        <th>Quality</th>
+                    </tr>
+                    </thead>
+                    <MarketList items={ this.props.items }
+                                images={this.props.items}
+                                userInfo={this.props.userInfo}
+                                userAuthenticated={userAuth}
+                                getImage={() => this.props.actions.requestImage(key)}
+                                onItemSelect={selectedItem => this.props.actions.openModal({selectedItem}) }/>
+                </Table>
+                <ItemModal show={this.props.modalIsOpen}
+                           selectedItem={this.props.selectedItem}
+                           onHide={ () => this.props.actions.closeModal() }
+                           cart={this.props.cart}
+                           addToCart={ cartAdd => this.props.actions.addToCart({cartAdd}) }
+                           userInfo={this.props.userInfo}/>
+            </div>
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  //console.log(state);
-  return {
-    items: state.items.items,
-    itemImages: state.items.itemImages,
-    modalIsOpen: state.modal.modalIsOpen,
-    selectedItem: state.modal.selectedItem,
-    cart: state.cart.cart,
-    userInfo: state.AuthReducer.userInfo,
-    authenticated: state.AuthReducer.authenticated
-  };
+    return {
+        items: state.items.items,
+        itemImages: state.items.itemImages,
+        modalIsOpen: state.modal.modalIsOpen,
+        selectedItem: state.modal.selectedItem,
+        cart: state.cart.cart,
+        userInfo: state.AuthReducer.userInfo,
+        authenticated: state.AuthReducer.authenticated
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  };
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    };
 }
 
 

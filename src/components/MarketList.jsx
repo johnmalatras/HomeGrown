@@ -3,35 +3,39 @@ import MarketItem from './MarketItem.jsx';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
 
-const MarketList = (props) => {
-
-	var listItemsArray = [];
-	for (var key in props.items) {
-		var item = props.items[key];
-    	item.key = key;
-    	listItemsArray.push(item);
-	}
-	//console.log(props.userAuthenticated);
-	var isAuth = props.userAuthenticated;
-	var isRestaurant = false;
-	if(props.userInfo != undefined)
+var MarketList = (props) => {
+	var listItems = null;
+	if(props.items)
 	{
-		if(props.userInfo.isResturant == true)
-		{
-			isRestaurant = true;
+		var listItemsArray = [];
+		for (var key in props.items) {
+			var item = props.items[key];
+			item.key = key;
+			item.image = props.items[key].image;
+			listItemsArray.push(item);
 		}
-	}
-	else {
+		var isAuth = props.userAuthenticated;
+		var isRestaurant = false;
+		if(props.userInfo != undefined)
+		{
+			if(props.userInfo.isRestaurant == 'true')
+			{
+				isRestaurant = true;
+			}
+		}
+		else {
+			isRestaurant = false;
+		}
+		listItems = listItemsArray.map((row) => {
+			return <MarketItem key={row.key}
+							   item={row}
+							   image={row.image}
+							   isRestaurant={isRestaurant}
+							   auth = {isAuth}
+							   onItemSelect={ props.onItemSelect }/>
+		});
 
 	}
-
-  	const listItems = listItemsArray.map((row) => {
-    	return <MarketItem key={row.key} 
-    						item={row}
-						    isRestaurant={isRestaurant}
-						    auth = {isAuth}
-							onItemSelect={ props.onItemSelect } />
-  	});
 
   	return (
     	<tbody className="theList">

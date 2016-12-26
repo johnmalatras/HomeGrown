@@ -20,6 +20,10 @@ import AddItemPage from './src/containers/AddItemPage';
 import AboutPage from './src/components/AboutPage';
 import TermsOfUse from './src/components/TermsOfUse';
 import Footer from './src/containers/Footer';
+import EditUserPage from './src/containers/EditUserPage';
+import EditEmailPage from './src/containers/EditEmailPage';
+import EditPasswordPage from './src/containers/EditPasswordPage';
+import EditAvailableDatesPage from './src/containers/EditAvailableDatesPage';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -32,6 +36,10 @@ ReactDOM.render(
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
+                <Route path="/edit" component={RequireAuth(EditUserPage)}/>
+                <Route path="/email" component={RequireAuth(EditEmailPage)}/>
+                <Route path="/password" component={RequireAuth(EditPasswordPage)}/>
+                <Route path="/available" component={RequireAuth(EditAvailableDatesPage)}/>
                 <Route path="/about" component={AboutPage}/>
                 <Route path="/terms" component={TermsOfUse}/>
             </Route>
