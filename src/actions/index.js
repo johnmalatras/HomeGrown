@@ -303,9 +303,8 @@ export function authError(error) {
 };
 
 //Action call to add Item to Market from account page
-export function addItem(values, ownerName, availableDates) {
+export function addItem(values, ownerName, businessName, availableDates) {
     return function(dispatch) {
-        console.log(availableDates);
         var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
@@ -319,6 +318,7 @@ export function addItem(values, ownerName, availableDates) {
         itemRef.update({
             ["title"]:values.ProductTitle,
             ["seller"]:ownerName,
+            ["businessName"]:businessName,
             ["quantity"]: values.ProductQuantity,
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
@@ -332,6 +332,7 @@ export function addItem(values, ownerName, availableDates) {
         userItemRef.update({
             ["title"]:values.ProductTitle,
             ["seller"]:ownerName,
+            ["businessName"]:businessName,
             ["quantity"]: values.ProductQuantity,
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
