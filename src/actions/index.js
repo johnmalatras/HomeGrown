@@ -31,6 +31,7 @@ export const RESET_PASSWORD_UPDATE = 'RESET_PASSWORD_UPDATE';
 export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
 export const SET_IMAGES = 'SET_IMAGES';
 export const IMAGE_LOADED = 'IMAGE_LOADED';
+export const SET_DATE = 'SET_DATE';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -72,7 +73,15 @@ export function signInUser(credentials){
             });
     }
 };
+export function setSelectedDate(date,dateMoment)
+{
+    return {
+        type: 'SET_DATE',
+        date: date,
+        dateMoment: dateMoment
+    }
 
+}
 export function signUpUser(credentials) {
     return function(dispatch) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
@@ -303,9 +312,8 @@ export function authError(error) {
 };
 
 //Action call to add Item to Market from account page
-export function addItem(values, ownerName, availableDates) {
+export function addItem(values, ownerName, businessName, availableDates) {
     return function(dispatch) {
-        console.log(availableDates);
         var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
@@ -319,6 +327,7 @@ export function addItem(values, ownerName, availableDates) {
         itemRef.update({
             ["title"]:values.ProductTitle,
             ["seller"]:ownerName,
+            ["businessName"]:businessName,
             ["quantity"]: values.ProductQuantity,
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,
@@ -332,6 +341,7 @@ export function addItem(values, ownerName, availableDates) {
         userItemRef.update({
             ["title"]:values.ProductTitle,
             ["seller"]:ownerName,
+            ["businessName"]:businessName,
             ["quantity"]: values.ProductQuantity,
             ["metric"]: values.ProductMetric,
             ["price"]: values.ProductPrice,

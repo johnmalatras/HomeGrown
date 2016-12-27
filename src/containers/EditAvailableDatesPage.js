@@ -25,7 +25,6 @@ class EditAvailableDatesPage extends React.Component {
     updateAvailability(date, value)
     {
         this.props.actions.updateAvailableDate(date, value, this.props.userInfo.availableDates,this.props.userInfo,this.props.userInfo.items)
-        //this.props.actions.updateAvailableItemDates(this.props.userInfo);
     }
     goBack()
     {
@@ -33,7 +32,6 @@ class EditAvailableDatesPage extends React.Component {
     }
     render() {
         var availableDates = this.props.userInfo.availableDates;
-
         var sundayButton;
         var mondayButton;
         var tuesdayButton;
