@@ -13,14 +13,14 @@ var MarketItem = ({item, isRestaurant,image, onItemSelect, auth}) => {
 	var produceImage;
 
 	produceImage = <Image style={{width: '128px', height: '128px'}}  src={item.image} rounded />;
-
+	//console.log(item);
 	if (auth != false) {
 		if (res == false) {
 			const rowElement = (
 				<tr key={item.title}>
 					<td>{produceImage}</td>
 					<td>{item.title}</td>
-					<td>{item.seller}</td>
+					<td>{item.businessName}</td>
 					<td>{item.price}</td>
 					<td>{item.metric}</td>
 					<td>{item.quantity}</td>
