@@ -31,6 +31,7 @@ export const RESET_PASSWORD_UPDATE = 'RESET_PASSWORD_UPDATE';
 export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
 export const SET_IMAGES = 'SET_IMAGES';
 export const IMAGE_LOADED = 'IMAGE_LOADED';
+export const SET_DATE = 'SET_DATE';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -72,7 +73,15 @@ export function signInUser(credentials){
             });
     }
 };
+export function setSelectedDate(date,dateMoment)
+{
+    return {
+        type: 'SET_DATE',
+        date: date,
+        dateMoment: dateMoment
+    }
 
+}
 export function signUpUser(credentials) {
     return function(dispatch) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
