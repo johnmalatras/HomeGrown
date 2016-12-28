@@ -47,11 +47,34 @@ class MarketView extends React.Component {
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
                 var date = moment().add(1, "days");
-                var day1 = date.local().format('ddd');
+                var day1 = date.local().format('dddd');
                 var date1 = moment().add(2, "days");
-                var day2 = date1.local().format('ddd');
+                var day2 = date1.local().format('dddd');
                 var date2 = moment().add(3, "days");
-                var day3 = date2.local().format('ddd');
+                var day3 = date2.local().format('dddd');
+                var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
+                var Button1;
+                var Button2;
+                var Button3;
+                console.log(day1);
+                if(holdDate == day1.toLowerCase())
+                {
+                    Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>;
+                }
+                else if(holdDate == day2.toLowerCase())
+                {
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;
+                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>;
+                }
+                else if(holdDate == day3.toLowerCase())
+                {
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>;
+                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>;
+                }
                 dateSelector =
                     <Grid>
                         <Panel>
@@ -59,9 +82,9 @@ class MarketView extends React.Component {
                                 <Col md={6}>
                                     <h3>Select date to order from:</h3>
                                     <ButtonToolbar>
-                                        <Button onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>
-                                        <Button onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>
-                                        <Button onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>
+                                        {Button1}
+                                        {Button2}
+                                        {Button3}
                                     </ButtonToolbar>
                                 </Col>
                                 <Col md={6}>
@@ -75,9 +98,9 @@ class MarketView extends React.Component {
             }
             else {
                 var date1 = moment().add(2, "days");
-                var day2 = date1.local().format('ddd');
+                var day2 = date1.local().format('dddd');
                 var date2 = moment().add(3, "days");
-                var day3 = date2.local().format('ddd');
+                var day3 = date2.local().format('dddd');
                 dateSelector =
                     <Grid>
                         <Panel>

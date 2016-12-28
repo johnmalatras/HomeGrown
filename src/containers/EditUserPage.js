@@ -95,6 +95,7 @@ class EditUserPage extends React.Component {
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Phone Number: </p></Col>
                             <Col md={6}>
+
                             </Col>
                         </Row>
                         <Row>
