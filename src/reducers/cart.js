@@ -11,7 +11,6 @@ export default function cartReducer(state = initialState, action) {
 				cart: action.payload
 			});
 		case REMOVE_FROM_CART:
-			console.log(action.payload);
 			return Object.assign({}, state, {
 				cart: action.payload
 			});

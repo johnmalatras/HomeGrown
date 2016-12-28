@@ -106,7 +106,21 @@ export function signUpUser(credentials) {
         };
         firstTime = true;
 
+        fetch('http://104.236.192.230/api/signup', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(credentials),
+        }).then(response => {
+            response.json().then(data => {
+                console.log(data);
+            });
+        });
+    
     }
+
 };
 export function verifyAuth(){
     return function (dispatch) {

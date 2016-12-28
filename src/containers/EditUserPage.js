@@ -10,7 +10,7 @@ import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
-import Phone, { phoneNumberFormat, isValidPhoneNumber } from 'react-phone-number-input'
+//import Phone, { phoneNumberFormat, isValidPhoneNumber } from 'react-phone-number-input'
 var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
@@ -95,12 +95,6 @@ class EditUserPage extends React.Component {
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Phone Number: </p></Col>
                             <Col md={6}>
-                                <Phone
-                                    placeholder="Enter phone number"
-                                    format={ phoneNumberFormat.US }
-                                    value={ this.state.phoneNumber }
-                                    onChange={ (phoneNumber) => this.setState({ phoneNumber }) }
-                                     />
                             </Col>
                         </Row>
                         <Row>

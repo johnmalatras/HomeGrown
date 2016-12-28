@@ -30,7 +30,6 @@ class MarketView extends React.Component {
         var dateSelector;
         var items = this.props.items;
         var items_selectedDate =JSON.parse(JSON.stringify(items));
-        console.log(items_selectedDate);
         if (this.props.selectedDateMoment) {
             for (item in items) {
                 var isIn = false;
@@ -45,7 +44,6 @@ class MarketView extends React.Component {
                     delete items_selectedDate[item];
                 }
             }
-            console.log(items);
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
                 var date = moment().add(1, "days");

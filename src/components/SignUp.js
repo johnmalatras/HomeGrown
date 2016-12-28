@@ -80,7 +80,6 @@ class SignUp extends React.Component {
     };
 
     TermsOfUse(){
-        console.log("TOU");
         browserHistory.push('/terms');
     };
 
