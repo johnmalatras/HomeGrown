@@ -118,7 +118,7 @@ export function signUpUser(credentials) {
                 console.log(data);
             });
         });
-    
+
     }
 
 };
@@ -526,6 +526,18 @@ export function placeOrder(order) {
             ["deliveryDate"]:order.order.deliveryDate
     });
 
+    fetch('http://104.236.192.230/api/placeorder', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order.order),
+    }).then(response => {
+        response.json().then(data => {
+            console.log(data);
+        });
+    });
 
     alert("Order Placed! Thank you for your business!");
 
