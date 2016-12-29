@@ -4,6 +4,7 @@
 import React,{PropTypes} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import ForgotPasswordModal from './ForgotPasswordModal';
 
 const validate = (values) => {
     const errors = {};
@@ -51,7 +52,6 @@ class Login extends React.Component {
     };
 
     render() {
-
         return(
             <div className="container">
                 <div className="col-md-6">
@@ -61,7 +61,11 @@ class Login extends React.Component {
                         <Field name="password" type="password" component={this.renderField} label="Password" />
                         <button action="submit" className="btn btn-primary">Sign In</button>
                     </form>
+                    <a href="#" onClick={ () => this.props.openModal() }>Forgot Password?</a>
                 </div>
+                <ForgotPasswordModal show={this.props.modalIsOpen}
+                                     forgotPassword={ (email) => this.props.forgotPassword(email) }
+                                     onHide={  () => this.props.closeModal()  } />
             </div>
         );
     }
@@ -70,7 +74,11 @@ class Login extends React.Component {
 Login.propTypes = {
     authenticated: PropTypes.bool.isRequired,
     onLogin: PropTypes.func.isRequired,
-    authenticationError: PropTypes.string
+    authenticationError: PropTypes.string,
+    modalIsOpen: PropTypes.bool.isRequired,
+    openModal: PropTypes.func.isRequired,
+    closeModal: PropTypes.func.isRequired,
+    forgotPassword: PropTypes.func.isRequired
 };
 
 export default(reduxForm({
