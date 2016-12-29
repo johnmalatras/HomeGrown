@@ -65,7 +65,8 @@ class CartList extends React.Component {
 				comment: this.state.comment,
 				deliveryTime: this.state.deliveryTime
 			};
-			this.props.placeOrder(purchase);
+			console.log("trying to place order");
+			this.props.placeOrder(purchase, this.props.user);
 		});
 
   	}
@@ -128,6 +129,7 @@ class CartList extends React.Component {
 			return 0;
 		}
   	}
+
   	//Returns the opposite of what you would think lol
 	//true - cant order, false - can order
   	canNotOrder() {

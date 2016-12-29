@@ -56,7 +56,6 @@ class MarketView extends React.Component {
                 var Button1;
                 var Button2;
                 var Button3;
-                console.log(day1);
                 if(holdDate == day1.toLowerCase())
                 {
                     Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;

@@ -32,6 +32,9 @@ export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
 export const SET_IMAGES = 'SET_IMAGES';
 export const IMAGE_LOADED = 'IMAGE_LOADED';
 export const SET_DATE = 'SET_DATE';
+export const OPEN_FP_MODAL = 'OPEN_FP_MODAL';
+export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -72,16 +75,16 @@ export function signInUser(credentials){
                 dispatch(authError(error));
             });
     }
-};
-export function setSelectedDate(date,dateMoment)
-{
+}
+
+export function setSelectedDate(date,dateMoment){
     return {
         type: 'SET_DATE',
         date: date,
         dateMoment: dateMoment
     }
-
 }
+
 export function signUpUser(credentials) {
     return function(dispatch) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
@@ -120,8 +123,8 @@ export function signUpUser(credentials) {
         });
 
     }
+}
 
-};
 export function verifyAuth(){
     return function (dispatch) {
         Firebase.auth().onAuthStateChanged(user => {
@@ -158,7 +161,7 @@ export function verifyAuth(){
             }
         });
     }
-};
+}
 
 export function signOutUser() {
     Firebase.auth().signOut();
@@ -166,7 +169,7 @@ export function signOutUser() {
     return {
         type: 'SIGN_OUT_USER'
     }
-};
+}
 
 export function authUser() {
     return function(dispatch) {
@@ -183,17 +186,15 @@ export function authUser() {
           };
         });
       }
-};
-export function resetPasswordUpdate()
-{
+}
+
+export function resetPasswordUpdate() {
     return {
         type: 'RESET_PASSWORD_UPDATE'
     }
-
 }
 
-export function updateAvailableDate(day, value, currentAvilDates, user)
-{
+export function updateAvailableDate(day, value, currentAvilDates, user) {
     const userUid = Firebase.auth().currentUser.uid;
 
     for(var i = 0; i < 7; i++)
@@ -228,8 +229,8 @@ export function updateAvailableDate(day, value, currentAvilDates, user)
         }
     }
 }
-export function updateUserPassword(Email, newPassword, oldPassword)
-{
+
+export function updateUserPassword(Email, newPassword, oldPassword) {
     return function(dispatch) {
         var user = Firebase.auth().currentUser;
         const credential = Firebase.auth.EmailAuthProvider.credential(
@@ -302,6 +303,7 @@ export function updateUserEmail(oldEmail,newEmail,password){
 
     };
 }
+
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
     const user = database.ref('/users/'+userUid.toString());
@@ -312,18 +314,20 @@ export function updateUserSetting(parameter,value){
         type: UPDATE_USER_INFO
     }
 }
+
 export function updateAccountPage(parameter){
     return {
         type: UPDATE_ACCOUNT_PAGE,
         payload: parameter
     }
 }
+
 export function authError(error) {
     return {
         type: AUTH_ERROR,
         payload: error
     }
-};
+}
 
 //Action call to add Item to Market from account page
 export function addItem(values, ownerName, businessName, availableDates) {
@@ -374,8 +378,7 @@ export function imageLoaded(){
     }
 }
 
-export function getImages(items, item)
-{
+export function getImages(items, item) {
     return function(dispatch) {
         var imgRef = storage.ref('image/' + item);
         imgRef.getDownloadURL().then(function (url) {
@@ -463,7 +466,8 @@ export function deleteCartItem(cartItem, theCart) {
     }
 }
 
-export function placeOrder(order) {
+export function placeOrder(order, user) {
+    console.log("in place order");
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
@@ -526,6 +530,9 @@ export function placeOrder(order) {
             ["deliveryDate"]:order.order.deliveryDate
     });
 
+    order.order.user = user;
+
+    console.log(order.order);
     fetch('http://104.236.192.230/api/placeorder', {
         method: 'POST',
         headers: {
@@ -576,7 +583,7 @@ export function requestActiveOrders() {
       };
     });
   }
-};
+}
 
 export function requestImage(imageKey) {
     // Create a reference to the file we want to download
@@ -659,8 +666,8 @@ export function closeCLModal() {
     type: CLOSE_CL_MODAL
   }
 }
-export function updateAvailableItemDates(user)
-{
+
+export function updateAvailableItemDates(user) {
     console.log("HIT UPDATE ITEM");
     const userUid = Firebase.auth().currentUser.uid;
 
@@ -681,6 +688,7 @@ export function updateAvailableItemDates(user)
         type: UPDATE_QUANTITY
     }
 }
+
 export function updateQuantity(newQuantity, item) {
     const userUid = Firebase.auth().currentUser.uid;
 
@@ -710,5 +718,29 @@ export function deleteItem(item) {
     itemRef.remove();
     return {
         type: DELETE_ITEM
+    }
+}
+
+export function openForgotPasswordModal() {
+    return {
+        type: OPEN_FP_MODAL
+    }
+}
+
+export function closeForgotPasswordModal() {
+    return {
+        type: CLOSE_FP_MODAL
+    }
+}
+
+export function forgotPassword(email) {
+
+    authData.sendPasswordResetEmail(email).then(function() {
+      alert("Password reset email sent!");
+    }, function(error) {
+      console.log(error)
+    });
+    return {
+        type: FORGOT_PASSWORD
     }
 }
