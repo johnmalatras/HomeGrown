@@ -17,9 +17,9 @@ class ForgotPasswordModal extends React.Component {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
-    //alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+  handleSubmit() {
+    this.props.forgotPassword(this.state.value);
+    this.props.onHide();
   }
 
   render() {
@@ -30,13 +30,6 @@ class ForgotPasswordModal extends React.Component {
     var FormControl = ReactBootstrap.FormControl;
     var ControlLabel = ReactBootstrap.ControlLabel;
 
-    const item = this.props.selectedItem;
-
-    if (!this.props.selectedItem) {
-      return <div></div>;
-    }
-
-    console.log(this.props.show);
   	return (
     	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div className="container">
@@ -49,7 +42,7 @@ class ForgotPasswordModal extends React.Component {
           </FormGroup>
           {"  "}
            <ButtonToolbar>
-             <Button onClick={() => this.forgotPassword(this.state.value)}>Submit</Button>
+             <Button onClick={this.handleSubmit}>Submit</Button>
              <Button onClick={() => this.props.onHide()}>Close</Button>
            </ButtonToolbar>
          </Form>

@@ -734,7 +734,6 @@ export function closeForgotPasswordModal() {
 }
 
 export function forgotPassword(email) {
-
     authData.sendPasswordResetEmail(email).then(function() {
       alert("Password reset email sent!");
     }, function(error) {

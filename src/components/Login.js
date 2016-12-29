@@ -52,7 +52,6 @@ class Login extends React.Component {
     };
 
     render() {
-        console.log(this.props.modalIsOpen);
         return(
             <div className="container">
                 <div className="col-md-6">
@@ -65,7 +64,7 @@ class Login extends React.Component {
                     <a href="#" onClick={ () => this.props.openModal() }>Forgot Password?</a>
                 </div>
                 <ForgotPasswordModal show={this.props.modalIsOpen}
-                                     forgotPassword={ () => this.props.forgotPassword() }
+                                     forgotPassword={ (email) => this.props.forgotPassword(email) }
                                      onHide={  () => this.props.closeModal()  } />
             </div>
         );
