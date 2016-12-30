@@ -32,6 +32,9 @@ export const UPDATE_AVAILABLE_DATES = 'UPDATE_AVAILABLE_DATES';
 export const SET_IMAGES = 'SET_IMAGES';
 export const IMAGE_LOADED = 'IMAGE_LOADED';
 export const SET_DATE = 'SET_DATE';
+export const OPEN_FP_MODAL = 'OPEN_FP_MODAL';
+export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -81,8 +84,8 @@ export function setSelectedDate(date,dateMoment,cartIndex)
         dateMoment: dateMoment,
         cartIndex: cartIndex
     }
-
 }
+
 export function signUpUser(credentials) {
     return function(dispatch) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
@@ -229,8 +232,8 @@ export function updateAvailableDate(day, value, currentAvilDates, user)
         }
     }
 }
-export function updateUserPassword(Email, newPassword, oldPassword)
-{
+
+export function updateUserPassword(Email, newPassword, oldPassword) {
     return function(dispatch) {
         var user = Firebase.auth().currentUser;
         const credential = Firebase.auth.EmailAuthProvider.credential(
@@ -303,6 +306,7 @@ export function updateUserEmail(oldEmail,newEmail,password){
 
     };
 }
+
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
     const user = database.ref('/users/'+userUid.toString());
@@ -313,12 +317,14 @@ export function updateUserSetting(parameter,value){
         type: UPDATE_USER_INFO
     }
 }
+
 export function updateAccountPage(parameter){
     return {
         type: UPDATE_ACCOUNT_PAGE,
         payload: parameter
     }
 }
+
 export function authError(error) {
     return {
         type: AUTH_ERROR,
@@ -375,8 +381,7 @@ export function imageLoaded(){
     }
 }
 
-export function getImages(items, item)
-{
+export function getImages(items, item) {
     return function(dispatch) {
         var imgRef = storage.ref('image/' + item);
         imgRef.getDownloadURL().then(function (url) {
@@ -467,6 +472,8 @@ export function deleteCartItem(cartItem, theCart, cartIndex) {
 }
 
 export function placeOrder(order,cartIndex) {
+export function placeOrder(order, user) {
+    console.log("in place order");
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
@@ -528,6 +535,23 @@ export function placeOrder(order,cartIndex) {
             ["deliveryTime"]:order.order.deliveryTime,
             ["deliveryDate"]:order.order.deliveryDate
     });
+
+    order.order.user = user;
+
+    console.log(order.order);
+    fetch('http://104.236.192.230/api/placeorder', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order.order),
+    }).then(response => {
+        response.json().then(data => {
+            console.log(data);
+        });
+    });
+
     alert("Order Placed! Thank you for your business!");
     return {
         type: PLACE_ORDER,
@@ -565,7 +589,7 @@ export function requestActiveOrders() {
       };
     });
   }
-};
+}
 
 export function openActiveOrderModal(item) {
   return {
@@ -611,8 +635,8 @@ export function closeCLModal() {
     type: CLOSE_CL_MODAL
   }
 }
-export function updateAvailableItemDates(user)
-{
+
+export function updateAvailableItemDates(user) {
     console.log("HIT UPDATE ITEM");
     const userUid = Firebase.auth().currentUser.uid;
 
@@ -633,6 +657,7 @@ export function updateAvailableItemDates(user)
         type: UPDATE_QUANTITY
     }
 }
+
 export function updateQuantity(newQuantity, item) {
     const userUid = Firebase.auth().currentUser.uid;
 
@@ -662,5 +687,28 @@ export function deleteItem(item) {
     itemRef.remove();
     return {
         type: DELETE_ITEM
+    }
+}
+
+export function openForgotPasswordModal() {
+    return {
+        type: OPEN_FP_MODAL
+    }
+}
+
+export function closeForgotPasswordModal() {
+    return {
+        type: CLOSE_FP_MODAL
+    }
+}
+
+export function forgotPassword(email) {
+    authData.sendPasswordResetEmail(email).then(function() {
+      alert("Password reset email sent!");
+    }, function(error) {
+      console.log(error)
+    });
+    return {
+        type: FORGOT_PASSWORD
     }
 }
