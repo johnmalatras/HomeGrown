@@ -68,7 +68,7 @@ class Header extends React.Component {
                         <Navbar.Collapse>
                             <Nav pullRight>
                                 <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
-                                <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}>Cart</NavItem>
+                                <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}>Cart: {this.props.selectedDate}</NavItem>
                                 <NavItem eventKey={3} href="#" onClick={() => this.handleHolder()}>Account</NavItem>
                                 <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}>About</NavItem>
                                 <NavItem eventKey={5} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
@@ -115,7 +115,8 @@ function mapStateToProps(state) {
     return {
         authenticated: state.AuthReducer.authenticated,
         cart: state.cart.cart,
-        userInfo: state.AuthReducer.userInfo
+        userInfo: state.AuthReducer.userInfo,
+        selectedDate: state.items.selectedDate
     }
 };
 export default connect(mapStateToProps,mapDispatchToProps)(Header);

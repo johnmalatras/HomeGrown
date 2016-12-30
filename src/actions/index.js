@@ -73,12 +73,13 @@ export function signInUser(credentials){
             });
     }
 };
-export function setSelectedDate(date,dateMoment)
+export function setSelectedDate(date,dateMoment,cartIndex)
 {
     return {
         type: 'SET_DATE',
         date: date,
-        dateMoment: dateMoment
+        dateMoment: dateMoment,
+        cartIndex: cartIndex
     }
 
 }
@@ -434,21 +435,22 @@ export function openModal(item) {
 
 export function closeModal() {
   return {
-    type: CLOSE_MODAL
+      type: CLOSE_MODAL
   }
 }
 
-export function addToCart(cartItem) {
-  var cart = cartItem.cartAdd.cart;
-  var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
-  cart.push(newCartItem);
-  return {
-    type: ADD_TO_CART,
-    payload: cart
-  }
+export function addToCart(cartItem, cartIndex) {
+    var cart = cartItem.cartAdd.cart;
+    var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
+    cart.push(newCartItem);
+    return {
+        type: ADD_TO_CART,
+        cart: cart,
+        cartIndex: cartIndex
+    }
 }
 
-export function deleteCartItem(cartItem, theCart) {
+export function deleteCartItem(cartItem, theCart, cartIndex) {
 
     var cart = theCart.cart;
     var item = cartItem.selectedItem;
@@ -459,11 +461,12 @@ export function deleteCartItem(cartItem, theCart) {
     var holdCart = Array.from(cart);
     return {
         type: REMOVE_FROM_CART,
-        payload: holdCart
+        payload: holdCart,
+        cartIndex: cartIndex
     }
 }
 
-export function placeOrder(order) {
+export function placeOrder(order,cartIndex) {
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
@@ -525,13 +528,11 @@ export function placeOrder(order) {
             ["deliveryTime"]:order.order.deliveryTime,
             ["deliveryDate"]:order.order.deliveryDate
     });
-
-
     alert("Order Placed! Thank you for your business!");
-
     return {
         type: PLACE_ORDER,
-        payload: []
+        payload: [],
+        cartIndex:cartIndex
     }
 }
 
@@ -565,43 +566,6 @@ export function requestActiveOrders() {
     });
   }
 };
-
-export function requestImage(imageKey) {
-    // Create a reference to the file we want to download
-    //console.log(imageKey);
-    //var imgRef = storageRef.child('images/' + imageKey);
-
-    // return function(dispatch) {
-    //     imgRef.getDownloadURL().then(function(url) {
-    //         // Insert url into an <img> tag to "download"
-    //         console.log(url);
-    //         dispatch({
-    //             type: REQUEST_ITEM_IMAGES,
-    //             payload: url
-    //         });
-    //
-    //     }).catch(function(error) {
-    //         switch (error.code) {
-    //             case 'storage/object_not_found':
-    //                 // File doesn't exist
-    //                 break;
-    //
-    //             case 'storage/unauthorized':
-    //                 // User doesn't have permission to access the object
-    //                 break;
-    //
-    //             case 'storage/canceled':
-    //                 // User canceled the upload
-    //                 break;
-    //
-    //             case 'storage/unknown':
-    //                 // Unknown error occurred, inspect the server response
-    //                 break;
-    //         }
-    //     });
-
-   // }
-}
 
 export function openActiveOrderModal(item) {
   return {

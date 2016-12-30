@@ -31,11 +31,24 @@ class CartList extends React.Component {
   	}
 
   	onToken(token){
+        var useCart;
+        if(this.props.cartIndex == 1)
+        {
+            useCart = this.props.cart;
+        }
+        else if(this.props.cartIndex == 2)
+        {
+            useCart = this.props.cart2;
+        }
+        else if(this.props.cartIndex == 3)
+        {
+            useCart = this.props.cart3;
+        }
 		var orderDescription;
-		if (this.props.cart.length > 1) {
-			orderDescription = this.props.cart.length + " items";
+		if (useCart.length > 1) {
+			orderDescription = useCart.length + " items";
 		} else {
-			orderDescription = this.props.cart[0][0].title;
+			orderDescription = useCart[0][0].title;
 		}
 
 		var fee = (price * .25).toFixed(2);
@@ -45,6 +58,7 @@ class CartList extends React.Component {
 		token.orderDescription = orderDescription;
 		token.orderPrice = totalPrice;
 
+        console.log("HIT 5");
 		fetch('http://104.236.192.230/api/chargecard', {
 			method: 'POST',
 			headers: {
@@ -56,12 +70,13 @@ class CartList extends React.Component {
 			response.json().then(data => {
 				console.log(data);
 			});
+
 			var purchase = {
-				cart: this.props.cart,
+				cart: useCart,
 				subtotal: price,
 				fee: fee,
 				total: priceDollars,
-				deliveryDate: this.state.deliveryDateDay,
+				deliveryDate: this.props.selectedDateMoment,
 				comment: this.state.comment,
 				deliveryTime: this.state.deliveryTime
 			};
@@ -92,7 +107,21 @@ class CartList extends React.Component {
 	}
 
   	placeOrder(subtotal, fee, total) {
-		if(this.props.cart.length == 0)
+        var useCart;
+        if(this.props.cartIndex == 1)
+        {
+            useCart = this.props.cart;
+        }
+        else if(this.props.cartIndex == 2)
+        {
+            useCart = this.props.cart2;
+        }
+        else if(this.props.cartIndex == 3)
+        {
+            useCart = this.props.cart3;
+        }
+
+        if(useCart.length == 0)
 		{
 			this.setState({
 				errorMessage: 'You must have someting in your cart to order.'
@@ -115,11 +144,11 @@ class CartList extends React.Component {
 		}
 		else {
 			var purchase = {
-				cart: this.props.cart,
+				cart: useCart,
 				subtotal: subtotal,
 				fee: fee,
 				total: total,
-				deliveryDate: this.state.deliveryDateDay,
+				deliveryDate: this.props.selectedDateMoment,
 				comment: this.state.comment,
 				deliveryTime: this.state.deliveryTime
 			};
@@ -131,21 +160,24 @@ class CartList extends React.Component {
   	//Returns the opposite of what you would think lol
 	//true - cant order, false - can order
   	canNotOrder() {
-
-		if (this.props.cart.length == 0) {
-			return true;
-		}
-		else if (this.state.deliveryDate == undefined) {
+        var useCart;
+        if(this.props.cartIndex == 1)
+        {
+            useCart = this.props.cart;
+        }
+        else if(this.props.cartIndex == 2)
+        {
+            useCart = this.props.cart2;
+        }
+        else if(this.props.cartIndex == 3)
+        {
+            useCart = this.props.cart3;
+        }
+		if (useCart.length == 0) {
 			return true;
 		}
 		else if (price < 200) {
 			return true;
-		} else if (this.state.deliveryDate != undefined)
-		{
-			if(!this.state.deliveryDate.isValid())
-			{
-				return true;
-			}
 		}
 		else {
 			return false;
@@ -153,11 +185,25 @@ class CartList extends React.Component {
 	}
 
   	deleteItem(cartItem, theCart){
-		this.props.deleteCartItem(cartItem, theCart);
+		this.props.deleteCartItem(cartItem, this.props.cartIndex, theCart);
 		alert(cartItem[0].title + " removed from cart!");
 	}
 
 	render() {
+        var useCart;
+        console.log(this.props.selectedCart);
+        if(this.props.cartIndex == 1)
+        {
+         useCart = this.props.cart;
+        }
+        else if(this.props.cartIndex == 2)
+        {
+            useCart = this.props.cart2;
+        }
+        else if(this.props.cartIndex == 3)
+        {
+            useCart = this.props.cart3;
+        }
 
 		var momentArray;
 		var localTime = moment(Date.now()).local().format('HH');
@@ -172,21 +218,21 @@ class CartList extends React.Component {
 		}
 
 		price = 0;
-	  	const listItems = this.props.cart.map((row) => {
+	  	const listItems = useCart.map((row) => {
 	  		price = +price + +(row[1] * row[0].price).toFixed(2);
 	    	return <CartItem key={row[0].title} 
 	    						cartItem={row} 
 	    						deleteCartItem={this.deleteItem}
-	    						cart={this.props.cart}/>
+	    						cart={useCart}/>
 	  	});
 	  	price = price.toFixed(2);
 	  	var fee = (price * .25).toFixed(2);
 	  	var totalPrice = (+price + +fee).toFixed(2);
 
 	  	var orderDescription;
-	  	if (this.props.cart.length > 1) {
-	  		orderDescription = this.props.cart.length + " items";
-	  	} else if (this.props.cart.length == 0) {
+	  	if (useCart.length > 1) {
+	  		orderDescription = useCart.length + " items";
+	  	} else if (useCart.length == 0) {
 			//Not 100% this is correct but that keeps things interesting
 	  		orderDescription = 'SHOULDNT BE HIT';//this.props.cart[0][0].title;
 	  	}
@@ -196,24 +242,12 @@ class CartList extends React.Component {
 		var colorSelected = '#000000';
 		if(canBuy == true)
 		{
-			if(this.props.cart.length == 0)	{
+			if(useCart.length == 0)	{
 				errorMessage='You must have someting in your cart to order.';
-				colorSelected = '#ff0000';
-			}
-			else if(this.state.deliveryDate == undefined){
-				errorMessage= 'You must select a delivery date.';
 				colorSelected = '#ff0000';
 			}else if(price < 200){
 				errorMessage= 'You must have at least $200 in your cart.';
 				colorSelected = '#ff0000';
-			}
-			else if(this.state.deliveryDate != undefined)
-			{
-				if(!this.state.deliveryDate.isValid())
-				{
-					errorMessage= 'Please refresh the page to fix the date picker';
-					colorSelected = '#ff0000';
-				}
 			}
 			else {
 				errorMessage= 'You are good to order!'
@@ -265,12 +299,7 @@ class CartList extends React.Component {
 					<td> </td>
 					<td> </td>
 					<td> </td>
-					<td><DatePicker
-						selected={this.state.deliveryDate}
-						onChange={this.handleChange}
-						includeDates={momentArray}
-						placeholderText="Select Delivery Date" />
-					</td>
+					<td> </td>
 					<td>
 						<DropdownButton title={this.state.deliveryTime} onSelect={(evt) => this.handleTimeChange(evt)}>
 							<MenuItem eventKey='8am-10am'>8am-10am</MenuItem>
@@ -310,19 +339,24 @@ class CartList extends React.Component {
 			</tbody>
 	  	)
   	}
-};
+}
+;
 
 function mapStateToProps(state) {
-  return {
-    cart: state.cart.cart,
-    user: state.AuthReducer.userInfo
-  };
+    return {
+        cart: state.cart.cart,
+        cart2: state.cart.cart2,
+        cart3: state.cart.cart3,
+        selectedCart: state.items.selectedCart,
+        user: state.AuthReducer.userInfo,
+        selectedDateMoment: state.items.selectedDateMoment
+    };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(Actions, dispatch)
-  };
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    };
 }
 
 
