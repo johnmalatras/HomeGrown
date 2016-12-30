@@ -5,8 +5,9 @@ var date = moment().add(2, "days");
 const initialState = {
 	items: [],
 	itemImages: [],
-	selectedDate: date.local().format('ddd'),
-	selectedDateMoment: date
+	selectedDate: date.local().format('dddd'),
+	selectedDateMoment: date,
+	selectedCart: 2
 };
 
 export default function itemReducer(state = initialState, action) {
@@ -30,7 +31,8 @@ export default function itemReducer(state = initialState, action) {
 		case SET_DATE:
 			return Object.assign({}, state, {
 				selectedDate: action.date,
-				selectedDateMoment: action.dateMoment
+				selectedDateMoment: action.dateMoment,
+				selectedCart: action.selectedCart
 			});
 		default:
 			return state;

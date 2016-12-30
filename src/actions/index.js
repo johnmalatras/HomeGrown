@@ -75,13 +75,14 @@ export function signInUser(credentials){
                 dispatch(authError(error));
             });
     }
-}
-
-export function setSelectedDate(date,dateMoment){
+};
+export function setSelectedDate(date,dateMoment,cartIndex)
+{
     return {
         type: 'SET_DATE',
         date: date,
-        dateMoment: dateMoment
+        dateMoment: dateMoment,
+        cartIndex: cartIndex
     }
 }
 
@@ -121,10 +122,10 @@ export function signUpUser(credentials) {
                 console.log(data);
             });
         });
-
+    
     }
-}
 
+};
 export function verifyAuth(){
     return function (dispatch) {
         Firebase.auth().onAuthStateChanged(user => {
@@ -161,7 +162,7 @@ export function verifyAuth(){
             }
         });
     }
-}
+};
 
 export function signOutUser() {
     Firebase.auth().signOut();
@@ -169,7 +170,7 @@ export function signOutUser() {
     return {
         type: 'SIGN_OUT_USER'
     }
-}
+};
 
 export function authUser() {
     return function(dispatch) {
@@ -186,15 +187,17 @@ export function authUser() {
           };
         });
       }
-}
-
-export function resetPasswordUpdate() {
+};
+export function resetPasswordUpdate()
+{
     return {
         type: 'RESET_PASSWORD_UPDATE'
     }
+
 }
 
-export function updateAvailableDate(day, value, currentAvilDates, user) {
+export function updateAvailableDate(day, value, currentAvilDates, user)
+{
     const userUid = Firebase.auth().currentUser.uid;
 
     for(var i = 0; i < 7; i++)
@@ -327,7 +330,7 @@ export function authError(error) {
         type: AUTH_ERROR,
         payload: error
     }
-}
+};
 
 //Action call to add Item to Market from account page
 export function addItem(values, ownerName, businessName, availableDates) {
@@ -437,21 +440,22 @@ export function openModal(item) {
 
 export function closeModal() {
   return {
-    type: CLOSE_MODAL
+      type: CLOSE_MODAL
   }
 }
 
-export function addToCart(cartItem) {
-  var cart = cartItem.cartAdd.cart;
-  var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
-  cart.push(newCartItem);
-  return {
-    type: ADD_TO_CART,
-    payload: cart
-  }
+export function addToCart(cartItem, cartIndex) {
+    var cart = cartItem.cartAdd.cart;
+    var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
+    cart.push(newCartItem);
+    return {
+        type: ADD_TO_CART,
+        cart: cart,
+        cartIndex: cartIndex
+    }
 }
 
-export function deleteCartItem(cartItem, theCart) {
+export function deleteCartItem(cartItem, theCart, cartIndex) {
 
     var cart = theCart.cart;
     var item = cartItem.selectedItem;
@@ -462,10 +466,12 @@ export function deleteCartItem(cartItem, theCart) {
     var holdCart = Array.from(cart);
     return {
         type: REMOVE_FROM_CART,
-        payload: holdCart
+        payload: holdCart,
+        cartIndex: cartIndex
     }
 }
 
+export function placeOrder(order,cartIndex) {
 export function placeOrder(order, user) {
     console.log("in place order");
     const userUid = Firebase.auth().currentUser.uid;
@@ -547,10 +553,10 @@ export function placeOrder(order, user) {
     });
 
     alert("Order Placed! Thank you for your business!");
-
     return {
         type: PLACE_ORDER,
-        payload: []
+        payload: [],
+        cartIndex:cartIndex
     }
 }
 
@@ -583,43 +589,6 @@ export function requestActiveOrders() {
       };
     });
   }
-}
-
-export function requestImage(imageKey) {
-    // Create a reference to the file we want to download
-    //console.log(imageKey);
-    //var imgRef = storageRef.child('images/' + imageKey);
-
-    // return function(dispatch) {
-    //     imgRef.getDownloadURL().then(function(url) {
-    //         // Insert url into an <img> tag to "download"
-    //         console.log(url);
-    //         dispatch({
-    //             type: REQUEST_ITEM_IMAGES,
-    //             payload: url
-    //         });
-    //
-    //     }).catch(function(error) {
-    //         switch (error.code) {
-    //             case 'storage/object_not_found':
-    //                 // File doesn't exist
-    //                 break;
-    //
-    //             case 'storage/unauthorized':
-    //                 // User doesn't have permission to access the object
-    //                 break;
-    //
-    //             case 'storage/canceled':
-    //                 // User canceled the upload
-    //                 break;
-    //
-    //             case 'storage/unknown':
-    //                 // Unknown error occurred, inspect the server response
-    //                 break;
-    //         }
-    //     });
-
-   // }
 }
 
 export function openActiveOrderModal(item) {

@@ -23,11 +23,13 @@ class MarketView extends React.Component {
         //this.state = {selectedDate: date.local().format('ddd'), selectedDateMoment: date};
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
     }
-    changeSelectedDate(date, dateMoment) {
-        this.props.actions.setSelectedDate(date,dateMoment);
+    changeSelectedDate(date, dateMoment, cartIndex) {
+        this.props.actions.setSelectedDate(date,dateMoment,cartIndex);
     }
     render() {
         var dateSelector;
+        var dateCart;
+        var selectedCart;
         var items = this.props.items;
         var items_selectedDate =JSON.parse(JSON.stringify(items));
         if (this.props.selectedDateMoment) {
@@ -58,21 +60,27 @@ class MarketView extends React.Component {
                 var Button3;
                 if(holdDate == day1.toLowerCase())
                 {
-                    Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>;
+                    selectedCart = 1;
+                    dateCart = this.props.cart;
+                    Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date,selectedCart)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
                 }
                 else if(holdDate == day2.toLowerCase())
                 {
-                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;
-                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>;
+                    selectedCart = 2;
+                    dateCart = this.props.cart2;
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,selectedCart)}>{day1}</Button>;
+                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
                 }
                 else if(holdDate == day3.toLowerCase())
                 {
-                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date)}>{day1}</Button>;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>;
-                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>;
+                    selectedCart = 3;
+                    dateCart = this.props.cart3;
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,selectedCart)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
+                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
                 }
                 dateSelector =
                     <Grid>
@@ -86,10 +94,6 @@ class MarketView extends React.Component {
                                         {Button3}
                                     </ButtonToolbar>
                                 </Col>
-                                <Col md={6}>
-                                    <h3>Currently Selected Date:</h3>
-                                    <h3>{this.props.selectedDate}</h3>
-                                </Col>
                             </Row>
                         </Panel>
                     </Grid>
@@ -100,6 +104,24 @@ class MarketView extends React.Component {
                 var day2 = date1.local().format('dddd');
                 var date2 = moment().add(3, "days");
                 var day3 = date2.local().format('dddd');
+                var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
+                var Button2;
+                var Button3;
+
+                if(holdDate == day2.toLowerCase())
+                {
+                    selectedCart = 2;
+                    dateCart = this.props.cart2;
+                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                }
+                else if(holdDate == day3.toLowerCase())
+                {
+                    selectedCart = 3;
+                    dateCart = this.props.cart3;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
+                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                }
                 dateSelector =
                     <Grid>
                         <Panel>
@@ -107,13 +129,9 @@ class MarketView extends React.Component {
                                 <Col md={6}>
                                     <h3>Select date to order from:</h3>
                                     <ButtonToolbar>
-                                        <Button onClick={() => this.changeSelectedDate(day2, date1)}>{day2}</Button>
-                                        <Button onClick={() => this.changeSelectedDate(day3, date2)}>{day3}</Button>
+                                        {Button2}
+                                        {Button3}
                                     </ButtonToolbar>
-                                </Col>
-                                <Col md={6}>
-                                    <h3>Currently Selected Date:</h3>
-                                    <h3>{this.props.selectedDate}</h3>
                                 </Col>
                             </Row>
                         </Panel>
@@ -162,8 +180,9 @@ class MarketView extends React.Component {
                 <ItemModal show={this.props.modalIsOpen}
                            selectedItem={this.props.selectedItem}
                            onHide={ () => this.props.actions.closeModal() }
-                           cart={this.props.cart}
-                           addToCart={ cartAdd => this.props.actions.addToCart({cartAdd}) }
+                           cart={dateCart}
+                           selectedCart={selectedCart}
+                           addToCart={ cartAdd => this.props.actions.addToCart({cartAdd,selectedCart}) }
                            userInfo={this.props.userInfo}/>
             </div>
         );
@@ -177,6 +196,8 @@ function mapStateToProps(state) {
         modalIsOpen: state.modal.modalIsOpen,
         selectedItem: state.modal.selectedItem,
         cart: state.cart.cart,
+        cart2: state.cart.cart2,
+        cart3: state.cart.cart3,
         userInfo: state.AuthReducer.userInfo,
         authenticated: state.AuthReducer.authenticated,
         selectedDate: state.items.selectedDate,
