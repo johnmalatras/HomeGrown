@@ -462,8 +462,7 @@ export function addToCart(cartItem, cartIndex) {
     }
 }
 
-export function deleteCartItem(cartItem, theCart, cartIndex) {
-
+export function deleteCartItem(cartItem, cartIndex, theCart ) {
     var cart = theCart.cart;
     var item = cartItem.selectedItem;
     var index = cart.indexOf(item);

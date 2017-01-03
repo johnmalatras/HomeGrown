@@ -28,8 +28,12 @@ class MarketView extends React.Component {
     }
 
     orderItem(cartAdd, selectedCart) {
-        if (selectedCart == undefined) {
-            errorMessage = "You can not order for next day after 5pm, please refresh the page"
+        if (selectedCart == 1) {
+            var localTime = moment(Date.now()).local().format('HH');
+            if(localTime < 17)
+            {
+                errorMessage = "You can not order for next day after 5pm, please refresh the page"
+            }
         }
         else {
             this.props.actions.addToCart(cartAdd, selectedCart);
@@ -162,7 +166,6 @@ class MarketView extends React.Component {
             userAuth = false;
             warningLabel = 'Please sign in or sign up to order or list produce';
         }
-        console.log(dateSelector);
         return (
             <div>
                 <h1>Market</h1>
@@ -193,7 +196,7 @@ class MarketView extends React.Component {
                            onHide={ () => this.props.actions.closeModal() }
                            cart={dateCart}
                            selectedCart={selectedCart}
-                           addToCart={ cartAdd => this.orderItem({cartAdd,selectedCart}) }
+                           addToCart={ cartAdd => this.orderItem({cartAdd},this.props.selectedCart) }
                            userInfo={this.props.userInfo}/>
             </div>
         );
@@ -211,6 +214,7 @@ function mapStateToProps(state) {
         cart3: state.cart.cart3,
         userInfo: state.AuthReducer.userInfo,
         authenticated: state.AuthReducer.authenticated,
+        selectedCart: state.items.selectedCart,
         selectedDate: state.items.selectedDate,
         selectedDateMoment: state.items.selectedDateMoment
     };
