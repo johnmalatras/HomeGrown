@@ -32,7 +32,7 @@ const validate = (values) => {
     }
 
     if(!values.businessName){
-        errors.businessName = "Please enter Bussiness Name";
+        errors.businessName = "Please enter Business Name";
     }
 
     if(!values.address){
@@ -89,7 +89,7 @@ class SignUp extends React.Component {
                 <label>{label}</label>
                 <div>
                     <input {...input} placeholder={label} className="form-control" type={type} />
-                    {touched && error && <span>{error}</span>}
+                    {touched && error && <span style={{color: '#ff0000'}}>{error}</span>}
                 </div>
             </fieldset>
         )
