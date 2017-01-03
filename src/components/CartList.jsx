@@ -209,6 +209,7 @@ class CartList extends React.Component {
             momentArray = [moment().add(2, "days"), moment().add(3, "days")];
         }
 
+
         price = 0;
         const listItems = useCart.map((row) => {
             price = +price + +(row[1] * row[0].price).toFixed(2);
