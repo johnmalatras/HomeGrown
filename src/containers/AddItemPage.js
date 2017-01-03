@@ -12,29 +12,29 @@ const validate = (values) => {
     const errors = {};
 
     if (!values.ProductTitle) {
-        errors.ProductTitle = "Please enter an Product Name.";
+        errors.ProductTitle = "Please enter a Product Name.";
 
     }
     if (!values.ProductPrice) {
-        errors.ProductPrice = "Please enter an Product Price.";
+        errors.ProductPrice = "Please enter a Product Price.";
 
     } else if((!/^[0-9]+\.[0-9]{1,2}$/i.test(values.ProductPrice))&&((!/^[0-9]{1,8}$/i.test(values.ProductPrice)))){
 
-        errors.ProductPrice = "Please enter an valid price format. (X.XX or X)";
+        errors.ProductPrice = "Please enter a valid price format. (X.XX or X)";
     }
     if (values.ProductImage==undefined) {
         errors.ProductImage = "We require an image to be uploaded with each listing.";
 
     }
     if (!values.ProductMetric) {
-        errors.ProductMetric = "Please enter an Product metric.";
+        errors.ProductMetric = "Please enter a Product metric.";
 
     }
     if (!values.ProductQuantity) {
-        errors.ProductQuantity = "Please enter availble quantity.";
+        errors.ProductQuantity = "Please enter available quantity.";
 
     } else if((!/^[0-9]{1,8}$/i.test(values.ProductQuantity))){
-        errors.ProductQuantity = "Please enter availble quantity as a number.";
+        errors.ProductQuantity = "Please enter available quantity as a number.";
     }
     if(values.ProductImage!=undefined)
     {
