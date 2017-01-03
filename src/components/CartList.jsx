@@ -80,12 +80,13 @@ class CartList extends React.Component {
                 subtotal: price,
                 fee: fee,
                 total: priceDollars,
-                deliveryDate: this.props.selectedDateMoment,
+                deliveryDate: this.props.selectedDateMoment.format('YYYY-MM-DD'),
                 comment: this.state.comment,
                 deliveryTime: this.state.deliveryTime
             };
             console.log("trying to place order");
             this.props.placeOrder(purchase, this.props.cartIndex, this.props.user);
+            alert("Order Placed! Thank you for your business!");
         });
 
     }
@@ -181,13 +182,13 @@ class CartList extends React.Component {
     }
 
     deleteItem(cartItem, theCart) {
-        this.props.deleteCartItem(cartItem, this.props.selectedCart, theCart);
+
+        this.props.deleteCartItem(cartItem, theCart);
         alert(cartItem[0].title + " removed from cart!");
     }
 
     render() {
         var useCart;
-        console.log(this.props.selectedCart);
         if (this.props.selectedCart == 1) {
             useCart = this.props.cart;
         }

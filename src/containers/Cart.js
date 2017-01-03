@@ -47,7 +47,7 @@ class Cart extends React.Component {
               </tr>
             </thead>
             <CartList cartIndex={cartIndex}
-                deleteCartItem={(selectedItem, cart) => this.props.actions.deleteCartItem({selectedItem}, {cartIndex}, {cart}) }
+                deleteCartItem={(selectedItem, cart) => this.props.actions.deleteCartItem({selectedItem}, this.props.selectedCart, {cart}) }
                        placeOrder={(order, user) => this.props.actions.placeOrder({order},{cartIndex}, {user}) }/>
         </Table>
       </div>
@@ -60,6 +60,7 @@ function mapStateToProps(state) {
         cart: state.cart.cart,
         cart2: state.cart.cart2,
         cart3: state.cart.cart3,
+        selectedCart: state.items.selectedCart,
         selectedDate: state.items.selectedDate,
         selectedDateMoment: state.items.selectedDateMoment
     };

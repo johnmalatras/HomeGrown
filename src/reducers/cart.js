@@ -25,8 +25,9 @@ export default function cartReducer(state = initialState, action) {
 					cart3: action.cart
 				});
 			}
-
+		break;
 		case REMOVE_FROM_CART:
+			console.log(action.cartIndex);
 			if(action.cartIndex == 1)
 			{
 				return Object.assign({}, state, {
@@ -34,6 +35,7 @@ export default function cartReducer(state = initialState, action) {
 				});
 			}else if(action.cartIndex == 2)
 			{
+				console.log("HIT NFKDNKJFN");
 				return Object.assign({}, state, {
 					cart2: action.payload
 				});
@@ -43,23 +45,27 @@ export default function cartReducer(state = initialState, action) {
 					cart3: action.payload
 				});
 			}
+			break;
 		case PLACE_ORDER:
-			if(action.cartIndex == 1)
+			//Weird naming conventions
+			if(action.cartIndex.cartIndex == 1)
 			{
 				return Object.assign({}, state, {
 					cart: action.payload
 				});
-			}else if(action.cartIndex == 2)
+			}else if(action.cartIndex.cartIndex == 2)
 			{
+				console.log("HIT1");
 				return Object.assign({}, state, {
 					cart2: action.payload
 				});
-			}else if(action.cartIndex == 3)
+			}else if(action.cartIndex.cartIndex == 3)
 			{
 				return Object.assign({}, state, {
 					cart3: action.payload
 				});
 			}
+			break;
 		default:
 			return state;
 	}

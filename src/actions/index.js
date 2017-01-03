@@ -462,11 +462,13 @@ export function addToCart(cartItem, cartIndex) {
     }
 }
 
-export function deleteCartItem(cartItem, theCart, cartIndex) {
+export function deleteCartItem(cartItem, cartIndex,theCart ) {
 
-    var cart = theCart.cart;
-    var item = cartItem.selectedItem;
+    var cart = theCart;
+    var item = cartItem;
+
     var index = cart.indexOf(item);
+    console.log(index);
     if (index > -1) {
         cart.splice(index, 1);
     }
