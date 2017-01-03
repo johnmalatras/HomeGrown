@@ -35,10 +35,15 @@ class Home extends React.Component {
     constructor(props) {
         super();
         this.TermsOfUse= this.TermsOfUse.bind(this);
+        this.About = this.About.bind(this);
     };
 
     TermsOfUse(){
         browserHistory.push('/terms');
+    };
+
+    About(){
+        browserHistory.push('/about');
     };
 
     render() {
@@ -69,9 +74,9 @@ class Home extends React.Component {
                         <Clearfix visibleSmBlock></Clearfix>
                         <Col sm={6} md={6}>
                             <div>
-                                <h2>Work with RipeNow</h2>
+                                <h2>Join the Movement</h2>
                                 <p>If you are a farmer or restaurant in the Raleigh area who is interested
-                                in learning more about RipeNow please contact us at <a href="mailto:hello@ripenow.co?Subject=Hello!" target="_top">hello@ripenow.co</a></p>
+                                in learning more about RipeNow please contact us at <a href="mailto:hello@ripenow.co?Subject=Hello!" target="_top">hello@ripenow.co</a> and check out our <a href="#" onClick={this.About}>About</a> page</p>
                             </div>
                         </Col>
                     </Row>
