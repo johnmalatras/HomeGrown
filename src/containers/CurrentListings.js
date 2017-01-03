@@ -35,7 +35,8 @@ class CurrentListings extends React.Component {
         <CLModal show={this.props.modalIsOpen} 
                   selectedItem={this.props.selectedItem} 
                   onHide={ () => this.props.actions.closeCLModal() } 
-                  updateQuantity={(newQuantity, item) => this.props.actions.updateQuantity(newQuantity, {item}) }/>
+                  updateQuantity={(newQuantity, item) => this.props.actions.updateQuantity(newQuantity, {item}) }
+                  updatePrice = { (newPrice, item) => this.props.actions.updatePrice(newPrice, {item}) } />
       </div>
     );
   }
