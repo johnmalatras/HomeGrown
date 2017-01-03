@@ -20,6 +20,7 @@ export const ADD_ITEM = 'ADD_ITEM';
 export const REQUEST_ACTIVE_ORDERS = 'REQUEST_ACTIVE_ORDERS';
 export const REQUEST_CURRENT_LISTINGS = 'REQUEST_CURRENT_LISTINGS';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
+export const UPDATE_PRICE = 'UPDATE_PRICE';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const REQUEST_ITEM_IMAGES = 'REQUEST_ITEM_IMAGES';
 export const UPDATE_ACCOUNT_PAGE = 'UPDATE_ACCOUNT_PAGE';
@@ -678,6 +679,25 @@ export function updateQuantity(newQuantity, item) {
 
     return {
         type: UPDATE_QUANTITY
+    }
+}
+
+export function updatePrice(newPrice, item) {
+    const userUid = Firebase.auth().currentUser.uid;
+
+    var userItemRef = database.ref('users/'+userUid+'/items/'+item.item.title+'_'+item.item.quality);
+    var itemRef = database.ref('items/'+userUid+'_'+item.item.title+'_'+item.item.quality);
+
+    userItemRef.update({
+            ["price"]: newPrice
+    });
+
+    itemRef.update({
+            ["price"]: newPrice
+    });
+
+    return {
+        type: UPDATE_PRICE
     }
 }
 
