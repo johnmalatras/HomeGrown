@@ -13,7 +13,7 @@ class Cart extends React.Component {
 
   render() {
       var cartList;
-      var cartIndex
+      var cartIndex;
       if(moment(this.props.selectedDateMoment).isSame(moment().add(1, "days"), 'day'))
       {
         cartIndex = 1;
@@ -26,6 +26,7 @@ class Cart extends React.Component {
       {
           cartIndex = 3;
       }
+
     return (
       <div>
         <h1>Cart</h1>
