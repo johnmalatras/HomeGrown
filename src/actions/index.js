@@ -35,6 +35,7 @@ export const SET_DATE = 'SET_DATE';
 export const OPEN_FP_MODAL = 'OPEN_FP_MODAL';
 export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
+export const UPDATE_DATE = 'UPDATE_DATE';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -76,8 +77,13 @@ export function signInUser(credentials){
             });
     }
 };
-export function setSelectedDate(date,dateMoment,cartIndex)
-{
+
+export function updateCurrentDate() {
+    return {
+        type: UPDATE_DATE
+    }
+}
+export function setSelectedDate(date, dateMoment, cartIndex) {
     return {
         type: 'SET_DATE',
         date: date,
@@ -471,9 +477,7 @@ export function deleteCartItem(cartItem, theCart, cartIndex) {
     }
 }
 
-export function placeOrder(order,cartIndex) {
-export function placeOrder(order, user) {
-    console.log("in place order");
+export function placeOrder(order,cartIndex,user) {
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);

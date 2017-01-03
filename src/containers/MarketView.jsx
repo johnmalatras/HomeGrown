@@ -62,25 +62,25 @@ class MarketView extends React.Component {
                 {
                     selectedCart = 1;
                     dateCart = this.props.cart;
-                    Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date,selectedCart)}>{day1}</Button>;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                    Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date,1)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
                 }
                 else if(holdDate == day2.toLowerCase())
                 {
                     selectedCart = 2;
                     dateCart = this.props.cart2;
-                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,selectedCart)}>{day1}</Button>;
-                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,1)}>{day1}</Button>;
+                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
                 }
                 else if(holdDate == day3.toLowerCase())
                 {
                     selectedCart = 3;
                     dateCart = this.props.cart3;
-                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,selectedCart)}>{day1}</Button>;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
-                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,1)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
+                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
                 }
                 dateSelector =
                     <Grid>
@@ -112,15 +112,15 @@ class MarketView extends React.Component {
                 {
                     selectedCart = 2;
                     dateCart = this.props.cart2;
-                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
                 }
                 else if(holdDate == day3.toLowerCase())
                 {
                     selectedCart = 3;
                     dateCart = this.props.cart3;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,selectedCart)}>{day2}</Button>;
-                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,selectedCart)}>{day3}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
+                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
                 }
                 dateSelector =
                     <Grid>
