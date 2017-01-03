@@ -40,7 +40,7 @@ const validate = (values) => {
     {
         if(values.ProductImage[0]!=undefined)
         {
-            if(!(values.ProductImage[0].type.toString() === "image/jpeg"))
+            if(!(values.ProductImage[0].type.toString() === "image/jpeg")&&!(values.ProductImage[0].type.toString() === "image/png"))
             {
                 errors.ProductImage = "Please upload either a .jpg or .png.";
             }
