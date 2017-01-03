@@ -54,6 +54,8 @@ class AddItemPage extends React.Component {
         super();
         this.addItemMarket= this.addItemMarket.bind(this);
         this.backButton= this.backButton.bind(this);
+        this.About = this.About.bind(this);
+        this.Account = this.Account.bind(this);
     }
 
     addItemMarket(values){
@@ -67,6 +69,14 @@ class AddItemPage extends React.Component {
     backButton(){
         browserHistory.push('/account');
     }
+
+    About(){
+        browserHistory.push('/about');
+    };
+
+    Account(){
+        browserHistory.push('/account');
+    };
 
     renderField({input, label, type, meta: {touched, error}}){
         return(
@@ -84,18 +94,18 @@ class AddItemPage extends React.Component {
         return(
             <div className="container">
                 <div >
-                    <h3>Notes about listing new item:</h3>
-                    <p style={{fontWeight: 'bold'}}>1. Use a descriptive and specific Title. Ex. Appalachian green beans instead of just green beans.</p>
+                    <h3>Notes about listing items:</h3>
+                    <p style={{fontWeight: 'bold'}}>1. Use a descriptive and specific title, e.g., Appalachian Green Beans vs. Green Beans.</p>
                     <p style={{fontWeight: 'bold'}}>2. The price is on a per unit base</p>
-                    <p style={{fontWeight: 'bold'}}>3. The product metric is the increment of amount of product you can buy</p>
-                    <p style={{fontWeight: 'bold'}}>4. The product quantity is the amount of units of product you have available for purchase</p>
-                    <p style={{fontWeight: 'bold'}}>5. We require you to set the quality of the produce you are offering. Please refer to the about page to better understand our quality scale.</p>
-                    <p style={{fontWeight: 'bold'}}>6. Please create a separate listing for each level of quality </p>
-                    <p style={{fontWeight: 'bold'}}>7. We require you to submit a product image</p>
+                    <p style={{fontWeight: 'bold'}}>3. The  metric is the unit of measurement you're selling your product by, e.g., pounds, bushels, etc.</p>
+                    <p style={{fontWeight: 'bold'}}>4. We require you to set the quality of the produce you are offering. Please refer to the <a href="#" onClick={this.About}>About</a> page to better understand our quality scale.</p>
+                    <p style={{fontWeight: 'bold'}}>5. Please create a separate listing for each available level of quality for an item. </p>
+                    <p style={{fontWeight: 'bold'}}>6. We require you to submit a product image</p>
+                    <p style={{fontWeight: 'bold'}}>7. Be sure to set your available selling dates in Settings on the <a href="#" onClick={this.Account}>account</a> page</p>
                     <form onSubmit={this.props.handleSubmit(this.addItemMarket)}>
                         <Field name="ProductTitle" type="text" component={this.renderField} label="Product Title" />
-                        <Field name="ProductPrice" type="text" component={this.renderField} label="Product Price per Unit($)" />
-                        <Field name="ProductMetric" type="text" component={this.renderField} label="Product Unit" />
+                        <Field name="ProductPrice" type="text" component={this.renderField} label="Product Price ($)" />
+                        <Field name="ProductMetric" type="text" component={this.renderField} label="Product Metric" />
                         <Field name="ProductQuantity" type="text" component={this.renderField} label="Units of Product Avaliable" />
                         <fieldset className="form-group">
                             <label>Quality</label>

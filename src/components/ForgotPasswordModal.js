@@ -33,7 +33,7 @@ class ForgotPasswordModal extends React.Component {
   	return (
     	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div className="container">
-      	 <h3>Forgot your password</h3>
+      	 <h3>Forgot your password?</h3>
          <Form>
           <FormGroup controlId="formInlineQuantity">
             <ControlLabel>Email</ControlLabel>
