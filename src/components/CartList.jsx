@@ -152,7 +152,7 @@ class CartList extends React.Component {
                 deliveryTime: this.state.deliveryTime
             };
             this.props.placeOrder(purchase);
-            alert("Order Placed! Thank you for your business!")
+           // alert("Order Placed! Thank you for your business!")
             return 0;
         }
     }
