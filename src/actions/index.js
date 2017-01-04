@@ -482,6 +482,7 @@ export function placeOrder(order,cartIndex,user) {
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
 
+
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
 
