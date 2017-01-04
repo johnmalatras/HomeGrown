@@ -481,6 +481,8 @@ export function placeOrder(order,cartIndex,user) {
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
+    console.log(cartIndex);
+    console.log(user);
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
