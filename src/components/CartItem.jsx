@@ -19,7 +19,7 @@ class CartItem extends React.Component {
 		const rowElement = (
 			<tr key={cartItem[0].title}>
 				<td>{cartItem[0].title}</td>
-				<td>{cartItem[0].seller}</td>
+				<td>{cartItem[0].businessName}</td>
 				<td>{cartItem[1]}</td>
 				<td>{cartItem[0].metric}</td>
 				<td>{cartItem[0].price}</td>
