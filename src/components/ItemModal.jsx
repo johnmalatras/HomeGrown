@@ -63,12 +63,16 @@ class ItemModal extends React.Component {
     if (!this.props.selectedItem) {
       return <div></div>;
     }
-
+    var totalPrice = (this.state.value * item.price).toFixed(2);
+    if(isNaN(totalPrice))
+    {
+      totalPrice = 0;
+    }
   	return (
     	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div className="container">
       	 <h3>{item.title}</h3>
-         <h5>Sold by: {item.seller}</h5>
+         <h5>Sold by: {item.businessName}</h5>
          <p><em>Quantity Available:</em> {item.quantity + " " + item.metric} </p>
          <p><em>Price:</em> {item.price}</p>
 
@@ -79,7 +83,7 @@ class ItemModal extends React.Component {
             {"  "}
 
             <input type="number" placeholder={item.quantity} value={this.state.value} onChange={this.handleChange} max={item.quantity} />
-            <p><b>Total:</b> {(this.state.value * item.price).toFixed(2)}</p>
+            <p><b>Total:</b> {totalPrice}</p>
           </FormGroup>
 
           {"  "}

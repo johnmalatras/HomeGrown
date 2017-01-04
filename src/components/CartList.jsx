@@ -281,7 +281,7 @@ class CartList extends React.Component {
                 <td></td>
                 <td></td>
                 <td></td>
-                <th>Select Delivery Date:</th>
+                <td></td>
                 <th>Select Delivery Time:</th>
             </tr>
 
