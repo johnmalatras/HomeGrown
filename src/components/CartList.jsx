@@ -86,7 +86,6 @@ class CartList extends React.Component {
             };
             console.log("trying to place order");
             this.props.placeOrder(purchase, this.props.cartIndex, this.props.user);
-            //alert("Order Placed! Thank you for your business!");
         });
 
     }
@@ -277,7 +276,7 @@ class CartList extends React.Component {
 
             </tr>
             <tr>
-                <th>Deliver Comments:</th>
+                <th>Comments:</th>
                 <td></td>
                 <td></td>
                 <td></td>
