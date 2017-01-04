@@ -40,16 +40,16 @@ const validate = (values) => {
     }
 
     if(!values.city){
-        errors.city = "Please enter Address";
+        errors.city = "Please enter City";
     }
     if(!values.state){
-        errors.state = "Please enter Address";
+        errors.state = "Please enter State";
     }
     if(!values.phoneNumber){
-        errors.phoneNumber = "Please enter Bussiness Name";
+        errors.phoneNumber = "Please enter Phone Number";
     }
     if(!values.ownerName){
-        errors.ownerName = "Please enter Bussiness Name";
+        errors.ownerName = "Please enter Contact Name";
     }
     if(values.accessCode!='123456'){
         errors.accessCode = "Incorrect Access Code";

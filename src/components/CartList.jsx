@@ -86,6 +86,10 @@ class CartList extends React.Component {
             };
             console.log("trying to place order");
             this.props.placeOrder(purchase, this.props.cartIndex, this.props.user);
+<<<<<<< HEAD
+=======
+            //alert("Order Placed! Thank you for your business!");
+>>>>>>> master
         });
 
     }

@@ -484,6 +484,7 @@ export function placeOrder(order,cartIndex,user) {
     console.log(cartIndex);
     console.log(user);
 
+
     for (var key in order.order.cart) {
         var item = order.order.cart[key];
 
