@@ -18,7 +18,7 @@ var MarketList = (props) => {
 		var isRestaurant = false;
 		if(props.userInfo != undefined)
 		{
-			if(props.userInfo.isRestaurant == 'true')
+			if(props.userInfo.isRestaurant == true)
 			{
 				isRestaurant = true;
 			}
