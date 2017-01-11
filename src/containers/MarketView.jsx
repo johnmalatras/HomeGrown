@@ -19,7 +19,7 @@ var errorMessage;
 class MarketView extends React.Component {
     componentWillMount() {
         this.props.actions.requestItems();
-        var date = moment().add(1, "days");
+        var date = moment().add(3, "days");
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
     }
@@ -33,6 +33,10 @@ class MarketView extends React.Component {
             if(localTime < 17)
             {
                 errorMessage = "You can not order for next day after 5pm, please refresh the page"
+            }
+            else
+            {
+                this.props.actions.addToCart(cartAdd, selectedCart);
             }
         }
         else {
@@ -62,11 +66,11 @@ class MarketView extends React.Component {
             }
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
-                var date = moment().add(1, "days");
+                var date = moment().add(3, "days");
                 var day1 = date.local().format('dddd');
-                var date1 = moment().add(2, "days");
+                var date1 = moment().add(4, "days");
                 var day2 = date1.local().format('dddd');
-                var date2 = moment().add(3, "days");
+                var date2 = moment().add(5, "days");
                 var day3 = date2.local().format('dddd');
                 var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
                 var Button1;
@@ -114,9 +118,9 @@ class MarketView extends React.Component {
                 ;
             }
             else {
-                var date1 = moment().add(2, "days");
+                var date1 = moment().add(4, "days");
                 var day2 = date1.local().format('dddd');
-                var date2 = moment().add(3, "days");
+                var date2 = moment().add(5, "days");
                 var day3 = date2.local().format('dddd');
                 var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
                 var Button2;
