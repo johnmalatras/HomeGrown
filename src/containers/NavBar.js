@@ -95,6 +95,11 @@ class NavBar extends React.Component {
     handleAbout(){
         browserHistory.push('/about');
     }
+
+    handleHome(){
+        browserHistory.push('/home');
+    }
+
     handleSignIn(){
 
     }
@@ -148,6 +153,7 @@ class NavBar extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight>
+                            <NavItem eventKey={1} href="#" onClick={() => this.handleHome()}><a style={styles.label} href="#" onClick={() => this.handleHome()}>HOME</a></NavItem>
                             <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={4} href="#" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
                             <button style={styles.button} onClick={() => this.handleSignIn()}>LOGIN</button>
                         </Nav>
