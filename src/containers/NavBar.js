@@ -133,7 +133,6 @@ class NavBar extends React.Component {
                                 <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={3} href="#" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
                                 <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={4} href="#" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
                                 <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={5} href="#" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
-
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
