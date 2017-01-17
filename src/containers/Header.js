@@ -39,7 +39,7 @@ class Header extends React.Component {
             const isRestaurant = this.props.userInfo.isRestaurant;
             if (isRestaurant === 'false') {
                 return [
-                    <Navbar  collapseOnSelect block fluid>
+                    <Navbar style={{color: '#00ff00'}} collapseOnSelect block fluid>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
@@ -58,7 +58,7 @@ class Header extends React.Component {
                 ]
             }else{
                 return [
-                    <Navbar  collapseOnSelect block fluid>
+                    <Navbar style={{color: '#00ff00'}} collapseOnSelect block fluid>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
@@ -79,8 +79,9 @@ class Header extends React.Component {
             }
 
         } else {
+            console.log("HIT COLOr");
             return [
-                <Navbar  collapseOnSelect block fluid>
+                <Navbar style={{backgroundColor: 'red'}} collapseOnSelect block fluid>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
@@ -98,7 +99,6 @@ class Header extends React.Component {
             ]
         }
     }
-
     render() {
         return (
             <div>

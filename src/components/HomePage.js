@@ -48,7 +48,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div>
                 <Grid>
                     <Row>
                         <Col xs={8} md={8} xsOffset={2}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
