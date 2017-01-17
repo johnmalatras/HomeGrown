@@ -123,7 +123,8 @@ class Home extends React.Component {
           },
 
           footerText: {
-            padding: '0px 0px 0px 10px'
+            padding: '0px 0px 0px 10px',
+            position: 'absolute'
           }
 
         };

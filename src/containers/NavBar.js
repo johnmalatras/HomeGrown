@@ -69,7 +69,8 @@ var styles = {
         background: 'white',
         color: '#8DC63F',
         padding: '0px 0px 0 0',
-        boxShadow: '0 0 0 0'
+        boxShadow: '0 0 0 0',
+        marginBottom: '0'
     },
     label: {
         color: '#8DC63F',
