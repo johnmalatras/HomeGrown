@@ -10,14 +10,18 @@ import React,{ Component, PropTypes }  from 'react';
 // import * as Actions from '../actions/index';
 // import HomePage from '../components/HomePage';
 import Header from '../containers/Header';
+import NavBar from '../containers/NavBar';
 import Footer from '../containers/Footer';
 export default class App extends React.Component {
     render() {
         return (
             <div>
-                <Header/>
-                {this.props.children}
-                <Footer/>
+                <div>
+                    <NavBar/>
+                </div>
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         );
     }
