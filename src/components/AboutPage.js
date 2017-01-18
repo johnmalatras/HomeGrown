@@ -2,6 +2,7 @@
  * Created by alextulenko on 11/29/16.
  */
 import React from 'react';
+import Radium, { Style } from 'radium'
 var ReactBootstrap = require('react-bootstrap');
 
 var Grid = ReactBootstrap.Grid;
@@ -15,7 +16,12 @@ var imgStyle = {
     justifyContent: 'center',
     alignItems: 'center'
 };
-
+var styles = {
+    base: {
+        background: '#E3D4B6',
+        backgroundSize: 'cover',
+    }
+};
 class AboutPage extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +29,7 @@ class AboutPage extends React.Component {
 
     render() {
         return (
-            <div  >
+            <div  style={styles.base}>
                 <Grid>
                     <Row className="show-grid">
                         <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
@@ -118,5 +124,5 @@ class AboutPage extends React.Component {
     }
 }
 
-
+AboutPage = Radium(AboutPage);
 export default AboutPage;

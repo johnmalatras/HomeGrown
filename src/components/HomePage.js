@@ -21,6 +21,9 @@ var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
 var Image = ReactBootstrap.Image;
 var Clearfix = ReactBootstrap.Clearfix;
+var Panel = ReactBootstrap.Panel;
+
+import Radium, { Style } from 'radium'
 
 var divStyle =  {
     textAlign: 'center',
@@ -29,6 +32,16 @@ var divStyle =  {
 var imgStyle = {
     justifyContent: 'center',
         alignItems: 'center'
+};
+
+var styles = {
+    base: {
+        background: '#E3D4B6',
+        backgroundSize: 'cover',
+    },
+    form: {
+        background: '#white',
+    }
 };
 
 class Home extends React.Component {
@@ -48,14 +61,14 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={styles.base}>
                 <Grid>
                     <Row>
                         <Col xs={8} md={8} xsOffset={2}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
                     </Row>
                     <Row className="show-grid">
-                        <Col sm={6} md={6}>
-                            <div>
+                        <Col sm={12} md={12}>
+                            <Panel style={styles.form}>
                                 <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
                                     <Tab eventKey={1} title="Sign In">
                                         <div>
@@ -69,15 +82,7 @@ class Home extends React.Component {
                                         </div>
                                     </Tab>
                                 </Tabs>
-                            </div>
-                        </Col>
-                        <Clearfix visibleSmBlock></Clearfix>
-                        <Col sm={6} md={6}>
-                            <div>
-                                <h2>Join the Movement</h2>
-                                <p>If you are a farmer or restaurant in the Raleigh area who is interested
-                                in learning more about RipeNow please contact us at <a href="mailto:hello@ripenow.co?Subject=Hello!" target="_top">hello@ripenow.co</a> and check out our <a href="#" onClick={this.About}>About</a> page</p>
-                            </div>
+                            </Panel>
                         </Col>
                     </Row>
                 </Grid>
@@ -86,5 +91,5 @@ class Home extends React.Component {
     }
 }
 
-
+Home = Radium(Home);
 export default Home;

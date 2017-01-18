@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {signOutUser} from '../actions/index';
 import { browserHistory } from 'react-router';
-import Radium, { Style } from 'radium'
+import Radium, { Style } from 'radium';
 var ReactBootstrap = require('react-bootstrap');
 
 var Navbar = ReactBootstrap.Navbar;
@@ -98,11 +98,11 @@ class NavBar extends React.Component {
     }
 
     handleHome(){
-        browserHistory.push('/home');
+        browserHistory.push('/login');
     }
 
     handleSignIn(){
-
+        browserHistory.push('/home');
     }
     renderAuthLinks() {
         if (this.props.authenticated) {
@@ -120,7 +120,6 @@ class NavBar extends React.Component {
                                 <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={2} href="#" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
                                 <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={3} href="#" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
                                 <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={4} href="#" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
-
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
