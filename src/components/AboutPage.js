@@ -18,7 +18,6 @@ var imgStyle = {
 };
 var styles = {
     base: {
-        background: '#E3D4B6',
         backgroundSize: 'cover',
     }
 };

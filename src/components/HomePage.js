@@ -4,6 +4,7 @@
 import React from 'react';
 import SignUpPage from '../containers/SignUpPage';
 import LoginPage from '../containers/LoginPage';
+import SignInContainer from '../containers/SignInContainer'
 var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
 var FormGroup = ReactBootstrap.FormGroup;
@@ -38,10 +39,14 @@ var styles = {
     base: {
         background: '#E3D4B6',
         backgroundSize: 'cover',
+        minHeight: '90.5vh',
     },
     form: {
         background: '#white',
-    }
+        display: 'block',
+        margin: 'auto',
+        alignItems: 'center'
+    },
 };
 
 class Home extends React.Component {
@@ -61,28 +66,14 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div style={styles.base}>
+            <div style={styles.base} xsOffset={3}>
                 <Grid>
-                    <Row>
-                        <Col xs={8} md={8} xsOffset={2}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
-                    </Row>
-                    <Row className="show-grid">
-                        <Col sm={12} md={12}>
-                            <Panel style={styles.form}>
-                                <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
-                                    <Tab eventKey={1} title="Sign In">
-                                        <div>
-                                            <LoginPage/>
-                                        </div>
-                                    </Tab>
-                                    <Tab eventKey={2} title="Sign Up">
-                                        <div>
-                                            <SignUpPage/>
-                                            <Button onClick={this.TermsOfUse} >Terms of Use</Button>
-                                        </div>
-                                    </Tab>
-                                </Tabs>
-                            </Panel>
+                    <Row className="show-grid" >
+                        <Col sm={12} md={12} xsOffset={3}>
+                            <br />
+                            <br />
+                            <br />
+                            <SignInContainer/>
                         </Col>
                     </Row>
                 </Grid>

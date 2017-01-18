@@ -1,16 +1,12 @@
 /**
- * Created by alextulenko on 11/12/16.
+ * Created by alextulenko on 1/18/17.
  */
 import { SWITCH_LOGIN } from '../actions';
 const initialState = {
     signIn: true
 };
-export default function signUpReducer(state = initialState, action) {
+export default function loginReducer(state = initialState, action) {
     switch (action.type) {
-        case 'SIGN_UP_USER':
-            return Object.assign({}, state, {
-                authenticated: true
-            })
         case SWITCH_LOGIN:
             return Object.assign({}, state, {
                 signIn: action.payload

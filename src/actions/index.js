@@ -37,6 +37,7 @@ export const OPEN_FP_MODAL = 'OPEN_FP_MODAL';
 export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const UPDATE_DATE = 'UPDATE_DATE';
+export const SWITCH_LOGIN = 'SWITCH_LOGIN';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -107,11 +108,6 @@ export function signUpUser(credentials) {
 
         holdData = {
             email:credentials.email,
-            ownerName:credentials.ownerName,
-            businessName: credentials.businessName,
-            address: credentials.address,
-            city: credentials.city,
-            state: credentials.state,
             phoneNumber: credentials.phoneNumber,
             isRestaurant: credentials.isRestaurant
         };
@@ -152,14 +148,10 @@ export function verifyAuth(){
                 ];
                 user.update({
                     ["email"]:holdData.email,
-                    ["ownerName"]:holdData.ownerName,
-                    ["businessName"]: holdData.businessName,
-                    ["address"]: holdData.address,
-                    ["city"]: holdData.city,
-                    ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
                     ["isRestaurant"]: holdData.isRestaurant,
-                    ["availableDates"]: dates
+                    ["availableDates"]: dates,
+                    ["isAccountFinished"]: false
                 });
             }
             if (user) {
@@ -202,6 +194,8 @@ export function resetPasswordUpdate()
     }
 
 }
+
+
 
 export function updateAvailableDate(day, value, currentAvilDates, user)
 {
@@ -436,6 +430,13 @@ export function requestItems() {
       };
     });
   }
+}
+export function switchLogin(isSignIn){
+    return {
+        type:SWITCH_LOGIN,
+        payload: isSignIn
+    }
+
 }
 
 export function openModal(item) {
