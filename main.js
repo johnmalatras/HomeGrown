@@ -45,7 +45,7 @@ ReactDOM.render(
                 <Route path="/available" component={RequireAuth(EditAvailableDatesPage)}/>
                 <Route path="/about" component={AboutPage}/>
                 <Route path="/terms" component={TermsOfUse}/>
-                <Route path="/home" component={Home}/>
+                <Route path="/home" component={HomePage}/>
             </Route>
         </Router>
     </Provider>,
