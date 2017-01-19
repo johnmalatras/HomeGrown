@@ -31,7 +31,7 @@ class AboutPage extends React.Component {
             <div  style={styles.base}>
                 <Grid>
                     <Row className="show-grid">
-                        <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
+                        <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow-Logo.png?alt=media&token=044f84d8-dcb2-4ded-bf63-470d4c08bc79" responsive /></Col>
                     </Row>
                     <Row>
                         <Col xs={12} md={12}><h3>Bringing farms and resturants together - a community movement</h3></Col>
