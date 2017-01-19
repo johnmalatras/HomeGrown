@@ -1,14 +1,14 @@
 import { REQUEST_ITEMS, REQUEST_ITEM_IMAGES,SET_IMAGES,IMAGE_LOADED,SET_DATE,UPDATE_DATE} from '../actions';
 import moment from 'moment';
 
-var date = moment().add(4, "days");
+var date = moment().add(2, "days");
 const initialState = {
 	items: [],
 	itemImages: [],
 	selectedDate: date.local().format('dddd'),
 	selectedDateMoment: date,
 	selectedCart: 2,
-	currentDate: moment().add(4, "days")
+	currentDate: moment().add(1, "days")
 };
 
 export default function itemReducer(state = initialState, action) {
