@@ -15,11 +15,11 @@ class ActiveOrders extends React.Component {
   }
 
   render() {
-      var dateLabel = 'Pick-up Date';
+      var dateLabel = 'Delivery Date';
     var isRestaurant;
-    if (this.props.userInfo.isRestaurant == true) {
+    if (this.props.userInfo.isRestaurant === "true") {
         isRestaurant = true;
-    } else{
+    } else if (this.props.userInfo.isRestaurant === "false") {
         isRestaurant = false;
         dateLabel = 'Pick-up Date';
     }

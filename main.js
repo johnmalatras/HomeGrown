@@ -19,14 +19,11 @@ import AccountPage from './src/containers/AccountPage';
 import AddItemPage from './src/containers/AddItemPage';
 import AboutPage from './src/components/AboutPage';
 import TermsOfUse from './src/components/TermsOfUse';
-import Home from './src/components/Home';
 import Footer from './src/containers/Footer';
 import EditUserPage from './src/containers/EditUserPage';
 import EditEmailPage from './src/containers/EditEmailPage';
 import EditPasswordPage from './src/containers/EditPasswordPage';
 import EditAvailableDatesPage from './src/containers/EditAvailableDatesPage';
-import './style/main.css';
-import NavBar from './src/containers/NavBar';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -35,7 +32,7 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={MarketView} />
-                <Route path="/login" component={Home}/>
+                <Route path="/login" component={HomePage}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
@@ -45,7 +42,6 @@ ReactDOM.render(
                 <Route path="/available" component={RequireAuth(EditAvailableDatesPage)}/>
                 <Route path="/about" component={AboutPage}/>
                 <Route path="/terms" component={TermsOfUse}/>
-                <Route path="/home" component={HomePage}/>
             </Route>
         </Router>
     </Provider>,

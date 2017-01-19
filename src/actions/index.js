@@ -3,7 +3,6 @@
  */
 import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
-import Geofire from 'geofire';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_USER = 'AUTH_USER';
@@ -38,7 +37,6 @@ export const OPEN_FP_MODAL = 'OPEN_FP_MODAL';
 export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const UPDATE_DATE = 'UPDATE_DATE';
-export const SWITCH_LOGIN = 'SWITCH_LOGIN';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -65,17 +63,12 @@ const database = Firebase.database();
 const authData = Firebase.auth();
 const storage = Firebase.storage();
 
-// Generate a random Firebase location
-var firebaseRef = Firebase.database().ref('geoFire').push();
-// Create a new GeoFire instance at the random Firebase location
-var geoFire = new Geofire(firebaseRef);
-
 var holdData = [];
 var firstTime = false;
 
 export function signInUser(credentials){
     return function(dispatch) {
-        Firebase.auth().signInWithEmailAndPassword(credentials.email1, credentials.password1)
+        Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
                 browserHistory.push('/');
@@ -114,6 +107,11 @@ export function signUpUser(credentials) {
 
         holdData = {
             email:credentials.email,
+            ownerName:credentials.ownerName,
+            businessName: credentials.businessName,
+            address: credentials.address,
+            city: credentials.city,
+            state: credentials.state,
             phoneNumber: credentials.phoneNumber,
             isRestaurant: credentials.isRestaurant
         };
@@ -154,10 +152,14 @@ export function verifyAuth(){
                 ];
                 user.update({
                     ["email"]:holdData.email,
+                    ["ownerName"]:holdData.ownerName,
+                    ["businessName"]: holdData.businessName,
+                    ["address"]: holdData.address,
+                    ["city"]: holdData.city,
+                    ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
                     ["isRestaurant"]: holdData.isRestaurant,
-                    ["availableDates"]: dates,
-                    ["isAccountFinished"]: false
+                    ["availableDates"]: dates
                 });
             }
             if (user) {
@@ -200,8 +202,6 @@ export function resetPasswordUpdate()
     }
 
 }
-
-
 
 export function updateAvailableDate(day, value, currentAvilDates, user)
 {
@@ -364,11 +364,6 @@ export function addItem(values, ownerName, businessName, availableDates) {
             ["availableDates"]: availableDates
         });
 
-        //Hardcoded in Raleigh cords, will cahnge eventually
-        geoFire.set(itemID, [35.7796,78.6382]).then(function() {
-            console.log("SET LOCATION");
-        });
-
         var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
         const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
         userItemRef.update({
@@ -441,13 +436,6 @@ export function requestItems() {
       };
     });
   }
-}
-export function switchLogin(isSignIn){
-    return {
-        type:SWITCH_LOGIN,
-        payload: isSignIn
-    }
-
 }
 
 export function openModal(item) {

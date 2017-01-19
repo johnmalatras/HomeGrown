@@ -10,11 +10,11 @@ const ActiveOrderItem = ({item, onItemSelect,isRestaurant}) => {
 	var orderDate = item.deliveryDate.substring(0,15);
 	if(isRestaurant)
 	{
-		orderDate = orderDate;
+		orderDate = orderDate + ' ' + item.deliveryTime;
 	}
 	else
 	{
-		orderDate = orderDate;
+		orderDate = orderDate + ' 6-8am';
 	}
 	const rowElement = (
 		<tr key={item.key}>

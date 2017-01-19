@@ -14,21 +14,12 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import 'whatwg-fetch'
 import moment from 'moment';
-import Radium, { Style } from 'radium';
-var styles = {
-    base: {
-        fontFamily: 'Fira Sans',
-    },
-    selectedButton: {
-        background: '#8DC63F'
-    }
-};
 
 var errorMessage;
 class MarketView extends React.Component {
     componentWillMount() {
         this.props.actions.requestItems();
-        var date = moment().add(3, "days");
+        var date = moment().add(1, "days");
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
     }
@@ -42,10 +33,6 @@ class MarketView extends React.Component {
             if(localTime < 17)
             {
                 errorMessage = "You can not order for next day after 5pm, please refresh the page"
-            }
-            else
-            {
-                this.props.actions.addToCart(cartAdd, selectedCart);
             }
         }
         else {
@@ -75,11 +62,11 @@ class MarketView extends React.Component {
             }
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
-                var date = moment().add(3, "days");
+                var date = moment().add(1, "days");
                 var day1 = date.local().format('dddd');
-                var date1 = moment().add(4, "days");
+                var date1 = moment().add(2, "days");
                 var day2 = date1.local().format('dddd');
-                var date2 = moment().add(5, "days");
+                var date2 = moment().add(3, "days");
                 var day3 = date2.local().format('dddd');
                 var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
                 var Button1;
@@ -114,7 +101,7 @@ class MarketView extends React.Component {
                         <Panel>
                             <Row>
                                 <Col md={6}>
-                                    <h3>Select your delivery date:</h3>
+                                    <h3>Select date to order from:</h3>
                                     <ButtonToolbar>
                                         {Button1}
                                         {Button2}
@@ -127,9 +114,9 @@ class MarketView extends React.Component {
                 ;
             }
             else {
-                var date1 = moment().add(4, "days");
+                var date1 = moment().add(2, "days");
                 var day2 = date1.local().format('dddd');
-                var date2 = moment().add(5, "days");
+                var date2 = moment().add(3, "days");
                 var day3 = date2.local().format('dddd');
                 var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
                 var Button2;
@@ -154,7 +141,7 @@ class MarketView extends React.Component {
                         <Panel>
                             <Row>
                                 <Col md={6}>
-                                    <h3>Select your delivery date:</h3>
+                                    <h3>Select date to order from:</h3>
                                     <ButtonToolbar>
                                         {Button2}
                                         {Button3}
@@ -180,7 +167,8 @@ class MarketView extends React.Component {
             warningLabel = 'Please sign in or sign up to order or list produce';
         }
         return (
-            <div style={styles.base} className="container">
+            <div>
+                <h1>Market</h1>
                 <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
                 <h4 style={{color: '#ff0000'}}>{errorMessage}</h4>
                 {dateSelector}
@@ -238,5 +226,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-MarketView = Radium(MarketView);
+
 export default connect(mapStateToProps, mapDispatchToProps)(MarketView);

@@ -4,7 +4,6 @@
 import React from 'react';
 import SignUpPage from '../containers/SignUpPage';
 import LoginPage from '../containers/LoginPage';
-import SignInContainer from '../containers/SignInContainer'
 var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
 var FormGroup = ReactBootstrap.FormGroup;
@@ -22,9 +21,6 @@ var Tabs = ReactBootstrap.Tabs;
 var Tab = ReactBootstrap.Tab;
 var Image = ReactBootstrap.Image;
 var Clearfix = ReactBootstrap.Clearfix;
-var Panel = ReactBootstrap.Panel;
-
-import Radium, { Style } from 'radium'
 
 var divStyle =  {
     textAlign: 'center',
@@ -33,24 +29,6 @@ var divStyle =  {
 var imgStyle = {
     justifyContent: 'center',
         alignItems: 'center'
-};
-
-var styles = {
-    base: {
-        background: '#f6f6f6',
-        backgroundSize: 'cover',
-        minHeight: '90.5vh',
-    },
-    form: {
-        background: '#white',
-        display: 'block',
-        margin: 'auto',
-        alignItems: 'center'
-    },
-    text:
-    {
-
-    }
 };
 
 class Home extends React.Component {
@@ -70,14 +48,36 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div style={styles.base} xsOffset={3}>
+            <div className="container">
                 <Grid>
-                    <Row className="show-grid" >
-                        <Col sm={12} md={12} xsOffset={3}>
-                            <br />
-                            <br />
-                            <br />
-                            <SignInContainer/>
+                    <Row>
+                        <Col xs={8} md={8} xsOffset={2}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
+                    </Row>
+                    <Row className="show-grid">
+                        <Col sm={6} md={6}>
+                            <div>
+                                <Tabs defaultActiveKey={1} id="uncontrolled-tab-example">
+                                    <Tab eventKey={1} title="Sign In">
+                                        <div>
+                                            <LoginPage/>
+                                        </div>
+                                    </Tab>
+                                    <Tab eventKey={2} title="Sign Up">
+                                        <div>
+                                            <SignUpPage/>
+                                            <Button onClick={this.TermsOfUse} >Terms of Use</Button>
+                                        </div>
+                                    </Tab>
+                                </Tabs>
+                            </div>
+                        </Col>
+                        <Clearfix visibleSmBlock></Clearfix>
+                        <Col sm={6} md={6}>
+                            <div>
+                                <h2>Join the Movement</h2>
+                                <p>If you are a farmer or restaurant in the Raleigh area who is interested
+                                in learning more about RipeNow please contact us at <a href="mailto:hello@ripenow.co?Subject=Hello!" target="_top">hello@ripenow.co</a> and check out our <a href="#" onClick={this.About}>About</a> page</p>
+                            </div>
                         </Col>
                     </Row>
                 </Grid>
@@ -86,5 +86,5 @@ class Home extends React.Component {
     }
 }
 
-Home = Radium(Home);
+
 export default Home;
