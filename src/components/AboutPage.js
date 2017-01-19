@@ -2,6 +2,7 @@
  * Created by alextulenko on 11/29/16.
  */
 import React from 'react';
+import Radium, { Style } from 'radium'
 var ReactBootstrap = require('react-bootstrap');
 
 var Grid = ReactBootstrap.Grid;
@@ -15,7 +16,11 @@ var imgStyle = {
     justifyContent: 'center',
     alignItems: 'center'
 };
-
+var styles = {
+    base: {
+        backgroundSize: 'cover',
+    }
+};
 class AboutPage extends React.Component {
     constructor(props) {
         super(props);
@@ -23,7 +28,7 @@ class AboutPage extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div  style={styles.base}>
                 <Grid>
                     <Row className="show-grid">
                         <Col xs={6} md={6} xsOffset={3}><Image style={imgStyle} src="../../RipeNow-Logo.png" responsive /></Col>
@@ -32,26 +37,28 @@ class AboutPage extends React.Component {
                         <Col xs={12} md={12}><h3>Bringing farms and resturants together - a community movement</h3></Col>
                     </Row>
                     <Row >
-                        <Col xs={12}><p>RipeNow unites restaurants and farms for a common cause: providing fresh, local, and healthy produce to their community. By providing restaurant’s a streamlined way to order and delivering directly from the farms, we maximize freshness, save both organizations time and money, and connect the maximum amount of farms to restaurants.  We worry about the details, so you can focus on getting the ingredients you need, when you need them.</p></Col>
+                        <Col xs={12}><p>An innovative way for restaurants to purchase and receive local produce directly from farm’s, while saving time and money. Maximize freshness with daily orders, become more involved with the local community, and promote healthier and better quality produce. We worry about the details, so you can focus on getting the ingredients you need, when you need them – at the best quality and price. All you do is place your order from local, small farms, and schedule a time to pick up the produce from the farms local stall.</p></Col>
                     </Row>
                     <br />
                     <Row>
                         <Col md={6}><p style={{fontWeight: 'bold'}}>Not just a service; a movement.</p></Col>
-                        <Col md={6}><p>At RipeNow, we not only provide you with the best produce possible, but do it in a way that connects the farms and restaurants with the community. We care about supporting local farms and restaurants, and want to make it easier for them to connect. Our primary goal is getting users excited about local grown, fresh ingredients that support the farmers close to them.</p></Col>
+                        <Col md={6}><p>At RipeNow, we not only provide you with the best produce possible, but do it in a way that connects the farms and restaurants with the community.
+                            We care about supporting local farm’s and restaurant’s, and want to make it easier for them to connect.
+                            Our primary goal is getting users excited about local grown, fresh ingredients that support the farmers close to them.</p></Col>
                     </Row>
                     <br />
                     <Row>
                         <Col md={6}><p style={{fontWeight: 'bold'}}>The produce you need, when you need it.</p></Col>
                         <Col md={6}><p>With our easy and intuitive online ordering system, we make it easy for you to get exactly what you want.
                             With quality and farm ratings, you know exactly what you’re going to get.
-                            We handle delivery, so you just have to tell us when you want it, and we’ll handle the rest.</p></Col>
+                            By connecting you directly to the farms, picking up produce became
+                        </p></Col>
                     </Row>
                     <br />
                     <Row>
                         <Col md={6}><p style={{fontWeight: 'bold'}}>Built to save you time and money.</p></Col>
-                        <Col md={6}><p>At RipeNow, we know we’re dealing with two of the busiest professions in the world: farms and restaurants.
-                            Our goal is to streamline the process to save you time when ordering and save you money by cutting out
-                            the unnecessary series of wholesale distributors. </p></Col>
+                        <Col md={6}><p>Here, we know we’re dealing with two of the busiest professions in the world – farms and restaurants.
+                            Our goal is to streamline the process, to save you time when ordering, and save you money by cutting out unnecessary series of wholesale distributors.  </p></Col>
                     </Row>
                     <Row>
                         <Col xs={12} md={12}><h3>RipeNow Grading Scale</h3></Col>
@@ -116,5 +123,5 @@ class AboutPage extends React.Component {
     }
 }
 
-
+AboutPage = Radium(AboutPage);
 export default AboutPage;

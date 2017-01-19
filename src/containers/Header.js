@@ -34,12 +34,15 @@ class Header extends React.Component {
     handleAbout(){
         browserHistory.push('/about');
     }
+    handleNewHome(){
+        browserHistory.push('/newhome');
+    }
     renderAuthLinks() {
         if (this.props.authenticated) {
             const isRestaurant = this.props.userInfo.isRestaurant;
             if (isRestaurant === 'false') {
                 return [
-                    <Navbar  collapseOnSelect block fluid>
+                    <Navbar style={{color: '#00ff00'}} collapseOnSelect block fluid>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
@@ -51,6 +54,7 @@ class Header extends React.Component {
                                 <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
                                 <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}>Account</NavItem>
                                 <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}>About</NavItem>
+                                <NavItem eventKey={6} href="#" onClick={() => this.handleNewHome()}>Home</NavItem>
                                 <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
                             </Nav>
                         </Navbar.Collapse>
@@ -58,7 +62,7 @@ class Header extends React.Component {
                 ]
             }else{
                 return [
-                    <Navbar  collapseOnSelect block fluid>
+                    <Navbar style={{color: '#00ff00'}} collapseOnSelect block fluid>
                         <Navbar.Header>
                             <Navbar.Brand>
                                 <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
@@ -71,6 +75,7 @@ class Header extends React.Component {
                                 <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}>Cart: {this.props.selectedDate}</NavItem>
                                 <NavItem eventKey={3} href="#" onClick={() => this.handleHolder()}>Account</NavItem>
                                 <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}>About</NavItem>
+                                <NavItem eventKey={6} href="#" onClick={() => this.handleNewHome()}>Home</NavItem>
                                 <NavItem eventKey={5} href="#" onClick={() => this.handleSignout()}>Sign Out</NavItem>
                             </Nav>
                         </Navbar.Collapse>
@@ -79,8 +84,9 @@ class Header extends React.Component {
             }
 
         } else {
+            console.log("HIT COLOr");
             return [
-                <Navbar  collapseOnSelect block fluid>
+                <Navbar style={{backgroundColor: 'red'}} collapseOnSelect block fluid>
                     <Navbar.Header>
                         <Navbar.Brand>
                             <a><img width="27px" src="../../RipeNow-Icon.png"/></a>
@@ -91,6 +97,7 @@ class Header extends React.Component {
                         <Nav pullRight>
                             <NavItem eventKey={1} href="#"onClick={() => this.handleMarket()}>Market</NavItem>
                             <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}>About</NavItem>
+                            <NavItem eventKey={6} href="#" onClick={() => this.handleNewHome()}>Home</NavItem>
                             <NavItem eventKey={5} href="#" onClick={() => this.handleSignout()}>Sign In</NavItem>
                         </Nav>
                     </Navbar.Collapse>
@@ -98,7 +105,6 @@ class Header extends React.Component {
             ]
         }
     }
-
     render() {
         return (
             <div>

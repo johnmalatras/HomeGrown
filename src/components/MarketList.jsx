@@ -11,14 +11,21 @@ var MarketList = (props) => {
 		for (var key in props.items) {
 			var item = props.items[key];
 			item.key = key;
-			item.image = props.items[key].image;
+			if(!props.items[key].image)
+			{
+
+			}
+			else
+			{
+				item.image = props.items[key].image;
+			}
 			listItemsArray.push(item);
 		}
 		var isAuth = props.userAuthenticated;
 		var isRestaurant = false;
 		if(props.userInfo != undefined)
 		{
-			if(props.userInfo.isRestaurant == 'true')
+			if(props.userInfo.isRestaurant == true)
 			{
 				isRestaurant = true;
 			}

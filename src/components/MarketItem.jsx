@@ -39,7 +39,7 @@ var MarketItem = ({item, isRestaurant,image, onItemSelect, auth}) => {
 					<td>{item.metric}</td>
 					<td>{item.quantity}</td>
 					<td>{item.quality}</td>
-					<td><Button onClick={() => onItemSelect(item)}>View</Button></td>
+					<td><Button onClick={() => onItemSelect(item)}>Order</Button></td>
 				</tr>
 			)
 			return rowElement;
