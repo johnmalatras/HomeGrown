@@ -37,7 +37,7 @@ var imgStyle = {
 
 var styles = {
     base: {
-        background: '#E3D4B6',
+        background: '#f6f6f6',
         backgroundSize: 'cover',
         minHeight: '90.5vh',
     },
@@ -47,6 +47,10 @@ var styles = {
         margin: 'auto',
         alignItems: 'center'
     },
+    text:
+    {
+
+    }
 };
 
 class Home extends React.Component {

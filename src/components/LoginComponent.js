@@ -29,7 +29,7 @@ import Radium, { Style } from 'radium'
 
 var styles = {
     base: {
-        background: '#E3D4B6',
+        background: '#D3D3D3',
         backgroundSize: 'cover',
         minHeight: '90.5vh',
     },
@@ -42,6 +42,9 @@ var styles = {
     layout: {
         fontSize: '115%',
         textAlign: 'center'
+    },
+    text: {
+        fontFamily: 'Fira Sans'
     }
 };
 // const validate = (values) => {
@@ -176,7 +179,6 @@ class LoginComponent extends React.Component {
                             <button action="submit" className="btn btn-primary">Sign In</button>
                         </form>
                         <a style={styles.layout} onClick={() => this.flipSelected()}>New to RipeNow? Click here to create an account.</a>
-                        <br/>
                         <br />
                         <a style={styles.layout} href="#" onClick={ () => this.props.openModal() }>Forgot Password?</a>
                     </div>
@@ -217,7 +219,7 @@ class LoginComponent extends React.Component {
                 </Panel>
         }
         return (
-            <div>
+            <div style={styles.text}>
                 {SignInUp}
             </div>
         );
