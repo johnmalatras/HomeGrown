@@ -25,7 +25,7 @@ class Home extends React.Component {
 
           image: {
             width:'100vw',
-            height: '90.5vh',
+            height: '92.3vh',
             backgroundImage: "url('../../background.png')",
             backgroundSize: 'cover',
             color: 'white',
@@ -115,15 +115,31 @@ class Home extends React.Component {
           },
 
           footer: {
-            width: '100vw',
-            height: '7vh',
-            backgroundColor: '#222433',
-            color: 'white',
-            fontSize: '100%'
+            backgroundColor: '#222433'
+          },
+
+          footerDiv: {
+            paddingTop: "11px",
+            display: "flex",
+            fontSize: '110%'
+          },
+
+          footerTextFirst: {
+            paddingTop: '5px'
           },
 
           footerText: {
-            padding: '0px 0px 0px 10px'
+            textIndent: '1.5em',
+            paddingTop: '5px',
+            color: 'white'
+          },
+
+          footerImage: {
+            paddingBottom: '6px'
+          },
+
+          footerLinkText: {
+            color: 'white'
           }
 
         };
@@ -174,9 +190,27 @@ class Home extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div style={styles.footer}>
-                    Terms of Service
-                </div>
+                <footer className="footer" style={styles.footer}>
+                  <div className="container">
+                    <div style={styles.footerDiv}>
+                      <div style={styles.footerImage}>
+                        <img width="50%" height="50%" src="../../RipeNow_Icon_Small.png" alt="RipeNow"/>
+                      </div>
+                      <div style={styles.footerTextFirst}>
+                        <p><a href="#" style={styles.footerLinkText}>Terms of Service</a></p>
+                      </div>
+                      <div style={styles.footerText}>
+                        <p><a href="#" style={styles.footerLinkText}>Privacy</a></p>
+                      </div>
+                      <div style={styles.footerText}>
+                        <p><a href="#" style={styles.footerLinkText}>Blog</a></p>
+                      </div>
+                      <div style={styles.footerText}>
+                        <p>© 2017 RipeNow</p>
+                      </div>
+                    </div>
+                  </div>
+                </footer>
             </div>
         );
     }
