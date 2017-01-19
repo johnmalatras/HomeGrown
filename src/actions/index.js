@@ -3,6 +3,7 @@
  */
 import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
+import Geofire from 'geofire';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_USER = 'AUTH_USER';
@@ -64,12 +65,17 @@ const database = Firebase.database();
 const authData = Firebase.auth();
 const storage = Firebase.storage();
 
+// Generate a random Firebase location
+var firebaseRef = Firebase.database().ref('geoFire').push();
+// Create a new GeoFire instance at the random Firebase location
+var geoFire = new Geofire(firebaseRef);
+
 var holdData = [];
 var firstTime = false;
 
 export function signInUser(credentials){
     return function(dispatch) {
-        Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+        Firebase.auth().signInWithEmailAndPassword(credentials.email1, credentials.password1)
             .then(response => {
                 dispatch(authUser());
                 browserHistory.push('/');
@@ -356,6 +362,11 @@ export function addItem(values, ownerName, businessName, availableDates) {
             ["quality"]: values.Quality,
             ["sellerUID"]: userUid,
             ["availableDates"]: availableDates
+        });
+
+        //Hardcoded in Raleigh cords, will cahnge eventually
+        geoFire.set(itemID, [35.7796,78.6382]).then(function() {
+            console.log("SET LOCATION");
         });
 
         var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();

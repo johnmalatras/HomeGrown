@@ -45,6 +45,14 @@ var styles = {
     },
     text: {
         fontFamily: 'Fira Sans'
+    },
+    button: {
+        background: '#8DC63F',
+        borderColor: '#8DC63F',
+        marginBottom: '5px'
+    },
+    errorMessage: {
+        color: 'red'
     }
 };
 // const validate = (values) => {
@@ -68,7 +76,7 @@ const validate = (values) => {
     if (!values.email1) {
         errors.email1 = "Please enter an email.";
 
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email1)) {
         errors.email1 = 'Invalid email address'
     }
 
@@ -135,6 +143,7 @@ class LoginComponent extends React.Component {
     };
 
     handleFormSubmit(values){
+        console.log(values);
         {this.props.onLogin(values)}
     };
 
@@ -159,7 +168,7 @@ class LoginComponent extends React.Component {
                 <label>{label}</label>
                 <div>
                     <input {...input} placeholder={label} className="form-control" type={type} />
-                    {touched && error && <span>{error}</span>}
+                    {touched && error && <span style={styles.errorMessage}>{error}</span>}
                 </div>
             </fieldset>
         )
@@ -176,7 +185,7 @@ class LoginComponent extends React.Component {
                         <form onSubmit={this.props.handleSubmit(this.handleFormSubmit)}>
                             <Field name="email1" type="text" component={this.renderField} label="Email"/>
                             <Field name="password1" type="password" component={this.renderField} label="Password"/>
-                            <button action="submit" className="btn btn-primary">Sign In</button>
+                            <button style={styles.button} action="submit" className="btn btn-primary">Sign In</button>
                         </form>
                         <a style={styles.layout} onClick={() => this.flipSelected()}>New to RipeNow? Click here to create an account.</a>
                         <br />
@@ -212,7 +221,7 @@ class LoginComponent extends React.Component {
                             </fieldset>
                             <Field name="agrees" type="checkbox" component={this.renderField}
                                    label="I have read and agreed to the terms of service."/>
-                            <button action="submit" className="btn btn-primary">Sign Up</button>
+                            <button style={styles.button} action="submit" className="btn btn-primary">Sign Up</button>
                         </form>
                     </div>
                     <a  style={styles.layout} onClick={() => this.flipSelected()}>Already have an account? Click here to Login.</a>

@@ -14,6 +14,15 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import 'whatwg-fetch'
 import moment from 'moment';
+import Radium, { Style } from 'radium';
+var styles = {
+    base: {
+        fontFamily: 'Fira Sans',
+    },
+    selectedButton: {
+        background: '#8DC63F'
+    }
+};
 
 var errorMessage;
 class MarketView extends React.Component {
@@ -105,7 +114,7 @@ class MarketView extends React.Component {
                         <Panel>
                             <Row>
                                 <Col md={6}>
-                                    <h3>Select date to order from:</h3>
+                                    <h3>Select your delivery date:</h3>
                                     <ButtonToolbar>
                                         {Button1}
                                         {Button2}
@@ -145,7 +154,7 @@ class MarketView extends React.Component {
                         <Panel>
                             <Row>
                                 <Col md={6}>
-                                    <h3>Select date to order from:</h3>
+                                    <h3>Select your delivery date:</h3>
                                     <ButtonToolbar>
                                         {Button2}
                                         {Button3}
@@ -171,8 +180,7 @@ class MarketView extends React.Component {
             warningLabel = 'Please sign in or sign up to order or list produce';
         }
         return (
-            <div>
-                <h1>Market</h1>
+            <div style={styles.base} className="container">
                 <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
                 <h4 style={{color: '#ff0000'}}>{errorMessage}</h4>
                 {dateSelector}
@@ -230,5 +238,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
+MarketView = Radium(MarketView);
 export default connect(mapStateToProps, mapDispatchToProps)(MarketView);
