@@ -14,6 +14,7 @@ const initialState = {
 export default function itemReducer(state = initialState, action) {
 	switch (action.type) {
 		case REQUEST_ITEMS:
+			console.log(action.payload)
 			return Object.assign({}, state, {
 				items: action.payload
 			});

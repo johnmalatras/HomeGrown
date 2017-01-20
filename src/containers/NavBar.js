@@ -44,7 +44,6 @@ var styles = {
     },
 
     button: {
-        background: 'white',
         float: 'right',
         backgroundColor: 'white',
         padding: '12px 25px',
@@ -71,7 +70,10 @@ var styles = {
         padding: '0px 0px 0 0',
         boxShadow: '0 0 0 0',
         marginBottom: '0',
-        width: '100vw'
+        width: '100vw',
+        zIndex: '100000',
+        position: 'relative',
+
     },
     label: {
         color: '#8DC63F',
@@ -117,10 +119,10 @@ class NavBar extends React.Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav pullRight>
-                                <NavItem eventKey={1} href="#" onClick={() => this.handleMarket()}><a style={styles.label} eventKey={1} href="#" onClick={() => this.handleMarket()}>MARKET</a></NavItem>
-                                <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={2} href="#" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
-                                <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={3} href="#" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
-                                <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={4} href="#" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
+                                <NavItem eventKey={1} href="#" onClick={() => this.handleMarket()}><a style={styles.label} eventKey={1} href="#1" onClick={() => this.handleMarket()}>MARKET</a></NavItem>
+                                <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={2} href="#2" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
+                                <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={3} href="#3" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
+                                <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={4} href="#4" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
@@ -134,11 +136,11 @@ class NavBar extends React.Component {
                         </Navbar.Header>
                         <Navbar.Collapse>
                             <Nav pullRight>
-                                <NavItem eventKey={1} href="#" onClick={() => this.handleMarket()}><a style={styles.label} eventKey={1} href="#" onClick={() => this.handleMarket()}>MARKET</a></NavItem>
-                                <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}><a style={styles.label} eventKey={2} href="#" onClick={() => this.handleCart()}>CART: {this.props.selectedDate}</a></NavItem>
-                                <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={3} href="#" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
-                                <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={4} href="#" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
-                                <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={5} href="#" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
+                                <NavItem eventKey={1} href="#" onClick={() => this.handleMarket()}><a style={styles.label} eventKey={1} href="#1" onClick={() => this.handleMarket()}>MARKET</a></NavItem>
+                                <NavItem eventKey={2} href="#" onClick={() => this.handleCart()}><a style={styles.label} eventKey={2} href="#2" onClick={() => this.handleCart()}>CART: {this.props.selectedDate}</a></NavItem>
+                                <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={3} href="#3" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
+                                <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={4} href="#4" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
+                                <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={5} href="#5" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>
@@ -154,8 +156,8 @@ class NavBar extends React.Component {
                     </Navbar.Header>
                     <Navbar.Collapse>
                         <Nav pullRight>
-                            <NavItem eventKey={1} href="#" onClick={() => this.handleHome()}><a style={styles.label} href="#" onClick={() => this.handleHome()}>HOME</a></NavItem>
-                            <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={4} href="#" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
+                            <NavItem eventKey={1} href="#" onClick={() => this.handleHome()}><a style={styles.label} href="#1" onClick={() => this.handleHome()}>HOME</a></NavItem>
+                            <NavItem eventKey={4} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={4} href="#2" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
                             <button style={styles.button} onClick={() => this.handleSignIn()}>LOGIN</button>
                         </Nav>
                     </Navbar.Collapse>

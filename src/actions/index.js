@@ -347,43 +347,50 @@ export function addItem(values, ownerName, businessName, availableDates) {
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
         const itemRef = database.ref('/items/'+ itemID);
 
+        var downloadURL;
         const imageRef = storage.ref('image/' + itemID);
         imageRef.put(values.ProductImage[0]).then(function(snapshot) {
             //console.log('Uploaded a blob or file!');
+            imageRef.getDownloadURL().then(function(snapshot) {
+
+                itemRef.update({
+                    ["title"]:values.ProductTitle,
+                    ["seller"]:ownerName,
+                    ["businessName"]:businessName,
+                    ["quantity"]: values.ProductQuantity,
+                    ["metric"]: values.ProductMetric,
+                    ["price"]: values.ProductPrice,
+                    ["quality"]: values.Quality,
+                    ["sellerUID"]: userUid,
+                    ["availableDates"]: availableDates,
+                    ["downloadURL"]: snapshot
+                });
+
+                var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
+                //Hardcoded in Raleigh cords, will cahnge eventually
+                geoFire.set(itemID, [35.7796,78.6382]).then(function() {
+                    console.log("SET LOCATION");
+                });
+
+                var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
+                const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
+                userItemRef.update({
+                    ["title"]:values.ProductTitle,
+                    ["seller"]:ownerName,
+                    ["businessName"]:businessName,
+                    ["quantity"]: values.ProductQuantity,
+                    ["metric"]: values.ProductMetric,
+                    ["price"]: values.ProductPrice,
+                    ["quality"]: values.Quality,
+                    ["sellerUID"]: userUid,
+                    ["availableDates"]: availableDates,
+                    ["downloadURL"]: snapshot
+                });
+
+                browserHistory.push('/account');
+            });
         });
 
-        itemRef.update({
-            ["title"]:values.ProductTitle,
-            ["seller"]:ownerName,
-            ["businessName"]:businessName,
-            ["quantity"]: values.ProductQuantity,
-            ["metric"]: values.ProductMetric,
-            ["price"]: values.ProductPrice,
-            ["quality"]: values.Quality,
-            ["sellerUID"]: userUid,
-            ["availableDates"]: availableDates
-        });
-
-        //Hardcoded in Raleigh cords, will cahnge eventually
-        geoFire.set(itemID, [35.7796,78.6382]).then(function() {
-            console.log("SET LOCATION");
-        });
-
-        var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
-        const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
-        userItemRef.update({
-            ["title"]:values.ProductTitle,
-            ["seller"]:ownerName,
-            ["businessName"]:businessName,
-            ["quantity"]: values.ProductQuantity,
-            ["metric"]: values.ProductMetric,
-            ["price"]: values.ProductPrice,
-            ["quality"]: values.Quality,
-            ["sellerUID"]: userUid,
-            ["availableDates"]: availableDates
-        });
-
-        browserHistory.push('/account');
     }
 }
 

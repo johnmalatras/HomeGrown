@@ -9,19 +9,23 @@ import React,{ Component, PropTypes }  from 'react';
 // import SignUpPage from './SignUpPage';
 // import * as Actions from '../actions/index';
 // import HomePage from '../components/HomePage';
+import { StickyContainer, Sticky } from 'react-sticky';
 import Header from '../containers/Header';
 import NavBar from '../containers/NavBar';
 import Footer from '../containers/Footer';
+
 export default class App extends React.Component {
     render() {
         return (
             <div>
-                <div>
-                    <NavBar/>
-                </div>
-                <div>
-                    {this.props.children}
-                </div>
+                <StickyContainer>
+                    <Sticky>
+                        <NavBar/>
+                    </Sticky>
+                    <div>
+                        {this.props.children}
+                    </div>
+                </StickyContainer>
             </div>
         );
     }

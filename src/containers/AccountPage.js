@@ -109,7 +109,7 @@ class AccountPage extends React.Component {
                 </div>
         }
         return (
-            <div>
+            <div className="container">
                 <h1>Account Overview For {this.props.userInfo.businessName}</h1>
                 {currentListingsElement}
                 <Panel>
