@@ -25,8 +25,8 @@ class Home extends React.Component {
 
           image: {
             width:'100vw',
-            height: '92.3vh',
-            backgroundImage: "url('../../background.png')",
+            height: '92.6vh',
+            backgroundImage: "url('https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/background.png?alt=media&token=03d9c338-0bd2-4498-bc15-10d88aa8e129')",
             backgroundSize: 'cover',
             color: 'white',
             textAlign: 'center'
@@ -171,13 +171,13 @@ class Home extends React.Component {
                             <p style={styles.infoText}>RipeNow crowd sources fresh produce from local farms, bringing the community to your menu.</p>
                         </div>
                         <div style={styles.sectionOne} >
-                            <img width="80%" height="80%" src="../../apples.jpg" alt="Farmers Market"/>
+                            <img width="80%" height="80%" src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/apples.jpg?alt=media&token=cb378320-7f2b-4aef-9edd-05d22ae7ee2b" alt="Farmers Market"/>
                         </div>
                     </div>
                     <hr width="88%" color="black" />
                     <div style={styles.infoSection}>
                         <div style={styles.sectionTwo} >
-                            <img width="95%" height="95%" src="../../kitchen.jpg" alt="Kitchen"/>
+                            <img width="95%" height="95%" src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/kitchen.jpg?alt=media&token=ee0be104-9f21-4e83-9569-6e22af4e1710" alt="Kitchen"/>
                         </div>
                         <div style={styles.sectionTwoText}>
                             <br />
@@ -194,7 +194,7 @@ class Home extends React.Component {
                   <div className="container">
                     <div style={styles.footerDiv}>
                       <div style={styles.footerImage}>
-                        <img width="50%" height="50%" src="../../RipeNow_Icon_Small.png" alt="RipeNow"/>
+                        <img width="50%" height="50%" src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow_Icon_Small.png?alt=media&token=08415221-4f86-4325-b92f-90a050054aab" alt="RipeNow"/>
                       </div>
                       <div style={styles.footerTextFirst}>
                         <p><a href="#" style={styles.footerLinkText}>Terms of Service</a></p>

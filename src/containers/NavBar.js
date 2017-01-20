@@ -15,6 +15,8 @@ var MenuItem = ReactBootstrap.MenuItem;
 var Nav = ReactBootstrap.Nav;
 var NavDropdown = ReactBootstrap.NavDropdown;
 
+const logoURL = "https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow-Logo.png?alt=media&token=044f84d8-dcb2-4ded-bf63-470d4c08bc79";
+
 var styles = {
     base: {
         background: 'white',
@@ -114,7 +116,7 @@ class NavBar extends React.Component {
                 return [
                     <Navbar style={styles.navBar} collapseOnSelect block fluid>
                         <Navbar.Header>
-                            <img width="200px" src="../../RipeNow_Small.jpg"/>
+                            <img width="200px" src={logoURL}/>
                             <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
@@ -131,7 +133,7 @@ class NavBar extends React.Component {
                 return [
                     <Navbar style={styles.navBar} collapseOnSelect block fluid>
                         <Navbar.Header>
-                            <img width="200px" src="../../RipeNow_Small.jpg"/>
+                            <img width="200px" src={logoURL}/>
                             <Navbar.Toggle />
                         </Navbar.Header>
                         <Navbar.Collapse>
@@ -151,7 +153,7 @@ class NavBar extends React.Component {
             return [
                 <Navbar style={styles.navBar} collapseOnSelect block fluid>
                     <Navbar.Header>
-                        <img width="200px" src="../../RipeNow_Small.jpg"/>
+                        <img width="200px" src={logoURL}/>
                         <Navbar.Toggle />
                     </Navbar.Header>
                     <Navbar.Collapse>
