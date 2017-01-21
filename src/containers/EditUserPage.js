@@ -23,6 +23,9 @@ import '../style/geosuggest.css';
 var styles = {
     body: {
         width: '100%',
+    },
+    warning: {
+        color: 'red'
     }
 
 };
@@ -55,6 +58,14 @@ class EditUserPage extends React.Component {
         if(this.state.ownerName.length > 0)
         {
             this.props.actions.updateUserSetting("ownerName",this.state.ownerName);
+
+            if(!this.props.userInfo.isAccountFinished)
+            {
+                if(this.props.userInfo.businessName && this.props.userInfo.address)
+                {
+                    this.props.actions.unlockAccount();
+                }
+            }
         }
         else {
             this.setState({
@@ -66,6 +77,14 @@ class EditUserPage extends React.Component {
         if(this.state.businessName.length > 0)
         {
             this.props.actions.updateUserSetting("businessName",this.state.businessName);
+
+            if(!this.props.userInfo.isAccountFinished)
+            {
+                if(this.props.userInfo.ownerName && this.props.userInfo.address)
+                {
+                    this.props.actions.unlockAccount();
+                }
+            }
         }
         else {
             this.setState({
@@ -76,13 +95,23 @@ class EditUserPage extends React.Component {
     updateAddress() {
         if(this.state.address.length > 0)
         {
-            this.props.actions.updateUserSetting("address",this.state.address.length);
+            this.props.actions.updateUserSetting("address",this.state.address);
+
+            if(!this.props.userInfo.isAccountFinished)
+            {
+                if(this.props.userInfo.ownerName && this.props.userInfo.businessName)
+                {
+                    this.props.actions.unlockAccount();
+                }
+            }
         }
         else {
             this.setState({
                 addressError: "Phone enter a business name"
             });
         }
+
+
     }
     handleOwnerNameChange(newName)
     {
@@ -112,6 +141,30 @@ class EditUserPage extends React.Component {
         var fixtures = [
             {label: 'Raleigh', location: {lat: 35.7796, lng: 78.6382}},
         ];
+        var nameWarning;
+        var addressWarning;
+        var businessNameWarning;
+        if(!this.props.userInfo.businessName) {
+            businessNameWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please enter a business name to complete your account.
+            </div>;
+        }
+        if (!this.props.userInfo.address) {
+            addressWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please enter an address to complete your account.
+            </div>;
+        }
+        if (!this.props.userInfo.ownerName) {
+            nameWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please enter an owner name to complete your account.
+            </div>;
+        }
 
         return (
             <div className="container">
@@ -121,7 +174,7 @@ class EditUserPage extends React.Component {
                         <h3>Phone Number</h3>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Phone Number:</p></Col>
-                            <Col md={6}>{this.props.userInfo.phoneNumber.substring(2)}</Col>
+                            <Col md={6}>{this.props.userInfo.phoneNumber}</Col>
                         </Row>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Phone Number: </p></Col>
@@ -136,6 +189,7 @@ class EditUserPage extends React.Component {
                     </Panel>
                     <Panel>
                         <h3>Owner Name</h3>
+                        <h4 style={styles.warning}>{nameWarning}</h4>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Owner Name:</p></Col>
                             <Col md={6}>{this.props.userInfo.ownerName}</Col>
@@ -158,6 +212,7 @@ class EditUserPage extends React.Component {
                     </Panel>
                     <Panel>
                         <h3>Business Name</h3>
+                        <h4 style={styles.warning}>{businessNameWarning}</h4>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Business Name:</p></Col>
                             <Col md={6}>{this.props.userInfo.businessName}</Col>
@@ -180,9 +235,10 @@ class EditUserPage extends React.Component {
                     </Panel>
                     <Panel>
                         <h3>Address</h3>
+                        <h4 style={styles.warning}>{addressWarning}</h4>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Address:</p></Col>
-                            <Col md={6}>{this.props.userInfo.streetAddress}</Col>
+                            <Col md={6}>{this.props.userInfo.address}</Col>
                         </Row>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Address: </p></Col>
