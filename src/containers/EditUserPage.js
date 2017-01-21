@@ -16,6 +16,7 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
+import Geosuggest from 'react-geosuggest';
 
 class EditUserPage extends React.Component {
     constructor(props) {
@@ -140,6 +141,23 @@ class EditUserPage extends React.Component {
                                     placeholder="Enter Business Name"
                                     onChange={this.handleBusinessNameChange}
                                 />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><Button onClick={() => this.updateBusinessName()} >Edit Business Name</Button></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.businessNameError}</p></Col>
+                        </Row>
+                    </Panel>
+                    <Panel>
+                        <h3>Address</h3>
+                        <Row>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>Current Address:</p></Col>
+                            <Col md={6}>{this.props.userInfo.streetAddress}</Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Address: </p></Col>
+                            <Col md={6}>
+                                <Geosuggest />
                             </Col>
                         </Row>
                         <Row>

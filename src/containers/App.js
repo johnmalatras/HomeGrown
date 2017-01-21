@@ -21,8 +21,10 @@ var styles = {
     },
     content: {
         zIndex: '1',
+        fontFamily: 'Fira Sans',
     }
 };
+
 
 class App extends React.Component {
     render() {

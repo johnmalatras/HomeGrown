@@ -25,7 +25,6 @@ import EditUserPage from './src/containers/EditUserPage';
 import EditEmailPage from './src/containers/EditEmailPage';
 import EditPasswordPage from './src/containers/EditPasswordPage';
 import EditAvailableDatesPage from './src/containers/EditAvailableDatesPage';
-import './style/main.css';
 import NavBar from './src/containers/NavBar';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
@@ -51,5 +50,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('app')
 );
-
-
