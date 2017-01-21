@@ -118,7 +118,7 @@ class AccountPage extends React.Component {
                 <div className="alert alert-danger" role="alert">
                     <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span className="sr-only">Error:</span>
-                    Please fill out your business name and address in Edit Business Settings.
+                    {" "}Please fill out your business name and address in "Edit Business Settings" below.
                 </div>;
         }
         return (

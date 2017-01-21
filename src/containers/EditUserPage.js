@@ -130,7 +130,7 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateEmail()} >Edit Phone Number</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateEmail()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.phoneNumberError}</p></Col>
                         </Row>
                     </Panel>
@@ -152,7 +152,7 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateOwnerName()} >Edit Owner Name</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateOwnerName()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.ownerNameError}</p></Col>
                         </Row>
                     </Panel>
@@ -174,7 +174,7 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateBusinessName()} >Edit Business Name</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateBusinessName()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.businessNameError}</p></Col>
                         </Row>
                     </Panel>
@@ -192,7 +192,7 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateAddress()} >Edit Address</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateAddress()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.addressError}</p></Col>
                         </Row>
                     </Panel>
