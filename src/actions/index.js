@@ -140,6 +140,7 @@ export function verifyAuth(){
         Firebase.auth().onAuthStateChanged(user => {
             if(user && firstTime)
             {
+                console.log(holdData.isRestaurant);
                 const userUid = Firebase.auth().currentUser.uid;
                 firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
@@ -155,7 +156,7 @@ export function verifyAuth(){
                 user.update({
                     ["email"]:holdData.email,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isRestaurant,
+                    ["isRestaurant"]: holdData.isRestaurant.toString(),
                     ["availableDates"]: dates,
                     ["isAccountFinished"]: false
                 });
