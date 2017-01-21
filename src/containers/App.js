@@ -19,7 +19,9 @@ var styles = {
     header: {
         zIndex: '10',
     },
+
     content: {
+        minHeight: 'calc(100vh - 110px)'
         zIndex: '1',
         fontFamily: 'Fira Sans',
     }
@@ -29,7 +31,7 @@ var styles = {
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <div style={styles.body}>
                 <StickyContainer>
                     <Sticky style={styles.header}>
                         <NavBar/>
