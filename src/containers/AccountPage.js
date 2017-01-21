@@ -67,7 +67,7 @@ class AccountPage extends React.Component {
         {
             addItemButton = <Button style={styles.button}  onClick={() => this.addItem()} >Add Item</Button>;
         }
-        if (isRestaurant === 'false') {
+        if (isRestaurant == 'false') {
             currentListingsElement =
                 <div>
                     <Panel>
