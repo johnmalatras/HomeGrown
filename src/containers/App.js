@@ -35,6 +35,9 @@ class App extends React.Component {
                     <div style={styles.content}>
                         {this.props.children}
                     </div>
+                    <div>
+                        <Footer />
+                    </div>
                 </StickyContainer>
             </div>
         );
