@@ -34,7 +34,7 @@ ReactDOM.render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={MarketView} />
-                <Route path="/login" component={Home}/>
+                <Route path="/home" component={Home}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>
                 <Route path="/addItem" component={RequireAuth(AddItemPage)}/>
@@ -43,7 +43,7 @@ ReactDOM.render(
                 <Route path="/password" component={RequireAuth(EditPasswordPage)}/>
                 <Route path="/available" component={RequireAuth(EditAvailableDatesPage)}/>
                 <Route path="/about" component={AboutPage}/>
-                <Route path="/home" component={HomePage}/>
+                <Route path="/login" component={HomePage}/>
                 <Route path="/blog" component={Blog}/>
             </Route>
         </Router>

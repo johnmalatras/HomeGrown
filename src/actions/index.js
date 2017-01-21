@@ -171,7 +171,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    browserHistory.push('/login');
+    browserHistory.push('/home');
     return {
         type: 'SIGN_OUT_USER'
     }
@@ -314,6 +314,17 @@ export function updateUserEmail(oldEmail,newEmail,password){
     };
 }
 
+export function unlockAccount(){
+    const userUid = Firebase.auth().currentUser.uid;
+    const user = database.ref('/users/'+userUid.toString());
+    user.update({
+        ["isAccountFinished"]: true
+    });
+    return {
+        type: UPDATE_USER_INFO
+    }
+
+}
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
     const user = database.ref('/users/'+userUid.toString());
