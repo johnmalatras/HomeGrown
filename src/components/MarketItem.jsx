@@ -22,12 +22,12 @@ function handleImageLoaded() {
 	console.log("HIT");
 }
 
-var MarketItem = ({item, isRestaurant,image, onItemSelect, auth}) => {
+var MarketItem = ({item, isRestaurant,image, onItemSelect, auth, canOrder}) => {
 	var res = isRestaurant;
 	var produceImage;
 	produceImage = <Image style={{width: '128px', height: '128px'}}  src={item.downloadURL} rounded />;
 	//console.log(item);
-	if (auth != false) {
+	if (auth != false && canOrder) {
 		if (res == false) {
 			const rowElement = (
 				<tr key={item.title}>

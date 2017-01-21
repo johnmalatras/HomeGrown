@@ -16,18 +16,28 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
+import Geosuggest from 'react-geosuggest';
+import Radium from 'radium'
+import '../style/geosuggest.css';
 
+var styles = {
+    body: {
+        width: '100%',
+    }
+
+};
 class EditUserPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: ""};
+        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: "", address: "",addressError: ""};
         this.updateEmail= this.updateEmail.bind(this);
         this.handleTextChange= this.handleTextChange.bind(this);
         this.handleOwnerNameChange= this.handleOwnerNameChange.bind(this);
         this.updateOwnerName= this.updateOwnerName.bind(this);
         this.handleBusinessNameChange= this.handleBusinessNameChange.bind(this);
         this.updateBusinessName= this.updateBusinessName.bind(this);
-
+        this.onSuggestSelect = this.onSuggestSelect.bind(this);
+        this.updateAddress = this.updateAddress.bind(this);
     }
     updateEmail() {
         if(this.state.phoneNumber.length == 12)
@@ -63,6 +73,17 @@ class EditUserPage extends React.Component {
             });
         }
     }
+    updateAddress() {
+        if(this.state.address.length > 0)
+        {
+            this.props.actions.updateUserSetting("address",this.state.address.length);
+        }
+        else {
+            this.setState({
+                addressError: "Phone enter a business name"
+            });
+        }
+    }
     handleOwnerNameChange(newName)
     {
         this.setState({
@@ -81,7 +102,17 @@ class EditUserPage extends React.Component {
             phoneNumber: textComment.target.value
         });
     }
+    onSuggestSelect(suggest) {
+        this.setState({
+            address: suggest.label
+        });
+    }
+
     render() {
+        var fixtures = [
+            {label: 'Raleigh', location: {lat: 35.7796, lng: 78.6382}},
+        ];
+
         return (
             <div className="container">
                 <h1>Editable Settings:</h1>
@@ -151,12 +182,19 @@ class EditUserPage extends React.Component {
                         <h3>Address</h3>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Address:</p></Col>
-                            <Col md={6}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</Col>
+                            <Col md={6}>{this.props.userInfo.streetAddress}</Col>
                         </Row>
                         <Row>
-                            <Col md={6}><p style={{fontWeight: 'bold'}}>To update your address please call: 919-830-9521</p></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Address: </p></Col>
+                            <Col md={6}>
+                                <Geosuggest style={{width: '100%'}}
+                                            onSuggestSelect={this.onSuggestSelect}/>
+                            </Col>
                         </Row>
-
+                        <Row>
+                            <Col md={6}><Button onClick={() => this.updateAddress()} >Edit Address</Button></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.addressError}</p></Col>
+                        </Row>
                     </Panel>
                 </Grid>
             </div>
@@ -176,5 +214,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
+EditUserPage = Radium(EditUserPage);
 export default connect(mapStateToProps, mapDispatchToProps)(EditUserPage);

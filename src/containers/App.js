@@ -22,8 +22,11 @@ var styles = {
 
     content: {
         minHeight: 'calc(100vh - 110px)'
+        zIndex: '1',
+        fontFamily: 'Fira Sans',
     }
 };
+
 
 class App extends React.Component {
     render() {

@@ -46,6 +46,7 @@ class AccountPage extends React.Component {
     }
 
 
+
     render() {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
@@ -108,9 +109,22 @@ class AccountPage extends React.Component {
                     <p style={{fontWeight: 'bold'}}>Editing</p>
                 </div>
         }
+
+
+        var needInfoLabel;
+        if(!this.props.userInfo.isAccountFinished)
+        {
+            needInfoLabel =
+                <div className="alert alert-danger" role="alert">
+                    <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span className="sr-only">Error:</span>
+                    Please fill out your business name and address in Edit Business Settings.
+                </div>;
+        }
         return (
             <div className="container">
-                <h1>Account Overview For {this.props.userInfo.businessName}</h1>
+                <h1>Account Overview</h1>
+                {needInfoLabel}
                 {currentListingsElement}
                 <Panel>
                     <ActiveOrders />
