@@ -31,14 +31,14 @@ var MarketItem = ({item, isRestaurant,image, onItemSelect, auth}) => {
 		if (res == false) {
 			const rowElement = (
 				<tr key={item.title}>
-					<td>{produceImage}</td>
-					<td>{item.title}</td>
-					<td>{item.businessName}</td>
-					<td>{item.price}</td>
-					<td>{item.metric}</td>
-					<td>{item.quantity}</td>
-					<td>{item.quality}</td>
-					<td> </td>
+					<td style={styles.tag}>{produceImage}</td>
+					<td style={styles.tag}>{item.title}</td>
+					<td style={styles.tag}>{item.businessName}</td>
+					<td style={styles.tag}>{item.price}</td>
+					<td style={styles.tag}>{item.metric}</td>
+					<td style={styles.tag}>{item.quantity}</td>
+					<td style={styles.tag}>{item.quality}</td>
+					<td style={styles.tag}> </td>
 				</tr>
 			)
 			return rowElement;
@@ -61,14 +61,14 @@ var MarketItem = ({item, isRestaurant,image, onItemSelect, auth}) => {
 	else {
 		const rowElement = (
 			<tr key={item.title}>
-				<td>{produceImage}</td>
-				<td>{item.title}</td>
-				<td>{item.businessName}</td>
-				<td>{item.price}</td>
-				<td>{item.metric}</td>
-				<td>{item.quantity}</td>
-				<td>{item.quality}</td>
-				<td> </td>
+				<td style={styles.tag}>{produceImage}</td>
+				<td style={styles.tag}>{item.title}</td>
+				<td style={styles.tag}>{item.businessName}</td>
+				<td style={styles.tag}>{item.price}</td>
+				<td style={styles.tag}>{item.metric}</td>
+				<td style={styles.tag}>{item.quantity}</td>
+				<td style={styles.tag}>{item.quality}</td>
+				<td style={styles.tag}> </td>
 			</tr>
 		)
 		return rowElement;

@@ -13,16 +13,26 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import Header from '../containers/Header';
 import NavBar from '../containers/NavBar';
 import Footer from '../containers/Footer';
+import Radium from 'radium'
 
-export default class App extends React.Component {
+var styles = {
+    header: {
+        zIndex: '10',
+    },
+    content: {
+        zIndex: '1',
+    }
+};
+
+class App extends React.Component {
     render() {
         return (
             <div>
                 <StickyContainer>
-                    <Sticky>
+                    <Sticky style={styles.header}>
                         <NavBar/>
                     </Sticky>
-                    <div>
+                    <div style={styles.content}>
                         {this.props.children}
                     </div>
                 </StickyContainer>
@@ -30,3 +40,5 @@ export default class App extends React.Component {
         );
     }
 }
+App = Radium(App);
+export default App;

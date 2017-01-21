@@ -65,7 +65,6 @@ class MarketView extends React.Component {
         var items = this.props.items;
         var items_selectedDate = JSON.parse(JSON.stringify(items));
         if (this.props.selectedDateMoment) {
-            console.log("HITHITHITH");
             for (var item in items) {
                 var hold = JSON.parse(JSON.stringify(item));
                 var isIn = false;
@@ -173,13 +172,6 @@ class MarketView extends React.Component {
                 ;
             }
         }
-        // if (this.props.items) {
-        //     for (var item in this.props.items) {
-        //         if (!this.props.items[item].image) {
-        //             this.props.actions.getImages(this.props.items, item);
-        //         }
-        //     }
-        // }
 
 
         var warningLabel = '';
