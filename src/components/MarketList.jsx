@@ -30,6 +30,7 @@ var MarketList = (props) => {
 							   item={row}
 							   image={row.image}
 							   isRestaurant={isRestaurant}
+							   canOrder={props.userInfo.isAccountFinished}
 							   auth = {isAuth}
 							   onItemSelect={ props.onItemSelect }/>
 		});
