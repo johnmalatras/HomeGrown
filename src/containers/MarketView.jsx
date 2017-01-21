@@ -178,24 +178,26 @@ class MarketView extends React.Component {
         var warningLabel;
         var needInfoMessage;
         var userAuth = true;
-        console.log(this.props.userInfo);
-        if (this.props.authenticated == false) {
-            userAuth = false;
-            warningLabel = <div className="alert alert-danger" role="alert">
-                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span className="sr-only">Error:</span>
-                Please sign in or sign up to order or list produce
-            </div>
-        } else if (this.props.userInfo.isRestaurant && !this.props.userInfo.isAccountFinished) {
 
-            var needInfoMessage =
-                <div className="alert alert-danger" role="alert">
+        if(this.props.userInfo != undefined) {
+            if (this.props.authenticated == false) {
+                userAuth = false;
+                warningLabel = <div className="alert alert-danger" role="alert">
                     <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span className="sr-only">Error:</span>
-                    Please finish filling out your account info before you can order. Go to the Account tab to fill it out.
-                </div>;
-        }
+                    Please sign in or sign up to order or list produce
+                </div>
+            } else if (this.props.userInfo.isRestaurant && !this.props.userInfo.isAccountFinished) {
 
+                var needInfoMessage =
+                    <div className="alert alert-danger" role="alert">
+                        <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span className="sr-only">Error:</span>
+                        Please finish filling out your account info before you can order. Go to the Account tab to fill
+                        it out.
+                    </div>;
+            }
+        }
         return (
             <div style={styles.base} className="container">
                 {warningLabel}

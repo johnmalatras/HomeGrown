@@ -13,7 +13,17 @@ var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var NavItem = ReactBootstrap.NavItem;
 var Nav = ReactBootstrap.Nav;
+import Radium, { Style } from 'radium';
 
+var styles = {
+    button: {
+        background: '#8DC63F',
+        color: 'white',
+        borderColor: '#8DC63F',
+        fontSize: '125%',
+        padding: '6px 12px 6px 12px'
+    },
+}
 var editingName = false;
 var nameElement;
 class AccountPage extends React.Component {
@@ -52,12 +62,17 @@ class AccountPage extends React.Component {
         var dateLabel = 'Delivery Date';
         var currentListingsElement;
         var editSettingsElement;
+        var addItemButton;
+        if(this.props.userInfo.isAccountFinished)
+        {
+            addItemButton = <Button style={styles.button}  onClick={() => this.addItem()} >Add Item</Button>;
+        }
         if (isRestaurant === 'false') {
             currentListingsElement =
                 <div>
                     <Panel>
                         <CurrentListings />
-                        <Button bsStyle="primary"  onClick={() => this.addItem()} >Add Item</Button>
+                        {addItemButton}
                     </Panel>
                 </div>;
 
@@ -152,19 +167,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
+AccountPage = Radium(AccountPage);
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
-
-//USE THIS ONE IF YOU WANT IT BACK
-// <Row>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Owner Name:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Business Name:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Address:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Phone Number:</p></Col>
-// </Row>
-// <Row>
-// <Col md={3}><p>{this.props.userInfo.ownerName}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.businessName}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.phoneNumber}</p></Col>
-// </Row>

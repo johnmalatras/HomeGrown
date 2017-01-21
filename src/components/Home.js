@@ -2,6 +2,8 @@ import React from 'react';
 import Radium from 'radium'
 var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
+import '../style/geosuggesthome.css';
+import Geosuggest from 'react-geosuggest';
 
 var FormControl = ReactBootstrap.FormControl;
 var FormGroup = ReactBootstrap.FormGroup;
@@ -11,12 +13,16 @@ class Home extends React.Component {
     constructor(props) {
         super();
         this.TermsOfUse= this.TermsOfUse.bind(this);
+        this.onSuggestSelect = this.onSuggestSelect.bind(this);
     };
 
     TermsOfUse(){
         browserHistory.push('/terms');
     };
 
+    onSuggestSelect(suggest) {
+        console.log(suggest);
+    }
     render() {
         var styles = {
           all: {
@@ -48,13 +54,16 @@ class Home extends React.Component {
 
           center: {
             margin: 'auto',
-            width: '35%'
+            width: '35%',
+            color:'black',
           },
 
           searchBar: {
             borderWidth: '2px',
             borderStyle: 'solid',
-            borderColor: '#8DC63F'
+            borderColor: '#8DC63F',
+            color: 'black',
+              height: '120vh'
           },
 
           button: {
@@ -131,9 +140,10 @@ class Home extends React.Component {
                     <p style={styles.subText}><em>Browse the best local produce to fill your menu</em></p>
                     <br />
                     <div className="container" style={styles.center}>
-                      <input className="form-control input-lg" id="ex3" type="text" placeholder="Enter your delivery address" style={styles.searchBar} />
-                      <br />
-                      <button href="#" style={styles.button}>Find Produce</button>
+                        <Geosuggest style={styles.searchBar}
+                                    onSuggestSelect={this.onSuggestSelect}/>
+                        <br />
+                        <button href="#" style={styles.button}>Find Produce</button>
                     </div>
                 </div>
                 <div style={styles.content}>
