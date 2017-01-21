@@ -18,9 +18,15 @@ import Radium, { Style } from 'radium';
 var styles = {
     base: {
         fontFamily: 'Fira Sans',
+        zIndex: "1"
     },
     selectedButton: {
-        background: '#8DC63F'
+        background: '#8DC63F',
+        color: 'white',
+        borderColor: '#8DC63F',
+    },
+    label: {
+        fontSize: '125%',
     }
 };
 
@@ -32,19 +38,18 @@ class MarketView extends React.Component {
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
     }
+
     changeSelectedDate(date, dateMoment, cartIndex) {
-        this.props.actions.setSelectedDate(date,dateMoment,cartIndex);
+        this.props.actions.setSelectedDate(date, dateMoment, cartIndex);
     }
 
     orderItem(cartAdd, selectedCart) {
         if (selectedCart == 1) {
             var localTime = moment(Date.now()).local().format('HH');
-            if(localTime < 17)
-            {
+            if (localTime < 17) {
                 errorMessage = "You can not order for next day after 5pm, please refresh the page"
             }
-            else
-            {
+            else {
                 this.props.actions.addToCart(cartAdd, selectedCart);
             }
         }
@@ -58,9 +63,10 @@ class MarketView extends React.Component {
         var dateCart;
         var selectedCart = 1;
         var items = this.props.items;
-        var items_selectedDate =JSON.parse(JSON.stringify(items));
+        var items_selectedDate = JSON.parse(JSON.stringify(items));
         if (this.props.selectedDateMoment) {
-            for (item in items) {
+            for (var item in items) {
+                var hold = JSON.parse(JSON.stringify(item));
                 var isIn = false;
                 for (var t = 0; t < 7; t++) {
                     if (items[item].availableDates[t].key == this.props.selectedDateMoment.format('dddd').toLowerCase()) {
@@ -85,29 +91,29 @@ class MarketView extends React.Component {
                 var Button1;
                 var Button2;
                 var Button3;
-                if(holdDate == day1.toLowerCase())
-                {
+                if (holdDate == day1.toLowerCase()) {
                     selectedCart = 1;
                     dateCart = this.props.cart;
-                    Button1 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day1, date,1)}>{day1}</Button>;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
+                    Button1 = <Button style={styles.selectedButton}
+                                      onClick={() => this.changeSelectedDate(day1, date, 1)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1, 2)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2, 3)}>{day3}</Button>;
                 }
-                else if(holdDate == day2.toLowerCase())
-                {
+                else if (holdDate == day2.toLowerCase()) {
                     selectedCart = 2;
                     dateCart = this.props.cart2;
-                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,1)}>{day1}</Button>;
-                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date, 1)}>{day1}</Button>;
+                    Button2 = <Button style={styles.selectedButton}
+                                      onClick={() => this.changeSelectedDate(day2, date1, 2)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2, 3)}>{day3}</Button>;
                 }
-                else if(holdDate == day3.toLowerCase())
-                {
+                else if (holdDate == day3.toLowerCase()) {
                     selectedCart = 3;
                     dateCart = this.props.cart3;
-                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date,1)}>{day1}</Button>;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
-                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
+                    Button1 = <Button onClick={() => this.changeSelectedDate(day1, date, 1)}>{day1}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1, 2)}>{day2}</Button>;
+                    Button3 = <Button style={styles.selectedButton}
+                                      onClick={() => this.changeSelectedDate(day3, date2, 3)}>{day3}</Button>;
                 }
                 dateSelector =
                     <Grid>
@@ -135,19 +141,19 @@ class MarketView extends React.Component {
                 var Button2;
                 var Button3;
 
-                if(holdDate == day2.toLowerCase())
-                {
+                if (holdDate == day2.toLowerCase()) {
                     selectedCart = 2;
                     dateCart = this.props.cart2;
-                    Button2 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
-                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
+                    Button2 = <Button style={styles.selectedButton}
+                                      onClick={() => this.changeSelectedDate(day2, date1, 2)}>{day2}</Button>;
+                    Button3 = <Button onClick={() => this.changeSelectedDate(day3, date2, 3)}>{day3}</Button>;
                 }
-                else if(holdDate == day3.toLowerCase())
-                {
+                else if (holdDate == day3.toLowerCase()) {
                     selectedCart = 3;
                     dateCart = this.props.cart3;
-                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1,2)}>{day2}</Button>;
-                    Button3 = <Button bsStyle="primary" onClick={() => this.changeSelectedDate(day3, date2,3)}>{day3}</Button>;
+                    Button2 = <Button onClick={() => this.changeSelectedDate(day2, date1, 2)}>{day2}</Button>;
+                    Button3 = <Button style={styles.selectedButton}
+                                      onClick={() => this.changeSelectedDate(day3, date2, 3)}>{day3}</Button>;
                 }
                 dateSelector =
                     <Grid>
@@ -166,19 +172,15 @@ class MarketView extends React.Component {
                 ;
             }
         }
-        if (this.props.items) {
-            for (var item in this.props.items) {
-                if (!this.props.items[item].image) {
-                    this.props.actions.getImages(this.props.items, item);
-                }
-            }
-        }
+
+
         var warningLabel = '';
         var userAuth = true;
         if (this.props.authenticated == false) {
             userAuth = false;
             warningLabel = 'Please sign in or sign up to order or list produce';
         }
+
         return (
             <div style={styles.base} className="container">
                 <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
@@ -186,8 +188,8 @@ class MarketView extends React.Component {
                 {dateSelector}
                 <Table responsive>
                     <thead>
-                    <tr>
-                        <th>Image</th>
+                    <tr style={styles.label}>
+                        <th></th>
                         <th>Item</th>
                         <th>Seller</th>
                         <th>Price ($)</th>
@@ -208,12 +210,14 @@ class MarketView extends React.Component {
                            onHide={ () => this.props.actions.closeModal() }
                            cart={dateCart}
                            selectedCart={selectedCart}
-                           addToCart={ cartAdd => this.orderItem({cartAdd},this.props.selectedCart) }
+                           addToCart={ cartAdd => this.orderItem({cartAdd}, this.props.selectedCart) }
                            userInfo={this.props.userInfo}/>
             </div>
         );
     }
 }
+
+
 
 function mapStateToProps(state) {
     return {

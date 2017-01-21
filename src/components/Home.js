@@ -20,7 +20,7 @@ class Home extends React.Component {
     render() {
         var styles = {
           all: {
-            fontFamily: 'Fira Sans'
+            fontFamily: 'Fira Sans',
           },
 
           image: {
