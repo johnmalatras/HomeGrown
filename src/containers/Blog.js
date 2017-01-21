@@ -52,7 +52,6 @@ class Blog extends React.Component {
             <div className="container" style={styles.all}>
               <div style={styles.content} >
                 <p style={styles.header}>Hello, World.</p>
-                <p style={styles.subtitle}><em>By: John Malatras</em></p>
                 <br />
                 <div style={styles.post}>
                   I love food. If you’re reading this, you probably do too. And I’m glad to have you on our side, because we have a war to fight. If you haven’t noticed, money has ambushed food and held her hostage for the last 60 years. It’s our job to set her free. 
