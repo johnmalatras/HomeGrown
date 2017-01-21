@@ -19,15 +19,16 @@ var styles = {
     header: {
         zIndex: '10',
     },
+
     content: {
-        zIndex: '1',
+        minHeight: 'calc(100vh - 110px)'
     }
 };
 
 class App extends React.Component {
     render() {
         return (
-            <div>
+            <div style={styles.body}>
                 <StickyContainer>
                     <Sticky style={styles.header}>
                         <NavBar/>

@@ -18,7 +18,6 @@ import Cart from './src/containers/Cart';
 import AccountPage from './src/containers/AccountPage';
 import AddItemPage from './src/containers/AddItemPage';
 import AboutPage from './src/components/AboutPage';
-import TermsOfUse from './src/components/TermsOfUse';
 import Home from './src/components/Home';
 import Footer from './src/containers/Footer';
 import EditUserPage from './src/containers/EditUserPage';
@@ -45,7 +44,6 @@ ReactDOM.render(
                 <Route path="/password" component={RequireAuth(EditPasswordPage)}/>
                 <Route path="/available" component={RequireAuth(EditAvailableDatesPage)}/>
                 <Route path="/about" component={AboutPage}/>
-                <Route path="/terms" component={TermsOfUse}/>
                 <Route path="/home" component={HomePage}/>
                 <Route path="/blog" component={Blog}/>
             </Route>
