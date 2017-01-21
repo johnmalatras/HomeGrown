@@ -1,71 +1,90 @@
-/**
- * Created by alextulenko on 12/9/16.
- */
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import {signOutUser} from '../actions/index';
+import Radium from 'radium'
 var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
 
-var Navbar = ReactBootstrap.Navbar;
-var NavItem = ReactBootstrap.NavItem;
-var MenuItem = ReactBootstrap.MenuItem;
-var Nav = ReactBootstrap.Nav;
-var Panel = ReactBootstrap.Panel;
-var NavDropdown = ReactBootstrap.NavDropdown;
-var Grid = ReactBootstrap.Grid;
-var Row = ReactBootstrap.Row;
-var Col = ReactBootstrap.Col;
-var Image = ReactBootstrap.Image;
-
-var divStyle =  {
-    textAlign: 'center',
-    size: 45
-};
-var imgStyle = {
-    flex: 1,
-    justifyContent: 'center',
-    align: 'center',
-    display: 'flex'
-};
-
 class Footer extends React.Component {
+    constructor(props) {
+        super();
+        this.handleTerms = this.handleTerms.bind(this);
+        this.handlePrivacy = this.handlePrivacy.bind(this);
+        this.handleBlog = this.handleBlog.bind(this);
+    };
+
+    handleTerms(){
+        browserHistory.push('/terms');
+    };
+
+    handlePrivacy(){
+        browserHistory.push('/privacy');
+    };
+
+    handleBlog(){
+        browserHistory.push('/blog');
+    };
+
     render() {
+        var styles = {
+          all: {
+            fontFamily: 'Fira Sans'
+          },
+
+          footer: {
+            backgroundColor: '#222433'
+          },
+
+          footerDiv: {
+            paddingTop: "11px",
+            display: "flex",
+            fontSize: '110%'
+          },
+
+          footerTextFirst: {
+            paddingTop: '5px'
+          },
+
+          footerText: {
+            textIndent: '1.5em',
+            paddingTop: '5px',
+            color: 'white'
+          },
+
+          footerImage: {
+            paddingBottom: '6px'
+          },
+
+          footerLinkText: {
+            color: 'white'
+          }
+
+        };
+
         return (
-            <div></div>
-            /*<div className="container">
-                <Panel>
-                    <Grid>
-                        <Row>
-                            <Col xs={2} md={2} xsOffset={3}><p> </p></Col>
-                            <Col xs={2} md={2}><Image style={imgStyle} src="../../RipeNow-Icon.png" responsive /></Col>
-                            <Col xs={2} md={2}><p> </p></Col>
-                            {/!*<Col xs={4} md={4} xsOffset={4}><Image style={imgStyle} src="../../RipeNow-Icon.png" responsive /></Col>*!/}
-                        </Row>
-                        <Row>
-                            <Col xs={2} md={2} xsOffset={3}><p>Facebook:</p></Col>
-                            <Col xs={2} md={2}><p>Instagram: </p></Col>
-                            <Col xs={2} md={2}><p>Twitter: </p></Col>
-                        </Row>
-                        <Row>
-                            <Col xs={6} md={6} xsOffset={3}><p>2016 © RipeNow LLC. All rights reserved.</p></Col>
-                        </Row>
-                    </Grid>
-                </Panel>
-            </div>*/
+            <div style={styles.all}>
+                <footer className="footer" style={styles.footer}>
+                  <div className="container">
+                    <div style={styles.footerDiv}>
+                      <div style={styles.footerImage}>
+                        <img width="50%" height="50%" src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow_Icon_Small.png?alt=media&token=08415221-4f86-4325-b92f-90a050054aab" alt="RipeNow"/>
+                      </div>
+                      <div style={styles.footerTextFirst}>
+                        <p><a href="#" onClick={() => this.handleTerms()} style={styles.footerLinkText}>Terms of Service</a></p>
+                      </div>
+                      <div style={styles.footerText}>
+                        <p><a href="#" onClick={() => this.handlePrivacy()} style={styles.footerLinkText}>Privacy</a></p>
+                      </div>
+                      <div style={styles.footerText}>
+                        <p><a href="#" onClick={() => this.handleBlog()} style={styles.footerLinkText}>Blog</a></p>
+                      </div>
+                      <div style={styles.footerText}>
+                        <p>© 2017 RipeNow</p>
+                      </div>
+                    </div>
+                  </div>
+                </footer>
+            </div>
         );
     }
 }
-
-const mapDispatchToProps =  ({
-    signOut: signOutUser
-});
-
-function mapStateToProps(state) {
-    return {
-        authenticated: state.AuthReducer.authenticated,
-        userInfo: state.AuthReducer.userInfo
-    }
-};
-export default connect(mapStateToProps,mapDispatchToProps)(Footer);
+Footer = Radium(Footer);
+export default Footer;

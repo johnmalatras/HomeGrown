@@ -27,6 +27,7 @@ import EditPasswordPage from './src/containers/EditPasswordPage';
 import EditAvailableDatesPage from './src/containers/EditAvailableDatesPage';
 import './style/main.css';
 import NavBar from './src/containers/NavBar';
+import Blog from './src/containers/Blog';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
@@ -46,6 +47,7 @@ ReactDOM.render(
                 <Route path="/about" component={AboutPage}/>
                 <Route path="/terms" component={TermsOfUse}/>
                 <Route path="/home" component={HomePage}/>
+                <Route path="/blog" component={Blog}/>
             </Route>
         </Router>
     </Provider>,
