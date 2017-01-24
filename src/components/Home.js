@@ -4,6 +4,9 @@ var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
 import '../style/geosuggesthome.css';
 import Geosuggest from 'react-geosuggest';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../actions';
+import { connect } from 'react-redux';
 
 var FormControl = ReactBootstrap.FormControl;
 var FormGroup = ReactBootstrap.FormGroup;
@@ -14,6 +17,7 @@ class Home extends React.Component {
         super();
         this.TermsOfUse= this.TermsOfUse.bind(this);
         this.onSuggestSelect = this.onSuggestSelect.bind(this);
+        this.findItems = this.findItems.bind(this);
     };
 
     TermsOfUse(){
@@ -22,6 +26,11 @@ class Home extends React.Component {
 
     onSuggestSelect(suggest) {
         console.log(suggest);
+    }
+    findItems()
+    {
+        console.log("HIT");
+        this.props.actions.doNothing();//getItemsInArea([35.7796,78.6382],40);
     }
     render() {
         var styles = {
@@ -143,7 +152,7 @@ class Home extends React.Component {
                         <Geosuggest style={styles.searchBar}
                                     onSuggestSelect={this.onSuggestSelect}/>
                         <br />
-                        <button href="#" style={styles.button}>Find Produce</button>
+                        <button href="#" onClick={() => this.findItems()} style={styles.button}>Find Produce</button>
                     </div>
                 </div>
                 <div style={styles.content}>
@@ -171,5 +180,16 @@ class Home extends React.Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    };
+}
 Home = Radium(Home);
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

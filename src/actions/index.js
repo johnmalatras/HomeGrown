@@ -4,6 +4,7 @@
 import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
 import Geofire from 'geofire';
+import RSVP from 'rsvp';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_USER = 'AUTH_USER';
@@ -67,7 +68,7 @@ const storage = Firebase.storage();
 
 // Generate a random Firebase location
 var firebaseRef = Firebase.database().ref('geoFire').push();
-// Create a new GeoFire instance at the random Firebase location
+// Create a new GeoFire instance at the  Firebase location
 var geoFire = new Geofire(firebaseRef);
 
 var holdData = [];
@@ -202,7 +203,41 @@ export function resetPasswordUpdate()
 
 }
 
-
+export function getItemsInArea(cords,radius)
+{
+//     var promise = new RSVP.Promise(function(resolve, reject) {
+//         // succeed
+//         resolve(value);
+//         // or reject
+//         reject(error);
+//     });
+//
+//     promise.then(function(value) {
+//         // success
+//     }).catch(function(error) {
+//         // failure
+//     });
+    // var geoQuery = geoFire.query({
+    //     center: cords,
+    //     radius: radius
+    // });
+    // return function (dispatch) {
+    //     //var geoQuery
+    //     dispatch(
+    //     var geoQuery = geoFire.query({
+    //         center: cords,
+    //         radius: radius
+    //     });
+    //
+    //     geoQuery.on("key_entered", function (key, location, distance) {
+    //         console.log(key + ', ' + location + ', ' + distance);
+    //     })
+    //     );
+    // }
+}
+export function doNothing() {
+    
+}
 
 export function updateAvailableDate(day, value, currentAvilDates, user)
 {
@@ -512,9 +547,6 @@ export function placeOrder(order,cartIndex,user) {
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
-    console.log(cartIndex);
-    console.log(user);
-
 
     for (var key in order.order.cart) {
         var item = order.order.cart[key];

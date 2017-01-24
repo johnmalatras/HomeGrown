@@ -28,6 +28,7 @@ import NavBar from './src/containers/NavBar';
 import Blog from './src/containers/Blog';
 
 const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
+
 store.dispatch(Actions.verifyAuth());
 ReactDOM.render(
     <Provider store={store}>

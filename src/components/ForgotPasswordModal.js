@@ -1,7 +1,13 @@
 import React, { PropTypes } from 'react';
 var ReactBootstrap = require('react-bootstrap');
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
+import Radium, { Style } from 'radium';
 
+var styles = {
+  font: {
+    fontFamily: 'Fira Sans',
+  }
+};
 class ForgotPasswordModal extends React.Component {
 
   constructor(props) {
@@ -31,7 +37,7 @@ class ForgotPasswordModal extends React.Component {
     var ControlLabel = ReactBootstrap.ControlLabel;
 
   	return (
-    	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
+    	<Modal style={styles.font} show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div className="container">
       	 <h3>Forgot your password?</h3>
          <Form>
@@ -53,5 +59,5 @@ class ForgotPasswordModal extends React.Component {
   	);
   }
 }
-
+ForgotPasswordModal = Radium(ForgotPasswordModal);
 export default ForgotPasswordModal;
