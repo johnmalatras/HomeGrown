@@ -26,12 +26,27 @@ var MarketList = (props) => {
 			isRestaurant = false;
 		}
 		if(props.userInfo) {
-			listItems = listItemsArray.map((row) => {
+			//console.log("props.items");
+			//console.log(props.items);
+			listItems = props.items.map((row) => {
 				return <MarketItem key={row.key}
 								   item={row}
 								   image={row.image}
 								   isRestaurant={isRestaurant}
 								   canOrder={props.userInfo.isAccountFinished}
+								   auth={isAuth}
+								   onItemSelect={ props.onItemSelect }/>
+			});
+		}
+		else {
+			console.log("props.items");
+			console.log(props.items);
+			listItems = props.items.map((row) => {
+				return <MarketItem key={row.key}
+								   item={row}
+								   image={row.image}
+								   isRestaurant={false}
+								   canOrder={false}
 								   auth={isAuth}
 								   onItemSelect={ props.onItemSelect }/>
 			});

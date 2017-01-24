@@ -5,8 +5,9 @@ import { browserHistory } from 'react-router';
 import '../style/geosuggesthome.css';
 import Geosuggest from 'react-geosuggest';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../actions';
 import { connect } from 'react-redux';
+import * as Actions from '../actions';
+import 'whatwg-fetch'
 
 var FormControl = ReactBootstrap.FormControl;
 var FormGroup = ReactBootstrap.FormGroup;
@@ -30,7 +31,8 @@ class Home extends React.Component {
     findItems()
     {
         console.log("HIT");
-        this.props.actions.doNothing();//getItemsInArea([35.7796,78.6382],40);
+        this.props.actions.getItemsInArea([35.7796,78.638],2000);
+        browserHistory.push('/');
     }
     render() {
         var styles = {

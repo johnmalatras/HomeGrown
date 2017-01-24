@@ -40,6 +40,7 @@ export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const UPDATE_DATE = 'UPDATE_DATE';
 export const SWITCH_LOGIN = 'SWITCH_LOGIN';
+export const UPDATE_ITEMS = 'UPDATE_ITEMS';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -66,8 +67,8 @@ const database = Firebase.database();
 const authData = Firebase.auth();
 const storage = Firebase.storage();
 
-// Generate a random Firebase location
-var firebaseRef = Firebase.database().ref('geoFire').push();
+// Generate a  Firebase location
+var firebaseRef = Firebase.database().ref('geoFire');//.push();
 // Create a new GeoFire instance at the  Firebase location
 var geoFire = new Geofire(firebaseRef);
 
@@ -90,6 +91,11 @@ export function signInUser(credentials){
 export function updateCurrentDate() {
     return {
         type: UPDATE_DATE
+    }
+}
+export function updateItems(){
+    return {
+        type: UPDATE_ITEMS
     }
 }
 export function setSelectedDate(date, dateMoment, cartIndex) {
@@ -205,40 +211,50 @@ export function resetPasswordUpdate()
 
 export function getItemsInArea(cords,radius)
 {
-//     var promise = new RSVP.Promise(function(resolve, reject) {
-//         // succeed
-//         resolve(value);
-//         // or reject
-//         reject(error);
-//     });
-//
-//     promise.then(function(value) {
-//         // success
-//     }).catch(function(error) {
-//         // failure
-//     });
-    // var geoQuery = geoFire.query({
-    //     center: cords,
-    //     radius: radius
-    // });
-    // return function (dispatch) {
-    //     //var geoQuery
-    //     dispatch(
-    //     var geoQuery = geoFire.query({
-    //         center: cords,
-    //         radius: radius
-    //     });
-    //
-    //     geoQuery.on("key_entered", function (key, location, distance) {
-    //         console.log(key + ', ' + location + ', ' + distance);
-    //     })
-    //     );
-    // }
-}
-export function doNothing() {
-    
-}
+    return function (dispatch) {
+        var promise = new RSVP.Promise(function (resolve, reject) {
+            console.log("*** Creating GeoQuery ***");
+            // Create a GeoQuery centered at fish2
+            var geoQuery = geoFire.query({
+                center: cords,
+                radius: radius
+            });
+            var keys = [];
+            var onKeyEnteredRegistration = geoQuery.on("key_entered", function (key, location) {
+                //console.log(key + " entered the query. Hi " + key + "!");
+                var value = [key, location];
+                console.log((JSON.parse(JSON.stringify(value))));
+                //resolve(value);
+                keys.push(key);
+            })
 
+            var onReadyRegistration = geoQuery.on("ready", function () {
+                console.log("*** 'ready' event fired - cancelling query ***");
+                geoQuery.cancel();
+                resolve((JSON.parse(JSON.stringify(keys))));
+            })
+        });
+
+        promise.then(function (value) {
+            // success
+            var items = [];
+
+            for (var i = 0; i < value.length; i++) {
+                Firebase.database().ref('/items/' + value[i]).once('value').then(function(snapshot) {
+                            items.push(snapshot.val());
+                        }
+                )
+            }
+            //console.log(((JSON.parse(JSON.stringify(items)))));
+            //return nodes for list of keys
+            dispatch({
+                    type: REQUEST_ITEMS,
+                    payload: items
+
+            });
+        })
+    }
+}
 export function updateAvailableDate(day, value, currentAvilDates, user)
 {
     const userUid = Firebase.auth().currentUser.uid;
@@ -417,6 +433,8 @@ export function addItem(values, ownerName, businessName, availableDates) {
                 //Hardcoded in Raleigh cords, will cahnge eventually
                 geoFire.set(itemID, [35.7796,78.6382]).then(function() {
                     console.log("SET LOCATION");
+                }, function(error) {
+                    console.log("Error: " + error);
                 });
 
                 var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();

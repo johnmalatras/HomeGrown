@@ -34,7 +34,7 @@ var errorMessage;
 
 class MarketView extends React.Component {
     componentWillMount() {
-        this.props.actions.requestItems();
+        //this.props.actions.updateItems();
         var date = moment().add(1, "days");
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
@@ -60,26 +60,30 @@ class MarketView extends React.Component {
     }
 
     render() {
+        //console.log(this.props.items);
         var dateSelector;
         var dateCart;
         var selectedCart = 1;
         var items = this.props.items;
         var items_selectedDate = JSON.parse(JSON.stringify(items));
         if (this.props.selectedDateMoment) {
-            for (var item in items) {
-                var hold = JSON.parse(JSON.stringify(item));
+            //console.log("HIT HOLD");
+            //console.log(JSON.parse(JSON.stringify(this.props.items)));
+            for (var i = 0; i < items.length; i++) {
                 var isIn = false;
                 for (var t = 0; t < 7; t++) {
-                    if (items[item].availableDates[t].key == this.props.selectedDateMoment.format('dddd').toLowerCase()) {
-                        if (items[item].availableDates[t].value) {
+                    //console.log(items[i].availableDates[t].value);
+                    if (items[i].availableDates[t].key == this.props.selectedDateMoment.format('dddd').toLowerCase()) {
+                        if (items[i].availableDates[t].value) {
                             isIn = true;
                         }
                     }
                 }
                 if (!isIn) {
-                    delete items_selectedDate[item];
+                    delete items_selectedDate[i];
                 }
             }
+            //console.log(items_selectedDate);
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
                 var date = moment().add(1, "days");

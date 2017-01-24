@@ -45,6 +45,9 @@ class AboutPage extends React.Component {
             qualityTable: {
                 padding: '1% 5% 1% 5%'
             },
+            imagePadding: {
+                padding: '1% 5% 1% 5%'
+            },
             image: {
                 width:'100vw',
                 height: '40vh',
@@ -106,42 +109,42 @@ class AboutPage extends React.Component {
 
         return (
             <div  style={styles.all}>
-                <p style = {styles.headings}>Bringing You Your Private <br></br>Farmer</p>
+                <p style = {styles.headings}>Bringing You Your Private <br/>Farmer</p>
                 <p style = {styles.content}> On a daily basis, we’re delivering fresh, delicious local produce from farms in your community, and bringing that food to your menu.
                     At RipeNow, we want to ensure everyone has access to the same quality of fresh produce. Join our community – as a farm, a transporter, or a restaurant! We’d be happy to welcome you.</p>
                 <div style={styles.image}> </div>
-                <br> </br>
+                <br/>
                 <div style={styles.fruits}>
                     <img width="20%" height="20%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/Fruits.png?alt=media&token=90b92272-28b4-423f-b547-07bc874309d3" alt="Fruits"/>
                 </div>
-                <br> </br>
-                <br> </br>
+                <br/>
+                <br/>
                 <p style = {styles.sectionOneHeader}>Farms Grow Fresh Produce</p>
                 <p style = {styles.sectionOne}>Many people don’t realize the quality or availability of the produce grown in their community, and many restaurants don’t take
                     advantage of this. Our goal is to bring this food to you, and support farms in the process. </p>
-                <img style = {styles.trailImage}> </img>
-                <br> </br>
+                <img style = {styles.trailImage}/>
+                <br/>
                 <div style={styles.truck}>
                     <img width="40%" height="40%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/truck-1042600_640.png?alt=media&token=c501edc8-f015-423e-ad5b-a359051093b5" alt="Truck"/>
                 </div>
-                <br> </br>
-                <br> </br>
-                <br> </br>
+                <br/>
+                <br/>
+                <br/>
                 <p style = {styles.sectionTwoHeader}>RipeNow Handles the Delivery</p>
                 <p style = {styles.sectionTwo}>Our RipeNow certified drivers pick up and drop off the produce, to ensure consistent, fresh produce. Just let us know the produce you want,
                     when you want it, and we'll handle the rest.</p>
-                <img style = {styles.trailImageTwo}> </img>
-                <br> </br>
+                <img style = {styles.trailImageTwo}/>
+                <br/>
                 <div style={styles.food}>
-                    <img width="30%" height="30%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/Finished%20Food.png?alt=media&token=e7a7d396-f4a9-4123-9a0d-a0e19783d126" alt="Food"/>
+                    <img style={styles.imagePadding} width="30%" height="30%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/Finished%20Food.png?alt=media&token=e7a7d396-f4a9-4123-9a0d-a0e19783d126" alt="Food"/>
                 </div>
-                <br> </br>
-                <br> </br>
-                <br> </br>
+                <br/>
+                <br/>
+                <br/>
                 <p style = {styles.sectionOneHeader}>Your Community Appears on Your Menu</p>
                 <p style = {styles.sectionOne}>Show off your community and have fresher produce, by purchasing local produce from local farmers. With RipeNow, the difficulties of
                     buying local are a problem of the past – use our website to schedule orders and deliveries, and always have the produce you need ready.</p>
-                <br> </br>
+                <br/>
                 <p style = {styles.headings}>RipeNow's Custom Quality Scale</p>
                 <div style={styles.qualityTable}>
                     <Table responsive>
