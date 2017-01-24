@@ -63,7 +63,7 @@ class AddItemPage extends React.Component {
         {
             values.Quality = "NA";
         }
-        {this.props.actions.addItem(values, this.props.userInfo.ownerName,this.props.userInfo.businessName, this.props.userInfo.availableDates)}
+        {this.props.actions.addItem(values, this.props.userInfo.ownerName,this.props.userInfo.businessName, this.props.userInfo.availableDates, this.props.userInfo.email)}
     };
 
     backButton(){

@@ -186,15 +186,14 @@ class MarketView extends React.Component {
                 warningLabel = <div className="alert alert-danger" role="alert">
                     <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span className="sr-only">Error: </span>
-                    {" "}Additional information is needed before you can order. Go to the Account tab to fill it out.
+                    {" "}Please Login to Order
                 </div>;
         } else if (this.props.userInfo.isRestaurant && !this.props.userInfo.isAccountFinished) {
                 var needInfoMessage =
                     <div className="alert alert-danger" role="alert">
                         <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         <span className="sr-only">Error:</span>
-                        Please finish filling out your account info before you can order. Go to the Account tab to fill
-                        it out.
+                        {" "}Additional information is needed before you can order. Go to the Account tab to fill it out.
                     </div>;
             }
         }
