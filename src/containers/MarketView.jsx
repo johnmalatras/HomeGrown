@@ -31,10 +31,11 @@ var styles = {
 };
 
 var errorMessage;
+
 class MarketView extends React.Component {
     componentWillMount() {
         this.props.actions.requestItems();
-        var date = moment().add(3, "days");
+        var date = moment().add(1, "days");
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
     }
@@ -81,11 +82,11 @@ class MarketView extends React.Component {
             }
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
-                var date = moment().add(3, "days");
+                var date = moment().add(1, "days");
                 var day1 = date.local().format('dddd');
-                var date1 = moment().add(4, "days");
+                var date1 = moment().add(2, "days");
                 var day2 = date1.local().format('dddd');
-                var date2 = moment().add(5, "days");
+                var date2 = moment().add(3, "days");
                 var day3 = date2.local().format('dddd');
                 var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
                 var Button1;
@@ -133,9 +134,9 @@ class MarketView extends React.Component {
                 ;
             }
             else {
-                var date1 = moment().add(4, "days");
+                var date1 = moment().add(2, "days");
                 var day2 = date1.local().format('dddd');
-                var date2 = moment().add(5, "days");
+                var date2 = moment().add(3, "days");
                 var day3 = date2.local().format('dddd');
                 var holdDate = this.props.selectedDateMoment.format('dddd').toLowerCase();
                 var Button2;
@@ -174,17 +175,33 @@ class MarketView extends React.Component {
         }
 
 
-        var warningLabel = '';
+        var warningLabel;
+        var needInfoMessage;
         var userAuth = true;
-        if (this.props.authenticated == false) {
-            userAuth = false;
-            warningLabel = 'Please sign in or sign up to order or list produce';
-        }
 
+        if(this.props.userInfo != undefined) {
+            if (this.props.authenticated == false) {
+                userAuth = false;
+                warningLabel = <div className="alert alert-danger" role="alert">
+                    <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span className="sr-only">Error: </span>
+                    {" "}Additional information is needed before you can order. Go to the Account tab to fill it out.
+                </div>;
+        }else if (this.props.userInfo.isRestaurant && !this.props.userInfo.isAccountFinished) {
+                var needInfoMessage =
+                    <div className="alert alert-danger" role="alert">
+                        <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span className="sr-only">Error:</span>
+                        Please finish filling out your account info before you can order. Go to the Account tab to fill
+                        it out.
+                    </div>;
+            }
+        }
         return (
             <div style={styles.base} className="container">
-                <h4 style={{color: '#ff0000'}}>{warningLabel}</h4>
+                {warningLabel}
                 <h4 style={{color: '#ff0000'}}>{errorMessage}</h4>
+                {needInfoMessage}
                 {dateSelector}
                 <Table responsive>
                     <thead>

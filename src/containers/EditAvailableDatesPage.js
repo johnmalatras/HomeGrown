@@ -14,7 +14,24 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
+import Radium, { Style } from 'radium';
 
+var styles = {
+    activeButton: {
+        background: '#8DC63F',
+        color: 'white',
+        borderColor: '#8DC63F',
+        fontSize: '125%',
+        padding: '6px 12px 6px 12px'
+    },
+    inactiveButton: {
+        background: 'white',
+        color: 'black',
+        borderColor: '#8DC63F',
+        fontSize: '125%',
+        padding: '6px 12px 6px 12px'
+    }
+}
 class EditAvailableDatesPage extends React.Component {
     constructor(props) {
         super(props);
@@ -45,58 +62,58 @@ class EditAvailableDatesPage extends React.Component {
             if (availableDates[i].key == 'monday') {
                 if (availableDates[i].value == true) {
                     mondayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("monday", false)}>Monday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("monday", false)}>Monday</Button>
                 }
                 else {
-                    mondayButton = <Button onClick={() => this.updateAvailability("monday",true)}>Monday</Button>
+                    mondayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("monday",true)}>Monday</Button>
                 }
             } else if (availableDates[i].key == 'tuesday') {
                 if (availableDates[i].value == true) {
                     tuesdayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("tuesday", false)}>Tuesday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("tuesday", false)}>Tuesday</Button>
                 }
                 else {
-                    tuesdayButton = <Button onClick={() => this.updateAvailability("tuesday",true)}>Tuesday</Button>
+                    tuesdayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("tuesday",true)}>Tuesday</Button>
                 }
             } else if (availableDates[i].key == 'wednesday') {
                 if (availableDates[i].value == true) {
                     wednesdayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("wednesday", false)}>Wednesday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("wednesday", false)}>Wednesday</Button>
                 }
                 else {
-                    wednesdayButton = <Button onClick={() => this.updateAvailability("wednesday",true)}>Wednesday</Button>
+                    wednesdayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("wednesday",true)}>Wednesday</Button>
                 }
             } else if (availableDates[i].key == 'thursday') {
                 if (availableDates[i].value == true) {
                     thursdayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("thursday", false)}>Thursday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("thursday", false)}>Thursday</Button>
                 }
                 else {
-                    thursdayButton = <Button onClick={() => this.updateAvailability("thursday",true)}>Thursday</Button>
+                    thursdayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("thursday",true)}>Thursday</Button>
                 }
             }else if (availableDates[i].key == 'friday') {
                 if (availableDates[i].value == true) {
                     fridayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("friday", false)}>Friday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("friday", false)}>Friday</Button>
                 }
                 else {
-                    fridayButton = <Button onClick={() => this.updateAvailability("friday",true)}>Friday</Button>
+                    fridayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("friday",true)}>Friday</Button>
                 }
             } else if (availableDates[i].key == 'saturday') {
                 if (availableDates[i].value == true) {
                     saturdayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("saturday", false)}>Saturday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("saturday", false)}>Saturday</Button>
                 }
                 else {
-                    saturdayButton = <Button onClick={() => this.updateAvailability("saturday",true)}>Saturday</Button>
+                    saturdayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("saturday",true)}>Saturday</Button>
                 }
             }else if (availableDates[i].key == 'sunday') {
                 if (availableDates[i].value == true) {
                     sundayButton =
-                        <Button bsStyle="primary" onClick={() => this.updateAvailability("sunday", false)}>Sunday</Button>
+                        <Button style={styles.activeButton} onClick={() => this.updateAvailability("sunday", false)}>Sunday</Button>
                 }
                 else {
-                    sundayButton = <Button onClick={() => this.updateAvailability("sunday",true)}>Sunday</Button>
+                    sundayButton = <Button style={styles.inactiveButton} onClick={() => this.updateAvailability("sunday",true)}>Sunday</Button>
                 }
             }
         }

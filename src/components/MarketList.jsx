@@ -17,7 +17,7 @@ var MarketList = (props) => {
 		var isRestaurant = false;
 		if(props.userInfo != undefined)
 		{
-			if(props.userInfo.isRestaurant == true)
+			if(props.userInfo.isRestaurant == "true")
 			{
 				isRestaurant = true;
 			}
@@ -25,14 +25,17 @@ var MarketList = (props) => {
 		else {
 			isRestaurant = false;
 		}
-		listItems = listItemsArray.map((row) => {
-			return <MarketItem key={row.key}
-							   item={row}
-							   image={row.image}
-							   isRestaurant={isRestaurant}
-							   auth = {isAuth}
-							   onItemSelect={ props.onItemSelect }/>
-		});
+		if(props.userInfo) {
+			listItems = listItemsArray.map((row) => {
+				return <MarketItem key={row.key}
+								   item={row}
+								   image={row.image}
+								   isRestaurant={isRestaurant}
+								   canOrder={props.userInfo.isAccountFinished}
+								   auth={isAuth}
+								   onItemSelect={ props.onItemSelect }/>
+			});
+		}
 
 	}
 

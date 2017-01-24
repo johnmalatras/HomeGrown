@@ -2,6 +2,8 @@ import React from 'react';
 import Radium from 'radium'
 var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
+import '../style/geosuggesthome.css';
+import Geosuggest from 'react-geosuggest';
 
 var FormControl = ReactBootstrap.FormControl;
 var FormGroup = ReactBootstrap.FormGroup;
@@ -11,12 +13,16 @@ class Home extends React.Component {
     constructor(props) {
         super();
         this.TermsOfUse= this.TermsOfUse.bind(this);
+        this.onSuggestSelect = this.onSuggestSelect.bind(this);
     };
 
     TermsOfUse(){
         browserHistory.push('/terms');
     };
 
+    onSuggestSelect(suggest) {
+        console.log(suggest);
+    }
     render() {
         var styles = {
           all: {
@@ -48,13 +54,16 @@ class Home extends React.Component {
 
           center: {
             margin: 'auto',
-            width: '35%'
+            width: '35%',
+            color:'black',
           },
 
           searchBar: {
             borderWidth: '2px',
             borderStyle: 'solid',
-            borderColor: '#8DC63F'
+            borderColor: '#8DC63F',
+            color: 'black',
+              height: '120vh'
           },
 
           button: {
@@ -83,12 +92,12 @@ class Home extends React.Component {
           },
 
           sectionOne: {
-            padding: '3.5% 1% 1% 54%',
+            padding: '3.5% 1% 1% 58%',
             position: 'absolute'
           },
 
           sectionTwo: {
-            padding: '1.5% 54% 1.5% 10%',
+            padding: '1.5% 58% 1.5% 10%',
             position: 'absolute'
           },
 
@@ -96,14 +105,19 @@ class Home extends React.Component {
             width: '50%',
             height: '100%',
             textAlign: 'right',
-            position: 'absolute'
+            position: 'absolute',
+            paddingTop: '70px',
+            marginLeft: '40px',
+            paddingLeft: '10px'
           },
 
           sectionTwoText: {
             width: '50%',
             height: '100%',
             textAlign: 'left',
-            float: 'right'
+            float: 'right',
+            paddingTop: '70px',
+            marginRight: '40px'
           },
 
           headerText: {
@@ -126,21 +140,17 @@ class Home extends React.Component {
                     <p style={styles.subText}><em>Browse the best local produce to fill your menu</em></p>
                     <br />
                     <div className="container" style={styles.center}>
-                      <input className="form-control input-lg" id="ex3" type="text" placeholder="Enter your delivery address" style={styles.searchBar} />
-                      <br />
-                      <button href="#" style={styles.button}>Find Produce</button>
+                        <Geosuggest style={styles.searchBar}
+                                    onSuggestSelect={this.onSuggestSelect}/>
+                        <br />
+                        <button href="#" style={styles.button}>Find Produce</button>
                     </div>
                 </div>
                 <div style={styles.content}>
                     <div style={styles.infoSection}>
                         <div style={styles.sectionOneText}>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <p style={styles.headerText}>Farm To Table</p>
-                            <p style={styles.infoText}>RipeNow crowd sources fresh produce from local farms, bringing the community to your menu.</p>
+                            <p style={styles.headerText}>Skip the Farmers Market</p>
+                            <p style={styles.infoText}>RipeNow crowd sources fresh produce from local farms, bringing the community to your menu and putting you at the forefront of the farm-to-table movement, a proven draw for consumers. With produce picked straight from the ground minutes after you order, you know you're getting the freshest, highest quality produce available for a fraction of the price you usually pay.</p>
                         </div>
                         <div style={styles.sectionOne} >
                             <img width="80%" height="80%" src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/apples.jpg?alt=media&token=cb378320-7f2b-4aef-9edd-05d22ae7ee2b" alt="Farmers Market"/>
@@ -152,13 +162,8 @@ class Home extends React.Component {
                             <img width="95%" height="95%" src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/kitchen.jpg?alt=media&token=ee0be104-9f21-4e83-9569-6e22af4e1710" alt="Kitchen"/>
                         </div>
                         <div style={styles.sectionTwoText}>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <p style={styles.headerText}>Connect With Restaurants</p>
-                            <p style={styles.infoText}>Join RipeNow to become a part of our revolutionary distribution system and put your food back on the plate of your community.</p>
+                            <p style={styles.headerText}>Your Food's On the Menu</p>
+                            <p style={styles.infoText}>Farms are at the center of our mission to make America's cities self-sufficient. To accomplish this, we've created a simplistic platform that allows you to list your produce and reach a broader customer base, all while cutting out the traditional distributor and maximizing your profit.</p>
                         </div>
                     </div>
                 </div>

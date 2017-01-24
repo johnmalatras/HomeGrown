@@ -31,7 +31,7 @@ var styles = {
     base: {
         background: '#D3D3D3',
         backgroundSize: 'cover',
-        minHeight: '90.5vh',
+        minHeight: '50vh',
     },
     form: {
         background: '#white',

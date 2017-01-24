@@ -13,7 +13,17 @@ var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var NavItem = ReactBootstrap.NavItem;
 var Nav = ReactBootstrap.Nav;
+import Radium, { Style } from 'radium';
 
+var styles = {
+    button: {
+        background: '#8DC63F',
+        color: 'white',
+        borderColor: '#8DC63F',
+        fontSize: '125%',
+        padding: '6px 12px 6px 12px'
+    },
+}
 var editingName = false;
 var nameElement;
 class AccountPage extends React.Component {
@@ -46,17 +56,23 @@ class AccountPage extends React.Component {
     }
 
 
+
     render() {
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
         var currentListingsElement;
         var editSettingsElement;
-        if (isRestaurant === 'false') {
+        var addItemButton;
+        if(this.props.userInfo.isAccountFinished)
+        {
+            addItemButton = <Button style={styles.button}  onClick={() => this.addItem()} >Add Item</Button>;
+        }
+        if (isRestaurant == 'false') {
             currentListingsElement =
                 <div>
                     <Panel>
                         <CurrentListings />
-                        <Button bsStyle="primary"  onClick={() => this.addItem()} >Add Item</Button>
+                        {addItemButton}
                     </Panel>
                 </div>;
 
@@ -108,9 +124,22 @@ class AccountPage extends React.Component {
                     <p style={{fontWeight: 'bold'}}>Editing</p>
                 </div>
         }
+
+
+        var needInfoLabel;
+        if(!this.props.userInfo.isAccountFinished)
+        {
+            needInfoLabel =
+                <div className="alert alert-danger" role="alert">
+                    <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span className="sr-only">Error:</span>
+                    {" "}Please fill out your business name and address in "Edit Business Settings" below.
+                </div>;
+        }
         return (
             <div className="container">
-                <h1>Account Overview For {this.props.userInfo.businessName}</h1>
+                <h1>Account Overview</h1>
+                {needInfoLabel}
                 {currentListingsElement}
                 <Panel>
                     <ActiveOrders />
@@ -138,19 +167,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
+AccountPage = Radium(AccountPage);
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
-
-//USE THIS ONE IF YOU WANT IT BACK
-// <Row>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Owner Name:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Business Name:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Address:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Phone Number:</p></Col>
-// </Row>
-// <Row>
-// <Col md={3}><p>{this.props.userInfo.ownerName}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.businessName}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.phoneNumber}</p></Col>
-// </Row>

@@ -16,18 +16,31 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
+import Geosuggest from 'react-geosuggest';
+import Radium from 'radium'
+import '../style/geosuggest.css';
 
+var styles = {
+    body: {
+        width: '100%',
+    },
+    warning: {
+        color: 'red'
+    }
+
+};
 class EditUserPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: ""};
+        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: "", address: "",addressError: ""};
         this.updateEmail= this.updateEmail.bind(this);
         this.handleTextChange= this.handleTextChange.bind(this);
         this.handleOwnerNameChange= this.handleOwnerNameChange.bind(this);
         this.updateOwnerName= this.updateOwnerName.bind(this);
         this.handleBusinessNameChange= this.handleBusinessNameChange.bind(this);
         this.updateBusinessName= this.updateBusinessName.bind(this);
-
+        this.onSuggestSelect = this.onSuggestSelect.bind(this);
+        this.updateAddress = this.updateAddress.bind(this);
     }
     updateEmail() {
         if(this.state.phoneNumber.length == 12)
@@ -45,6 +58,14 @@ class EditUserPage extends React.Component {
         if(this.state.ownerName.length > 0)
         {
             this.props.actions.updateUserSetting("ownerName",this.state.ownerName);
+
+            if(!this.props.userInfo.isAccountFinished)
+            {
+                if(this.props.userInfo.businessName && this.props.userInfo.address)
+                {
+                    this.props.actions.unlockAccount();
+                }
+            }
         }
         else {
             this.setState({
@@ -56,12 +77,41 @@ class EditUserPage extends React.Component {
         if(this.state.businessName.length > 0)
         {
             this.props.actions.updateUserSetting("businessName",this.state.businessName);
+
+            if(!this.props.userInfo.isAccountFinished)
+            {
+                if(this.props.userInfo.ownerName && this.props.userInfo.address)
+                {
+                    this.props.actions.unlockAccount();
+                }
+            }
         }
         else {
             this.setState({
                 businessNameError: "Phone enter a business name"
             });
         }
+    }
+    updateAddress() {
+        if(this.state.address.length > 0)
+        {
+            this.props.actions.updateUserSetting("address",this.state.address);
+
+            if(!this.props.userInfo.isAccountFinished)
+            {
+                if(this.props.userInfo.ownerName && this.props.userInfo.businessName)
+                {
+                    this.props.actions.unlockAccount();
+                }
+            }
+        }
+        else {
+            this.setState({
+                addressError: "Phone enter a business name"
+            });
+        }
+
+
     }
     handleOwnerNameChange(newName)
     {
@@ -81,7 +131,41 @@ class EditUserPage extends React.Component {
             phoneNumber: textComment.target.value
         });
     }
+    onSuggestSelect(suggest) {
+        this.setState({
+            address: suggest.label
+        });
+    }
+
     render() {
+        var fixtures = [
+            {label: 'Raleigh', location: {lat: 35.7796, lng: 78.6382}},
+        ];
+        var nameWarning;
+        var addressWarning;
+        var businessNameWarning;
+        if(!this.props.userInfo.businessName) {
+            businessNameWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please enter a business name to complete your account.
+            </div>;
+        }
+        if (!this.props.userInfo.address) {
+            addressWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please enter an address to complete your account.
+            </div>;
+        }
+        if (!this.props.userInfo.ownerName) {
+            nameWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please enter an owner name to complete your account.
+            </div>;
+        }
+
         return (
             <div className="container">
                 <h1>Editable Settings:</h1>
@@ -90,7 +174,7 @@ class EditUserPage extends React.Component {
                         <h3>Phone Number</h3>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Phone Number:</p></Col>
-                            <Col md={6}>{this.props.userInfo.phoneNumber.substring(2)}</Col>
+                            <Col md={6}>{this.props.userInfo.phoneNumber}</Col>
                         </Row>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Phone Number: </p></Col>
@@ -99,12 +183,13 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateEmail()} >Edit Phone Number</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateEmail()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.phoneNumberError}</p></Col>
                         </Row>
                     </Panel>
                     <Panel>
                         <h3>Owner Name</h3>
+                        <h4 style={styles.warning}>{nameWarning}</h4>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Owner Name:</p></Col>
                             <Col md={6}>{this.props.userInfo.ownerName}</Col>
@@ -121,12 +206,13 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateOwnerName()} >Edit Owner Name</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateOwnerName()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.ownerNameError}</p></Col>
                         </Row>
                     </Panel>
                     <Panel>
                         <h3>Business Name</h3>
+                        <h4 style={styles.warning}>{businessNameWarning}</h4>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Business Name:</p></Col>
                             <Col md={6}>{this.props.userInfo.businessName}</Col>
@@ -143,20 +229,28 @@ class EditUserPage extends React.Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col md={6}><Button onClick={() => this.updateBusinessName()} >Edit Business Name</Button></Col>
+                            <Col md={6}><Button onClick={() => this.updateBusinessName()} >Save</Button></Col>
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.businessNameError}</p></Col>
                         </Row>
                     </Panel>
                     <Panel>
                         <h3>Address</h3>
+                        <h4 style={styles.warning}>{addressWarning}</h4>
                         <Row>
                             <Col md={6}><p style={{fontWeight: 'bold'}}>Current Address:</p></Col>
-                            <Col md={6}>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</Col>
+                            <Col md={6}>{this.props.userInfo.address}</Col>
                         </Row>
                         <Row>
-                            <Col md={6}><p style={{fontWeight: 'bold'}}>To update your address please call: 919-830-9521</p></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>Input New Address: </p></Col>
+                            <Col md={6}>
+                                <Geosuggest style={{width: '100%'}}
+                                            onSuggestSelect={this.onSuggestSelect}/>
+                            </Col>
                         </Row>
-
+                        <Row>
+                            <Col md={6}><Button onClick={() => this.updateAddress()} >Save</Button></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.addressError}</p></Col>
+                        </Row>
                     </Panel>
                 </Grid>
             </div>
@@ -176,5 +270,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
+EditUserPage = Radium(EditUserPage);
 export default connect(mapStateToProps, mapDispatchToProps)(EditUserPage);

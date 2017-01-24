@@ -33,5 +33,4 @@ const rootReducer = combineReducers({
     forgotpassword: ForgotPasswordReducer,
     loginReducer: LoginReducer
 })
-
 export default rootReducer;

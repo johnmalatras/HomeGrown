@@ -140,6 +140,7 @@ export function verifyAuth(){
         Firebase.auth().onAuthStateChanged(user => {
             if(user && firstTime)
             {
+                console.log(holdData.isRestaurant);
                 const userUid = Firebase.auth().currentUser.uid;
                 firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
@@ -155,7 +156,7 @@ export function verifyAuth(){
                 user.update({
                     ["email"]:holdData.email,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isRestaurant,
+                    ["isRestaurant"]: holdData.isRestaurant.toString(),
                     ["availableDates"]: dates,
                     ["isAccountFinished"]: false
                 });
@@ -171,7 +172,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    browserHistory.push('/login');
+    browserHistory.push('/home');
     return {
         type: 'SIGN_OUT_USER'
     }
@@ -314,6 +315,17 @@ export function updateUserEmail(oldEmail,newEmail,password){
     };
 }
 
+export function unlockAccount(){
+    const userUid = Firebase.auth().currentUser.uid;
+    const user = database.ref('/users/'+userUid.toString());
+    user.update({
+        ["isAccountFinished"]: true
+    });
+    return {
+        type: UPDATE_USER_INFO
+    }
+
+}
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
     const user = database.ref('/users/'+userUid.toString());

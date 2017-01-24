@@ -103,11 +103,11 @@ class NavBar extends React.Component {
     }
 
     handleHome(){
-        browserHistory.push('/login');
+        browserHistory.push('/home');
     }
 
     handleSignIn(){
-        browserHistory.push('/home');
+        browserHistory.push('/login');
     }
     renderAuthLinks() {
         if (this.props.authenticated) {
