@@ -4,13 +4,11 @@
 import React from 'react';
 import Radium, { Style } from 'radium'
 var ReactBootstrap = require('react-bootstrap');
-
 var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
 var Image = ReactBootstrap.Image;
 var Col = ReactBootstrap.Col;
 var Table = ReactBootstrap.Table;
-
 var imgStyle = {
     flex: 1,
     justifyContent: 'center',
@@ -25,7 +23,6 @@ class AboutPage extends React.Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         var styles = {
             all: {
@@ -70,15 +67,15 @@ class AboutPage extends React.Component {
             },
             fruits: {
                 padding: '1% 1% 1% 22%',
-                position: 'absolute'
+                position: 'relative'
             },
             truck: {
                 padding: '1% 1% 1% 65%',
-                position: 'absolute'
+                position: 'relative'
             },
             food: {
                 padding: '1% 1% 1% 18%',
-                position: 'absolute'
+                position: 'relative'
             },
             sectionOne: {
                 fontSize: '125%',
@@ -103,45 +100,37 @@ class AboutPage extends React.Component {
                 padding: '1% 10% 1% 50%'
             }
         };
-
         return (
             <div  style={styles.all}>
-                <p style = {styles.headings}>Bringing You Your Private <br></br>Farmer</p>
-                <p style = {styles.content}> On a daily basis, we’re delivering fresh, delicious local produce from farms in your community, and bringing that food to your menu.
-                    At RipeNow, we want to ensure everyone has access to the same quality of fresh produce. Join our community – as a farm, a transporter, or a restaurant! We’d be happy to welcome you.</p>
-                <div style={styles.image}> </div>
-                <br> </br>
+                <div>
+                    <p style = {styles.headings}>Bringing You Your Private Farmer</p>
+                    <p style = {styles.content}> On a daily basis, we’re delivering fresh, delicious local produce from farms in your community, and bringing that food to your menu.
+                        At RipeNow, we want to ensure everyone has access to the same quality of fresh produce. Join our community – as a farm, a transporter, or a restaurant! We’d be happy to welcome you.</p>
+                    <div style={styles.image}> </div>
+                </div>
+                <br />
                 <div style={styles.fruits}>
                     <img width="20%" height="20%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/Fruits.png?alt=media&token=90b92272-28b4-423f-b547-07bc874309d3" alt="Fruits"/>
                 </div>
-                <br> </br>
-                <br> </br>
                 <p style = {styles.sectionOneHeader}>Farms Grow Fresh Produce</p>
-                <p style = {styles.sectionOne}>Many people don’t realize the quality or availability of the produce grown in their community, and many restaurants don’t take
-                    advantage of this. Our goal is to bring this food to you, and support farms in the process. </p>
-                <img style = {styles.trailImage}> </img>
-                <br> </br>
+                <p style = {styles.sectionOne}>Everywhere in your local community, farmers are working hard to grow, fresh, delicious produce. RipeNow gives them a platform to sell their food directly to restaurants
+                    , saving themselves time and money in the process. We're not only passionate about bringing you delicious food, but supporting local farmers as well. </p>
+                <img style = {styles.trailImage} />
                 <div style={styles.truck}>
                     <img width="40%" height="40%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/truck-1042600_640.png?alt=media&token=c501edc8-f015-423e-ad5b-a359051093b5" alt="Truck"/>
                 </div>
-                <br> </br>
-                <br> </br>
-                <br> </br>
                 <p style = {styles.sectionTwoHeader}>RipeNow Handles the Delivery</p>
-                <p style = {styles.sectionTwo}>Our RipeNow certified drivers pick up and drop off the produce, to ensure consistent, fresh produce. Just let us know the produce you want,
-                    when you want it, and we'll handle the rest.</p>
-                <img style = {styles.trailImageTwo}> </img>
-                <br> </br>
+                <p style = {styles.sectionTwo}>Our RipeNow certified drivers pick up and drop off the produce, to ensure consistent and fresh deliveries. Not only are we timely and consistent,
+                    but we deliver your produce with the care it deserves. Just let us know the produce you want, when you want it, and we'll handle the rest.</p>
+                <img style = {styles.trailImageTwo}/>
                 <div style={styles.food}>
                     <img width="30%" height="30%"  src="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/Finished%20Food.png?alt=media&token=e7a7d396-f4a9-4123-9a0d-a0e19783d126" alt="Food"/>
                 </div>
-                <br> </br>
-                <br> </br>
-                <br> </br>
                 <p style = {styles.sectionOneHeader}>Your Community Appears on Your Menu</p>
-                <p style = {styles.sectionOne}>Show off your community and have fresher produce, by purchasing local produce from local farmers. With RipeNow, the difficulties of
-                    buying local are a problem of the past – use our website to schedule orders and deliveries, and always have the produce you need ready.</p>
-                <br> </br>
+                <p style = {styles.sectionOne}>Inspire customers with fresh, local ingredients, and proudly display your food like you’ve never before been able to.
+                    With RipeNow, the difficulties of buying local are a problem of the past – use our website to schedule orders and deliveries,
+                    and always have the produce you need, directly from local farmers.</p>
+                <br />
                 <p style = {styles.headings}>RipeNow's Custom Quality Scale</p>
                 <div style={styles.qualityTable}>
                     <Table responsive>
@@ -185,6 +174,5 @@ class AboutPage extends React.Component {
         );
     }
 }
-
 AboutPage = Radium(AboutPage);
 export default AboutPage;

@@ -4,6 +4,10 @@ var ReactBootstrap = require('react-bootstrap');
 import { browserHistory } from 'react-router';
 import '../style/geosuggesthome.css';
 import Geosuggest from 'react-geosuggest';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as Actions from '../actions';
+import 'whatwg-fetch'
 
 var FormControl = ReactBootstrap.FormControl;
 var FormGroup = ReactBootstrap.FormGroup;
@@ -12,8 +16,10 @@ var Button = ReactBootstrap.Button;
 class Home extends React.Component {
     constructor(props) {
         super();
+        this.state = {cords: null}
         this.TermsOfUse= this.TermsOfUse.bind(this);
         this.onSuggestSelect = this.onSuggestSelect.bind(this);
+        this.findItems = this.findItems.bind(this);
     };
 
     TermsOfUse(){
@@ -21,7 +27,19 @@ class Home extends React.Component {
     };
 
     onSuggestSelect(suggest) {
-        console.log(suggest);
+        this.setState({
+            cords: [suggest.location.lat, suggest.location.lng]
+        });
+    }
+    findItems()
+    {
+        if(this.state.cords)
+        {
+            console.log(this.state.cords);
+            this.props.actions.getItemsInArea(this.state.cords,2000);//([35.7796,78.638],2000);
+            browserHistory.push('/');
+        }
+
     }
     render() {
         var styles = {
@@ -143,7 +161,7 @@ class Home extends React.Component {
                         <Geosuggest style={styles.searchBar}
                                     onSuggestSelect={this.onSuggestSelect}/>
                         <br />
-                        <button href="#" style={styles.button}>Find Produce</button>
+                        <button href="#" onClick={() => this.findItems()} style={styles.button}>Find Produce</button>
                     </div>
                 </div>
                 <div style={styles.content}>
@@ -171,5 +189,16 @@ class Home extends React.Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(Actions, dispatch)
+    };
+}
 Home = Radium(Home);
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

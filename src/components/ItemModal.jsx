@@ -21,6 +21,9 @@ var styles = {
     ':active': {
       backgroundColor: '#8DC63F'
     }
+  },
+  font: {
+    fontFamily: 'Fira Sans',
   }
 };
 
@@ -90,7 +93,7 @@ class ItemModal extends React.Component {
       totalPrice = 0;
     }
   	return (
-    	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
+    	<Modal style={styles.font} show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div className="container">
       	 <h3>{item.title}</h3>
          <h5>Sold by: {item.businessName}</h5>

@@ -56,7 +56,7 @@ class CartList extends React.Component {
             orderDescription = useCart[0][0].title;
         }
 
-        var fee = (price * .03).toFixed(2);
+        var fee = (price * .1).toFixed(2);
         var totalPrice = (+price + +fee).toFixed(2) * 100;
         var priceDollars = totalPrice / 100;
 
@@ -165,6 +165,8 @@ class CartList extends React.Component {
         }
         if (useCart.length == 0) {
             return true;
+        }else if(price < 200) {
+            return true;
         }
         else {
             return false;
@@ -227,6 +229,9 @@ class CartList extends React.Component {
             if (useCart.length == 0) {
                 errorMessage = 'You must have someting in your cart to order.';
                 colorSelected = '#ff0000';
+            } else if (price < 200) {
+                errorMessage = 'You must have at least $200 in your cart.';
+                colorSelected = '#ff0000';
             }
             else {
                 errorMessage = 'You are good to order!'
@@ -249,7 +254,7 @@ class CartList extends React.Component {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Transportation and Processing fee (3%):</td>
+                <td>Transportation and Processing fee (10%):</td>
                 <td>{fee}</td>
             </tr>
             <tr>

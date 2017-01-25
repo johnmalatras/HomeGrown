@@ -8,6 +8,13 @@ var FormGroup = ReactBootstrap.FormGroup;
 var FormControl = ReactBootstrap.FormControl;
 var ControlLabel = ReactBootstrap.ControlLabel;
 var Table = ReactBootstrap.Table;
+import Radium, { Style } from 'radium';
+
+var styles = {
+    font: {
+        fontFamily: 'Fira Sans',
+    }
+};
 
 class ActiveOrderModal extends React.Component {
 
@@ -32,7 +39,7 @@ class ActiveOrderModal extends React.Component {
     }
 
   	return (
-    	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
+    	<Modal style={styles.font}  show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div >
       	 <Table>
             <thead>
@@ -54,5 +61,5 @@ class ActiveOrderModal extends React.Component {
   	);
   }
 }
-
+ActiveOrderModal = Radium(ActiveOrderModal);
 export default ActiveOrderModal;
