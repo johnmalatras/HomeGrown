@@ -32,7 +32,7 @@ var styles = {
 class EditUserPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: "", address: "",addressError: ""};
+        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: "", address: "",addressError: "", cords:null};
         this.updateEmail= this.updateEmail.bind(this);
         this.handleTextChange= this.handleTextChange.bind(this);
         this.handleOwnerNameChange= this.handleOwnerNameChange.bind(this);
@@ -96,6 +96,7 @@ class EditUserPage extends React.Component {
         if(this.state.address.length > 0)
         {
             this.props.actions.updateUserSetting("address",this.state.address);
+            this.props.actions.updateUserSetting("cords",this.state.cords);
 
             if(!this.props.userInfo.isAccountFinished)
             {
@@ -132,8 +133,12 @@ class EditUserPage extends React.Component {
         });
     }
     onSuggestSelect(suggest) {
+        console.log(suggest);
         this.setState({
             address: suggest.label
+        });
+        this.setState({
+            cords: [suggest.location.lat, suggest.location.lng]
         });
     }
 
