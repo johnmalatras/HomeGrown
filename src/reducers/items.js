@@ -15,9 +15,9 @@ const initialState = {
 export default function itemReducer(state = initialState, action) {
 	switch (action.type) {
 		case REQUEST_ITEMS:
-			console.log(action.payload);
+			var newArray = action.payload.slice();
 			return Object.assign({}, state, {
-				items: action.payload
+				items: newArray
 			});
 		case REQUEST_ITEM_IMAGES:
 			return Object.assign({}, state, {

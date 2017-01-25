@@ -240,18 +240,27 @@ export function getItemsInArea(cords,radius)
             var items = [];
 
             for (var i = 0; i < value.length; i++) {
-                Firebase.database().ref('/items/' + value[i]).once('value').then(function(snapshot) {
-                            items.push(snapshot.val());
-                        }
+                Firebase.database().ref('/items/' + value[i]).once('value').then(function (snapshot) {
+                        items.push(snapshot.val());
+                        // x = JSON.parse(JSON.stringify(items));
+                        // console.log('x');
+                        // console.log(x);
+                        dispatch({
+                            type: REQUEST_ITEMS,
+                            payload: items
+
+                        });
+                    }
                 )
             }
-            //console.log(((JSON.parse(JSON.stringify(items)))));
-            //return nodes for list of keys
-            dispatch({
-                    type: REQUEST_ITEMS,
-                    payload: items
-
-            });
+            // x = JSON.parse(JSON.stringify(items));
+            // console.log('x');
+            // console.log(x);
+            // dispatch({
+            //         type: REQUEST_ITEMS,
+            //         payload: x
+            //
+            // });
         })
     }
 }
@@ -431,7 +440,7 @@ export function addItem(values, ownerName, businessName, availableDates) {
 
                 var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
                 //Hardcoded in Raleigh cords, will cahnge eventually
-                geoFire.set(itemID, [35.7796,78.6382]).then(function() {
+                geoFire.set(itemID, [35.7796,-78.6382]).then(function() {
                     console.log("SET LOCATION");
                 }, function(error) {
                     console.log("Error: " + error);

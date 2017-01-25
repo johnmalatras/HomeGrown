@@ -60,7 +60,6 @@ class MarketView extends React.Component {
     }
 
     render() {
-        //console.log(this.props.items);
         var dateSelector;
         var dateCart;
         var selectedCart = 1;

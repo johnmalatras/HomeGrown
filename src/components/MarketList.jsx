@@ -39,8 +39,8 @@ var MarketList = (props) => {
 			});
 		}
 		else {
-			console.log("props.items");
-			console.log(props.items);
+			//console.log("props.items");
+			//console.log(props.items);
 			listItems = props.items.map((row) => {
 				return <MarketItem key={row.key}
 								   item={row}

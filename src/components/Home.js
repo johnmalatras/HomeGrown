@@ -16,6 +16,7 @@ var Button = ReactBootstrap.Button;
 class Home extends React.Component {
     constructor(props) {
         super();
+        this.state = {cords: null}
         this.TermsOfUse= this.TermsOfUse.bind(this);
         this.onSuggestSelect = this.onSuggestSelect.bind(this);
         this.findItems = this.findItems.bind(this);
@@ -26,13 +27,19 @@ class Home extends React.Component {
     };
 
     onSuggestSelect(suggest) {
-        console.log(suggest);
+        this.setState({
+            cords: [suggest.location.lat, suggest.location.lng]
+        });
     }
     findItems()
     {
-        console.log("HIT");
-        this.props.actions.getItemsInArea([35.7796,78.638],2000);
-        browserHistory.push('/');
+        if(this.state.cords)
+        {
+            console.log(this.state.cords);
+            this.props.actions.getItemsInArea(this.state.cords,2000);//([35.7796,78.638],2000);
+            browserHistory.push('/');
+        }
+
     }
     render() {
         var styles = {
