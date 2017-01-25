@@ -23,6 +23,7 @@ var Tab = ReactBootstrap.Tab;
 var Image = ReactBootstrap.Image;
 var Clearfix = ReactBootstrap.Clearfix;
 var Panel = ReactBootstrap.Panel;
+import 'whatwg-fetch'
 
 import Radium, { Style } from 'radium'
 

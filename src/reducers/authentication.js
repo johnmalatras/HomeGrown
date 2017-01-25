@@ -2,6 +2,8 @@
  * Created by alextulenko on 11/10/16.
  */
 import { AUTH_USER, SIGN_OUT_USER, AUTH_ERROR , UPDATE_USER_SETTINGS} from '../actions';
+
+import { browserHistory } from 'react-router';
 const initialState =  {
     authenticated: false,
     error: null

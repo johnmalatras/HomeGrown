@@ -23,6 +23,9 @@ var styles = {
         fontSize: '125%',
         padding: '6px 12px 6px 12px'
     },
+    warning: {
+        color: 'red'
+    }
 }
 var editingName = false;
 var nameElement;
@@ -58,6 +61,18 @@ class AccountPage extends React.Component {
 
 
     render() {
+        var noSetDates = <div className="alert alert-danger" role="alert">
+            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span className="sr-only">Error:</span>
+            You have no set selling dates yet. Please set your available dates.
+        </div>;
+        for(var i = 0; i < 7; i++)
+        {
+            if(this.props.userInfo.availableDates[i].value)
+            {
+                noSetDates = <div></div>
+            }
+        }
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
         var currentListingsElement;
@@ -133,12 +148,13 @@ class AccountPage extends React.Component {
                 <div className="alert alert-danger" role="alert">
                     <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span className="sr-only">Error:</span>
-                    {" "}Please fill out your business name and address in "Edit Business Settings" below.
+                    {" "}Before you can buy or sell, please fill out your business name and address in "Edit Business Settings" below.
                 </div>;
         }
         return (
             <div className="container">
                 <h1>Account Overview</h1>
+                {noSetDates}
                 {needInfoLabel}
                 {currentListingsElement}
                 <Panel>

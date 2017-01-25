@@ -29,6 +29,7 @@
     "redux-file-upload": "0.0.16",
     "redux-form": "^6.2.0",
     "redux-promise": "^0.5.3",
+    "rsvp": "^3.3.3",
     "style-loader": "^0.13.1",
     "superagent": "^2.3.0"
   },

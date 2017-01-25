@@ -109,10 +109,18 @@ class NavBar extends React.Component {
     handleSignIn(){
         browserHistory.push('/login');
     }
+    handleAddItem() {
+        browserHistory.push('/addItem');
+    }
     renderAuthLinks() {
         if (this.props.authenticated) {
             const isRestaurant = this.props.userInfo.isRestaurant;
             if (isRestaurant === 'false') {
+                var addItem;
+                if(this.props.userInfo.isAccountFinished)
+                {
+                    addItem = <NavItem eventKey={5} href="#" onClick={() => this.handleAddItem()}><a style={styles.label} eventKey={5} href="#5" onClick={() => this.handleAddItem()}>ADD ITEM</a></NavItem>
+                }
                 return [
                     <Navbar style={styles.navBar} collapseOnSelect block fluid>
                         <Navbar.Header>
@@ -123,6 +131,7 @@ class NavBar extends React.Component {
                             <Nav pullRight>
                                 <NavItem eventKey={1} href="#" onClick={() => this.handleMarket()}><a style={styles.label} eventKey={1} href="#1" onClick={() => this.handleMarket()}>MARKET</a></NavItem>
                                 <NavItem eventKey={2} href="#" onClick={() => this.handleHolder()}><a style={styles.label} eventKey={2} href="#2" onClick={() => this.handleHolder()}>ACCOUNT</a></NavItem>
+                                {addItem}
                                 <NavItem eventKey={3} href="#" onClick={() => this.handleAbout()}><a style={styles.label} eventKey={3} href="#3" onClick={() => this.handleAbout()}>ABOUT</a></NavItem>
                                 <NavItem eventKey={4} href="#" onClick={() => this.handleSignout()}><a style={styles.label} eventKey={4} href="#4" onClick={() => this.handleSignout()}>SIGN OUT</a></NavItem>
                             </Nav>
