@@ -103,7 +103,7 @@ class AboutPage extends React.Component {
         return (
             <div  style={styles.all}>
                 <div>
-                    <p style = {styles.headings}>Bringing You Your Private Farmer</p>
+                    <p style = {styles.headings}>A New Era For Produce</p>
                     <p style = {styles.content}> On a daily basis, we’re delivering fresh, delicious local produce from farms in your community, and bringing that food to your menu.
                         At RipeNow, we want to ensure everyone has access to the same quality of fresh produce. Join our community – as a farm, a transporter, or a restaurant! We’d be happy to welcome you.</p>
                     <div style={styles.image}> </div>

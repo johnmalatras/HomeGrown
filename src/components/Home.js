@@ -35,8 +35,8 @@ class Home extends React.Component {
     {
         if(this.state.cords)
         {
-            console.log(this.state.cords);
-            this.props.actions.getItemsInArea(this.state.cords,2000);//([35.7796,78.638],2000);
+            //console.log(this.state.cords);
+            this.props.actions.getItemsInArea(this.state.cords,45);//([35.7796,78.638],2000);
             browserHistory.push('/');
         }
 

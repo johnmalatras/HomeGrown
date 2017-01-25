@@ -38,6 +38,7 @@ class MarketView extends React.Component {
         var date = moment().add(1, "days");
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
+
     }
 
     changeSelectedDate(date, dateMoment, cartIndex) {
@@ -60,6 +61,10 @@ class MarketView extends React.Component {
     }
 
     render() {
+        if(this.props.userInfo && this.props.items.length == 0)
+        {
+            this.props.actions.getItemsInArea(this.props.userInfo.cords,45);
+        }
         var dateSelector;
         var dateCart;
         var selectedCart = 1;

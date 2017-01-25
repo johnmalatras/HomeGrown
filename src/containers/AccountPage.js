@@ -25,7 +25,11 @@ var styles = {
     },
     warning: {
         color: 'red'
+    },
+    link: {
+        color: '#8DC63F'
     }
+
 }
 var editingName = false;
 var nameElement;
@@ -99,10 +103,10 @@ class AccountPage extends React.Component {
                     <Row>
                         <Col md={12}>
                             <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
-                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
-                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
-                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
-                                <NavItem eventKey={4} href="/dates">Edit Available Selling Dates</NavItem>
+                                <NavItem eventKey={1} href="/home"><p style={styles.link}>Edit Business Settings</p></NavItem>
+                                <NavItem eventKey={2} href="/email"><p style={styles.link}>Edit Email</p></NavItem>
+                                <NavItem eventKey={3} href="/password"><p style={styles.link}>Edit Password</p></NavItem>
+                                <NavItem eventKey={4} href="/dates"><p style={styles.link}>Edit Available Selling Dates</p></NavItem>
                             </Nav>
                         </Col>
                     </Row>
@@ -118,9 +122,9 @@ class AccountPage extends React.Component {
                     <Row>
                         <Col md={12}>
                             <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
-                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
-                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
-                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
+                                <NavItem style={styles.link} eventKey={1} href="/home"><p style={styles.link}>Edit Business Settings</p></NavItem>
+                                <NavItem style={styles.link} eventKey={2} href="/email"><p style={styles.link}>Edit Email</p></NavItem>
+                                <NavItem style={styles.link} eventKey={3} href="/password"><p style={styles.link}>Edit Password</p></NavItem>
                             </Nav>
                         </Col>
                     </Row>
