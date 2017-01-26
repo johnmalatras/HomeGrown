@@ -56,7 +56,7 @@ class CartList extends React.Component {
             orderDescription = useCart[0][0].title;
         }
 
-        var fee = (price * .25).toFixed(2);
+        var fee = (price * .1).toFixed(2);
         var totalPrice = (+price + +fee).toFixed(2) * 100;
         var priceDollars = totalPrice / 100;
 
@@ -85,7 +85,7 @@ class CartList extends React.Component {
                 deliveryTime: this.state.deliveryTime
             };
             console.log("trying to place order");
-            this.props.placeOrder(purchase, this.props.cartIndex, this.props.user);
+            this.props.placeOrder(purchase, this.props.selectedCart, this.props.user);
         });
 
     }
@@ -134,12 +134,6 @@ class CartList extends React.Component {
             });
             return -1;
         }
-        else if (price < 200) {
-            this.setState({
-                errorMessage: 'You must have at least $200 in your cart.'
-            });
-            return -1;
-        }
         else {
             var purchase = {
                 cart: useCart,
@@ -150,7 +144,7 @@ class CartList extends React.Component {
                 comment: this.state.comment,
                 deliveryTime: this.state.deliveryTime
             };
-            this.props.placeOrder(purchase);
+            this.props.placeOrder(purchase,selectedCart);
            // alert("Order Placed! Thank you for your business!")
             return 0;
         }
@@ -171,8 +165,7 @@ class CartList extends React.Component {
         }
         if (useCart.length == 0) {
             return true;
-        }
-        else if(price < 200) {
+        }else if(price < 200) {
             return true;
         }
         else {
@@ -208,17 +201,20 @@ class CartList extends React.Component {
             momentArray = [moment().add(2, "days"), moment().add(3, "days")];
         }
 
-
         price = 0;
-        const listItems = useCart.map((row) => {
+        var i = 1;
+        var listItems = useCart.map((row) => {
+            console.log("ROW");
+            console.log(row);
+            i++;
             price = +price + +(row[1] * row[0].price).toFixed(2);
-            return <CartItem key={row[0].title}
+            return <CartItem key={row[0].title + '' + i}
                              cartItem={row}
                              deleteCartItem={this.deleteItem}
                              cart={useCart}/>
         });
         price = price.toFixed(2);
-        var fee = (price * .25).toFixed(2);
+        var fee = (price * .1).toFixed(2);
         var totalPrice = (+price + +fee).toFixed(2);
 
         var orderDescription;
@@ -261,7 +257,7 @@ class CartList extends React.Component {
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>Transportation and Processing fee (25%):</td>
+                <td>Transportation and Processing fee (10%):</td>
                 <td>{fee}</td>
             </tr>
             <tr>
@@ -281,7 +277,7 @@ class CartList extends React.Component {
                 <td></td>
                 <td></td>
                 <td></td>
-                <th>Select Delivery Time:</th>
+                <th></th>
             </tr>
 
             <td>
@@ -292,12 +288,7 @@ class CartList extends React.Component {
             <td></td>
             <td></td>
             <td></td>
-            <td>
-                <DropdownButton title={this.state.deliveryTime} onSelect={(evt) => this.handleTimeChange(evt)}>
-                    <MenuItem eventKey='8am-10am'>8am-10am</MenuItem>
-                    <MenuItem eventKey='10am-11am'>10am-11am</MenuItem>
-                </DropdownButton>
-            </td>
+            <td></td>
             <td></td>
 
             <tr>
@@ -310,7 +301,7 @@ class CartList extends React.Component {
                     <StripeCheckout
                         stripeKey="pk_test_BlpgbsPBhVhgFQsfLwUwQWzf"
                         token={this.onToken}
-                        image="../../RipeNow_Icon_Small.png"
+                        image="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow_Icon_Small.png?alt=media&token=08415221-4f86-4325-b92f-90a050054aab"
                         name="RipeNow LLC"
                         description={orderDescription}
                         currency="USD"

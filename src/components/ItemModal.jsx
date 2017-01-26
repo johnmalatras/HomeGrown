@@ -2,6 +2,30 @@ import React, { PropTypes } from 'react';
 var ReactBootstrap = require('react-bootstrap');
 import moment from 'moment';
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
+import Radium, { Style } from 'radium';
+var styles = {
+  button: {
+    background: '#8DC63F',
+    color: 'white',
+    borderColor: '#8DC63F',
+    borderStyle: 'solid',
+    transitionDuration: '0.1s',
+    fontSize: '108%',
+    fontFamily: 'Fira Sans',
+
+    ':hover': {
+      backgroundColor: 'white',
+      borderColor: '#45621d'
+    },
+
+    ':active': {
+      backgroundColor: '#8DC63F'
+    }
+  },
+  font: {
+    fontFamily: 'Fira Sans',
+  }
+};
 
 class ItemModal extends React.Component {
 
@@ -69,7 +93,7 @@ class ItemModal extends React.Component {
       totalPrice = 0;
     }
   	return (
-    	<Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
+    	<Modal style={styles.font} show={ this.props.show } onHide={ () => this.props.onHide() }>
     		<div className="container">
       	 <h3>{item.title}</h3>
          <h5>Sold by: {item.businessName}</h5>
@@ -88,7 +112,7 @@ class ItemModal extends React.Component {
 
           {"  "}
            <ButtonToolbar>
-             <Button onClick={this.verifyBuy}>Buy</Button>
+             <Button style={styles.button} onClick={this.verifyBuy}>Buy</Button>
              <Button onClick={() => this.props.onHide()}>Close</Button>
            </ButtonToolbar>
          </Form>
@@ -99,5 +123,5 @@ class ItemModal extends React.Component {
   	);
   }
 }
-
+ItemModal = Radium(ItemModal);
 export default ItemModal;

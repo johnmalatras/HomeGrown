@@ -3,6 +3,8 @@
  */
 import { browserHistory } from 'react-router';
 import Firebase from 'firebase';
+import Geofire from 'geofire';
+import RSVP from 'rsvp';
 
 export const AUTH_ERROR = 'AUTH_ERROR';
 export const AUTH_USER = 'AUTH_USER';
@@ -37,6 +39,8 @@ export const OPEN_FP_MODAL = 'OPEN_FP_MODAL';
 export const CLOSE_FP_MODAL = 'CLOSE_FP_MODAL';
 export const FORGOT_PASSWORD = 'FORGOT_PASSWORD';
 export const UPDATE_DATE = 'UPDATE_DATE';
+export const SWITCH_LOGIN = 'SWITCH_LOGIN';
+export const UPDATE_ITEMS = 'UPDATE_ITEMS';
 
 //DEVELOPMENT SERVER
 const config = {
@@ -63,12 +67,17 @@ const database = Firebase.database();
 const authData = Firebase.auth();
 const storage = Firebase.storage();
 
+// Generate a  Firebase location
+var firebaseRef = Firebase.database().ref('geoFire');//.push();
+// Create a new GeoFire instance at the  Firebase location
+var geoFire = new Geofire(firebaseRef);
+
 var holdData = [];
 var firstTime = false;
 
 export function signInUser(credentials){
     return function(dispatch) {
-        Firebase.auth().signInWithEmailAndPassword(credentials.email, credentials.password)
+        Firebase.auth().signInWithEmailAndPassword(credentials.email1, credentials.password1)
             .then(response => {
                 dispatch(authUser());
                 browserHistory.push('/');
@@ -84,6 +93,13 @@ export function updateCurrentDate() {
         type: UPDATE_DATE
     }
 }
+
+export function updateItems(){
+    return {
+        type: UPDATE_ITEMS
+    }
+}
+
 export function setSelectedDate(date, dateMoment, cartIndex) {
     return {
         type: 'SET_DATE',
@@ -107,11 +123,6 @@ export function signUpUser(credentials) {
 
         holdData = {
             email:credentials.email,
-            ownerName:credentials.ownerName,
-            businessName: credentials.businessName,
-            address: credentials.address,
-            city: credentials.city,
-            state: credentials.state,
             phoneNumber: credentials.phoneNumber,
             isRestaurant: credentials.isRestaurant
         };
@@ -133,11 +144,13 @@ export function signUpUser(credentials) {
     }
 
 };
+
 export function verifyAuth(){
     return function (dispatch) {
         Firebase.auth().onAuthStateChanged(user => {
             if(user && firstTime)
             {
+                console.log(holdData.isRestaurant);
                 const userUid = Firebase.auth().currentUser.uid;
                 firstTime = false;
                 const user = database.ref('/users/'+userUid.toString());
@@ -152,14 +165,10 @@ export function verifyAuth(){
                 ];
                 user.update({
                     ["email"]:holdData.email,
-                    ["ownerName"]:holdData.ownerName,
-                    ["businessName"]: holdData.businessName,
-                    ["address"]: holdData.address,
-                    ["city"]: holdData.city,
-                    ["state"]: holdData.state,
                     ["phoneNumber"]: holdData.phoneNumber,
-                    ["isRestaurant"]: holdData.isRestaurant,
-                    ["availableDates"]: dates
+                    ["isRestaurant"]: holdData.isRestaurant.toString(),
+                    ["availableDates"]: dates,
+                    ["isAccountFinished"]: false
                 });
             }
             if (user) {
@@ -173,7 +182,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    browserHistory.push('/login');
+    browserHistory.push('/home');
     return {
         type: 'SIGN_OUT_USER'
     }
@@ -195,12 +204,60 @@ export function authUser() {
         });
       }
 };
+
 export function resetPasswordUpdate()
 {
     return {
         type: 'RESET_PASSWORD_UPDATE'
     }
 
+}
+
+export function getItemsInArea(cords,radius)
+{
+    return function (dispatch) {
+        var promise = new RSVP.Promise(function (resolve, reject) {
+            console.log("*** Creating GeoQuery ***");
+            // Create a GeoQuery centered at fish2
+            var geoQuery = geoFire.query({
+                center: cords,
+                radius: radius
+            });
+            var keys = [];
+            var onKeyEnteredRegistration = geoQuery.on("key_entered", function (key, location) {
+                //console.log(key + " entered the query. Hi " + key + "!");
+                var value = [key, location];
+                //resolve(value);
+                keys.push(key);
+            })
+
+            var onReadyRegistration = geoQuery.on("ready", function () {
+                console.log("*** 'ready' event fired - cancelling query ***");
+                geoQuery.cancel();
+                resolve((JSON.parse(JSON.stringify(keys))));
+            })
+        });
+
+        promise.then(function (value) {
+            // success
+            var items = [];
+            for (var i = 0; i < value.length; i++) {
+                var key = value[i];
+                Firebase.database().ref('/items/' + value[i]).once('value').then(function (snapshot) {
+                        var hold = snapshot.val();
+
+                        //hold.key = key;
+                        items.push(hold);
+                        dispatch({
+                            type: REQUEST_ITEMS,
+                            payload: items
+
+                        });
+                    }
+                )
+            }
+        })
+    }
 }
 
 export function updateAvailableDate(day, value, currentAvilDates, user)
@@ -314,6 +371,18 @@ export function updateUserEmail(oldEmail,newEmail,password){
     };
 }
 
+export function unlockAccount(){
+    const userUid = Firebase.auth().currentUser.uid;
+    const user = database.ref('/users/'+userUid.toString());
+    user.update({
+        ["isAccountFinished"]: true
+    });
+    return {
+        type: UPDATE_USER_INFO
+    }
+
+}
+
 export function updateUserSetting(parameter,value){
     const userUid = Firebase.auth().currentUser.uid;
     const user = database.ref('/users/'+userUid.toString());
@@ -340,45 +409,63 @@ export function authError(error) {
 };
 
 //Action call to add Item to Market from account page
-export function addItem(values, ownerName, businessName, availableDates) {
+export function addItem(values, ownerName, businessName, availableDates, email) {
     return function(dispatch) {
         var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
+        var itemIDhold = itemID;
         const itemRef = database.ref('/items/'+ itemID);
 
+        var downloadURL;
         const imageRef = storage.ref('image/' + itemID);
         imageRef.put(values.ProductImage[0]).then(function(snapshot) {
             //console.log('Uploaded a blob or file!');
+            imageRef.getDownloadURL().then(function(snapshot) {
+
+                itemRef.update({
+                    ["title"]:values.ProductTitle,
+                    ["seller"]:ownerName,
+                    ["businessName"]:businessName,
+                    ["quantity"]: values.ProductQuantity,
+                    ["metric"]: values.ProductMetric,
+                    ["price"]: values.ProductPrice,
+                    ["quality"]: values.Quality,
+                    ["sellerUID"]: userUid,
+                    ["availableDates"]: availableDates,
+                    ["downloadURL"]: snapshot,
+                    ["sellerEmail"]: email,
+                ["key"]: itemIDhold
+                });
+
+                var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
+                //Hardcoded in Raleigh cords, will cahnge eventually
+                geoFire.set(itemID, [35.7796,-78.6382]).then(function() {
+                    console.log("SET LOCATION");
+                }, function(error) {
+                    console.log("Error: " + error);
+                });
+
+                var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
+                const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
+                userItemRef.update({
+                    ["title"]:values.ProductTitle,
+                    ["seller"]:ownerName,
+                    ["businessName"]:businessName,
+                    ["quantity"]: values.ProductQuantity,
+                    ["metric"]: values.ProductMetric,
+                    ["price"]: values.ProductPrice,
+                    ["quality"]: values.Quality,
+                    ["sellerUID"]: userUid,
+                    ["availableDates"]: availableDates,
+                    ["downloadURL"]: snapshot,
+                    ["key"]: itemIDhold
+                });
+
+                browserHistory.push('/account');
+            });
         });
 
-        itemRef.update({
-            ["title"]:values.ProductTitle,
-            ["seller"]:ownerName,
-            ["businessName"]:businessName,
-            ["quantity"]: values.ProductQuantity,
-            ["metric"]: values.ProductMetric,
-            ["price"]: values.ProductPrice,
-            ["quality"]: values.Quality,
-            ["sellerUID"]: userUid,
-            ["availableDates"]: availableDates
-        });
-
-        var itemID = values.ProductTitle.toString() + '_' + values.Quality.toString();
-        const userItemRef = database.ref('/users/'+ userUid + '/items/' + itemID);
-        userItemRef.update({
-            ["title"]:values.ProductTitle,
-            ["seller"]:ownerName,
-            ["businessName"]:businessName,
-            ["quantity"]: values.ProductQuantity,
-            ["metric"]: values.ProductMetric,
-            ["price"]: values.ProductPrice,
-            ["quality"]: values.Quality,
-            ["sellerUID"]: userUid,
-            ["availableDates"]: availableDates
-        });
-
-        browserHistory.push('/account');
     }
 }
 
@@ -420,6 +507,7 @@ export function getImages(items, item) {
         });
     }
 }
+
 export function requestItems() {
   return function(dispatch) {
     var ref = database.ref("items");
@@ -438,6 +526,14 @@ export function requestItems() {
   }
 }
 
+export function switchLogin(isSignIn){
+    return {
+        type:SWITCH_LOGIN,
+        payload: isSignIn
+    }
+
+}
+
 export function openModal(item) {
   return {
     type: OPEN_MODAL,
@@ -454,7 +550,25 @@ export function closeModal() {
 export function addToCart(cartItem, cartIndex) {
     var cart = cartItem.cartAdd.cart;
     var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
-    cart.push(newCartItem);
+    if(cart.length > 0)
+    {
+        for(var i = 0; i < cart.length; i++)
+        {
+            if(cart[i][0].key == cartItem.cartAdd.item.key)
+            {
+                cart[i][1] = cart[i][1] + cartItem.cartAdd.quantity;
+                console.log(cart[i][1]);
+            }
+            else
+            {
+                cart.push(newCartItem);
+            }
+        }
+    }
+    else
+    {
+        cart.push(newCartItem);
+    }
     return {
         type: ADD_TO_CART,
         cart: cart,
@@ -481,32 +595,35 @@ export function placeOrder(order,cartIndex,user) {
     const userUid = Firebase.auth().currentUser.uid;
     const timestamp = Date.now();
     const orderNode = database.ref('/active_orders/'+userUid.toString() + '_'+timestamp);
-    console.log(cartIndex);
-    console.log(user);
 
+    for (var i = 0; i < order.order.cart.length; i++){
+        var item = order.order.cart[0];
 
-    for (var key in order.order.cart) {
-        var item = order.order.cart[key];
-
-        // update quantity
-        var currentQuantity = item[0].quantity;
-        var boughtQuantity = item[1];
-        var newQuantity = currentQuantity - boughtQuantity;
         var itemNode = database.ref('items/'+item[0].key);
-        var userItemRef = database.ref('users/'+item[0].sellerUID+'/items/'+item[0].title+'_'+item[0].quality);
 
-        
-        if (newQuantity == 0) {
-            itemNode.remove();
-        } else {
-            itemNode.update({
+        itemNode.once('value').then(function (snapshot) {
+                var hold = snapshot.val();
+            // update quantity
+            var currentQuantity = hold.quantity;
+            var boughtQuantity = item[1];
+            var newQuantity = currentQuantity - boughtQuantity;
+            if (newQuantity == 0) {
+                itemNode.remove();
+            } else {
+                itemNode.update({
+                    ["quantity"]: newQuantity
+                });
+            }
+
+            userItemRef.update({
                 ["quantity"]: newQuantity
             });
-        }
 
-        userItemRef.update({
-            ["quantity"]: newQuantity
-        });
+            }
+        );
+
+        var userItemRef = database.ref('users/'+item[0].sellerUID+'/items/'+item[0].title+'_'+item[0].quality);
+
         // add to buyer active order
         const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+timestamp);
         buyerActiveNode.update({

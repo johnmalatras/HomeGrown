@@ -8,17 +8,18 @@ var MarketList = (props) => {
 	if(props.items)
 	{
 		var listItemsArray = [];
-		for (var key in props.items) {
-			var item = props.items[key];
-			item.key = key;
-			item.image = props.items[key].image;
+		for (var key in props.items[0]) {
+			var item =key;
+			//item.key = key;
 			listItemsArray.push(item);
 		}
+		console.log("LISTITEMS");
+		console.log(props.items);
 		var isAuth = props.userAuthenticated;
 		var isRestaurant = false;
 		if(props.userInfo != undefined)
 		{
-			if(props.userInfo.isRestaurant == 'true')
+			if(props.userInfo.isRestaurant == "true")
 			{
 				isRestaurant = true;
 			}
@@ -26,14 +27,31 @@ var MarketList = (props) => {
 		else {
 			isRestaurant = false;
 		}
-		listItems = listItemsArray.map((row) => {
-			return <MarketItem key={row.key}
-							   item={row}
-							   image={row.image}
-							   isRestaurant={isRestaurant}
-							   auth = {isAuth}
-							   onItemSelect={ props.onItemSelect }/>
-		});
+		if(props.userInfo) {
+
+			listItems = props.items.map((row) => {
+				return <MarketItem key={row.key}
+								   item={row}
+								   image={row.image}
+								   isRestaurant={isRestaurant}
+								   canOrder={props.userInfo.isAccountFinished}
+								   auth={isAuth}
+								   onItemSelect={ props.onItemSelect }/>
+			});
+		}
+		else {
+			//console.log("props.items");
+			//console.log(props.items);
+			listItems = props.items.map((row) => {
+				return <MarketItem key={row.key}
+								   item={row}
+								   image={row.image}
+								   isRestaurant={false}
+								   canOrder={false}
+								   auth={isAuth}
+								   onItemSelect={ props.onItemSelect }/>
+			});
+		}
 
 	}
 

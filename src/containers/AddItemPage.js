@@ -7,6 +7,13 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import { Field, reduxForm } from 'redux-form';
 import { browserHistory } from 'react-router';
+import Radium from 'radium';
+
+var styles = {
+    button: {
+        margin: '10px 0px',
+    }
+};
 
 const validate = (values) => {
     const errors = {};
@@ -63,7 +70,7 @@ class AddItemPage extends React.Component {
         {
             values.Quality = "NA";
         }
-        {this.props.actions.addItem(values, this.props.userInfo.ownerName,this.props.userInfo.businessName, this.props.userInfo.availableDates)}
+        {this.props.actions.addItem(values, this.props.userInfo.ownerName,this.props.userInfo.businessName, this.props.userInfo.availableDates, this.props.userInfo.email)}
     };
 
     backButton(){
@@ -122,7 +129,7 @@ class AddItemPage extends React.Component {
                         <button style={{background: '#8DC63F'}} action="submit" className="btn btn-primary">Submit Item</button>
                     </form>
                     <p> </p>
-                    <button onClick={() => this.backButton()} >Cancel Add Item</button>
+                    <button style={styles.button} onClick={() => this.backButton()} >Cancel Add Item</button>
                 </div>
             </div>
         );
@@ -142,7 +149,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
+AddItemPage = Radium(AddItemPage);
 export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
     form: 'addItemPage',
     validate

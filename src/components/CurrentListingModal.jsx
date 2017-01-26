@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react';
 var ReactBootstrap = require('react-bootstrap');
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
+import Radium, { Style } from 'radium';
+
+var styles = {
+    font: {
+        fontFamily: 'Fira Sans',
+    }
+};
 
 class ItemModal extends React.Component {
 
@@ -63,7 +70,7 @@ class ItemModal extends React.Component {
     }
 
   	return (
-        <Modal show={ this.props.show } onHide={ () => this.props.onHide() }>
+        <Modal style={styles.font} show={ this.props.show } onHide={ () => this.props.onHide() }>
             <div className="container">
                 <h3>Edit {item.title} Listing</h3>
                 <p>
@@ -86,5 +93,5 @@ class ItemModal extends React.Component {
   	);
   }
 }
-
+ItemModal = Radium(ItemModal);
 export default ItemModal;

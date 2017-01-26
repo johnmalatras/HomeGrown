@@ -28,8 +28,7 @@ class Cart extends React.Component {
       }
 
     return (
-      <div>
-        <h1>Cart</h1>
+      <div className="container">
         <h3>Ordering for: {this.props.selectedDate}</h3>
         <h5>Please note that we have a minimum purchase amount of $200</h5>
         <Table responsive>

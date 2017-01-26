@@ -16,6 +16,7 @@ import CurrentListingReducer from './currentlistings';
 import CurrentListingModalReducer from './clmodal';
 import AccountReducer from './account';
 import ForgotPasswordReducer from './forgotpassword';
+import LoginReducer from './loginreducer';
 
 const rootReducer = combineReducers({
     AuthReducer,
@@ -29,7 +30,7 @@ const rootReducer = combineReducers({
     currentListings: CurrentListingReducer,
     currentListingModal: CurrentListingModalReducer,
     AccountReducer: AccountReducer,
-    forgotpassword: ForgotPasswordReducer
+    forgotpassword: ForgotPasswordReducer,
+    loginReducer: LoginReducer
 })
-
 export default rootReducer;

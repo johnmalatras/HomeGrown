@@ -9,16 +9,43 @@ import React,{ Component, PropTypes }  from 'react';
 // import SignUpPage from './SignUpPage';
 // import * as Actions from '../actions/index';
 // import HomePage from '../components/HomePage';
+import { StickyContainer, Sticky } from 'react-sticky';
 import Header from '../containers/Header';
+import NavBar from '../containers/NavBar';
 import Footer from '../containers/Footer';
-export default class App extends React.Component {
+import Radium from 'radium'
+
+var styles = {
+    header: {
+        zIndex: '10',
+    },
+
+    content: {
+        minHeight: 'calc(100vh - 110px)',
+        zIndex: '1',
+        fontFamily: 'Fira Sans',
+    }
+};
+
+
+class App extends React.Component {
     render() {
         return (
-            <div>
-                <Header/>
-                {this.props.children}
-                <Footer/>
+            <div style={styles.body}>
+                <StickyContainer>
+                    <Sticky style={styles.header}>
+                        <NavBar/>
+                    </Sticky>
+                    <div style={styles.content}>
+                        {this.props.children}
+                    </div>
+                    <div>
+                        <Footer />
+                    </div>
+                </StickyContainer>
             </div>
         );
     }
 }
+App = Radium(App);
+export default App;

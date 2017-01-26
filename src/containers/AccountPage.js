@@ -13,7 +13,24 @@ var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var NavItem = ReactBootstrap.NavItem;
 var Nav = ReactBootstrap.Nav;
+import Radium, { Style } from 'radium';
 
+var styles = {
+    button: {
+        background: '#8DC63F',
+        color: 'white',
+        borderColor: '#8DC63F',
+        fontSize: '125%',
+        padding: '6px 12px 6px 12px'
+    },
+    warning: {
+        color: 'red'
+    },
+    link: {
+        color: '#8DC63F'
+    }
+
+}
 var editingName = false;
 var nameElement;
 class AccountPage extends React.Component {
@@ -46,17 +63,39 @@ class AccountPage extends React.Component {
     }
 
 
+
     render() {
+        var noSetDates = <div className="alert alert-danger" role="alert">
+            <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span className="sr-only">Error:</span>
+            You have no set selling dates yet. Please set your available dates.
+        </div>;
+        if(this.props.userInfo.isRestaurant)
+        {
+            noSetDates = <div></div>;
+        }
+        for(var i = 0; i < 7; i++)
+        {
+            if(this.props.userInfo.availableDates[i].value)
+            {
+                noSetDates = <div></div>;
+            }
+        }
         const isRestaurant = this.props.userInfo.isRestaurant;
         var dateLabel = 'Delivery Date';
         var currentListingsElement;
         var editSettingsElement;
-        if (isRestaurant === 'false') {
+        var addItemButton;
+        if(this.props.userInfo.isAccountFinished)
+        {
+            addItemButton = <Button style={styles.button}  onClick={() => this.addItem()} >Add Item</Button>;
+        }
+        if (isRestaurant == 'false') {
             currentListingsElement =
                 <div>
                     <Panel>
                         <CurrentListings />
-                        <Button bsStyle="primary"  onClick={() => this.addItem()} >Add Item</Button>
+                        {addItemButton}
                     </Panel>
                 </div>;
 
@@ -68,10 +107,10 @@ class AccountPage extends React.Component {
                     <Row>
                         <Col md={12}>
                             <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
-                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
-                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
-                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
-                                <NavItem eventKey={4} href="/dates">Edit Available Selling Dates</NavItem>
+                                <NavItem eventKey={1} href="/home"><p style={styles.link}>Edit Business Settings</p></NavItem>
+                                <NavItem eventKey={2} href="/email"><p style={styles.link}>Edit Email</p></NavItem>
+                                <NavItem eventKey={3} href="/password"><p style={styles.link}>Edit Password</p></NavItem>
+                                <NavItem eventKey={4} href="/dates"><p style={styles.link}>Edit Available Selling Dates</p></NavItem>
                             </Nav>
                         </Col>
                     </Row>
@@ -87,9 +126,9 @@ class AccountPage extends React.Component {
                     <Row>
                         <Col md={12}>
                             <Nav bsStyle="pills" onSelect={(value) => this.editInfo(value)}>
-                                <NavItem eventKey={1} href="/home">Edit Business Settings</NavItem>
-                                <NavItem eventKey={2} href="/email">Edit Email</NavItem>
-                                <NavItem eventKey={3} href="/password">Edit Password</NavItem>
+                                <NavItem style={styles.link} eventKey={1} href="/home"><p style={styles.link}>Edit Business Settings</p></NavItem>
+                                <NavItem style={styles.link} eventKey={2} href="/email"><p style={styles.link}>Edit Email</p></NavItem>
+                                <NavItem style={styles.link} eventKey={3} href="/password"><p style={styles.link}>Edit Password</p></NavItem>
                             </Nav>
                         </Col>
                     </Row>
@@ -108,9 +147,23 @@ class AccountPage extends React.Component {
                     <p style={{fontWeight: 'bold'}}>Editing</p>
                 </div>
         }
+
+
+        var needInfoLabel;
+        if(!this.props.userInfo.isAccountFinished)
+        {
+            needInfoLabel =
+                <div className="alert alert-danger" role="alert">
+                    <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span className="sr-only">Error:</span>
+                    {" "}Before you can buy or sell, please fill out your business name and address in "Edit Business Settings" below.
+                </div>;
+        }
         return (
-            <div>
-                <h1>Account Overview For {this.props.userInfo.businessName}</h1>
+            <div className="container">
+                <h1>Account Overview</h1>
+                {noSetDates}
+                {needInfoLabel}
                 {currentListingsElement}
                 <Panel>
                     <ActiveOrders />
@@ -138,19 +191,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-
+AccountPage = Radium(AccountPage);
 export default connect(mapStateToProps, mapDispatchToProps)(AccountPage);
-
-//USE THIS ONE IF YOU WANT IT BACK
-// <Row>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Owner Name:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Business Name:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Address:</p></Col>
-//     <Col md={3}><p style={{fontWeight: 'bold'}}>Phone Number:</p></Col>
-// </Row>
-// <Row>
-// <Col md={3}><p>{this.props.userInfo.ownerName}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.businessName}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.address}, {this.props.userInfo.city}, {this.props.userInfo.state}</p></Col>
-// <Col md={3}><p>{this.props.userInfo.phoneNumber}</p></Col>
-// </Row>
