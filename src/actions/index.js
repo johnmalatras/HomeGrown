@@ -241,15 +241,13 @@ export function getItemsInArea(cords,radius)
         promise.then(function (value) {
             // success
             var items = [];
-
             for (var i = 0; i < value.length; i++) {
                 var key = value[i];
                 Firebase.database().ref('/items/' + value[i]).once('value').then(function (snapshot) {
                         var hold = snapshot.val();
 
-                        hold.key = key;
+                        //hold.key = key;
                         items.push(hold);
-
                         dispatch({
                             type: REQUEST_ITEMS,
                             payload: items
@@ -416,6 +414,7 @@ export function addItem(values, ownerName, businessName, availableDates, email) 
         var imageName = values.ProductImage[0].name;
         const userUid = Firebase.auth().currentUser.uid;
         var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
+        var itemIDhold = itemID;
         const itemRef = database.ref('/items/'+ itemID);
 
         var downloadURL;
@@ -435,7 +434,8 @@ export function addItem(values, ownerName, businessName, availableDates, email) 
                     ["sellerUID"]: userUid,
                     ["availableDates"]: availableDates,
                     ["downloadURL"]: snapshot,
-                    ["sellerEmail"]: email
+                    ["sellerEmail"]: email,
+                ["key"]: itemIDhold
                 });
 
                 var itemID = userUid.toString() + '_' + values.ProductTitle.toString() + '_' + values.Quality.toString();
@@ -458,7 +458,8 @@ export function addItem(values, ownerName, businessName, availableDates, email) 
                     ["quality"]: values.Quality,
                     ["sellerUID"]: userUid,
                     ["availableDates"]: availableDates,
-                    ["downloadURL"]: snapshot
+                    ["downloadURL"]: snapshot,
+                    ["key"]: itemIDhold
                 });
 
                 browserHistory.push('/account');
