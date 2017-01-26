@@ -201,17 +201,20 @@ class CartList extends React.Component {
             momentArray = [moment().add(2, "days"), moment().add(3, "days")];
         }
 
-
         price = 0;
-        const listItems = useCart.map((row) => {
+        var i = 1;
+        var listItems = useCart.map((row) => {
+            console.log("ROW");
+            console.log(row);
+            i++;
             price = +price + +(row[1] * row[0].price).toFixed(2);
-            return <CartItem key={row[0].title}
+            return <CartItem key={row[0].title + '' + i}
                              cartItem={row}
                              deleteCartItem={this.deleteItem}
                              cart={useCart}/>
         });
         price = price.toFixed(2);
-        var fee = (price * .03).toFixed(2);
+        var fee = (price * .1).toFixed(2);
         var totalPrice = (+price + +fee).toFixed(2);
 
         var orderDescription;
