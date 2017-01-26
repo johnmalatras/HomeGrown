@@ -93,6 +93,7 @@ class Home extends React.Component {
             borderRadius: '2px',
             borderColor: '#7db135',
             transitionDuration: '0.2s',
+              color:'white',
 
             ':hover': {
               backgroundColor: '#618929',
