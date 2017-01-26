@@ -301,7 +301,7 @@ class CartList extends React.Component {
                     <StripeCheckout
                         stripeKey="pk_test_BlpgbsPBhVhgFQsfLwUwQWzf"
                         token={this.onToken}
-                        image="../../RipeNow_Icon_Small.png"
+                        image="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow_Icon_Small.png?alt=media&token=08415221-4f86-4325-b92f-90a050054aab"
                         name="RipeNow LLC"
                         description={orderDescription}
                         currency="USD"
