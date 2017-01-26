@@ -548,7 +548,25 @@ export function closeModal() {
 export function addToCart(cartItem, cartIndex) {
     var cart = cartItem.cartAdd.cart;
     var newCartItem = [cartItem.cartAdd.item, cartItem.cartAdd.quantity];
-    cart.push(newCartItem);
+    if(cart.length > 0)
+    {
+        for(var i = 0; i < cart.length; i++)
+        {
+            if(cart[i][0].key == cartItem.cartAdd.item.key)
+            {
+                cart[i][1] = cart[i][1] + cartItem.cartAdd.quantity;
+                console.log(cart[i][1]);
+            }
+            else
+            {
+                cart.push(newCartItem);
+            }
+        }
+    }
+    else
+    {
+        cart.push(newCartItem);
+    }
     return {
         type: ADD_TO_CART,
         cart: cart,
@@ -579,27 +597,31 @@ export function placeOrder(order,cartIndex,user) {
     for (var i = 0; i < order.order.cart.length; i++){
         var item = order.order.cart[0];
 
-        // update quantity
-        var currentQuantity = item[0].quantity;
-        var boughtQuantity = item[1];
-        var newQuantity = currentQuantity - boughtQuantity;
-
-
         var itemNode = database.ref('items/'+item[0].key);
-        var userItemRef = database.ref('users/'+item[0].sellerUID+'/items/'+item[0].title+'_'+item[0].quality);
 
-        
-        if (newQuantity == 0) {
-            itemNode.remove();
-        } else {
-            itemNode.update({
+        itemNode.once('value').then(function (snapshot) {
+                var hold = snapshot.val();
+            // update quantity
+            var currentQuantity = hold.quantity;
+            var boughtQuantity = item[1];
+            var newQuantity = currentQuantity - boughtQuantity;
+            if (newQuantity == 0) {
+                itemNode.remove();
+            } else {
+                itemNode.update({
+                    ["quantity"]: newQuantity
+                });
+            }
+
+            userItemRef.update({
                 ["quantity"]: newQuantity
             });
-        }
 
-        userItemRef.update({
-            ["quantity"]: newQuantity
-        });
+            }
+        );
+
+        var userItemRef = database.ref('users/'+item[0].sellerUID+'/items/'+item[0].title+'_'+item[0].quality);
+
         // add to buyer active order
         const buyerActiveNode = database.ref('users/'+userUid.toString()+'/active_orders/'+item[0].sellerUID+'_'+timestamp);
         buyerActiveNode.update({
