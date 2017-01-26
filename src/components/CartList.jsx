@@ -201,8 +201,6 @@ class CartList extends React.Component {
             momentArray = [moment().add(2, "days"), moment().add(3, "days")];
         }
 
-        console.log("useCart");
-        console.log(useCart);
         price = 0;
         var i = 1;
         var listItems = useCart.map((row) => {

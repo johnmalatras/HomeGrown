@@ -552,16 +552,8 @@ export function addToCart(cartItem, cartIndex) {
     {
         for(var i = 0; i < cart.length; i++)
         {
-            console.log("Cart key");
-            console.log(cart[i][0].key);
-            console.log(cartItem.cartAdd.item.key);
-
             if(cart[i][0].key == cartItem.cartAdd.item.key)
             {
-                console.log("HIT");
-                console.log(cart[i][1]);
-                console.log("ITEMSSSSS");
-                console.log(cartItem.cartAdd.quantity);
                 cart[i][1] = cart[i][1] + cartItem.cartAdd.quantity;
                 console.log(cart[i][1]);
             }
