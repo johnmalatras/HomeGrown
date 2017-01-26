@@ -74,6 +74,7 @@ class MarketView extends React.Component {
         var selectedCart = 1;
         var items = this.props.items;
         var items_selectedDate = JSON.parse(JSON.stringify(items));
+        console.log(items_selectedDate);
         if (this.props.selectedDateMoment) {
             for (var i = 0; i < items.length; i++) {
                 var isIn = false;
@@ -89,7 +90,6 @@ class MarketView extends React.Component {
                     delete items_selectedDate[i];
                 }
             }
-            //console.log(items_selectedDate);
             var localTime = moment(Date.now()).local().format('HH');
             if (localTime < 17) {
                 var date = moment().add(1, "days");
