@@ -15,6 +15,7 @@ import * as Actions from '../actions';
 import 'whatwg-fetch'
 import moment from 'moment';
 import Radium, { Style } from 'radium';
+
 var styles = {
     base: {
         fontFamily: 'Fira Sans',
@@ -194,15 +195,14 @@ class MarketView extends React.Component {
                 warningLabel = <div className="alert alert-danger" role="alert">
                     <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                     <span className="sr-only">Error: </span>
-                    {" "}Additional information is needed before you can order. Go to the Account tab to fill it out.
+                    {" "}Please Login to Order
                 </div>;
         }else if (this.props.userInfo.isRestaurant == "true" && !this.props.userInfo.isAccountFinished) {
                 var needInfoMessage =
                     <div className="alert alert-danger" role="alert">
                         <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                         <span className="sr-only">Error:</span>
-                        Please finish filling out your account info before you can order. Go to the Account tab to fill
-                        it out.
+                        {" "}Additional information is needed before you can order. Go to the Account tab to fill it out.
                     </div>;
             } else if(this.props.userInfo.isRestaurant == "false" && !this.props.userInfo.isAccountFinished) {
                 var needInfoMessage =
@@ -215,7 +215,7 @@ class MarketView extends React.Component {
             }
         }
         return (
-            <div style={styles.base} className="container">
+            <div style={styles.base} className="container" >
                 {warningLabel}
                 <h4 style={{color: '#ff0000'}}>{errorMessage}</h4>
                 {needInfoMessage}
