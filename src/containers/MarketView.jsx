@@ -38,7 +38,10 @@ class MarketView extends React.Component {
         var date = moment().add(1, "days");
         this.changeSelectedDate = this.changeSelectedDate.bind(this);
         this.orderItem = this.orderItem.bind(this);
-
+        if(this.props.userInfo)
+        {
+            this.props.actions.getItemsInArea(this.props.userInfo.cords,45);
+        }
     }
 
     changeSelectedDate(date, dateMoment, cartIndex) {
@@ -71,8 +74,8 @@ class MarketView extends React.Component {
         var items = this.props.items;
         var items_selectedDate = JSON.parse(JSON.stringify(items));
         if (this.props.selectedDateMoment) {
-            //console.log("HIT HOLD");
-            //console.log(JSON.parse(JSON.stringify(this.props.items)));
+            console.log("HIT HOLD");
+            console.log(JSON.parse(JSON.stringify(this.props.items)));
             for (var i = 0; i < items.length; i++) {
                 var isIn = false;
                 for (var t = 0; t < 7; t++) {
