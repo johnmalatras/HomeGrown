@@ -70,11 +70,15 @@ class AccountPage extends React.Component {
             <span className="sr-only">Error:</span>
             You have no set selling dates yet. Please set your available dates.
         </div>;
+        if(this.props.userInfo.isRestaurant)
+        {
+            noSetDates = <div></div>;
+        }
         for(var i = 0; i < 7; i++)
         {
             if(this.props.userInfo.availableDates[i].value)
             {
-                noSetDates = <div></div>
+                noSetDates = <div></div>;
             }
         }
         const isRestaurant = this.props.userInfo.isRestaurant;

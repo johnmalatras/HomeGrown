@@ -35,8 +35,7 @@ class Home extends React.Component {
     {
         if(this.state.cords)
         {
-            //console.log(this.state.cords);
-            this.props.actions.getItemsInArea(this.state.cords,45);//([35.7796,78.638],2000);
+            this.props.actions.getItemsInArea(this.state.cords,45);
             browserHistory.push('/');
         }
 
@@ -80,6 +79,7 @@ class Home extends React.Component {
             borderWidth: '2px',
             borderStyle: 'solid',
             borderColor: '#8DC63F',
+              border:'#8DC63F',
             color: 'black',
               height: '120vh'
           },
@@ -159,7 +159,8 @@ class Home extends React.Component {
                     <br />
                     <div className="container" style={styles.center}>
                         <Geosuggest style={styles.searchBar}
-                                    onSuggestSelect={this.onSuggestSelect}/>
+                                    onSuggestSelect={this.onSuggestSelect}
+                                    placeholder="Enter you delivery address"/>
                         <br />
                         <button href="#" onClick={() => this.findItems()} style={styles.button}>Find Produce</button>
                     </div>

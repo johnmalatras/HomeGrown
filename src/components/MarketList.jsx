@@ -8,9 +8,9 @@ var MarketList = (props) => {
 	if(props.items)
 	{
 		var listItemsArray = [];
-		for (var key in props.items) {
-			var item = props.items[key];
-			item.key = key;
+		for (var key in props.items[0]) {
+			var item =key;
+			//item.key = key;
 			listItemsArray.push(item);
 		}
 		var isAuth = props.userAuthenticated;
@@ -26,8 +26,7 @@ var MarketList = (props) => {
 			isRestaurant = false;
 		}
 		if(props.userInfo) {
-			//console.log("props.items");
-			//console.log(props.items);
+
 			listItems = props.items.map((row) => {
 				return <MarketItem key={row.key}
 								   item={row}
