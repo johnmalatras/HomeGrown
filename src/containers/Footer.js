@@ -45,7 +45,8 @@ class Footer extends React.Component {
 
           footerImage: {
             paddingBottom: '11px',
-              height: '46px'
+              height: '46px',
+              paddingRight:'12px'
           },
 
           footerLinkText: {

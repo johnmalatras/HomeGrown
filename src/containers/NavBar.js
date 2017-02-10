@@ -94,7 +94,7 @@ class NavBar extends React.Component {
         hashHistory.push('/cart');
     }
     handleMarket(){
-        hashHistory.push('/');
+        hashHistory.push('/market');
     }
     handleHolder(){
         hashHistory.push('/account');

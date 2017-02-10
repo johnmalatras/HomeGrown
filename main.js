@@ -34,7 +34,8 @@ ReactDOM.render(
     <Provider store={store}>
         <Router history={ hashHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={MarketView}/>
+                <IndexRoute component={Home}/>
+                <Route path="/market" component={MarketView}/>
                 <Route path="/home" component={Home}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>

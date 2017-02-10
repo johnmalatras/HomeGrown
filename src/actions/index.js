@@ -77,7 +77,7 @@ export function signInUser(credentials){
         Firebase.auth().signInWithEmailAndPassword(credentials.email1, credentials.password1)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/');
+                hashHistory.push('/market');
             })
             .catch(error => {
                 dispatch(authError(error));
@@ -111,7 +111,7 @@ export function signUpUser(credentials) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                hashHistory.push('/');
+                hashHistory.push('/market');
             })
             .catch(error => {
                 console.log(error);
@@ -171,7 +171,7 @@ export function verifyAuth(){
             if (user) {
                 dispatch(authUser());
             } else {
-                dispatch(signOutUser());
+               // dispatch(signOutUser());
             }
         });
     }
