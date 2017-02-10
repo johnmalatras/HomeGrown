@@ -16,6 +16,7 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
+var Field = ReactBootstrap.Field;
 import Geosuggest from 'react-geosuggest';
 import Radium from 'radium'
 import '../style/geosuggest.css';
@@ -149,6 +150,8 @@ class EditUserPage extends React.Component {
         var nameWarning;
         var addressWarning;
         var businessNameWarning;
+        var paymentWarning;
+
         if(!this.props.userInfo.businessName) {
             businessNameWarning = <div className="alert alert-danger" role="alert">
                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -168,6 +171,14 @@ class EditUserPage extends React.Component {
                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span className="sr-only">Error:</span>
                 Please enter an owner name to complete your account.
+            </div>;
+        }
+
+        if (!this.props.userInfo.paymentType) {
+            paymentWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please select your preferred payment type.
             </div>;
         }
 
@@ -250,6 +261,27 @@ class EditUserPage extends React.Component {
                             <Col md={6}>
                                 <Geosuggest style={{width: '100%'}}
                                             onSuggestSelect={this.onSuggestSelect}/>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><Button onClick={() => this.updateAddress()} >Save</Button></Col>
+                            <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.addressError}</p></Col>
+                        </Row>
+                    </Panel>
+                    <Panel>
+                        <h3>Payment Type</h3>
+                        <h4 style={styles.warning}>{paymentWarning}</h4>
+                        <Row>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>Current Payment Method:</p></Col>
+                            <Col md={6}>dog</Col>
+                        </Row>
+                        <Row>
+                            <Col md={6}><p style={{fontWeight: 'bold'}}>Select new Payment Type: </p></Col>
+                            <Col md={6}>
+                                <Field name="paymentType" component="select">
+                                        <option value={"credit"}>Credit Card</option>
+                                        <option value={"invoice"}>Net-15 Invoicing</option>
+                                </Field>
                             </Col>
                         </Row>
                         <Row>

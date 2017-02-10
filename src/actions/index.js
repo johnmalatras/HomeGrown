@@ -128,7 +128,7 @@ export function signUpUser(credentials) {
         };
         firstTime = true;
 
-        fetch('http://104.236.192.230/api/signup', {
+        fetch('https://api.ripenow.co/v1/signup', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

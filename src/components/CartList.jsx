@@ -63,7 +63,7 @@ class CartList extends React.Component {
         token.orderDescription = orderDescription;
         token.orderPrice = totalPrice;
 
-        fetch('http://104.236.192.230/api/chargecard', {
+        fetch('https://api.ripenow.co/v1/chargecard', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
