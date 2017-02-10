@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium'
 var ReactBootstrap = require('react-bootstrap');
-import { browserHistory } from 'react-router';
+import { browserHistory, hashHistory } from 'react-router';
 import '../style/geosuggesthome.css';
 import Geosuggest from 'react-geosuggest';
 import { bindActionCreators } from 'redux';
@@ -23,7 +23,7 @@ class Home extends React.Component {
     };
 
     TermsOfUse(){
-        browserHistory.push('/terms');
+        hashHistory.push('/terms');
     };
 
     onSuggestSelect(suggest) {
@@ -36,7 +36,7 @@ class Home extends React.Component {
         if(this.state.cords)
         {
             this.props.actions.getItemsInArea(this.state.cords,45);
-            browserHistory.push('/');
+            hashHistory.push('/market');
         }
 
     }

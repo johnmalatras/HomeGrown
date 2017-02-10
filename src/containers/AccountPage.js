@@ -3,7 +3,7 @@ import ActiveOrders from './ActiveOrders';
 import CurrentListings from './CurrentListings';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
-import { browserHistory } from 'react-router';
+import { browserHistory,hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
@@ -40,24 +40,24 @@ class AccountPage extends React.Component {
         this.editInfo= this.editInfo.bind(this);
     }
     addItem(){
-        browserHistory.push('/addItem');
+        hashHistory.push('/addItem');
     }
     editInfo(selectedKey) {
         if(selectedKey == 1)
         {
-            browserHistory.push('/edit');
+            hashHistory.push('/edit');
         }
         else if(selectedKey == 2)
         {
-            browserHistory.push('/email');
+            hashHistory.push('/email');
         }
         else if(selectedKey == 3)
         {
-            browserHistory.push('/password');
+            hashHistory.push('/password');
         }
         else if(selectedKey == 4)
         {
-            browserHistory.push('/available');
+            hashHistory.push('/available');
         }
 
     }

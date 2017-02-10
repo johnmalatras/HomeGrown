@@ -1,7 +1,7 @@
 /**
  * Created by alextulenko on 11/10/16.
  */
-import { browserHistory } from 'react-router';
+import { browserHistory,hashHistory } from 'react-router';
 import Firebase from 'firebase';
 import Geofire from 'geofire';
 import RSVP from 'rsvp';
@@ -50,17 +50,14 @@ const config = {
     storageBucket: "homegrown-65645.appspot.com",
     messagingSenderId: "818910687408"
 };
-
 //PRODUCTION SERVER
-/*
-const config = {
-    apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
-    authDomain: "ripenow-bbe84.firebaseapp.com",
-    databaseURL: "https://ripenow-bbe84.firebaseio.com",
-    storageBucket: "ripenow-bbe84.appspot.com",
-    messagingSenderId: "475593459363"
-};
-*/
+// const config = {
+//     apiKey: "AIzaSyCbZEmVcw_tndo2X05rP9wg1fKQDC2KE_s",
+//     authDomain: "ripenow-bbe84.firebaseapp.com",
+//     databaseURL: "https://ripenow-bbe84.firebaseio.com",
+//     storageBucket: "ripenow-bbe84.appspot.com",
+//     messagingSenderId: "475593459363"
+// };
 
 Firebase.initializeApp(config);
 const database = Firebase.database();
@@ -80,7 +77,7 @@ export function signInUser(credentials){
         Firebase.auth().signInWithEmailAndPassword(credentials.email1, credentials.password1)
             .then(response => {
                 dispatch(authUser());
-                browserHistory.push('/');
+                hashHistory.push('/market');
             })
             .catch(error => {
                 dispatch(authError(error));
@@ -114,7 +111,7 @@ export function signUpUser(credentials) {
         authData.createUserWithEmailAndPassword(credentials.email, credentials.password)
             .then(response => {
                 dispatch(authUser());
-                browserHistory.push('/');
+                hashHistory.push('/market');
             })
             .catch(error => {
                 console.log(error);
@@ -174,7 +171,7 @@ export function verifyAuth(){
             if (user) {
                 dispatch(authUser());
             } else {
-                dispatch(signOutUser());
+               // dispatch(signOutUser());
             }
         });
     }
@@ -182,7 +179,7 @@ export function verifyAuth(){
 
 export function signOutUser() {
     Firebase.auth().signOut();
-    browserHistory.push('/home');
+    hashHistory.push('/home');
     return {
         type: 'SIGN_OUT_USER'
     }
@@ -347,7 +344,7 @@ export function updateUserEmail(oldEmail,newEmail,password){
                     ["email"]: newEmail.toString()
                 });
 
-                browserHistory.push('/account');
+                hashHistory.push('/account');
                 dispatch({
                     type: UPDATE_USER_INFO
                 });
@@ -462,7 +459,7 @@ export function addItem(values, ownerName, businessName, availableDates, email) 
                     ["key"]: itemIDhold
                 });
 
-                browserHistory.push('/account');
+                hashHistory.push('/account');
             });
         });
 

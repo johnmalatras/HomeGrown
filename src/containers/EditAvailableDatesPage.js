@@ -7,7 +7,7 @@ var Button = ReactBootstrap.Button;
 var ButtonToolbar = ReactBootstrap.ButtonToolbar;
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, hashHistory } from 'react-router';
 import * as Actions from '../actions';
 var Grid = ReactBootstrap.Grid;
 var Row = ReactBootstrap.Row;
@@ -45,7 +45,7 @@ class EditAvailableDatesPage extends React.Component {
     }
     goBack()
     {
-        browserHistory.push('/account');
+        hashHistory.push('/account');
     }
     render() {
         var availableDates = this.props.userInfo.availableDates;

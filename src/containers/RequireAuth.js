@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory,hashHistory } from 'react-router';
 
 export default function(WrappedComponent) {
     class Auth extends React.Component {
@@ -18,7 +18,7 @@ export default function(WrappedComponent) {
                 }
 
                 if (!hasLocalStorageUser) {
-                    browserHistory.push('/');
+                    hashHistory.push('/');
                 }
             }
 

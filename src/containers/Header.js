@@ -84,7 +84,6 @@ class Header extends React.Component {
             }
 
         } else {
-            console.log("HIT COLOr");
             return [
                 <Navbar style={{backgroundColor: 'red'}} collapseOnSelect block fluid>
                     <Navbar.Header>

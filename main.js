@@ -8,7 +8,7 @@ import App from './src/containers/App';
 import { createStore,applyMiddleware } from 'redux/lib'
 import rootReducer from './src/reducers/index';
 import promiseMiddleware from 'redux-promise';
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory, hashHistory } from 'react-router';
 import HomePage from './src/components/HomePage';
 import RequireAuth from './src/containers/RequireAuth';
 import reduxThunk from 'redux-thunk';
@@ -32,9 +32,10 @@ const store = createStore( rootReducer, applyMiddleware( reduxThunk ));
 store.dispatch(Actions.verifyAuth());
 ReactDOM.render(
     <Provider store={store}>
-        <Router history={browserHistory}>
+        <Router history={ hashHistory}>
             <Route path="/" component={App}>
-                <IndexRoute component={MarketView} />
+                <IndexRoute component={Home}/>
+                <Route path="/market" component={MarketView}/>
                 <Route path="/home" component={Home}/>
                 <Route path="/cart" component={RequireAuth(Cart)}/>
                 <Route path="/account" component={RequireAuth(AccountPage)}/>

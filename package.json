@@ -6,8 +6,11 @@
   "dependencies": {
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.0",
+    "express": "^4.14.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "firebase": "^3.5.1",
     "geofire": "^4.1.2",
+    "http-proxy": "^1.16.2",
     "moment": "^2.16.0",
     "nodemailer": "^2.7.0",
     "radium": "^0.18.1",
@@ -31,7 +34,8 @@
     "redux-promise": "^0.5.3",
     "rsvp": "^3.3.3",
     "style-loader": "^0.13.1",
-    "superagent": "^2.3.0"
+    "superagent": "^2.3.0",
+    "universal-webpack": "^0.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",
