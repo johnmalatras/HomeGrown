@@ -143,7 +143,7 @@ class LoginComponent extends React.Component {
     };
 
     handleFormSubmit(values){
-        console.log(values);
+        //console.log(values);
         {this.props.onLogin(values)}
     };
 

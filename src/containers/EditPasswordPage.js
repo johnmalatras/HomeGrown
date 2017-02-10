@@ -12,7 +12,7 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
-import { browserHistory } from 'react-router';
+import { browserHistory,hashHistory } from 'react-router';
 
 var canEdit = true;
 class EditPasswordPage extends React.Component {
@@ -80,7 +80,7 @@ class EditPasswordPage extends React.Component {
     }
     leavePasswordChange(){
         this.props.actions.resetPasswordUpdate();
-        browserHistory.push('/account');
+        hashHistory.push('/account');
     }
     render() {
         if(this.props.passwordChanged)

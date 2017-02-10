@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import { Field, reduxForm } from 'redux-form';
-import { browserHistory } from 'react-router';
+import { browserHistory,hashHistory } from 'react-router';
 import Radium from 'radium';
 
 var styles = {
@@ -74,15 +74,15 @@ class AddItemPage extends React.Component {
     };
 
     backButton(){
-        browserHistory.push('/account');
+        hashHistory.push('/account');
     }
 
     About(){
-        browserHistory.push('/about');
+        hashHistory.push('/about');
     };
 
     Account(){
-        browserHistory.push('/account');
+        hashHistory.push('/account');
     };
 
     renderField({input, label, type, meta: {touched, error}}){

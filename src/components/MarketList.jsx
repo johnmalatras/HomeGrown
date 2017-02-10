@@ -13,8 +13,6 @@ var MarketList = (props) => {
 			//item.key = key;
 			listItemsArray.push(item);
 		}
-		console.log("LISTITEMS");
-		console.log(props.items);
 		var isAuth = props.userAuthenticated;
 		var isRestaurant = false;
 		if(props.userInfo != undefined)

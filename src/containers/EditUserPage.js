@@ -6,7 +6,7 @@ import ActiveOrders from './ActiveOrders';
 import CurrentListings from './CurrentListings';
 var ReactBootstrap = require('react-bootstrap');
 var Button = ReactBootstrap.Button;
-import { browserHistory } from 'react-router';
+import { browserHistory,hashHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';

@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import {signOutUser} from '../actions/index';
-import { browserHistory } from 'react-router';
+import { browserHistory, hashHistory } from 'react-router';
 import Radium, { Style } from 'radium';
 var ReactBootstrap = require('react-bootstrap');
 
@@ -51,6 +51,7 @@ var styles = {
         padding: '12px 25px',
         borderStyle: 'solid',
         borderWidth: '3px',
+        height: '6vh',
         borderRadius: '25px',
         borderColor: '#8DC63F',
         transitionDuration: '0.1s',
@@ -90,27 +91,27 @@ class NavBar extends React.Component {
         this.props.signOut();
     }
     handleCart(){
-        browserHistory.push('/cart');
+        hashHistory.push('/cart');
     }
     handleMarket(){
-        browserHistory.push('/');
+        hashHistory.push('/');
     }
     handleHolder(){
-        browserHistory.push('/account');
+        hashHistory.push('/account');
     }
     handleAbout(){
-        browserHistory.push('/about');
+        hashHistory.push('/about');
     }
 
     handleHome(){
-        browserHistory.push('/home');
+        hashHistory.push('/home');
     }
 
     handleSignIn(){
-        browserHistory.push('/login');
+        hashHistory.push('/login');
     }
     handleAddItem() {
-        browserHistory.push('/addItem');
+        hashHistory.push('/addItem');
     }
     renderAuthLinks() {
         if (this.props.authenticated) {
