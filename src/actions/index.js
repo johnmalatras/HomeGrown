@@ -125,7 +125,7 @@ export function signUpUser(credentials) {
         };
         firstTime = true;
 
-        fetch('http://104.236.192.230/api/signup', {
+        fetch('https://api.ripenow.co/v1/signup', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -644,6 +644,30 @@ export function placeOrder(order,cartIndex,user) {
             ["deliveryTime"]:order.order.deliveryTime,
             ["deliveryDate"]:order.order.deliveryDate
         });
+
+        // add to sellers current invoice
+        const sellerInvoice = database.ref('users/'+item[0].sellerUID+'/current_invoice');
+        var sellerInvoiceItemRef = sellerInvoice.push();
+        sellerInvoiceItemRef.set({
+            ["order"]: order.order.cart,
+            ["total"]: order.order.subtotal,
+            ["comment"]:order.order.comment,
+            ["deliveryTime"]:order.order.deliveryTime,
+            ["deliveryDate"]:order.order.deliveryDate
+        });
+
+        // add to buyers current invoice
+        const buyerInvoice = database.ref('users/'+userUid.toString()+'/current_invoice');
+        var buyerInvoiceItemRef = buyerInvoice.push();
+        buyerInvoiceItemRef.set({
+            ["order"]: order.order.cart,
+            ["subtotal"]: order.order.subtotal,
+            ["fee"]: order.order.fee,
+            ["total"]: order.order.total,
+            ["comment"]:order.order.comment,
+            ["deliveryTime"]:order.order.deliveryTime,
+            ["deliveryDate"]:order.order.deliveryDate
+        });
     }
 
     // add to overall active orders
@@ -660,7 +684,7 @@ export function placeOrder(order,cartIndex,user) {
     order.order.user = user;
 
     console.log(order.order);
-    fetch('http://104.236.192.230/api/placeorder', {
+    fetch('https://api.ripenow.co/v1/placeorder', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

@@ -29,13 +29,13 @@ class CartList extends React.Component {
             deliveryDate: undefined,
             deliveryDateDay: ''
         };
-        this.placeOrder = this.placeOrder.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleTextChange = this.handleTextChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
         this.onToken = this.onToken.bind(this);
         this.canNotOrder = this.canNotOrder.bind(this);
+        this.invoiceOrder = this.invoiceOrder.bind(this);
     }
 
     onToken(token) {
@@ -63,7 +63,7 @@ class CartList extends React.Component {
         token.orderDescription = orderDescription;
         token.orderPrice = totalPrice;
 
-        fetch('http://104.236.192.230/api/chargecard', {
+        fetch('https://api.ripenow.co/v1/chargecard', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -84,10 +84,43 @@ class CartList extends React.Component {
                 comment: this.state.comment,
                 deliveryTime: this.state.deliveryTime
             };
-            console.log("trying to place order");
-            this.props.placeOrder(purchase, this.props.selectedCart, this.props.user);
+            this.props.placeOrder(purchase, this.props.selectedCart, this.props.userInfo);
         });
 
+    }
+
+    invoiceOrder() {
+        var useCart;
+        if (this.props.selectedCart == 1) {
+            useCart = this.props.cart;
+        }
+        else if (this.props.selectedCart == 2) {
+            useCart = this.props.cart2;
+        }
+        else if (this.props.selectedCart == 3) {
+            useCart = this.props.cart3;
+        }
+        var orderDescription;
+        if (useCart.length > 1) {
+            orderDescription = useCart.length + " items";
+        } else {
+            orderDescription = useCart[0][0].title;
+        }
+
+        var fee = (price * .1).toFixed(2);
+        var totalPrice = (+price + +fee).toFixed(2) * 100;
+        var priceDollars = totalPrice / 100;
+
+        var purchase = {
+                cart: useCart,
+                subtotal: price,
+                fee: fee,
+                total: priceDollars,
+                deliveryDate: this.props.selectedDateMoment.format('YYYY-MM-DD'),
+                comment: this.state.comment,
+                deliveryTime: this.state.deliveryTime
+        };
+        this.props.placeOrder(purchase, this.props.selectedCart, this.props.userInfo);
     }
 
     handleChange(date) {
@@ -108,46 +141,6 @@ class CartList extends React.Component {
         this.setState({
             deliveryTime: textComment
         });
-    }
-
-    placeOrder(subtotal, fee, total) {
-        var useCart;
-        if (this.props.selectedCart == 1) {
-            useCart = this.props.cart;
-        }
-        else if (this.props.selectedCart == 2) {
-            useCart = this.props.cart2;
-        }
-        else if (this.props.selectedCart == 3) {
-            useCart = this.props.cart3;
-        }
-
-        if (useCart.length == 0) {
-            this.setState({
-                errorMessage: 'You must have someting in your cart to order.'
-            });
-            return -1;
-        }
-        else if (this.state.deliveryDate == undefined) {
-            this.setState({
-                errorMessage: 'You must select a delivery date.'
-            });
-            return -1;
-        }
-        else {
-            var purchase = {
-                cart: useCart,
-                subtotal: subtotal,
-                fee: fee,
-                total: total,
-                deliveryDate: this.props.selectedDateMoment,
-                comment: this.state.comment,
-                deliveryTime: this.state.deliveryTime
-            };
-            this.props.placeOrder(purchase,selectedCart);
-           // alert("Order Placed! Thank you for your business!")
-            return 0;
-        }
     }
 
     //Returns the opposite of what you would think lol
@@ -241,6 +234,26 @@ class CartList extends React.Component {
             }
         }
         let date = '2017-04-24';
+
+        var checkoutButton;
+        if (this.props.userInfo.paymentType == 'credit') {
+            checkoutButton = <StripeCheckout
+                                stripeKey="pk_test_BlpgbsPBhVhgFQsfLwUwQWzf"
+                                token={this.onToken}
+                                image="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow_Icon_Small.png?alt=media&token=08415221-4f86-4325-b92f-90a050054aab"
+                                name="RipeNow LLC"
+                                description={orderDescription}
+                                currency="USD"
+                                amount={totalPrice * 100}
+                                shippingAddress
+                                email={this.props.userInfo.email}
+                                disabled={canBuy}
+                              >
+                              </StripeCheckout>
+        } else {
+            checkoutButton = <Button onClick={this.invoiceOrder}>Place Order</Button>
+        }
+
         return (
             <tbody className="theList">
             {listItems}
@@ -298,19 +311,7 @@ class CartList extends React.Component {
                 <td></td>
                 <td></td>
                 <td>
-                    <StripeCheckout
-                        stripeKey="pk_test_BlpgbsPBhVhgFQsfLwUwQWzf"
-                        token={this.onToken}
-                        image="https://firebasestorage.googleapis.com/v0/b/homegrown-65645.appspot.com/o/RipeNow_Icon_Small.png?alt=media&token=08415221-4f86-4325-b92f-90a050054aab"
-                        name="RipeNow LLC"
-                        description={orderDescription}
-                        currency="USD"
-                        amount={totalPrice * 100}
-                        shippingAddress
-                        email={this.props.user.email}
-                        disabled={canBuy}
-                    >
-                    </StripeCheckout>
+                    {checkoutButton}
                 </td>
             </tr>
             <tr>
@@ -331,7 +332,7 @@ function mapStateToProps(state) {
         cart2: state.cart.cart2,
         cart3: state.cart.cart3,
         selectedCart: state.items.selectedCart,
-        user: state.AuthReducer.userInfo,
+        userInfo: state.AuthReducer.userInfo,
         selectedDateMoment: state.items.selectedDateMoment
     };
 }

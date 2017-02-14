@@ -16,6 +16,7 @@ var Row = ReactBootstrap.Row;
 var Col = ReactBootstrap.Col;
 var Panel = ReactBootstrap.Panel;
 var FormControl = ReactBootstrap.FormControl;
+var FormGroup = ReactBootstrap.FormGroup;
 import Geosuggest from 'react-geosuggest';
 import Radium from 'radium'
 import '../style/geosuggest.css';
@@ -30,9 +31,10 @@ var styles = {
 
 };
 class EditUserPage extends React.Component {
+
     constructor(props) {
         super(props);
-        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", businessNameError: "", address: "",addressError: "", cords:null};
+        this.state = {phoneNumber: "", phoneNumberError: "", ownerNameError: "", ownerName: "", businessName: "", paymentType: "", businessNameError: "", address: "",addressError: "", cords:null, paymentWarning: ""};
         this.updateEmail= this.updateEmail.bind(this);
         this.handleTextChange= this.handleTextChange.bind(this);
         this.handleOwnerNameChange= this.handleOwnerNameChange.bind(this);
@@ -41,7 +43,11 @@ class EditUserPage extends React.Component {
         this.updateBusinessName= this.updateBusinessName.bind(this);
         this.onSuggestSelect = this.onSuggestSelect.bind(this);
         this.updateAddress = this.updateAddress.bind(this);
+        this.updatePayment = this.updatePayment.bind(this);
+        this.handlePaymentChange = this.handlePaymentChange.bind(this);
+        this.checkPaymentType = this.checkPaymentType.bind(this);
     }
+
     updateEmail() {
         if(this.state.phoneNumber.length == 12)
         {
@@ -59,13 +65,7 @@ class EditUserPage extends React.Component {
         {
             this.props.actions.updateUserSetting("ownerName",this.state.ownerName);
 
-            if(!this.props.userInfo.isAccountFinished)
-            {
-                if(this.props.userInfo.businessName && this.props.userInfo.address)
-                {
-                    this.props.actions.unlockAccount();
-                }
-            }
+            checkIfAccountComplete();
         }
         else {
             this.setState({
@@ -73,18 +73,21 @@ class EditUserPage extends React.Component {
             });
         }
     }
+
+    checkIfAccountComplete() {
+        if(!this.props.userInfo.isAccountFinished) {
+            if(this.props.userInfo.businessName && this.props.userInfo.address && this.props.userInfo.paymentType) {
+                this.props.actions.unlockAccount();
+            }
+        }
+    }
+
     updateBusinessName(){
         if(this.state.businessName.length > 0)
         {
             this.props.actions.updateUserSetting("businessName",this.state.businessName);
 
-            if(!this.props.userInfo.isAccountFinished)
-            {
-                if(this.props.userInfo.ownerName && this.props.userInfo.address)
-                {
-                    this.props.actions.unlockAccount();
-                }
-            }
+            checkIfAccountComplete();
         }
         else {
             this.setState({
@@ -98,13 +101,7 @@ class EditUserPage extends React.Component {
             this.props.actions.updateUserSetting("address",this.state.address);
             this.props.actions.updateUserSetting("cords",this.state.cords);
 
-            if(!this.props.userInfo.isAccountFinished)
-            {
-                if(this.props.userInfo.ownerName && this.props.userInfo.businessName)
-                {
-                    this.props.actions.unlockAccount();
-                }
-            }
+            checkIfAccountComplete();
         }
         else {
             this.setState({
@@ -114,24 +111,39 @@ class EditUserPage extends React.Component {
 
 
     }
+
+    updatePayment() {
+        this.props.actions.updateUserSetting("paymentType",this.state.paymentType);
+    }
+
     handleOwnerNameChange(newName)
     {
         this.setState({
             ownerName: newName.target.value
         });
     }
+
     handleBusinessNameChange(newName)
     {
         this.setState({
             businessName: newName.target.value
         });
     }
+
     handleTextChange(textComment)
     {
         this.setState({
             phoneNumber: textComment.target.value
         });
     }
+
+    handlePaymentChange(event) {
+        //console.log(event);
+        this.setState({
+            paymentType: event.target.value
+        });
+    }
+
     onSuggestSelect(suggest) {
         console.log(suggest);
         this.setState({
@@ -142,6 +154,12 @@ class EditUserPage extends React.Component {
         });
     }
 
+    checkPaymentType() {
+        if (this.props.userInfo.paymentType == 'credit') return "Credit Card";
+        else if (this.props.userInfo.paymentType == 'invoice') return "Net-15 Invoicing";
+
+    }
+
     render() {
         var fixtures = [
             {label: 'Raleigh', location: {lat: 35.7796, lng: 78.6382}},
@@ -149,6 +167,11 @@ class EditUserPage extends React.Component {
         var nameWarning;
         var addressWarning;
         var businessNameWarning;
+        var paymentWarning;
+        var paymentPanel;
+
+        var currentPaymentType = this.checkPaymentType();
+
         if(!this.props.userInfo.businessName) {
             businessNameWarning = <div className="alert alert-danger" role="alert">
                 <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -169,6 +192,38 @@ class EditUserPage extends React.Component {
                 <span className="sr-only">Error:</span>
                 Please enter an owner name to complete your account.
             </div>;
+        }
+
+        if (!this.props.userInfo.paymentType) {
+            paymentWarning = <div className="alert alert-danger" role="alert">
+                <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span className="sr-only">Error:</span>
+                Please select your preferred payment type.
+            </div>;
+        }
+
+        if (this.props.userInfo.isRestaurant == 'true') {
+            paymentPanel = <Panel>
+                                <h3>Payment Type</h3>
+                                <h4 style={styles.warning}>{paymentWarning}</h4>
+                                <Row>
+                                    <Col md={6}><p style={{fontWeight: 'bold'}}>Current Payment Method:</p></Col>
+                                    <Col md={6}>{currentPaymentType}</Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}><p style={{fontWeight: 'bold'}}>Select new Payment Type: </p></Col>
+                                    <Col md={6}>
+                                        <select className="form-control" onChange={this.handlePaymentChange}>
+                                            <option value="credit" >Credit Card</option>
+                                            <option value="invoice" >Net-15 Invoicing</option>
+                                        </select>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={6}><Button onClick={() => this.updatePayment()} >Save</Button></Col>
+                                    <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.paymentWarning}</p></Col>
+                                </Row>
+                            </Panel>
         }
 
         return (
@@ -257,6 +312,7 @@ class EditUserPage extends React.Component {
                             <Col md={6}><p style={{fontWeight: 'bold', color: '#ff0000'}}>{this.state.addressError}</p></Col>
                         </Row>
                     </Panel>
+                    {paymentPanel}
                 </Grid>
             </div>
         )
