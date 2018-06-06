@@ -1,5 +1,4 @@
-![Logo](https://imgur.com/a/LgLv1q5.png)
-# RipeNow
+![Logo](https://imgur.com/6cxjjBe.png)
 ### RipeNow provided an online marketplace for small and medium size farmers to list produce that could be purchased by restauarants. Shut down July 2017. 
 
 Built in React/Redux. Quite messy. 
